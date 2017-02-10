@@ -29,29 +29,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NAQ-H4-tZT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wRB-gb-UYP">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
-                                    </imageView>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vLd-MJ-OET">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="erX-On-Mna">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="166"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sCz-ZO-5d7">
-                                                    <rect key="frame" x="0.0" y="-434" width="0.0" height="0.0"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="O8E-oU-pas">
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    </view>
-                                                    <vibrancyEffect>
-                                                        <blurEffect style="light"/>
-                                                    </vibrancyEffect>
-                                                </visualEffectView>
-                                            </subviews>
-                                        </view>
-                                        <blurEffect style="light"/>
-                                    </visualEffectView>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J38-As-0Fv">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="5"/>
                                         <constraints>
@@ -67,7 +44,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Iconochive-Regular" family="Iconochive-Regular" pointSize="25"/>
                                         <state key="normal" title="&lt;&lt;">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5j-dE-d5Y">
@@ -78,7 +55,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Iconochive-Regular" family="Iconochive-Regular" pointSize="56"/>
                                         <state key="normal" title="&gt;">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hG-DX-E22">
@@ -89,14 +66,14 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Iconochive-Regular" family="Iconochive-Regular" pointSize="25"/>
                                         <state key="normal" title="&gt;&gt;">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ull-Dr-H5v">
-                                        <rect key="frame" x="279.5" y="12" width="30" height="42"/>
+                                        <rect key="frame" x="279.5" y="14.5" width="30" height="37"/>
                                         <fontDescription key="fontDescription" name="Iconochive-Regular" family="Iconochive-Regular" pointSize="25"/>
                                         <state key="normal" title="R">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPy-Q6-cif" customClass="MPVolumeView">
@@ -140,11 +117,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqD-lj-ymQ">
                                                         <rect key="frame" x="0.0" y="2" width="56.5" height="16"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdK-el-sB3">
                                                         <rect key="frame" x="298.5" y="2" width="56.5" height="16"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -177,9 +156,6 @@
                                                 <exclude reference="Vbe-sd-dXx"/>
                                             </mask>
                                         </variation>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="Sus-Pi-JOK" appends="YES" id="Ycr-on-vbs"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -196,19 +172,14 @@
                                     <constraint firstItem="M5j-dE-d5Y" firstAttribute="top" secondItem="xp6-bt-fSO" secondAttribute="bottom" id="DWF-7G-YTl"/>
                                     <constraint firstAttribute="trailing" secondItem="QPy-Q6-cif" secondAttribute="trailing" constant="10" id="E83-bJ-iNb"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerX" secondItem="NAQ-H4-tZT" secondAttribute="centerX" id="Eeg-2I-rRZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="vLd-MJ-OET" secondAttribute="trailing" id="FhP-RX-FiP"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerX" secondItem="NAQ-H4-tZT" secondAttribute="centerX" id="Fvg-GQ-cOm"/>
                                     <constraint firstAttribute="trailing" secondItem="tmH-Vr-jru" secondAttribute="trailing" constant="10" id="GEk-cY-Of0"/>
                                     <constraint firstItem="xp6-bt-fSO" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" constant="10" id="GHb-ME-pgI"/>
                                     <constraint firstItem="tmH-Vr-jru" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" constant="10" id="HLf-Te-V1a"/>
                                     <constraint firstItem="1hG-DX-E22" firstAttribute="leading" secondItem="M5j-dE-d5Y" secondAttribute="trailing" constant="5" id="HPL-M7-xSY"/>
                                     <constraint firstAttribute="trailing" secondItem="xp6-bt-fSO" secondAttribute="trailing" constant="10" id="JFV-eF-jOU"/>
-                                    <constraint firstAttribute="bottom" secondItem="vLd-MJ-OET" secondAttribute="bottom" id="KuG-2S-evh"/>
                                     <constraint firstItem="M5j-dE-d5Y" firstAttribute="top" secondItem="NAQ-H4-tZT" secondAttribute="top" id="LlD-yL-jDQ"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerX" secondItem="NAQ-H4-tZT" secondAttribute="centerX" id="LmH-u0-0WQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="wRB-gb-UYP" secondAttribute="bottom" id="NDC-F0-lQ5"/>
-                                    <constraint firstItem="ull-Dr-H5v" firstAttribute="leading" secondItem="wRB-gb-UYP" secondAttribute="trailing" id="O8I-B0-FwJ"/>
-                                    <constraint firstItem="vLd-MJ-OET" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" id="PtB-BF-wVz"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" constant="10" id="QBA-9J-RJB"/>
                                     <constraint firstItem="QPy-Q6-cif" firstAttribute="centerY" secondItem="ull-Dr-H5v" secondAttribute="centerY" id="RNj-FU-fZk"/>
                                     <constraint firstItem="VGO-Cc-d2J" firstAttribute="trailing" secondItem="M5j-dE-d5Y" secondAttribute="leading" constant="-5" id="UT4-QA-tJg"/>
@@ -217,20 +188,15 @@
                                     <constraint firstItem="VGO-Cc-d2J" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="YgB-9A-TFd"/>
                                     <constraint firstItem="M5j-dE-d5Y" firstAttribute="centerX" secondItem="NAQ-H4-tZT" secondAttribute="centerX" id="a71-Y1-cdJ"/>
                                     <constraint firstAttribute="trailing" secondItem="J38-As-0Fv" secondAttribute="trailing" id="c2r-Bb-6nz"/>
-                                    <constraint firstAttribute="trailing" secondItem="wRB-gb-UYP" secondAttribute="trailing" id="cMD-up-z9h"/>
                                     <constraint firstItem="J38-As-0Fv" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" id="fIl-he-yNL"/>
                                     <constraint firstItem="1hG-DX-E22" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="i8R-pR-Qgk"/>
                                     <constraint firstItem="ull-Dr-H5v" firstAttribute="leading" secondItem="1hG-DX-E22" secondAttribute="trailing" constant="10" id="ibs-dd-n5c"/>
-                                    <constraint firstItem="ull-Dr-H5v" firstAttribute="leading" secondItem="vLd-MJ-OET" secondAttribute="trailing" id="kZi-BR-5Tg"/>
                                     <constraint firstItem="xp6-bt-fSO" firstAttribute="top" secondItem="M5j-dE-d5Y" secondAttribute="bottom" id="kZs-RR-X5d"/>
                                     <constraint firstItem="ull-Dr-H5v" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="o27-bT-NR3"/>
                                     <constraint firstAttribute="height" constant="166" id="pby-oF-y4i"/>
                                     <constraint firstAttribute="bottom" secondItem="IC8-LW-InG" secondAttribute="bottom" constant="5" id="qnZ-8V-MWR"/>
-                                    <constraint firstItem="wRB-gb-UYP" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" id="quO-Pz-xgB"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerY" secondItem="NAQ-H4-tZT" secondAttribute="centerY" id="r6t-eg-47e"/>
-                                    <constraint firstItem="wRB-gb-UYP" firstAttribute="top" secondItem="NAQ-H4-tZT" secondAttribute="top" id="re7-q1-Lw4"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="top" secondItem="NAQ-H4-tZT" secondAttribute="top" constant="5" id="uLt-9r-hSO"/>
-                                    <constraint firstItem="vLd-MJ-OET" firstAttribute="top" secondItem="NAQ-H4-tZT" secondAttribute="top" id="vCV-1g-Bo0"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="bottom" secondItem="xp6-bt-fSO" secondAttribute="top" id="z4h-Mm-5Ww"/>
                                 </constraints>
                                 <variation key="default">
@@ -247,12 +213,12 @@
                                         <exclude reference="uLt-9r-hSO"/>
                                         <exclude reference="z4h-Mm-5Ww"/>
                                         <exclude reference="DWF-7G-YTl"/>
-                                        <exclude reference="O8I-B0-FwJ"/>
-                                        <exclude reference="kZi-BR-5Tg"/>
                                     </mask>
                                 </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Sus-Pi-JOK" appends="YES" id="f8C-WH-HVd"/>
+                                    <outletCollection property="gestureRecognizers" destination="B45-TN-BpM" appends="YES" id="4on-TU-8Zx"/>
+                                    <outletCollection property="gestureRecognizers" destination="8xe-8j-7Iz" appends="YES" id="r4D-zK-Zdz"/>
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B2l-w8-ria">
@@ -260,7 +226,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="B2l-w8-ria" secondAttribute="trailing" id="BTa-8x-nIw"/>
                             <constraint firstAttribute="bottom" secondItem="B2l-w8-ria" secondAttribute="bottom" id="Er8-k9-I5t"/>
@@ -274,7 +240,6 @@
                     <connections>
                         <outlet property="activityIndicator" destination="IC8-LW-InG" id="Tma-C5-GTF"/>
                         <outlet property="airPlayPicker" destination="QPy-Q6-cif" id="WWF-Xv-BAJ"/>
-                        <outlet property="backgroundImage" destination="wRB-gb-UYP" id="dNu-4v-HQJ"/>
                         <outlet property="backwardButton" destination="VGO-Cc-d2J" id="Mmu-eW-fn7"/>
                         <outlet property="forwardButton" destination="1hG-DX-E22" id="Cpc-HO-nBs"/>
                         <outlet property="helpIconButton" destination="GTG-Bq-83H" id="aEP-Rb-PNr"/>
@@ -284,6 +249,7 @@
                         <outlet property="nowPlayingTitle" destination="yjn-4I-NAf" id="4k5-mQ-u0Q"/>
                         <outlet property="playButton" destination="M5j-dE-d5Y" id="bSF-vd-ysU"/>
                         <outlet property="playerControlsView" destination="NAQ-H4-tZT" id="VNM-QA-hZr"/>
+                        <outlet property="playingProgress" destination="CEZ-2h-BWc" id="msL-cM-ywF"/>
                         <outlet property="progressStack" destination="rud-Hn-j9I" id="Wr9-4q-NzT"/>
                         <outlet property="randomButton" destination="ull-Dr-H5v" id="02W-d0-uIQ"/>
                         <outlet property="titleStack" destination="xp6-bt-fSO" id="93F-2L-rog"/>
@@ -293,9 +259,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4h-8c-AE6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="Sus-Pi-JOK">
                     <connections>
-                        <action selector="epandPlayer" destination="m34-IB-XFo" id="Vdl-RZ-dw2"/>
+                        <action selector="expandPlayer" destination="m34-IB-XFo" id="ymE-oh-76L"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="up" id="B45-TN-BpM">
+                    <connections>
+                        <action selector="playerUp" destination="m34-IB-XFo" id="mJr-4E-yFF"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="down" id="8xe-8j-7Iz">
+                    <connections>
+                        <action selector="playerDown" destination="m34-IB-XFo" id="vBC-8b-LmQ"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-30" y="120"/>
         </scene>

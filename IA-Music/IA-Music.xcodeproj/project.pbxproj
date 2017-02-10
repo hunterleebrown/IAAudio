@@ -68,6 +68,7 @@
 		5A4116221E4D57D1004F6B56 /* IABrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116211E4D57D1004F6B56 /* IABrowseViewController.swift */; };
 		5A4116241E4D57EE004F6B56 /* IASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */; };
 		5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */; };
+		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -135,6 +136,7 @@
 		5A4116211E4D57D1004F6B56 /* IABrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IABrowseViewController.swift; sourceTree = "<group>"; };
 		5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchViewController.swift; sourceTree = "<group>"; };
 		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; };
+		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				5A4115B01E4D1803004F6B56 /* IAIcon.swift */,
 				5A4115B11E4D1803004F6B56 /* IAIconType.swift */,
 				5A4115B21E4D1803004F6B56 /* ionicons.ttf */,
+				5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */,
 			);
 			name = "Fonts and Icons";
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */,
 				5A4115941E4D046F004F6B56 /* LaunchScreen.storyboard in Resources */,
 				5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */,
 				5A41160E1E4D203F004F6B56 /* Info.plist in Resources */,
@@ -617,7 +621,7 @@
 				);
 				INFOPLIST_FILE = "IA-Music/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hunterleebrown.IA-Music";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hunterleebrown.IA-Music-Plus";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -634,7 +638,7 @@
 				);
 				INFOPLIST_FILE = "IA-Music/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hunterleebrown.IA-Music";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hunterleebrown.IA-Music-Plus";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -659,6 +663,7 @@
 				5A41159A1E4D046F004F6B56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

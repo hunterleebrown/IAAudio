@@ -49,7 +49,13 @@ class IAPlayerViewController: UIViewController {
         self.playButton.setIAIcon(.iosPlayOutline, forState: UIControlState())
         self.forwardButton.setIAIcon(.iosSkipforwardOutline, forState: UIControlState())
         self.backwardButton.setIAIcon(.iosSkipbackwardOutline, forState: UIControlState())
+        
         self.randomButton.setTitle(IAFontMapping.RANDOM, for: UIControlState())
+        
+        self.randomButton.tintColor = UIColor.white
+     
+        self.airPlayPicker.showsRouteButton = true
+        self.airPlayPicker.showsVolumeSlider = false
 
     }
 
@@ -58,9 +64,16 @@ class IAPlayerViewController: UIViewController {
     }
     
 
-    @IBAction func epandPlayer() {
+    @IBAction func expandPlayer() {
         self.baseViewController.playerMove()
     }
 
+    @IBAction func playerUp() {
+        self.baseViewController.showFullPlayer(true)
+    }
+
+    @IBAction func playerDown() {
+        self.baseViewController.showFullPlayer(false)
+    }
 
 }
