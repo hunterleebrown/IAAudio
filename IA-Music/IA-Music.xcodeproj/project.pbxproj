@@ -69,6 +69,8 @@
 		5A4116241E4D57EE004F6B56 /* IASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */; };
 		5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */; };
 		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
+		5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE521E4DA04700FB0A7A /* IAService.swift */; };
+		5A47BE551E4DABC300FB0A7A /* IAMapperDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE541E4DABC300FB0A7A /* IAMapperDoc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -137,6 +139,8 @@
 		5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchViewController.swift; sourceTree = "<group>"; };
 		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; };
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
+		5A47BE521E4DA04700FB0A7A /* IAService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAService.swift; sourceTree = "<group>"; };
+		5A47BE541E4DABC300FB0A7A /* IAMapperDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMapperDoc.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,7 @@
 		5A4115B61E4D18F0004F6B56 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5A47BE511E4DA03300FB0A7A /* Service */,
 				5A41161C1E4D44E9004F6B56 /* Lists */,
 				5A41161B1E4D44E2004F6B56 /* My Music Stash */,
 				5A41161A1E4D44D3004F6B56 /* Find */,
@@ -313,6 +318,7 @@
 			children = (
 				5A4116161E4D280E004F6B56 /* IASearchDoc.swift */,
 				5A4116171E4D280E004F6B56 /* IAFile.swift */,
+				5A47BE541E4DABC300FB0A7A /* IAMapperDoc.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -340,6 +346,14 @@
 			children = (
 			);
 			name = Lists;
+			sourceTree = "<group>";
+		};
+		5A47BE511E4DA03300FB0A7A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5A47BE521E4DA04700FB0A7A /* IAService.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,6 +467,7 @@
 				5A4115F81E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				5A4116081E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				5A41160D1E4D203F004F6B56 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
+				5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */,
 				5A4116051E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				5A4116091E4D203F004F6B56 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
 				5A4115BC1E4D19DE004F6B56 /* IAHomeTabBarController.swift in Sources */,
@@ -478,6 +493,7 @@
 				5A4115B41E4D1803004F6B56 /* IAIconType.swift in Sources */,
 				5A41160F1E4D203F004F6B56 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
 				5A4116111E4D203F004F6B56 /* NVActivityIndicatorView.swift in Sources */,
+				5A47BE551E4DABC300FB0A7A /* IAMapperDoc.swift in Sources */,
 				5A4115FC1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
 				5A4115F71E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				5A4115FF1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,

@@ -15,7 +15,13 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     
     var candies = [Candy]()
     var filteredCandies = [Candy]()
+    
+    var searchResults = [IAMapperDoc]()
+    var filteredSearchResults = [IAMapperDoc]()
+
     let searchController = UISearchController(searchResultsController: nil)
+    
+    let service = IAService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +35,22 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["On The Internet Archive", "In Your Music Stash"]
         tableView.tableHeaderView = searchController.searchBar
+        tableView.estimatedRowHeight = 85.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+
+
         
-        candies = [
-            Candy(category:"Chocolate", name:"Chocolate Bar"),
-            Candy(category:"Chocolate", name:"Chocolate Chip"),
-            Candy(category:"Chocolate", name:"Dark Chocolate"),
-            Candy(category:"Hard", name:"Lollipop"),
-            Candy(category:"Hard", name:"Candy Cane"),
-            Candy(category:"Hard", name:"Jaw Breaker"),
-            Candy(category:"Other", name:"Caramel"),
-            Candy(category:"Other", name:"Sour Chew"),
-            Candy(category:"Other", name:"Gummi Bear")]
+//        candies = [
+//            Candy(category:"Chocolate", name:"Chocolate Bar"),
+//            Candy(category:"Chocolate", name:"Chocolate Chip"),
+//            Candy(category:"Chocolate", name:"Dark Chocolate"),
+//            Candy(category:"Hard", name:"Lollipop"),
+//            Candy(category:"Hard", name:"Candy Cane"),
+//            Candy(category:"Hard", name:"Jaw Breaker"),
+//            Candy(category:"Other", name:"Caramel"),
+//            Candy(category:"Other", name:"Sour Chew"),
+//            Candy(category:"Other", name:"Gummi Bear")]
+        
         
         
     }
@@ -60,30 +71,47 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.isActive && searchController.searchBar.text != "" {
-            return filteredCandies.count
-        }
-        return candies.count
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            return filteredCandies.count
+//        }
+        return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let candy: Candy
-        if searchController.isActive && searchController.searchBar.text != "" {
-            candy = filteredCandies[indexPath.row]
-        } else {
-            candy = candies[indexPath.row]
-        }
-        cell.textLabel!.text = candy.name
-        cell.detailTextLabel!.text = candy.category
+//        let candy: Candy
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            candy = filteredCandies[indexPath.row]
+//        } else {
+//            candy = candies[indexPath.row]
+//        }
+//        cell.textLabel!.text = candy.name
+//        cell.detailTextLabel!.text = candy.category
+        
+        let result: IAMapperDoc
+//        if searchController.isActive && searchController.searchBar.text != "" {
+//            result = filteredSearchResults[indexPath.row]
+//        } else {
+            result = searchResults[indexPath.row]
+//        }
+        cell.textLabel!.text = result.title
+        cell.detailTextLabel!.text = result.identifier
+        
         return cell
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-        filteredCandies = candies.filter({( candy : Candy) -> Bool in
-            let categoryMatch = (scope == "All") || (candy.category == scope)
-            return categoryMatch && candy.name.lowercased().contains(searchText.lowercased())
-        })
+//        filteredCandies = candies.filter({( candy : Candy) -> Bool in
+//            let categoryMatch = (scope == "All") || (candy.category == scope)
+//            return categoryMatch && candy.name.lowercased().contains(searchText.lowercased())
+//        })
+//        filteredSearchResults = searchResults.filter({( result : IAMapperDoc) -> Bool in
+//            let categoryMatch = (scope == "All") || (candy.category == scope)
+//            return categoryMatch && candy.name.lowercased().contains(searchText.lowercased())
+//        })
+        
+        
+        
         tableView.reloadData()
     }
     
@@ -124,6 +152,19 @@ extension IASearchViewController: UISearchBarDelegate {
         self.navigationController? .setNavigationBarHidden(false, animated: true)
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        service.queryString = searchBar.text
+        service.fetch { (contents, error) in
+            
+            if let contentItems = contents {
+                self.searchResults = contentItems
+                self.tableView.reloadData()
+            }
+   
+        }
+    }
+    
 }
 
 extension IASearchViewController: UISearchResultsUpdating {
@@ -132,6 +173,7 @@ extension IASearchViewController: UISearchResultsUpdating {
         let searchBar = searchController.searchBar
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
         filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+        
     }
 }
 
