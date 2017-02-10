@@ -13,13 +13,13 @@ class IAHomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let searchTab = self.tabBar.items![0] as UITabBarItem
+        let searchTab = self.tabBar.items![2] as UITabBarItem
         searchTab.setIAIcon(.iosSearch)
         
-        let libraryTab = self.tabBar.items![1] as UITabBarItem
+        let libraryTab = self.tabBar.items![0] as UITabBarItem
         libraryTab.setIAIcon(.iosMusicalNotes)
         
-        let listTab = self.tabBar.items![2] as UITabBarItem
+        let listTab = self.tabBar.items![1] as UITabBarItem
         listTab.setIAIcon(.iosListOutline)
         
         
