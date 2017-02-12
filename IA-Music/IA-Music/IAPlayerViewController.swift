@@ -160,7 +160,7 @@ class IAPlayer: NSObject {
         
         if let controller = controlsController {
             controller.nowPlayingTitle.text = self.fileTitle
-            controller.nowPlayingItemTitle.text = self.fileIdentifierTitle
+            controller.nowPlayingItemButton.setTitle(self.fileIdentifierTitle, for: .normal)
         }
         
         let playUrl = doc.fileUrl(file: file)
