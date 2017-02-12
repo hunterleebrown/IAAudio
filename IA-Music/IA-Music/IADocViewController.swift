@@ -37,20 +37,20 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
             if let identifier = theDoc.identifier {
                 
                 service.archiveDoc(identifier: identifier, completion: { (inDoc, error) in
-
-                    if let doc = inDoc {
-                        if let title = doc.title {
-                            self.docTitle.text = title
-                        }
-                        
-                        self.image.af_setImage(withURL: doc.iconUrl())
-                        
-                        if let files = doc.files {
-                            self.audioFiles = files
-                        }
-                        
-                        self.tableView.reloadData()
+                    
+                    self.doc = inDoc
+                    if let title = self.doc?.title {
+                        self.docTitle.text = title
                     }
+                    
+                    self.image.af_setImage(withURL: (self.doc!.iconUrl()))
+                    
+                    if let files = self.doc?.files {
+                        self.audioFiles = files
+                    }
+                    
+                    self.tableView.reloadData()
+                    
                 })
             }
             
@@ -80,4 +80,13 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let file = audioFiles[indexPath.row]
+        if let theDoc = doc {
+            IAPlayer.sharedInstance.playFile(file: file, doc: theDoc)
+        }
+
+    }
+    
 }

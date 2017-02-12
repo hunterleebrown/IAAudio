@@ -46,6 +46,9 @@
                                         <state key="normal" title="&lt;&lt;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didPressButton:" destination="m34-IB-XFo" eventType="touchUpInside" id="HEa-Mw-cJQ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5j-dE-d5Y">
                                         <rect key="frame" x="154.5" y="0.0" width="66" height="66"/>
@@ -57,6 +60,9 @@
                                         <state key="normal" title="&gt;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didPressButton:" destination="m34-IB-XFo" eventType="touchUpInside" id="omW-o0-Zwl"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hG-DX-E22">
                                         <rect key="frame" x="225.5" y="11" width="44" height="44"/>
@@ -68,6 +74,9 @@
                                         <state key="normal" title="&gt;&gt;">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didPressButton:" destination="m34-IB-XFo" eventType="touchUpInside" id="E42-65-kbQ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ull-Dr-H5v">
                                         <rect key="frame" x="279.5" y="14.5" width="30" height="37"/>
@@ -75,6 +84,9 @@
                                         <state key="normal" title="R">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didPressButton:" destination="m34-IB-XFo" eventType="touchUpInside" id="StX-aZ-s6H"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPy-Q6-cif" customClass="MPVolumeView">
                                         <rect key="frame" x="332" y="16.5" width="33" height="33"/>
@@ -110,6 +122,11 @@
                                                 <rect key="frame" x="-2" y="0.0" width="359" height="31"/>
                                                 <color key="minimumTrackTintColor" red="0.72156862749999995" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="maximumTrackTintColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <connections>
+                                                    <action selector="sliderTouchDown" destination="m34-IB-XFo" eventType="touchDown" id="IEz-Os-XjN"/>
+                                                    <action selector="sliderTouchUp" destination="m34-IB-XFo" eventType="touchUpInside" id="Bdf-xc-Fud"/>
+                                                    <action selector="sliderValueChanged" destination="m34-IB-XFo" eventType="valueChanged" id="cpB-Qf-GML"/>
+                                                </connections>
                                             </slider>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="rud-Hn-j9I">
                                                 <rect key="frame" x="0.0" y="30" width="355" height="20"/>

@@ -366,12 +366,12 @@
                         <viewControllerLayoutGuide type="top" id="GwD-yn-NIY"/>
                         <viewControllerLayoutGuide type="bottom" id="V9K-AN-Tkm"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="9hk-ho-y4j">
+                    <view key="view" contentMode="scaleToFill" id="9hk-ho-y4j">
                         <rect key="frame" x="0.0" y="64" width="320" height="369"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9J3-pb-Dr4">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="433"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="369"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Z5j-yb-xct">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="217"/>
