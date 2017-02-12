@@ -31,6 +31,7 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.tintColor = UIColor.darkGray
         
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["On The Internet Archive", "In Your Music Stash"]
@@ -96,7 +97,6 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
 //        }
         cell.textLabel!.text = result.title
         cell.detailTextLabel!.text = result.identifier
-        
         return cell
     }
     
@@ -133,6 +133,10 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     //        }
     //    }
     
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.searchController.searchBar.resignFirstResponder()
+    }
     
 }
 

@@ -12,9 +12,10 @@ import RealmSwift
 
 class IAMapperDoc: Object, Mappable {
     
-    dynamic var identifier = ""
-    dynamic var title = ""
-    dynamic var desc = ""
+    var identifier = ""
+    var title = ""
+    var desc = ""
+
     
     // MARK: - ObjectMapper
     required convenience init?(map: Map) {
@@ -25,6 +26,24 @@ class IAMapperDoc: Object, Mappable {
         identifier <- map["identifier"]
         title <- map["title"]
         desc <- map["description"]
+
     }
 
 }
+
+class Collection: Object, Mappable {
+    
+    var identifier = ""
+    
+    
+    // MARK: - ObjectMapper
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        identifier <- map
+    }
+    
+}
+
