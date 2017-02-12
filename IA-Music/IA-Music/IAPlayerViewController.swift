@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
-import AVFoundation
 import MediaPlayer
+import AVFoundation
 
 
 class IAPlayerViewController: UIViewController {
@@ -54,7 +54,6 @@ class IAPlayerViewController: UIViewController {
         self.backwardButton.setIAIcon(.iosSkipbackwardOutline, forState: UIControlState())
         
         self.randomButton.setTitle(IAFontMapping.RANDOM, for: UIControlState())
-        
         self.randomButton.tintColor = UIColor.white
      
         self.airPlayPicker.showsRouteButton = true
@@ -62,12 +61,25 @@ class IAPlayerViewController: UIViewController {
         
         IAPlayer.sharedInstance.controlsController = self
 
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            
+            print("Can't set category or active session")
+        }
+        
     }
 
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override var canBecomeFirstResponder : Bool {
+        return true
+    }
 
     @IBAction func expandPlayer() {
         self.baseViewController.playerMove()
@@ -117,6 +129,41 @@ class IAPlayerViewController: UIViewController {
         
     }
     
+    
+    //MARK: Remote
+    override func remoteControlReceived(with event: UIEvent?) {
+    print("----------->: revceived remote control event: \(event)")
+    
+        if IAPlayer.sharedInstance.avPlayer != nil {
+            
+            if (event!.type == UIEventType.remoteControl) {
+                switch (event!.subtype) {
+                case .remoteControlPause:
+                    IAPlayer.sharedInstance.didTapPlayButton()
+                    break;
+                case .remoteControlPlay:
+                    IAPlayer.sharedInstance.didTapPlayButton()
+                    break;
+                case .remoteControlStop:
+                    IAPlayer.sharedInstance.didTapPlayButton()
+                    break;
+                case .remoteControlTogglePlayPause:
+                    IAPlayer.sharedInstance.didTapPlayButton()
+                    break;
+                case .remoteControlPreviousTrack:
+                    //                self.goToPreviousTrack()
+                    break;
+                case .remoteControlNextTrack:
+                    //                self.goToNextTrack()
+                    break;
+                    
+                default:
+                    break;
+                }
+            }
+        }
+    }
+    
 }
 
 
@@ -125,6 +172,7 @@ class IAPlayer: NSObject {
     var avPlayer: AVPlayer?
     var controlsController : IAPlayerViewController?
     var observing = false
+    var playing = false
     fileprivate var observerContext = 0
     
     static let sharedInstance: IAPlayer = {
@@ -134,6 +182,10 @@ class IAPlayer: NSObject {
     var fileTitle: String?
     var fileIdentifierTitle: String?
     var fileIdentifier: String?
+    
+    var mediaArtwork : MPMediaItemArtwork?
+
+
     
     func playFile(file:IAFileMappable, doc:IAArchiveDocMappable){
         
@@ -145,18 +197,16 @@ class IAPlayer: NSObject {
                 self.observing = false
             }
             
+            self.setPlayingInfo(playing: false)
             avPlayer = nil
-            do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                try AVAudioSession.sharedInstance().setActive(false)
-            } catch {
-                
-            }
         }
         
         self.fileTitle = file.title
         self.fileIdentifierTitle = doc.title
         self.fileIdentifier = doc.identifier
+
+        
+        self.setActiveAudioSession()
         
         if let controller = controlsController {
             controller.nowPlayingTitle.text = self.fileTitle
@@ -170,23 +220,19 @@ class IAPlayer: NSObject {
         self.observing = true
         
         avPlayer?.play()
-
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            
-        }
+        self.setPlayingInfo(playing: true)
         
     }
     
     func didTapPlayButton() {
 
         if let player = avPlayer {
-            if player.currentItem != nil && self.observing {
+            if player.currentItem != nil && self.playing {
                 player.pause()
+                self.setPlayingInfo(playing: false)
             } else {
                 player.play()
+                self.setPlayingInfo(playing: true)
             }
         }
         
@@ -206,30 +252,74 @@ class IAPlayer: NSObject {
                     controller.playButton.setIAIcon(.iosPauseOutline, forState: UIControlState())
                 }
                 
-                
+                self.playing  = player.rate > 0.0
                 if controller.activityIndicator != nil {
                     player.rate > 0.0 ? controller.activityIndicator.startAnimation() : controller.activityIndicator.stopAnimation()
                 }
                 
-                var songInfo : [String : AnyObject] = [
-                    MPNowPlayingInfoPropertyPlaybackRate : player.rate as AnyObject,
-                    MPNowPlayingInfoPropertyElapsedPlaybackTime : NSNumber(value: Double(self.elapsedSeconds()) as Double),
-                    MPMediaItemPropertyTitle : self.fileTitle! as AnyObject,
-                    MPMediaItemPropertyAlbumTitle: self.fileIdentifierTitle! as AnyObject,
-                    MPMediaItemPropertyPlaybackDuration : NSNumber(value: CMTimeGetSeconds((player.currentItem?.duration)!) as Double)
-                ]
-//                if self.mediaArtwork != nil {
-//                    songInfo[MPMediaItemPropertyArtwork] = self.mediaArtwork
-//                }
-                
-                MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
-                
                 self.monitorPlayback()
-                
             }
             
         }
     }
+    
+    
+    func setPlayingInfo(playing:Bool) {
+        
+        if let identifier = self.fileIdentifier {
+            
+            let imageView = UIImageView()
+            let url = IAMediaUtils.imageUrlFrom(identifier)
+            
+            if playing {
+                UIApplication.shared.beginReceivingRemoteControlEvents()
+                controlsController?.becomeFirstResponder()
+            }
+            
+            imageView.af_setImage(
+                withURL: url!,
+                placeholderImage: nil,
+                filter: nil,
+                progress: nil,
+                progressQueue: DispatchQueue.main,
+                imageTransition: UIImageView.ImageTransition.noTransition,
+                runImageTransitionIfCached: false) { (response) in
+                    
+                    switch response.result {
+                    case .success(let image):
+                        self.mediaArtwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (size) -> UIImage in
+                            image
+                        })
+                        
+                        let playBackRate = playing ? "1.0" : "0.0"
+                        
+                        var songInfo : [String : AnyObject] = [
+                            MPNowPlayingInfoPropertyElapsedPlaybackTime : NSNumber(value: Double(self.elapsedSeconds()) as Double),
+                            MPMediaItemPropertyAlbumTitle: self.fileIdentifierTitle! as AnyObject,
+                            MPMediaItemPropertyPlaybackDuration : NSNumber(value: CMTimeGetSeconds((self.avPlayer?.currentItem?.duration)!) as Double),
+                            MPNowPlayingInfoPropertyPlaybackRate: playBackRate as AnyObject
+                        ]
+                        
+                        if let artwork = self.mediaArtwork {
+                            songInfo[MPMediaItemPropertyArtwork] = artwork
+                        }
+                        
+                        if let tit = self.fileTitle {
+                            songInfo[MPMediaItemPropertyTitle] = tit as AnyObject?
+                        }
+                        
+                        MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
+                        
+                        
+                    case .failure(let error):
+                        print("-----------> player couldn't get image: \(error)")
+                        break
+                    }
+            }
+        }
+    }
+    
+    
     
     func elapsedSeconds()->Int {
         if let player = avPlayer {
@@ -288,6 +378,21 @@ class IAPlayer: NSObject {
                 if controller.maxTime != nil {
                     controller.maxTime.text = StringUtils.timeFormatted(Int(calcTime))
                 }
+            }
+        }
+    }
+    
+    func setActiveAudioSession(){
+        let audioSession = AVAudioSession.sharedInstance()
+        if(audioSession.category != AVAudioSessionCategoryPlayback)
+        {
+            do {
+                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
+                try audioSession.setActive(true)
+            }
+            catch {
+                fatalError("Failure to session: \(error)")
+                
             }
         }
     }
