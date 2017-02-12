@@ -13,11 +13,8 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     
-    var candies = [Candy]()
-    var filteredCandies = [Candy]()
-    
-    var searchResults = [IAMapperDoc]()
-    var filteredSearchResults = [IAMapperDoc]()
+    var searchResults = [IASearchDocMappable]()
+    var filteredSearchResults = [IASearchDocMappable]()
 
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -36,22 +33,10 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
         // Setup the Scope Bar
         searchController.searchBar.scopeButtonTitles = ["On The Internet Archive", "In Your Music Stash"]
         tableView.tableHeaderView = searchController.searchBar
-        tableView.estimatedRowHeight = 85.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-
-
         
-//        candies = [
-//            Candy(category:"Chocolate", name:"Chocolate Bar"),
-//            Candy(category:"Chocolate", name:"Chocolate Chip"),
-//            Candy(category:"Chocolate", name:"Dark Chocolate"),
-//            Candy(category:"Hard", name:"Lollipop"),
-//            Candy(category:"Hard", name:"Candy Cane"),
-//            Candy(category:"Hard", name:"Jaw Breaker"),
-//            Candy(category:"Other", name:"Caramel"),
-//            Candy(category:"Other", name:"Sour Chew"),
-//            Candy(category:"Other", name:"Gummi Bear")]
-        
+        tableView.rowHeight = 90
+        tableView.cellLayoutMarginsFollowReadableWidth = false
+
         
         
     }
@@ -79,37 +64,26 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//        let candy: Candy
-//        if searchController.isActive && searchController.searchBar.text != "" {
-//            candy = filteredCandies[indexPath.row]
-//        } else {
-//            candy = candies[indexPath.row]
-//        }
-//        cell.textLabel!.text = candy.name
-//        cell.detailTextLabel!.text = candy.category
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! IASearchCell
+
         
-        let result: IAMapperDoc
+        let result: IASearchDocMappable
 //        if searchController.isActive && searchController.searchBar.text != "" {
 //            result = filteredSearchResults[indexPath.row]
 //        } else {
             result = searchResults[indexPath.row]
 //        }
-        cell.textLabel!.text = result.title
-        cell.detailTextLabel!.text = result.identifier
+        
+        cell.searchDoc = result
         return cell
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-//        filteredCandies = candies.filter({( candy : Candy) -> Bool in
-//            let categoryMatch = (scope == "All") || (candy.category == scope)
-//            return categoryMatch && candy.name.lowercased().contains(searchText.lowercased())
-//        })
+
 //        filteredSearchResults = searchResults.filter({( result : IAMapperDoc) -> Bool in
 //            let categoryMatch = (scope == "All") || (candy.category == scope)
 //            return categoryMatch && candy.name.lowercased().contains(searchText.lowercased())
 //        })
-        
         
         
         tableView.reloadData()
@@ -132,6 +106,18 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     //            }
     //        }
     //    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "itemPush" {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let result = searchResults[indexPath.row]
+                let controller = segue.destination as! IADocViewController
+                controller.searchDoc = result
+            }
+            
+        }
+    }
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -159,7 +145,7 @@ extension IASearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         service.queryString = searchBar.text
-        service.fetch { (contents, error) in
+        service.searchFetch { (contents, error) in
             
             if let contentItems = contents {
                 self.searchResults = contentItems
@@ -182,7 +168,4 @@ extension IASearchViewController: UISearchResultsUpdating {
 }
 
 
-struct Candy {
-    let category : String
-    let name : String
-}
+

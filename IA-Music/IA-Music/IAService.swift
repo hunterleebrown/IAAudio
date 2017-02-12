@@ -45,7 +45,7 @@ class IAService {
             }
             
             self.parameters = [
-                "q" : "\(self._queryString!) AND NOT collection:web AND NOT collection:webwidecrawl AND format:\"VBR MP3\"",
+                "q" : "\(self._queryString!) AND NOT collection:web AND NOT collection:webwidecrawl AND format:\"VBR MP3\" AND (mediatype:audio OR mediatype:etree)",
                 "output" : "json",
                 "rows" : "50"
             ];
@@ -60,35 +60,67 @@ class IAService {
     var request : Request?
     
     
-    typealias ServiceResponse = (_ result: [IAMapperDoc]?, _ error: Error?) -> Void
+    typealias SearchResponse = (_ result: [IASearchDocMappable]?, _ error: Error?) -> Void
 
-    
     init() {
         self.searchField = SearchFields.all
     }
     
     //https://archive.org/advancedsearch.php?q=hunter+lee+brown&sort%5B%5D=&sort%5B%5D=&sort%5B%5D=&rows=50&page=1&output=json
-    func fetch(_ completion:@escaping ServiceResponse) {
+    func searchFetch(_ completion:@escaping SearchResponse) {
         self.request?.cancel()
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         request = Alamofire.request(urlStr!, method:.post, parameters: parameters)
             .validate(statusCode: 200..<201)
             .validate(contentType: ["application/json"])
-            .responseArray(keyPath: "response.docs") { (response: DataResponse<[IAMapperDoc]>) in
+            .responseArray(keyPath: "response.docs") { (response: DataResponse<[IASearchDocMappable]>) in
                 switch response.result {
                 case .success(let contents):
                     print("--------------> contents: \(contents)")
                     completion(contents,nil)
                 case .failure(let error):
-                    print("--------------> error: \(error)")
+//                    print("--------------> error: \(error)")
                     completion(nil,error)
 
                     break
                 }
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
         }.responseJSON { response in
+            
+//            switch response.result {
+//            case .success(let JSON):
+//                print(JSON)
+//            case .failure(let error):
+//                print(error)
+//            }
+
         }
         
+    }
+    
+    typealias ArchiveDocResponse = (_ result: IAArchiveDocMappable?, _ error: Error?) -> Void
+
+    func archiveDoc(identifier:String, completion:@escaping ArchiveDocResponse) {
+        self.request?.cancel()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let baseItemUrl = "https://archive.org/metadata/"
+        let urlStr = "\(baseItemUrl)\(identifier)"
+        
+        request = Alamofire.request(urlStr, method:.get, parameters:nil)
+            .validate(statusCode: 200..<201)
+            .validate(contentType: ["application/json"])
+            .responseObject(completionHandler: { (response: DataResponse<IAArchiveDocMappable>) in
+                
+                switch response.result {
+                case .success(let doc):
+                    completion(doc, nil)
+                case .failure(let error):
+                    completion(nil, error)
+                    break
+                }
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            })
     }
     
 

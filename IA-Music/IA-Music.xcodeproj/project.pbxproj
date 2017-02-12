@@ -70,7 +70,13 @@
 		5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */; };
 		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
 		5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE521E4DA04700FB0A7A /* IAService.swift */; };
-		5A47BE551E4DABC300FB0A7A /* IAMapperDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE541E4DABC300FB0A7A /* IAMapperDoc.swift */; };
+		5A47BE551E4DABC300FB0A7A /* IASearchDocMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */; };
+		5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B31E502872000D4465 /* IASearchCell.swift */; };
+		5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B51E502C53000D4465 /* StringUtils.swift */; };
+		5A5764B81E502E99000D4465 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5764B71E502E98000D4465 /* AlamofireImage.framework */; };
+		5A5764BA1E50461C000D4465 /* IAArchiveDocMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B91E50461C000D4465 /* IAArchiveDocMappable.swift */; };
+		5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BB1E5056B6000D4465 /* IADocViewController.swift */; };
+		5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,7 +146,13 @@
 		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; };
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
 		5A47BE521E4DA04700FB0A7A /* IAService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAService.swift; sourceTree = "<group>"; };
-		5A47BE541E4DABC300FB0A7A /* IAMapperDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMapperDoc.swift; sourceTree = "<group>"; };
+		5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDocMappable.swift; sourceTree = "<group>"; };
+		5A5764B31E502872000D4465 /* IASearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchCell.swift; sourceTree = "<group>"; };
+		5A5764B51E502C53000D4465 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		5A5764B71E502E98000D4465 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		5A5764B91E50461C000D4465 /* IAArchiveDocMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAArchiveDocMappable.swift; sourceTree = "<group>"; };
+		5A5764BB1E5056B6000D4465 /* IADocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IADocViewController.swift; sourceTree = "<group>"; };
+		5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAAuidoFileTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A5764B81E502E99000D4465 /* AlamofireImage.framework in Frameworks */,
 				5A4115AB1E4D0B3D004F6B56 /* ObjectMapper.framework in Frameworks */,
 				5A4115A91E4D0B3D004F6B56 /* Realm.framework in Frameworks */,
 				5A4115AC1E4D0B3D004F6B56 /* MBProgressHUD.framework in Frameworks */,
@@ -198,6 +211,7 @@
 		5A41159B1E4D0B3A004F6B56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5A5764B71E502E98000D4465 /* AlamofireImage.framework */,
 				5A41159C1E4D0B3D004F6B56 /* XCGLogger.framework */,
 				5A41159D1E4D0B3D004F6B56 /* SwinjectStoryboard.framework */,
 				5A41159E1E4D0B3D004F6B56 /* Swinject.framework */,
@@ -308,6 +322,7 @@
 		5A4116121E4D277A004F6B56 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5A5764B51E502C53000D4465 /* StringUtils.swift */,
 				5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */,
 			);
 			name = Utils;
@@ -318,7 +333,8 @@
 			children = (
 				5A4116161E4D280E004F6B56 /* IASearchDoc.swift */,
 				5A4116171E4D280E004F6B56 /* IAFile.swift */,
-				5A47BE541E4DABC300FB0A7A /* IAMapperDoc.swift */,
+				5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */,
+				5A5764B91E50461C000D4465 /* IAArchiveDocMappable.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -326,9 +342,11 @@
 		5A41161A1E4D44D3004F6B56 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				5A5764BD1E506584000D4465 /* DocView */,
 				5A41161F1E4D519E004F6B56 /* IAFindTabBarController.swift */,
 				5A4116211E4D57D1004F6B56 /* IABrowseViewController.swift */,
 				5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */,
+				5A5764B31E502872000D4465 /* IASearchCell.swift */,
 			);
 			name = Find;
 			sourceTree = "<group>";
@@ -354,6 +372,15 @@
 				5A47BE521E4DA04700FB0A7A /* IAService.swift */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		5A5764BD1E506584000D4465 /* DocView */ = {
+			isa = PBXGroup;
+			children = (
+				5A5764BB1E5056B6000D4465 /* IADocViewController.swift */,
+				5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */,
+			);
+			name = DocView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,6 +472,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -466,8 +494,12 @@
 				5A4115F21E4D203F004F6B56 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				5A4115F81E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				5A4116081E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
+				5A5764BA1E50461C000D4465 /* IAArchiveDocMappable.swift in Sources */,
+				5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */,
+				5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */,
 				5A41160D1E4D203F004F6B56 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
 				5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */,
+				5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */,
 				5A4116051E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				5A4116091E4D203F004F6B56 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
 				5A4115BC1E4D19DE004F6B56 /* IAHomeTabBarController.swift in Sources */,
@@ -484,6 +516,7 @@
 				5A4115F51E4D203F004F6B56 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				5A4116011E4D203F004F6B56 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				5A4116191E4D280E004F6B56 /* IAFile.swift in Sources */,
+				5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */,
 				5A4116221E4D57D1004F6B56 /* IABrowseViewController.swift in Sources */,
 				5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */,
 				5A41160C1E4D203F004F6B56 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
@@ -493,7 +526,7 @@
 				5A4115B41E4D1803004F6B56 /* IAIconType.swift in Sources */,
 				5A41160F1E4D203F004F6B56 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
 				5A4116111E4D203F004F6B56 /* NVActivityIndicatorView.swift in Sources */,
-				5A47BE551E4DABC300FB0A7A /* IAMapperDoc.swift in Sources */,
+				5A47BE551E4DABC300FB0A7A /* IASearchDocMappable.swift in Sources */,
 				5A4115FC1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
 				5A4115F71E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				5A4115FF1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
