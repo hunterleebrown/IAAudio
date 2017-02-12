@@ -24,7 +24,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.tableHeaderView = topView
+//        tableView.tableHeaderView = topView
         tableView.rowHeight = 66
         
         
@@ -32,6 +32,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if let theDoc = searchDoc {
             
+            self.title = theDoc.title
+
             if let identifier = theDoc.identifier {
                 
                 service.archiveDoc(identifier: identifier, completion: { (inDoc, error) in

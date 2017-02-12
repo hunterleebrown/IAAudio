@@ -202,7 +202,7 @@
             </objects>
             <point key="canvasLocation" x="911" y="921"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Find Music on the Internet Archive-->
         <scene sceneID="brp-Hg-DSB">
             <objects>
                 <viewController id="D1M-5Q-GAw" customClass="IASearchViewController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
@@ -211,11 +211,23 @@
                         <viewControllerLayoutGuide type="bottom" id="iSv-la-kr5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="amQ-h1-9qs">
-                        <rect key="frame" x="0.0" y="64" width="320" height="369"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="433"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ocm-Ra-P6k">
+                                <rect key="frame" x="0.0" y="64" width="320" height="88"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>On the Archive</string>
+                                    <string>In Your Stash</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="D1M-5Q-GAw" id="ngK-CG-xaI"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oFX-LI-Nz0">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="369"/>
+                                <rect key="frame" x="0.0" y="152" width="320" height="281"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="searchCell" rowHeight="120" id="8uY-fd-lSE" customClass="IASearchCell" customModule="IA_Music" customModuleProvider="target">
@@ -327,21 +339,24 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="oFX-LI-Nz0" secondAttribute="trailing" id="3Ex-OG-926"/>
-                            <constraint firstItem="oFX-LI-Nz0" firstAttribute="top" secondItem="liz-SE-Y7o" secondAttribute="bottom" id="ZlW-mh-ZOS"/>
+                            <constraint firstItem="oFX-LI-Nz0" firstAttribute="top" secondItem="ocm-Ra-P6k" secondAttribute="bottom" id="4yM-XS-yNi"/>
+                            <constraint firstAttribute="trailing" secondItem="ocm-Ra-P6k" secondAttribute="trailing" id="Bw5-dQ-n6v"/>
+                            <constraint firstItem="ocm-Ra-P6k" firstAttribute="leading" secondItem="amQ-h1-9qs" secondAttribute="leading" id="ItK-hF-NHd"/>
                             <constraint firstItem="oFX-LI-Nz0" firstAttribute="leading" secondItem="amQ-h1-9qs" secondAttribute="leading" id="cMK-4S-Thi"/>
+                            <constraint firstItem="ocm-Ra-P6k" firstAttribute="top" secondItem="liz-SE-Y7o" secondAttribute="bottom" id="hHj-b0-u0s"/>
                             <constraint firstItem="iSv-la-kr5" firstAttribute="top" secondItem="oFX-LI-Nz0" secondAttribute="bottom" id="nhU-pV-28h"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="" id="5us-br-yIO"/>
-                    <navigationItem key="navigationItem" id="TPz-bM-CUZ"/>
+                    <navigationItem key="navigationItem" title="Find Music on the Internet Archive" id="TPz-bM-CUZ"/>
                     <connections>
+                        <outlet property="searchBar" destination="ocm-Ra-P6k" id="b61-dp-ccl"/>
                         <outlet property="tableView" destination="oFX-LI-Nz0" id="vUR-nN-yW9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tZH-WQ-yJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="-800"/>
+            <point key="canvasLocation" x="1861.875" y="-800.70422535211264"/>
         </scene>
         <!--Title-->
         <scene sceneID="vwM-EL-QJs">
@@ -351,16 +366,47 @@
                         <viewControllerLayoutGuide type="top" id="GwD-yn-NIY"/>
                         <viewControllerLayoutGuide type="bottom" id="V9K-AN-Tkm"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9hk-ho-y4j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="433"/>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="9hk-ho-y4j">
+                        <rect key="frame" x="0.0" y="64" width="320" height="369"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9J3-pb-Dr4">
-                                <rect key="frame" x="0.0" y="64" width="320" height="369"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="433"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="Z5j-yb-xct">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="217"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jVx-kR-MK0">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="Bg4-nI-HZJ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv3-dk-zMS">
+                                            <rect key="frame" x="8" y="150" width="304" height="59"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="qv3-dk-zMS" secondAttribute="trailing" id="Dqx-Yn-Q1H"/>
+                                        <constraint firstItem="jVx-kR-MK0" firstAttribute="top" secondItem="Z5j-yb-xct" secondAttribute="top" id="Nej-e8-C4C"/>
+                                        <constraint firstAttribute="trailing" secondItem="jVx-kR-MK0" secondAttribute="trailing" id="NvW-us-1y1"/>
+                                        <constraint firstItem="qv3-dk-zMS" firstAttribute="top" secondItem="jVx-kR-MK0" secondAttribute="bottom" id="RrJ-9d-GDs"/>
+                                        <constraint firstItem="jVx-kR-MK0" firstAttribute="leading" secondItem="Z5j-yb-xct" secondAttribute="leading" id="Yzh-0h-Rk9"/>
+                                        <constraint firstItem="qv3-dk-zMS" firstAttribute="leading" secondItem="Z5j-yb-xct" secondAttribute="leadingMargin" id="e3I-AP-9wX"/>
+                                        <constraint firstAttribute="trailing" secondItem="jVx-kR-MK0" secondAttribute="trailing" id="f3O-ff-knr"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qv3-dk-zMS" secondAttribute="bottom" id="fOv-7t-aAz"/>
+                                        <constraint firstItem="jVx-kR-MK0" firstAttribute="leading" secondItem="Z5j-yb-xct" secondAttribute="leading" id="slZ-K4-gbh"/>
+                                        <constraint firstItem="jVx-kR-MK0" firstAttribute="top" secondItem="Z5j-yb-xct" secondAttribute="top" id="zVj-mA-Grk"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioCell" id="2Sk-7X-WMM" customClass="IAAuidoFileTableViewCell" customModule="IA_Music" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="66"/>
+                                        <rect key="frame" x="0.0" y="245" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Sk-7X-WMM" id="6ox-0e-dey">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
@@ -404,12 +450,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9J3-pb-Dr4" firstAttribute="top" secondItem="GwD-yn-NIY" secondAttribute="bottom" id="7BM-Ah-g31"/>
                             <constraint firstItem="9J3-pb-Dr4" firstAttribute="leading" secondItem="9hk-ho-y4j" secondAttribute="leading" id="Eaz-z3-YvS"/>
+                            <constraint firstItem="9J3-pb-Dr4" firstAttribute="top" secondItem="9hk-ho-y4j" secondAttribute="top" id="I4o-Mm-MJl"/>
                             <constraint firstAttribute="trailing" secondItem="9J3-pb-Dr4" secondAttribute="trailing" id="Pzc-Ii-GYQ"/>
                             <constraint firstItem="V9K-AN-Tkm" firstAttribute="top" secondItem="9J3-pb-Dr4" secondAttribute="bottom" id="pth-XG-Txl"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Title" id="gIj-Xg-Ag1"/>
                     <connections>
                         <outlet property="docTitle" destination="qv3-dk-zMS" id="YfR-kz-lT4"/>
@@ -419,28 +466,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ypj-he-sC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="Z5j-yb-xct">
-                    <rect key="frame" x="0.0" y="0.0" width="424" height="217"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jVx-kR-MK0">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv3-dk-zMS">
-                            <rect key="frame" x="20" y="152" width="288" height="45"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="jVx-kR-MK0" secondAttribute="trailing" id="f3O-ff-knr"/>
-                        <constraint firstItem="jVx-kR-MK0" firstAttribute="leading" secondItem="Z5j-yb-xct" secondAttribute="leading" id="slZ-K4-gbh"/>
-                        <constraint firstItem="jVx-kR-MK0" firstAttribute="top" secondItem="Z5j-yb-xct" secondAttribute="top" id="zVj-mA-Grk"/>
-                    </constraints>
-                </view>
             </objects>
             <point key="canvasLocation" x="2903" y="-801"/>
         </scene>
