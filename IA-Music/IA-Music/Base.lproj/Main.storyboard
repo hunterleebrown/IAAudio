@@ -299,16 +299,16 @@
                                                     <variation key="default">
                                                         <mask key="constraints">
                                                             <exclude reference="IbR-Fn-Wbd"/>
-                                                            <exclude reference="oPa-zA-3ZV"/>
-                                                            <exclude reference="zTK-q5-WJ4"/>
                                                             <exclude reference="gC1-kJ-Hcp"/>
+                                                            <exclude reference="oPa-zA-3ZV"/>
                                                             <exclude reference="sKm-ex-7db"/>
-                                                            <exclude reference="Kcn-oR-mSc"/>
-                                                            <exclude reference="F7T-Qg-p6Y"/>
+                                                            <exclude reference="zTK-q5-WJ4"/>
                                                             <exclude reference="9A8-L2-vdb"/>
                                                             <exclude reference="BIL-fZ-fcA"/>
-                                                            <exclude reference="qgK-va-s8T"/>
+                                                            <exclude reference="F7T-Qg-p6Y"/>
+                                                            <exclude reference="Kcn-oR-mSc"/>
                                                             <exclude reference="TsX-aG-BgW"/>
+                                                            <exclude reference="qgK-va-s8T"/>
                                                         </mask>
                                                     </variation>
                                                 </stackView>
@@ -383,7 +383,7 @@
                                                 <constraint firstAttribute="height" constant="150" id="Bg4-nI-HZJ"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv3-dk-zMS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qv3-dk-zMS">
                                             <rect key="frame" x="8" y="150" width="304" height="59"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -412,31 +412,45 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qz2-dB-isI">
-                                                    <rect key="frame" x="8" y="8" width="304" height="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Qz2-dB-isI">
+                                                    <rect key="frame" x="8" y="8" width="271" height="14"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gDw-x0-phl">
-                                                    <rect key="frame" x="8" y="22" width="304" height="35.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gDw-x0-phl">
+                                                    <rect key="frame" x="8" y="22" width="271" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gXo-6W-6EJ">
+                                                    <rect key="frame" x="279" y="12" width="33" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="33" id="h2J-2h-SQ8"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                    <state key="normal" title="+"/>
+                                                    <connections>
+                                                        <action selector="didPressPlusButton:" destination="2Sk-7X-WMM" eventType="touchUpInside" id="heO-UG-uwi"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Qz2-dB-isI" firstAttribute="top" secondItem="6ox-0e-dey" secondAttribute="topMargin" id="092-uz-uu4"/>
                                                 <constraint firstItem="gDw-x0-phl" firstAttribute="leading" secondItem="6ox-0e-dey" secondAttribute="leadingMargin" id="ALH-fs-TgW"/>
                                                 <constraint firstItem="gDw-x0-phl" firstAttribute="top" secondItem="6ox-0e-dey" secondAttribute="topMargin" constant="14" id="HOC-lJ-IuS"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="gDw-x0-phl" secondAttribute="bottom" id="HOs-L2-ZIc"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="gDw-x0-phl" secondAttribute="trailing" id="Uxm-cc-gRR"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gXo-6W-6EJ" secondAttribute="trailing" id="HqU-pe-M2m"/>
+                                                <constraint firstItem="gXo-6W-6EJ" firstAttribute="centerY" secondItem="6ox-0e-dey" secondAttribute="centerY" id="Nhe-uV-eiv"/>
+                                                <constraint firstItem="gDw-x0-phl" firstAttribute="trailing" secondItem="gXo-6W-6EJ" secondAttribute="leading" id="QYc-ca-IV4"/>
+                                                <constraint firstItem="Qz2-dB-isI" firstAttribute="trailing" secondItem="gXo-6W-6EJ" secondAttribute="leading" id="eaV-ny-20q"/>
                                                 <constraint firstItem="gDw-x0-phl" firstAttribute="top" secondItem="Qz2-dB-isI" secondAttribute="bottom" id="jFl-gv-0To"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Qz2-dB-isI" secondAttribute="trailing" id="m4Q-cO-hBd"/>
                                                 <constraint firstItem="Qz2-dB-isI" firstAttribute="leading" secondItem="6ox-0e-dey" secondAttribute="leadingMargin" id="xx8-u4-1Jy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addButton" destination="gXo-6W-6EJ" id="6aF-Lf-BK0"/>
                                             <outlet property="nameLabel" destination="gDw-x0-phl" id="zQe-mW-HDg"/>
                                             <outlet property="titleLabel" destination="Qz2-dB-isI" id="1L2-DP-HtA"/>
                                         </connections>
@@ -467,7 +481,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ypj-he-sC3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2903" y="-801"/>
+            <point key="canvasLocation" x="2902.5" y="-801.76056338028172"/>
         </scene>
         <!--Item-->
         <scene sceneID="2mc-g1-oxU">

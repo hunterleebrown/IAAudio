@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -23,21 +24,16 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        tableView.tableHeaderView = topView
-        tableView.rowHeight = 66
         
+        tableView.rowHeight = 66
         
         // Do any additional setup after loading the view.
         
         if let theDoc = searchDoc {
-            
             self.title = theDoc.title
-
+            
             if let identifier = theDoc.identifier {
-                
                 service.archiveDoc(identifier: identifier, completion: { (inDoc, error) in
-                    
                     self.doc = inDoc
                     if let title = self.doc?.title {
                         self.docTitle.text = title
@@ -50,7 +46,6 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     }
                     
                     self.tableView.reloadData()
-                    
                 })
             }
             
@@ -74,9 +69,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "audioCell", for: indexPath) as! IAAuidoFileTableViewCell
         let file = audioFiles[indexPath.row]
-        
         cell.audioFile = file
-        
+        cell.archiveDoc = self.doc
         return cell
         
     }
@@ -88,5 +82,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
 
     }
+    
+    
     
 }

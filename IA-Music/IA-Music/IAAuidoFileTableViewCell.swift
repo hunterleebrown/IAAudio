@@ -12,15 +12,18 @@ class IAAuidoFileTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    
     
     weak var audioFile: IAFileMappable? {
         didSet {
             nameLabel.text = audioFile?.name
             titleLabel.text = audioFile?.title
+            addButton.setIAIcon(.plusRound, forState: .normal)
         }
     }
 
-
+    weak var archiveDoc: IAArchiveDocMappable?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,4 +36,9 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func didPressPlusButton(_ sender: Any) {
+        if let file = audioFile, let doc = archiveDoc {
+            IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
+        }
+    }
 }
