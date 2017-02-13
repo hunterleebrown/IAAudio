@@ -23,6 +23,10 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var identifier: String?
     var doc: IAArchiveDocMappable?
     
+    var filesHash: [String:IAPlayerFile]?
+    var notificationToken: NotificationToken? = nil
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,15 +50,26 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 self.tableView.reloadData()
+                
+                self.filesHash = IARealmManger.sharedInstance.filesOfArchive(identifier: ident)
             })
-            
-            
         }
+        notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
+            self?.tableView.reloadData()
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func doesPlayerFileExist(fileName:String)->Bool {
+        if let hash = self.filesHash {
+            return hash[fileName] != nil
+        }
+        return false
     }
     
 
@@ -71,6 +86,9 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let file = audioFiles[indexPath.row]
         cell.audioFile = file
         cell.archiveDoc = self.doc
+        
+        cell.addButton.isHidden = doesPlayerFileExist(fileName: file.name!)
+        
         return cell
         
     }
@@ -83,6 +101,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
-    
+    deinit {
+        notificationToken?.stop()
+    }
     
 }

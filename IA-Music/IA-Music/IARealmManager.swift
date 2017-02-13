@@ -34,7 +34,7 @@ class IARealmManger {
     
     func addFile(docAndFile:ArchiveDocAndFile) {
         
-        //Check for file first
+        //Check for Archive first
         let archivePredicate = NSPredicate(format: "identifier = %@", docAndFile.doc.identifier!)
         let archiveResults = realm.objects(IAArchive.self).filter(archivePredicate)
         var archive : IAArchive?
@@ -72,8 +72,25 @@ class IARealmManger {
             archive?.files.append(newFile)
         }
         
+    }
+    
+    func filesOfArchive(identifier:String)->[String:IAPlayerFile]?{
+        let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
+        let archiveResults = realm.objects(IAArchive.self).filter(archivePredicate)
+        var archive : IAArchive?
+        if archiveResults.count > 0 {
+            archive = archiveResults.first
+            
+            var hash = [String:IAPlayerFile]()
+            if let audFiles = archive?.files {
+                for file in audFiles {
+                    hash[file.name] = file
+                }
+                return hash
+            }
+        }
         
-        
+        return nil
     }
     
     
