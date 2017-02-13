@@ -19,7 +19,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var audioFiles = [IAFileMappable]()
     let service = IAService()
-    var searchDoc: IASearchDocMappable?
+    
+    var identifier: String?
     var doc: IAArchiveDocMappable?
     
     override func viewDidLoad() {
@@ -29,25 +30,24 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Do any additional setup after loading the view.
         
-        if let theDoc = searchDoc {
-            self.title = theDoc.title
+        if let ident = identifier {
             
-            if let identifier = theDoc.identifier {
-                service.archiveDoc(identifier: identifier, completion: { (inDoc, error) in
-                    self.doc = inDoc
-                    if let title = self.doc?.title {
-                        self.docTitle.text = title
-                    }
-                    
-                    self.image.af_setImage(withURL: (self.doc!.iconUrl()))
-                    
-                    if let files = self.doc?.files {
-                        self.audioFiles = files
-                    }
-                    
-                    self.tableView.reloadData()
-                })
-            }
+            service.archiveDoc(identifier: ident, completion: { (inDoc, error) in
+                self.doc = inDoc
+                if let title = self.doc?.title {
+                    self.docTitle.text = title
+                    self.title = title
+                }
+                
+                self.image.af_setImage(withURL: (self.doc!.iconUrl()))
+                
+                if let files = self.doc?.files {
+                    self.audioFiles = files
+                }
+                
+                self.tableView.reloadData()
+            })
+            
             
         }
     }

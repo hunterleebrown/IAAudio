@@ -44,7 +44,7 @@ class IARealmManger {
         
         //var existingFile = realm.objects(IAPlayerFile.self).filter("name = '\(docAndFile.file.name!)' AND archive.identifier = '\(docAndFile.doc.identifier!)'")
         let predicate = NSPredicate(format: "name = %@ AND archive.identifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
-        var fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
+        let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
         
         if fileResults.count > 0 {
             return
@@ -59,7 +59,7 @@ class IARealmManger {
             }
         }
         
-        var newFile = IAPlayerFile()
+        let newFile = IAPlayerFile()
         newFile.archive = archive
         newFile.name = docAndFile.file.name!
         if let title = docAndFile.file.title {

@@ -34,8 +34,16 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="rpe-xH-iCq"/>
                                         </constraints>
+                                        <color key="progressTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="trackTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </progressView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CdI-wU-z71">
+                                        <rect key="frame" x="10" y="13" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="7b8-8g-hrv"/>
+                                            <constraint firstAttribute="height" constant="40" id="yUx-Gq-wuy"/>
+                                        </constraints>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGO-Cc-d2J">
                                         <rect key="frame" x="105.5" y="11" width="44" height="44"/>
                                         <constraints>
@@ -109,6 +117,9 @@
                                                 <rect key="frame" x="167.5" y="34" width="20" height="16"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                                                <connections>
+                                                    <action selector="pushDoc:" destination="m34-IB-XFo" eventType="touchUpInside" id="nA1-Qh-vAc"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -150,16 +161,6 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTG-Bq-83H">
-                                        <rect key="frame" x="10" y="13" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="iRq-1K-TtO"/>
-                                            <constraint firstAttribute="height" constant="40" id="oJ3-au-e8o"/>
-                                        </constraints>
-                                        <state key="normal">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                    </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IC8-LW-InG" customClass="NVActivityIndicatorView" customModule="IA_Music" customModuleProvider="target">
                                         <rect key="frame" x="60" y="13" width="25" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -178,13 +179,10 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="GTG-Bq-83H" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" constant="10" id="0yT-iN-dtP"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerY" secondItem="xp6-bt-fSO" secondAttribute="centerY" id="12n-mG-oyE"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="166" id="56p-Rl-mpw"/>
-                                    <constraint firstItem="GTG-Bq-83H" firstAttribute="centerY" secondItem="IC8-LW-InG" secondAttribute="centerY" id="5fs-1m-skJ"/>
                                     <constraint firstItem="J38-As-0Fv" firstAttribute="top" secondItem="NAQ-H4-tZT" secondAttribute="top" id="84B-jg-EY0"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" constant="10" id="8O0-U9-Vl6"/>
-                                    <constraint firstItem="IC8-LW-InG" firstAttribute="leading" secondItem="GTG-Bq-83H" secondAttribute="trailing" constant="10" id="B4v-iw-zMK"/>
                                     <constraint firstItem="tmH-Vr-jru" firstAttribute="top" secondItem="xp6-bt-fSO" secondAttribute="bottom" id="D3d-4d-phi"/>
                                     <constraint firstItem="M5j-dE-d5Y" firstAttribute="top" secondItem="xp6-bt-fSO" secondAttribute="bottom" id="DWF-7G-YTl"/>
                                     <constraint firstAttribute="trailing" secondItem="QPy-Q6-cif" secondAttribute="trailing" constant="10" id="E83-bJ-iNb"/>
@@ -197,6 +195,7 @@
                                     <constraint firstAttribute="trailing" secondItem="xp6-bt-fSO" secondAttribute="trailing" constant="10" id="JFV-eF-jOU"/>
                                     <constraint firstItem="M5j-dE-d5Y" firstAttribute="top" secondItem="NAQ-H4-tZT" secondAttribute="top" id="LlD-yL-jDQ"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerX" secondItem="NAQ-H4-tZT" secondAttribute="centerX" id="LmH-u0-0WQ"/>
+                                    <constraint firstItem="CdI-wU-z71" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="N0Y-df-GiW"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" constant="10" id="QBA-9J-RJB"/>
                                     <constraint firstItem="QPy-Q6-cif" firstAttribute="centerY" secondItem="ull-Dr-H5v" secondAttribute="centerY" id="RNj-FU-fZk"/>
                                     <constraint firstItem="VGO-Cc-d2J" firstAttribute="trailing" secondItem="M5j-dE-d5Y" secondAttribute="leading" constant="-5" id="UT4-QA-tJg"/>
@@ -204,12 +203,14 @@
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="Y5n-Yk-14d"/>
                                     <constraint firstItem="VGO-Cc-d2J" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="YgB-9A-TFd"/>
                                     <constraint firstItem="M5j-dE-d5Y" firstAttribute="centerX" secondItem="NAQ-H4-tZT" secondAttribute="centerX" id="a71-Y1-cdJ"/>
+                                    <constraint firstItem="IC8-LW-InG" firstAttribute="leading" secondItem="CdI-wU-z71" secondAttribute="trailing" constant="10" id="b3X-Rk-nuD"/>
                                     <constraint firstAttribute="trailing" secondItem="J38-As-0Fv" secondAttribute="trailing" id="c2r-Bb-6nz"/>
                                     <constraint firstItem="J38-As-0Fv" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" id="fIl-he-yNL"/>
                                     <constraint firstItem="1hG-DX-E22" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="i8R-pR-Qgk"/>
                                     <constraint firstItem="ull-Dr-H5v" firstAttribute="leading" secondItem="1hG-DX-E22" secondAttribute="trailing" constant="10" id="ibs-dd-n5c"/>
                                     <constraint firstItem="xp6-bt-fSO" firstAttribute="top" secondItem="M5j-dE-d5Y" secondAttribute="bottom" id="kZs-RR-X5d"/>
                                     <constraint firstItem="ull-Dr-H5v" firstAttribute="centerY" secondItem="M5j-dE-d5Y" secondAttribute="centerY" id="o27-bT-NR3"/>
+                                    <constraint firstItem="CdI-wU-z71" firstAttribute="leading" secondItem="NAQ-H4-tZT" secondAttribute="leading" constant="10" id="oRZ-xX-ZYW"/>
                                     <constraint firstAttribute="height" constant="166" id="pby-oF-y4i"/>
                                     <constraint firstAttribute="bottom" secondItem="IC8-LW-InG" secondAttribute="bottom" constant="5" id="qnZ-8V-MWR"/>
                                     <constraint firstItem="IC8-LW-InG" firstAttribute="centerY" secondItem="NAQ-H4-tZT" secondAttribute="centerY" id="r6t-eg-47e"/>
@@ -259,13 +260,13 @@
                         <outlet property="airPlayPicker" destination="QPy-Q6-cif" id="WWF-Xv-BAJ"/>
                         <outlet property="backwardButton" destination="VGO-Cc-d2J" id="Mmu-eW-fn7"/>
                         <outlet property="forwardButton" destination="1hG-DX-E22" id="Cpc-HO-nBs"/>
-                        <outlet property="helpIconButton" destination="GTG-Bq-83H" id="aEP-Rb-PNr"/>
                         <outlet property="maxTime" destination="HdK-el-sB3" id="R6W-XN-Teg"/>
                         <outlet property="minTime" destination="hqD-lj-ymQ" id="htn-mp-dVq"/>
                         <outlet property="nowPlayingItemButton" destination="tT7-jE-Amb" id="x93-94-PQJ"/>
                         <outlet property="nowPlayingTitle" destination="yjn-4I-NAf" id="4k5-mQ-u0Q"/>
                         <outlet property="playButton" destination="M5j-dE-d5Y" id="bSF-vd-ysU"/>
                         <outlet property="playerControlsView" destination="NAQ-H4-tZT" id="VNM-QA-hZr"/>
+                        <outlet property="playerIcon" destination="CdI-wU-z71" id="zBZ-Z5-e2O"/>
                         <outlet property="playingProgress" destination="CEZ-2h-BWc" id="msL-cM-ywF"/>
                         <outlet property="progressStack" destination="rud-Hn-j9I" id="Wr9-4q-NzT"/>
                         <outlet property="randomButton" destination="ull-Dr-H5v" id="02W-d0-uIQ"/>
@@ -290,7 +291,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-30" y="120"/>
+            <point key="canvasLocation" x="-542" y="126"/>
         </scene>
     </scenes>
 </document>

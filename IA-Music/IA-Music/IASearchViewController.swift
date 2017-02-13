@@ -62,7 +62,7 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
             if let indexPath = tableView.indexPathForSelectedRow {
                 let result = searchResults[indexPath.row]
                 let controller = segue.destination as! IADocViewController
-                controller.searchDoc = result
+                controller.identifier = result.identifier
             }
             
         }

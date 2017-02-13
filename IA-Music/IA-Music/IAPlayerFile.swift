@@ -17,6 +17,10 @@ class IAPlayerFile: Object {
     dynamic var urlString = ""
     dynamic var archive: IAArchive?
     
+    func displayTitle() -> String {
+        return title.isEmpty ? name : title
+    }
+    
 }
 
 

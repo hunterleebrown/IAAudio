@@ -40,10 +40,11 @@ class IAPlayerViewController: UIViewController {
     
     @IBOutlet weak var airPlayPicker: MPVolumeView!
 
+    @IBOutlet weak var playerIcon: UIImageView!
+    
     weak var baseViewController: IAHomeViewController!
     var sliderIsTouched : Bool = false
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -126,8 +127,13 @@ class IAPlayerViewController: UIViewController {
             player.seek(to: seakTime)
             IAPlayer.sharedInstance.updatePlayerTimes()
         }
-        
     }
+    
+    
+    @IBAction func pushDoc(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pushDoc"), object: nil)
+    }
+
     
     
     //MARK: Remote
@@ -173,6 +179,8 @@ class IAPlayer: NSObject {
     var controlsController : IAPlayerViewController?
     var observing = false
     var playing = false
+    var playUrl: URL!
+    
     fileprivate var observerContext = 0
     
     static let sharedInstance: IAPlayer = {
@@ -184,10 +192,29 @@ class IAPlayer: NSObject {
     var fileIdentifier: String?
     
     var mediaArtwork : MPMediaItemArtwork?
-
-
     
     func playFile(file:IAFileMappable, doc:IAArchiveDocMappable){
+        
+        self.fileTitle = file.title
+        self.fileIdentifierTitle = doc.title
+        self.fileIdentifier = doc.identifier
+        self.playUrl = doc.fileUrl(file: file)
+
+        self.loadAndPlay()
+    }
+    
+    func playFile(file:IAPlayerFile) {
+        
+        self.fileTitle = file.title
+        self.fileIdentifierTitle = file.archive?.identifierTitle
+        self.fileIdentifier = file.archive?.identifier
+        self.playUrl = URL(string: file.urlString)
+        
+        self.loadAndPlay()
+    }
+    
+    
+    private func loadAndPlay() {
         
         if let player = avPlayer {
             player.pause()
@@ -201,11 +228,6 @@ class IAPlayer: NSObject {
             avPlayer = nil
         }
         
-        self.fileTitle = file.title
-        self.fileIdentifierTitle = doc.title
-        self.fileIdentifier = doc.identifier
-
-        
         self.setActiveAudioSession()
         
         if let controller = controlsController {
@@ -213,16 +235,15 @@ class IAPlayer: NSObject {
             controller.nowPlayingItemButton.setTitle(self.fileIdentifierTitle, for: .normal)
         }
         
-        let playUrl = doc.fileUrl(file: file)
-        avPlayer = AVPlayer(url: playUrl as URL)
+        avPlayer = AVPlayer(url: self.playUrl as URL)
         
         avPlayer?.addObserver(self, forKeyPath: "rate", options:.new, context: &observerContext)
         self.observing = true
         
         avPlayer?.play()
         self.setPlayingInfo(playing: true)
-        
     }
+    
     
     func didTapPlayButton() {
 
@@ -290,6 +311,8 @@ class IAPlayer: NSObject {
                         self.mediaArtwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (size) -> UIImage in
                             image
                         })
+                        
+                        self.controlsController?.playerIcon.image = image
                         
                         let playBackRate = playing ? "1.0" : "0.0"
                         
