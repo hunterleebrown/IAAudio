@@ -60,12 +60,11 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
        
         let archive = archives[indexPath.section]
         if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
-            cell.detailTextLabel?.text = file.archive?.identifierTitle
-            cell.textLabel?.text = file.displayTitle()
+            cell.file = file
         }
         
         return cell

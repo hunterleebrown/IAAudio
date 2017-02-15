@@ -51,8 +51,6 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 self.tableView.reloadData()
-                
-                self.filesHash = IARealmManger.sharedInstance.hashOfArchiveFiles(identifier: ident)
             })
         }
         notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
@@ -84,8 +82,10 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func doesPlayerFileExist(fileName:String)->Bool {
-        if let hash = self.filesHash {
-            return hash[fileName] != nil
+        if let ident = identifier {
+            if let hash = IARealmManger.sharedInstance.hashOfArchiveFiles(identifier: ident) {
+                return hash[fileName] != nil
+            }
         }
         return false
     }
@@ -104,11 +104,11 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let file = audioFiles[indexPath.row]
         cell.audioFile = file
         cell.archiveDoc = self.doc
-        
         cell.addButton.isHidden = doesPlayerFileExist(fileName: file.name!)
+        cell.addButton.tag = indexPath.row
+        cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -117,6 +117,13 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
             IAPlayer.sharedInstance.playFile(file: file, doc: theDoc)
         }
 
+    }
+    
+    @IBAction func didPressPlusButton(_ sender: UIButton) {
+        if let doc = self.doc {
+            let file = audioFiles[sender.tag]
+            IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
+        }
     }
     
     deinit {

@@ -14,14 +14,15 @@ class IAAuidoFileTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
-    
     weak var audioFile: IAFileMappable? {
         didSet {
             nameLabel.text = audioFile?.name
             titleLabel.text = audioFile?.title
             addButton.setIAIcon(.plusRound, forState: .normal)
             
-            print("--------------> track: \(audioFile?.cleanedTrack)")
+//            print("--------------> track: \(audioFile?.cleanedTrack)")
+            
+            self.addButton.tintColor = IAColors.fairyRed
         }
     }
 
@@ -38,9 +39,5 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func didPressPlusButton(_ sender: Any) {
-        if let file = audioFile, let doc = archiveDoc {
-            IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
-        }
-    }
+
 }

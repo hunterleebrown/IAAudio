@@ -83,9 +83,6 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                     <state key="normal" title="+"/>
-                                                    <connections>
-                                                        <action selector="didPressPlusButton:" destination="sxr-wQ-LD8" eventType="touchUpInside" id="IVE-oA-m9P"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
