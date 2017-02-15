@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6zi-bb-Jhv">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Music Stash-->
+        <scene sceneID="bwG-Yp-cQE">
+            <objects>
+                <viewController id="6zi-bb-Jhv" customClass="IAMyMusicStashViewController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UIu-hB-4ci"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oew-wh-xKD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c96-6J-0l9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ust-eo-Bqt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="l58-OP-ABO" detailTextLabel="rd1-ug-QRo" style="IBUITableViewCellStyleSubtitle" id="bBx-I7-8Ux">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bBx-I7-8Ux" id="pRK-GM-Id0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l58-OP-ABO">
+                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rd1-ug-QRo">
+                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.93725490199999995" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6zi-bb-Jhv" id="nsv-h6-IYb"/>
+                                    <outlet property="delegate" destination="6zi-bb-Jhv" id="pW3-cU-q5S"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ust-eo-Bqt" firstAttribute="leading" secondItem="c96-6J-0l9" secondAttribute="leading" id="1or-zi-Hf8"/>
+                            <constraint firstItem="Oew-wh-xKD" firstAttribute="top" secondItem="ust-eo-Bqt" secondAttribute="bottom" id="saZ-3Z-FaH"/>
+                            <constraint firstAttribute="trailing" secondItem="ust-eo-Bqt" secondAttribute="trailing" id="vPf-1P-WgA"/>
+                            <constraint firstItem="ust-eo-Bqt" firstAttribute="top" secondItem="c96-6J-0l9" secondAttribute="top" id="zAT-j9-oyv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="My Music Stash" id="jZj-hq-HqX"/>
+                    <navigationItem key="navigationItem" title="My Music Stash" id="eIK-Vb-p7b"/>
+                    <connections>
+                        <outlet property="tableView" destination="ust-eo-Bqt" id="048-Ka-CiW"/>
+                        <segue destination="AJ3-kY-OTA" kind="show" identifier="docPush" id="Uco-dk-FuV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ktI-hu-htA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2721" y="37"/>
+        </scene>
+        <!--IADoc-->
+        <scene sceneID="DwQ-de-g4c">
+            <objects>
+                <viewControllerPlaceholder storyboardName="IADoc" id="AJ3-kY-OTA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hD6-Oi-Sat" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2782" y="573"/>
+        </scene>
+    </scenes>
+</document>

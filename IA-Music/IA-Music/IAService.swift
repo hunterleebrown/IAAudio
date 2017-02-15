@@ -76,7 +76,7 @@ class IAService {
             .responseArray(keyPath: "response.docs") { (response: DataResponse<[IASearchDocMappable]>) in
                 switch response.result {
                 case .success(let contents):
-                    print("--------------> contents: \(contents)")
+//                    print("--------------> contents: \(contents)")
                     completion(contents,nil)
                 case .failure(let error):
 //                    print("--------------> error: \(error)")

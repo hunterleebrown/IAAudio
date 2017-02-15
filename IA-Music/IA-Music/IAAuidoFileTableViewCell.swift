@@ -20,6 +20,8 @@ class IAAuidoFileTableViewCell: UITableViewCell {
             nameLabel.text = audioFile?.name
             titleLabel.text = audioFile?.title
             addButton.setIAIcon(.plusRound, forState: .normal)
+            
+            print("--------------> track: \(audioFile?.cleanedTrack)")
         }
     }
 

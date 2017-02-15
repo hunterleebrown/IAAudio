@@ -64,89 +64,15 @@
             </objects>
             <point key="canvasLocation" x="-7" y="627"/>
         </scene>
-        <!--My Music Stash-->
-        <scene sceneID="6Ke-fk-tCr">
+        <!--IAMyMusicStash-->
+        <scene sceneID="ko1-Ko-Izq">
             <objects>
-                <viewController id="bCP-pm-34A" customClass="IAMyMusicStashViewController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rwc-wN-RGE"/>
-                        <viewControllerLayoutGuide type="bottom" id="Yuw-oE-yRw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ARW-ri-YDg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="433"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xjK-zC-oVR">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="433"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Bi5-Z8-PKl" detailTextLabel="MAZ-0N-XLm" style="IBUITableViewCellStyleSubtitle" id="bVe-Au-wFn">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bVe-Au-wFn" id="TKF-Z4-ra1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bi5-Z8-PKl">
-                                                    <rect key="frame" x="15" y="4" width="34" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MAZ-0N-XLm">
-                                                    <rect key="frame" x="15" y="25" width="44" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="1" green="0.93725490199999995" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="bCP-pm-34A" id="gBI-6g-IyR"/>
-                                    <outlet property="delegate" destination="bCP-pm-34A" id="gAE-19-gg2"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="xjK-zC-oVR" firstAttribute="top" secondItem="ARW-ri-YDg" secondAttribute="top" id="WAd-4E-IWW"/>
-                            <constraint firstItem="xjK-zC-oVR" firstAttribute="leading" secondItem="ARW-ri-YDg" secondAttribute="leading" id="qAZ-Gu-JQl"/>
-                            <constraint firstAttribute="trailing" secondItem="xjK-zC-oVR" secondAttribute="trailing" id="rZr-XN-Caz"/>
-                            <constraint firstItem="Yuw-oE-yRw" firstAttribute="top" secondItem="xjK-zC-oVR" secondAttribute="bottom" id="xdI-4Q-hKI"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="My Music Stash" id="cpG-lR-msI"/>
-                    <navigationItem key="navigationItem" title="My Music Stash" id="qgr-YB-0Kb"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="f0Q-qE-O8f" id="aW4-aV-M7l"/>
-                        <outlet property="tableView" destination="xjK-zC-oVR" id="Y3R-UX-nEu"/>
-                        <segue destination="HPu-6N-CII" kind="show" identifier="docPush" id="z7n-cN-kEM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MpU-zq-lPx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="f0Q-qE-O8f">
-                    <connections>
-                        <outlet property="delegate" destination="bCP-pm-34A" id="KOe-nt-xBX"/>
-                        <outlet property="searchContentsController" destination="bCP-pm-34A" id="1fX-Jj-zG0"/>
-                        <outlet property="searchResultsDataSource" destination="bCP-pm-34A" id="CaE-jQ-TnP"/>
-                        <outlet property="searchResultsDelegate" destination="bCP-pm-34A" id="s0J-y4-ATY"/>
-                    </connections>
-                </searchDisplayController>
+                <viewControllerPlaceholder storyboardName="IAMyMusicStash" id="W51-Qk-xvG" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="jIm-gE-j8y"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sTc-yO-NMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2721" y="37"/>
-        </scene>
-        <!--IADoc-->
-        <scene sceneID="ak3-Ch-hEN">
-            <objects>
-                <viewControllerPlaceholder storyboardName="IADoc" id="HPu-6N-CII" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jW2-Js-ixo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2699" y="529"/>
+            <point key="canvasLocation" x="2549" y="62"/>
         </scene>
         <!--My Music Stash-->
         <scene sceneID="8Rz-ST-zL0">
@@ -158,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="bCP-pm-34A" kind="relationship" relationship="rootViewController" id="38c-wo-TfC"/>
+                        <segue destination="W51-Qk-xvG" kind="relationship" relationship="rootViewController" id="fju-fP-NZw"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uoh-uQ-K8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,7 +104,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FF9-OR-rwC" id="xpF-Og-EFf">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -243,7 +169,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8uY-fd-lSE" id="2nX-gN-BOI">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="119"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LYB-Ap-wh1">

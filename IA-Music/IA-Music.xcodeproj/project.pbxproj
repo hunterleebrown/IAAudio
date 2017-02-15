@@ -81,6 +81,7 @@
 		5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */; };
 		5A5EA55A1E51527200B54C86 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5EA5591E51527200B54C86 /* DependencyInjection.swift */; };
 		5A615A141E515BC700B18161 /* IARealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A615A131E515BC700B18161 /* IARealmManager.swift */; };
+		5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -161,6 +162,7 @@
 		5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAAuidoFileTableViewCell.swift; sourceTree = "<group>"; };
 		5A5EA5591E51527200B54C86 /* DependencyInjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		5A615A131E515BC700B18161 /* IARealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IARealmManager.swift; sourceTree = "<group>"; };
+		5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyMusicStash.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */,
+				5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */,
 			);
 			name = "My Music Stash";
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */,
+				5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */,
 				5A4115941E4D046F004F6B56 /* LaunchScreen.storyboard in Resources */,
 				5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */,
 				5A41160E1E4D203F004F6B56 /* Info.plist in Resources */,

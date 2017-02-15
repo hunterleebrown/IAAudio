@@ -67,6 +67,10 @@ class IARealmManger {
         }
         newFile.urlString = docAndFile.doc.fileUrl(file: docAndFile.file).absoluteString
         
+        if let track = docAndFile.file.cleanedTrack {
+            newFile.displayOrder.value = Int16(track)
+        }
+        
         try! realm.write {
             realm.add(newFile)
             archive?.files.append(newFile)
@@ -74,7 +78,7 @@ class IARealmManger {
         
     }
     
-    func filesOfArchive(identifier:String)->[String:IAPlayerFile]?{
+    func hashOfArchiveFiles(identifier:String)->[String:IAPlayerFile]?{
         let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
         let archiveResults = realm.objects(IAArchive.self).filter(archivePredicate)
         var archive : IAArchive?
@@ -93,5 +97,11 @@ class IARealmManger {
         return nil
     }
     
+    func defaultSortedFiles(identifier:String) -> Results<IAPlayerFile>? {
+        
+        let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
+        let archiveResult = realm.objects(IAArchive.self).filter(archivePredicate).first
+        return archiveResult?.files.sorted(byKeyPath: "displayOrder")
+    }
     
 }

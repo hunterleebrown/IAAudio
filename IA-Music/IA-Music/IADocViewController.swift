@@ -45,13 +45,13 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 
                 self.image.af_setImage(withURL: (self.doc!.iconUrl()))
                 
-                if let files = self.doc?.files {
+                if let files = self.doc?.sortedFiles {
                     self.audioFiles = files
                 }
                 
                 self.tableView.reloadData()
                 
-                self.filesHash = IARealmManger.sharedInstance.filesOfArchive(identifier: ident)
+                self.filesHash = IARealmManger.sharedInstance.hashOfArchiveFiles(identifier: ident)
             })
         }
         notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in

@@ -68,19 +68,64 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
        
         let archive = archives[indexPath.section]
-        let file = archive.files[indexPath.row]
-        
-        cell.detailTextLabel?.text = file.archive?.identifierTitle
-        cell.textLabel?.text = file.displayTitle()
+        if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
+            cell.detailTextLabel?.text = file.archive?.identifierTitle
+            cell.textLabel?.text = file.displayTitle()
+        }
         
         return cell
     }
+    
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let file = archives[indexPath.section].files[indexPath.row]
         IAPlayer.sharedInstance.playFile(file: file)
     }
     
+    
+    //MARK: - Editiing
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        switch editingStyle {
+        case .delete:
+            self.deleteFile(indexPath: indexPath)
+            break
+        case .insert:
+            break
+        default:
+            break
+            
+        }
+        
+    }
+    
+    
+    func deleteFile(indexPath:IndexPath)  {
+        let archive = archives[indexPath.section]
+        
+        if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
+            try! IARealmManger.sharedInstance.realm.write {
+                IARealmManger.sharedInstance.realm.delete(file)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            let files = archive.files
+            if files.count == 0 {
+                try! IARealmManger.sharedInstance.realm.write {
+                    IARealmManger.sharedInstance.realm.delete(archive)
+                }
+            }
+        }
+
+    }
+    
+    
+    //MARK: -
     
     func didPressDocTitle() {
         if IAPlayer.sharedInstance.fileIdentifier != nil {

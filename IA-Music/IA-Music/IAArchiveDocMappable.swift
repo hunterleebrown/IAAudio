@@ -79,6 +79,18 @@ class IAArchiveDocMappable: Mappable {
         }
     }
     
+    var sortedFiles: [IAFileMappable]? {
+        guard files != nil else { return nil}
+        if let fs = files {
+            return fs.sorted(by: { (one, two) -> Bool in
+                guard one.cleanedTrack != nil else { return false}
+                return one.cleanedTrack! < two.cleanedTrack!
+            })
+        }
+    
+        return nil
+    }
+    
     func iconUrl()->URL {
         let itemImageUrl = "http://archive.org/services/img/\(identifier!)"
         return URL(string: itemImageUrl)!
@@ -98,7 +110,7 @@ class IAFileMappable: Mappable {
 
     var name : String?
     var title : String?
-    var track : Int?
+    var track : String?
     var size : String?
     var format: String?
     var length: String?
@@ -117,7 +129,23 @@ class IAFileMappable: Mappable {
         title  <- map["title"]
         size   <- map["size"]
         length <- map["length"]
+        track  <- map["track"]
+    }
+    
+    var cleanedTrack: Int?{
         
+        if let tr = track {
+            if let num = Int(tr) {
+                return num
+            } else {
+                let sp = tr.components(separatedBy: "/")
+                if let first = sp.first {
+                    let trimmed = first.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                    return Int(trimmed) ?? nil
+                }
+            }
+        }
+        return nil
     }
     
 }
