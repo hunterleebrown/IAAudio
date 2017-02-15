@@ -11,16 +11,12 @@ import UIKit
 class IAAuidoFileTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     
     weak var audioFile: IAFileMappable? {
         didSet {
-            nameLabel.text = audioFile?.name
-            titleLabel.text = audioFile?.title
+            titleLabel.text = audioFile?.title ?? audioFile?.name
             addButton.setIAIcon(.plusRound, forState: .normal)
-            
-//            print("--------------> track: \(audioFile?.cleanedTrack)")
             
             self.addButton.tintColor = IAColors.fairyRed
         }

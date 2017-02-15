@@ -31,7 +31,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 66
+        tableView.rowHeight = 44
         
         // Do any additional setup after loading the view.
         
