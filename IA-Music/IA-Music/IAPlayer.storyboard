@@ -111,11 +111,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="yjn-4I-NAf">
                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="31"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tT7-jE-Amb">
                                                 <rect key="frame" x="167.5" y="34" width="20" height="16"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                                 <connections>
                                                     <action selector="pushDoc:" destination="m34-IB-XFo" eventType="touchUpInside" id="nA1-Qh-vAc"/>

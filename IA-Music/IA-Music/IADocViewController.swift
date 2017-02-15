@@ -26,6 +26,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var filesHash: [String:IAPlayerFile]?
     var notificationToken: NotificationToken? = nil
 
+    var forcedShowNavigationBar = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,23 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
             self?.tableView.reloadData()
+        }
+        
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navController = navigationController, navController.navigationBar.isHidden {
+            navController.setNavigationBarHidden(false, animated: false)
+            self.forcedShowNavigationBar = true
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if forcedShowNavigationBar, let navController = navigationController {
+            navController.setNavigationBarHidden(true, animated: false)
         }
         
     }

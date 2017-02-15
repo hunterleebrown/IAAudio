@@ -31,13 +31,8 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
             self?.tableView.reloadData()
         }
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(IAMyMusicStashViewController.didPressDocTitle),
-            name: NSNotification.Name(rawValue: "pushDoc"),
-            object: nil
-        )
         
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -79,8 +74,10 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let file = archives[indexPath.section].files[indexPath.row]
-        IAPlayer.sharedInstance.playFile(file: file)
+        let archive = archives[indexPath.section]
+        if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
+            IAPlayer.sharedInstance.playFile(file: file)
+        }
     }
     
     
@@ -127,19 +124,7 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     
     //MARK: -
     
-    func didPressDocTitle() {
-        if IAPlayer.sharedInstance.fileIdentifier != nil {
-            self.performSegue(withIdentifier: "docPush", sender: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "minimizePlayer"), object: nil)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "docPush" {
-            let doc = segue.destination as! IADocViewController
-            doc.identifier = IAPlayer.sharedInstance.fileIdentifier
-        }
-    }
+
     
     
     

@@ -48,6 +48,8 @@ class IAHomeViewController: UIViewController {
         )
         
 
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,8 +68,10 @@ class IAHomeViewController: UIViewController {
             self.playerViewController.baseViewController = self
         }
         if segue.identifier == "tabEmbedSegue" {
-            self.iaTabBarController = segue.destination as! IAHomeTabBarController
+            let navController = segue.destination as! UINavigationController
+            self.iaTabBarController = navController.viewControllers.first as! IAHomeTabBarController
         }
+
     }
 
 
@@ -106,5 +110,10 @@ class IAHomeViewController: UIViewController {
             self.playerIsExpanded = isFull
         }
     }
+    
+    
+
+    
+
     
 }

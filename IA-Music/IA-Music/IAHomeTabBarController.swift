@@ -23,6 +23,12 @@ class IAHomeTabBarController: UITabBarController {
         listTab.setIAIcon(.iosListOutline)
         
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(IAHomeTabBarController.didPressDocTitle),
+            name: NSNotification.Name(rawValue: "pushDoc"),
+            object: nil
+        )
 
 
         
@@ -35,4 +41,21 @@ class IAHomeTabBarController: UITabBarController {
 
 
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "docPush" {
+            let doc = segue.destination as! IADocViewController
+            doc.identifier = IAPlayer.sharedInstance.fileIdentifier
+        }
+    }
+    
+    
+    func didPressDocTitle() {
+        if IAPlayer.sharedInstance.fileIdentifier != nil {
+            self.performSegue(withIdentifier: "docPush", sender: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "minimizePlayer"), object: nil)
+        }
+    }
+    
+    
 }
