@@ -205,7 +205,7 @@ class IAPlayer: NSObject {
     
     func playFile(file:IAPlayerFile) {
         
-        self.fileTitle = file.title
+        self.fileTitle = file.title.isEmpty ? file.name : file.title
         self.fileIdentifierTitle = file.archive?.identifierTitle
         self.fileIdentifier = file.archive?.identifier
         self.playUrl = URL(string: file.urlString)
@@ -313,6 +313,7 @@ class IAPlayer: NSObject {
                         })
                         
                         self.controlsController?.playerIcon.image = image
+                        self.controlsController?.playerIcon.backgroundColor = UIColor.white
                         
                         let playBackRate = playing ? "1.0" : "0.0"
                         
@@ -327,9 +328,7 @@ class IAPlayer: NSObject {
                             songInfo[MPMediaItemPropertyArtwork] = artwork
                         }
                         
-                        if let tit = self.fileTitle {
-                            songInfo[MPMediaItemPropertyTitle] = tit as AnyObject?
-                        }
+                            songInfo[MPMediaItemPropertyTitle] = self.fileTitle as AnyObject?
                         
                         MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
                         

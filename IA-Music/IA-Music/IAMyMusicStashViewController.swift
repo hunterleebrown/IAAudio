@@ -22,7 +22,8 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 60
+        tableView.rowHeight = 44
+        tableView.sectionHeaderHeight = 90
         
         realm = IARealmManger.sharedInstance.realm
         archives = realm?.objects(IAArchive.self).sorted(byKeyPath: "identifierTitle")
@@ -58,6 +59,28 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         let archive = archives[section]
         return archive.identifierTitle
     }
+    
+    func  tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! IAMyStashTableViewCell
+        let archive = archives[section]
+        cell.archive = archive
+
+        if let pushButton = cell.pushButton {
+            pushButton.tag = section
+            pushButton.addTarget(self, action:#selector(IAMyMusicStashViewController.pushDoc(sender:)), for: .touchUpInside)
+        }
+        
+        
+        
+        return cell
+    }
+    
+    
+    
+    func pushDoc(sender:UIButton){
+        self.performSegue(withIdentifier: "docPush", sender: sender)
+    }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
@@ -124,6 +147,18 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     //MARK: -
     
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let button = sender as? UIButton {
+            let archive = archives[button.tag]
+            if segue.identifier == "docPush" {
+                let controller = segue.destination as! IADocViewController
+                controller.identifier = archive.identifier
+            }
+        }
+        
+
+    }
     
     
     

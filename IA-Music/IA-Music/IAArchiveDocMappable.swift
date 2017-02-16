@@ -81,9 +81,14 @@ class IAArchiveDocMappable: Mappable {
     
     var sortedFiles: [IAFileMappable]? {
         guard files != nil else { return nil}
-        if let fs = files {
+        
+        let audioFiles = files?.filter({ (f) -> Bool in
+            f.format == IAFileMappableFormat.mp3
+        })
+        
+        if let fs = audioFiles {
             return fs.sorted(by: { (one, two) -> Bool in
-                guard one.cleanedTrack != nil else { return false}
+                guard one.cleanedTrack != nil, two.cleanedTrack != nil else { return false}
                 return one.cleanedTrack! < two.cleanedTrack!
             })
         }
@@ -96,13 +101,43 @@ class IAArchiveDocMappable: Mappable {
         return URL(string: itemImageUrl)!
     }
     
-    func fileUrl(file:IAFileMappable) ->URL {
-    
-        let urlString = "http://archive.org/download/\(identifier!)/\(file.name!)"
-        return URL(string: urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
-
+    func rawDescription()->String? {
+        return metadata["description"] as? String ?? nil
+    }
+    func noHTMLDescription()->String? {
+        guard desc != nil else { return nil }
+        if let desc = self.rawDescription() {
+            return desc.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+        }
+        return nil
     }
     
+    var jpg: URL? {
+        
+        let jpgs = files?.filter({ (file) -> Bool in
+            file.format == .jpg
+        })
+        
+        if let js = jpgs {
+            guard js.count > 0  else { return nil}
+            if let name = js.first?.name {
+                return URL(string:"http://archive.org/download/\(identifier!)/\(name)")
+            }
+        }
+        return nil
+    }
+    
+    func fileUrl(file:IAFileMappable) ->URL {
+        let urlString = "http://archive.org/download/\(identifier!)/\(file.name!)"
+        return URL(string: urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
+    }
+    
+}
+
+enum IAFileMappableFormat: String {
+    case mp3 = "VBR MP3"
+    case jpg   = "JPEG"
+    case other
 }
 
 
@@ -112,20 +147,26 @@ class IAFileMappable: Mappable {
     var title : String?
     var track : String?
     var size : String?
-    var format: String?
+    var format: IAFileMappableFormat?
     var length: String?
     
+    
     required init?(map: Map) {
-        
-        if map.JSON["format"] as! String != "VBR MP3" {
+        switch map.JSON["format"] as! String {
+        case IAFileMappableFormat.mp3.rawValue:
+            format = .mp3
+        case IAFileMappableFormat.jpg.rawValue:
+            format = .jpg
+            if map.JSON["source"] as! String == "origin" {
+                break
+            }
+        default:
             return nil
         }
-        
     }
     
     func mapping(map: Map) {
         name   <- map["name"]
-        format <- map["format"]
         title  <- map["title"]
         size   <- map["size"]
         length <- map["length"]
@@ -147,5 +188,6 @@ class IAFileMappable: Mappable {
         }
         return nil
     }
+    
     
 }

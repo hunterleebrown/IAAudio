@@ -44,7 +44,12 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.title = title
                 }
                 
-                self.image.af_setImage(withURL: (self.doc!.iconUrl()))
+                if let jpg = self.doc?.jpg {
+                    self.image.af_setImage(withURL: jpg)
+                } else {
+                    self.image.af_setImage(withURL: (self.doc!.iconUrl()))
+                    self.image.backgroundColor = UIColor.white
+                }
                 
                 if let files = self.doc?.sortedFiles {
                     self.audioFiles = files
