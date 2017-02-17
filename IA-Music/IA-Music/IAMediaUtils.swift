@@ -120,6 +120,19 @@ extension UINavigationBar {
     }
 }
 
+extension UIViewController {
+    func colorNavigation() {
+    
+        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.tintColor = IAColors.fairyCream
+        self.navigationController?.navigationBar.barTintColor = IAColors.fairyRed
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
+        self.navigationController?.navigationBar.titleFont = UIFont(name: "HelveticaNeue-Bold", size: 18)
+    }
+}
+
 
 
 struct IAMediaUtils

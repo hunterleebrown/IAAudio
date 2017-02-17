@@ -27,6 +27,11 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = 90
         tableView.cellLayoutMarginsFollowReadableWidth = false
         
+        self.colorNavigation()
+
+        self.searchBar.barTintColor = IAColors.fairyRed
+        self.searchBar.tintColor = IAColors.fairyCream
+        
     }
     
     

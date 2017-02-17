@@ -47,8 +47,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
         self.activityIndicatorView.color = IAColors.fairyRed
         self.activityIndicatorView.startAnimation()
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.colorNavigation()
         
         if let ident = identifier {
             

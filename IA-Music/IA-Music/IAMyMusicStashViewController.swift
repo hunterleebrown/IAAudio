@@ -26,13 +26,7 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         tableView.sectionHeaderHeight = 54
         tableView.sectionFooterHeight = 27
 
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBar.tintColor = IAColors.fairyCream
-        self.navigationController?.navigationBar.barTintColor = IAColors.fairyRed
-        self.navigationController?.navigationBar.isTranslucent = false
-        
-        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
-        self.navigationController?.navigationBar.titleFont = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        self.colorNavigation()
         
         realm = IARealmManger.sharedInstance.realm
         archives = realm?.objects(IAArchive.self).sorted(byKeyPath: "identifierTitle")
