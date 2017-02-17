@@ -43,7 +43,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 44
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
         self.activityIndicatorView.color = IAColors.fairyRed
         self.activityIndicatorView.startAnimation()
@@ -127,9 +128,6 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
             self.topView.backgroundColor = colored.backgroundColor
             self.docTitle.textColor = colored.primaryColor
             self.docDeets.textColor = colored.detailColor
-            self.imageExpand.setTitleColor(colored.backgroundColor, for: .normal)
-            self.imageExpand.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
-            self.imageExpand.setIAIcon(.arrowExpand, forState: .normal)
 
         }
         self.activityIndicatorView.stopAnimation()
