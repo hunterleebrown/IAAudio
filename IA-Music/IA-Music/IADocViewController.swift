@@ -47,7 +47,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
         self.activityIndicatorView.color = IAColors.fairyRed
         self.activityIndicatorView.startAnimation()
-        
+        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.isTranslucent = false
         
         if let ident = identifier {
             
@@ -55,7 +56,6 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.doc = inDoc
                 if let title = self.doc?.title {
                     self.docTitle.text = title
-                    self.title = title
                 }
                 
                 if let deets = self.docDeets {
@@ -223,15 +223,18 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let file = audioFiles[indexPath.row]
         cell.audioFile = file
         cell.archiveDoc = self.doc
-        cell.addButton.isHidden = doesPlayerFileExist(fileName: file.name!)
+        
+         if doesPlayerFileExist(fileName: file.name!) {
+            cell.addButton.isEnabled = false
+            cell.addButton.setIAIcon(.checkmark, forState: .normal)
+         } else {
+            cell.addButton.isEnabled = true
+            cell.addButton.setIAIcon(.plus, forState: .normal)
+        }
+        
         cell.addButton.tag = indexPath.row
         cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         
-//        if let colored = colors {
-//            cell.titleLabel.textColor = colored.primaryColor
-//            cell.contentView.backgroundColor = colored.backgroundColor
-//            cell.addButton.setTitleColor(colored.primaryColor, for: .normal)
-//        }
 
         
         return cell
@@ -252,8 +255,6 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
-    
-
     
     
     deinit {

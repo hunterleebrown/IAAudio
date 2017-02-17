@@ -90,6 +90,38 @@ struct IAColors
 
 }
 
+extension UINavigationBar {
+    var titleColor: UIColor? {
+        get {
+            if let attributes = self.titleTextAttributes {
+                return attributes[NSForegroundColorAttributeName] as? UIColor
+            }
+            return nil
+        }
+        set {
+            if let value = newValue {
+                self.titleTextAttributes = [NSForegroundColorAttributeName: value]
+            }
+        }
+    }
+    
+    var titleFont: UIFont? {
+        get {
+            if let attributes = self.titleTextAttributes {
+                return attributes[NSFontAttributeName] as? UIFont
+            }
+            return nil
+        }
+        set {
+            if let value = newValue {
+                self.titleTextAttributes = [NSFontAttributeName: value]
+            }
+        }
+    }
+}
+
+
+
 struct IAMediaUtils
 {
     

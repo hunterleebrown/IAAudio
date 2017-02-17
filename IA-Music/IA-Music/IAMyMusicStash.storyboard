@@ -34,27 +34,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="M3Y-hb-1Ut">
-                                                    <rect key="frame" x="10" y="26.5" width="297" height="80"/>
+                                                    <rect key="frame" x="10" y="55" width="297" height="24"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wgg-al-zlO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="AGe-U2-zwE"/>
-                                                                <constraint firstAttribute="height" constant="80" id="Enq-A0-bza"/>
-                                                                <constraint firstAttribute="width" constant="44" id="HKz-x8-vNC"/>
-                                                                <constraint firstAttribute="width" constant="80" id="JMi-HA-6NV"/>
-                                                            </constraints>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="AGe-U2-zwE"/>
-                                                                    <exclude reference="HKz-x8-vNC"/>
-                                                                </mask>
-                                                            </variation>
-                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="38a-Om-ngB">
-                                                            <rect key="frame" x="90" y="0.0" width="207" height="80"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="297" height="24"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -78,7 +62,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="Xev-ok-WFd" firstAttribute="centerX" secondItem="9AU-yR-Ske" secondAttribute="centerX" id="6gn-9L-Zcb"/>
                                                 <constraint firstAttribute="bottom" secondItem="M3Y-hb-1Ut" secondAttribute="bottom" constant="5" id="Di3-9j-BZh"/>
@@ -102,7 +86,6 @@
                                         <connections>
                                             <outlet property="itemTitle" destination="38a-Om-ngB" id="p7X-nw-RB5"/>
                                             <outlet property="pushButton" destination="ePC-ox-6xY" id="SxU-Th-fcd"/>
-                                            <outlet property="trackImage" destination="Wgg-al-zlO" id="FIl-oy-Jup"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="stashCell" id="kFe-5j-NTB" customClass="IAMyStashTableViewCell" customModule="IA_Music" customModuleProvider="target">
@@ -115,11 +98,18 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AXD-Du-Krx">
                                                     <rect key="frame" x="20" y="44.5" width="345" height="44"/>
                                                     <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNg-7I-YRD">
+                                                            <rect key="frame" x="0.0" y="5.5" width="33" height="33"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="33" id="lTS-KZ-MAf"/>
+                                                                <constraint firstAttribute="width" constant="33" id="tvo-Uk-xJc"/>
+                                                            </constraints>
+                                                        </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aua-Zt-GsG">
-                                                            <rect key="frame" x="0.0" y="13" width="237" height="18"/>
+                                                            <rect key="frame" x="43" y="13" width="194" height="18"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="999" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="999" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iJA-im-sCd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="18"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="194" height="18"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -171,6 +161,7 @@
                                         <connections>
                                             <outlet property="downloadButton" destination="jeO-fa-oEo" id="kUM-lF-a1x"/>
                                             <outlet property="moreButton" destination="6zn-XQ-xxp" id="d8m-EW-FBt"/>
+                                            <outlet property="trackImage" destination="hNg-7I-YRD" id="mbK-sx-2F6"/>
                                             <outlet property="trackTitle" destination="iJA-im-sCd" id="AE5-dD-Tho"/>
                                         </connections>
                                     </tableViewCell>

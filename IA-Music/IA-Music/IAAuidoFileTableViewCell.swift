@@ -17,7 +17,6 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = audioFile?.title ?? audioFile?.name
             addButton.setIAIcon(.plusRound, forState: .normal)
-            
             self.addButton.tintColor = IAColors.fairyRed
         }
     }

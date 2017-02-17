@@ -48,13 +48,15 @@ class IAPlayerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.buttonColors()
+        
         self.activityIndicator.hidesWhenStopped = false
         self.activityIndicator.type = .lineScaleParty
-        self.playButton.setIAIcon(.iosPlayOutline, forState: UIControlState())
-        self.forwardButton.setIAIcon(.iosSkipforwardOutline, forState: UIControlState())
-        self.backwardButton.setIAIcon(.iosSkipbackwardOutline, forState: UIControlState())
+        self.playButton.setIAIcon(.iosPlayOutline, forState: .normal)
+        self.forwardButton.setIAIcon(.iosSkipforwardOutline, forState: .normal)
+        self.backwardButton.setIAIcon(.iosSkipbackwardOutline, forState: .normal)
         
-        self.randomButton.setTitle(IAFontMapping.RANDOM, for: UIControlState())
+        self.randomButton.setTitle(IAFontMapping.RANDOM, for: .normal)
         self.randomButton.tintColor = UIColor.white
      
         self.airPlayPicker.showsRouteButton = true
@@ -70,9 +72,29 @@ class IAPlayerViewController: UIViewController {
             print("Can't set category or active session")
         }
         
+        self.view.backgroundColor = IAColors.fairyRed
+
     }
 
-
+    func buttonColors() {
+    
+        for button in [self.playButton, self.forwardButton, self.backwardButton, self.randomButton] {
+            button?.setTitleColor(IAColors.fairyCream, for: .normal)
+        }
+        
+        minTime.textColor = IAColors.fairyCream
+        maxTime.textColor = IAColors.fairyCream
+        playingProgress.thumbTintColor = IAColors.fairyCream
+        playingProgress.minimumTrackTintColor = IAColors.fairyCream
+        topProgress.progressTintColor = IAColors.fairyCream
+        
+        self.activityIndicator.color = IAColors.fairyCream
+        
+        self.nowPlayingTitle.textColor = IAColors.fairyCream
+        
+        nowPlayingItemButton.setTitleColor(IAColors.fairyCream, for: .normal)
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

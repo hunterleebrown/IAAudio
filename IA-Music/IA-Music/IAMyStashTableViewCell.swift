@@ -34,7 +34,7 @@ class IAMyStashTableViewCell: UITableViewCell {
                 push.setIAIcon(.iosArrowForward, forState: .normal)
                 push.layer.cornerRadius = 3.0
                 push.layer.borderColor = UIColor.lightGray.cgColor
-                push.layer.borderWidth = 1.0
+                push.layer.borderWidth = 0.5
             }
         }
     }

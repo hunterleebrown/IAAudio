@@ -23,7 +23,16 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         tableView.rowHeight = 54
-        tableView.sectionHeaderHeight = 90
+        tableView.sectionHeaderHeight = 54
+        tableView.sectionFooterHeight = 27
+
+        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.tintColor = IAColors.fairyCream
+        self.navigationController?.navigationBar.barTintColor = IAColors.fairyRed
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
+        self.navigationController?.navigationBar.titleFont = UIFont(name: "HelveticaNeue-Bold", size: 18)
         
         realm = IARealmManger.sharedInstance.realm
         archives = realm?.objects(IAArchive.self).sorted(byKeyPath: "identifierTitle")
@@ -70,9 +79,11 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
             pushButton.addTarget(self, action:#selector(IAMyMusicStashViewController.pushDoc(sender:)), for: .touchUpInside)
         }
         
-        
-        
         return cell.contentView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+            return UIView()
     }
     
     
