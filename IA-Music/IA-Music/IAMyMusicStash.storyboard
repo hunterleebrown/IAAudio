@@ -88,7 +88,7 @@
                                             <outlet property="pushButton" destination="ePC-ox-6xY" id="SxU-Th-fcd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="stashCell" id="kFe-5j-NTB" customClass="IAMyStashTableViewCell" customModule="IA_Music" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="stashCell" id="kFe-5j-NTB" customClass="IAMyStashTableViewCell" customModule="IA_Music" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="161" width="375" height="133"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kFe-5j-NTB" id="pfX-vj-ZDL">

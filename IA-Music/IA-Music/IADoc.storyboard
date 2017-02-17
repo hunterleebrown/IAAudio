@@ -84,13 +84,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hunter Lee Brown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R1Q-LX-SLf">
-                                                    <rect key="frame" x="8" y="24" width="326" height="18"/>
+                                                    <rect key="frame" x="18" y="24" width="306" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3MX-Dz-Pps">
-                                                    <rect key="frame" x="334" y="12" width="33" height="40"/>
+                                                    <rect key="frame" x="324" y="12" width="33" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="33" id="3Pn-EP-l9p"/>
                                                     </constraints>
@@ -102,8 +102,8 @@
                                                 <constraint firstItem="R1Q-LX-SLf" firstAttribute="centerY" secondItem="Kwt-By-8kU" secondAttribute="centerY" id="T5b-Y0-KSn"/>
                                                 <constraint firstItem="3MX-Dz-Pps" firstAttribute="centerY" secondItem="Kwt-By-8kU" secondAttribute="centerY" id="T8r-fN-J09"/>
                                                 <constraint firstItem="R1Q-LX-SLf" firstAttribute="trailing" secondItem="3MX-Dz-Pps" secondAttribute="leading" id="ZoJ-t0-y6q"/>
-                                                <constraint firstItem="R1Q-LX-SLf" firstAttribute="leading" secondItem="Kwt-By-8kU" secondAttribute="leadingMargin" id="ubB-pU-eBA"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3MX-Dz-Pps" secondAttribute="trailing" id="vl7-VN-s4S"/>
+                                                <constraint firstItem="R1Q-LX-SLf" firstAttribute="leading" secondItem="Kwt-By-8kU" secondAttribute="leadingMargin" constant="10" id="ubB-pU-eBA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3MX-Dz-Pps" secondAttribute="trailing" constant="10" id="vl7-VN-s4S"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

@@ -105,6 +105,8 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
             IAPlayer.sharedInstance.playFile(file: file)
         }
+        
+        
     }
     
     

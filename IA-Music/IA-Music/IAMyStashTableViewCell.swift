@@ -80,7 +80,7 @@ class IAMyStashTableViewCell: UITableViewCell {
             
         }
     }
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -88,10 +88,10 @@ class IAMyStashTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
+        self.contentView.backgroundColor = selected ? IAColors.fairyCream : UIColor.white
     }
     
 
+    
     
 }
