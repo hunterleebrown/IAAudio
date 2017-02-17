@@ -22,7 +22,7 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 44
+        tableView.rowHeight = 54
         tableView.sectionHeaderHeight = 90
         
         realm = IARealmManger.sharedInstance.realm
@@ -72,7 +72,7 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         
         
         
-        return cell
+        return cell.contentView
     }
     
     

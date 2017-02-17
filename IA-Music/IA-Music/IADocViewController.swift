@@ -12,10 +12,15 @@ import RealmSwift
 class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+
     @IBOutlet var topView: UIView!
+    @IBOutlet weak var topViewTopContraint: NSLayoutConstraint!
+    
     @IBOutlet weak var docTitle: UILabel!
-    @IBOutlet weak var etc: UILabel!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var docDeets: UILabel!
+    @IBOutlet weak var albumImage: UIImageView!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
+    @IBOutlet weak var imageWidth: NSLayoutConstraint!
     
     var audioFiles = [IAFileMappable]()
     let service = IAService()
@@ -32,6 +37,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         tableView.rowHeight = 44
+        self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
+
         
         // Do any additional setup after loading the view.
         
@@ -44,11 +51,18 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.title = title
                 }
                 
+                if let deets = self.docDeets {
+                    deets.text = self.doc?.noHTMLDescription()
+                }
+                
                 if let jpg = self.doc?.jpg {
-                    self.image.af_setImage(withURL: jpg)
+                    //self.image.af_setImage(withURL: jpg)
+                    self.setImage(url: jpg)
+                    self.albumImage.backgroundColor = UIColor.black
+
                 } else {
-                    self.image.af_setImage(withURL: (self.doc!.iconUrl()))
-                    self.image.backgroundColor = UIColor.white
+                    //self.image.af_setImage(withURL: (self.doc!.iconUrl()))
+                    self.setImage(url: (self.doc!.iconUrl()))
                 }
                 
                 if let files = self.doc?.sortedFiles {
@@ -63,6 +77,44 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
 
+    }
+    
+    func setImage(url:URL) {
+        self.albumImage.af_setImage(withURL: url,
+                               placeholderImage: nil,
+                               filter: nil,
+                               progress: nil,
+                               progressQueue: DispatchQueue.main,
+                               imageTransition: .noTransition,
+                               runImageTransitionIfCached: true) { response in
+                                
+                                switch response.result {
+                                case .success(let image):
+                                    let size = image.size
+                                    let height = (self.imageWidth.constant * size.height ) / size.width
+                                    self.imageHeight.constant = round(height)
+                                    break
+                                case .failure(let _):
+                                    break
+                                }
+                                
+                                self.layoutTableViewOffset()
+                                self.albumImage.backgroundColor = UIColor.white
+                                
+        }
+    }
+    
+    func layoutTableViewOffset() {
+        var fr = self.topView.frame
+        print("frame size height: \(self.imageHeight.constant)")
+        print("title size height: \(self.docTitle.bounds.size.height)")
+        fr.size.height = self.imageHeight.constant + self.docTitle.bounds.size.height + 30
+        self.topView.frame = fr
+        self.tableView.tableHeaderView = self.topView
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +182,10 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
             IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
         }
     }
+    
+    
+
+    
     
     deinit {
         notificationToken?.stop()

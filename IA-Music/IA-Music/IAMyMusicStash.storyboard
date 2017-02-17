@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="133"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cf5-gh-8gD" id="9AU-yR-Ske">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="M3Y-hb-1Ut">
@@ -77,6 +77,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="Xev-ok-WFd" firstAttribute="centerX" secondItem="9AU-yR-Ske" secondAttribute="centerX" id="6gn-9L-Zcb"/>
                                                 <constraint firstAttribute="bottom" secondItem="M3Y-hb-1Ut" secondAttribute="bottom" constant="5" id="Di3-9j-BZh"/>
@@ -96,7 +97,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="itemTitle" destination="38a-Om-ngB" id="p7X-nw-RB5"/>
@@ -108,17 +108,17 @@
                                         <rect key="frame" x="0.0" y="161" width="375" height="133"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kFe-5j-NTB" id="pfX-vj-ZDL">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="132.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AXD-Du-Krx">
-                                                    <rect key="frame" x="10" y="44.5" width="355" height="44"/>
+                                                    <rect key="frame" x="20" y="44.5" width="345" height="44"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="aua-Zt-GsG">
-                                                            <rect key="frame" x="0.0" y="13" width="247" height="18"/>
+                                                            <rect key="frame" x="0.0" y="13" width="237" height="18"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="999" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="999" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iJA-im-sCd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="247" height="18"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="237" height="18"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -126,7 +126,7 @@
                                                             </subviews>
                                                         </stackView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zn-XQ-xxp">
-                                                            <rect key="frame" x="257" y="0.0" width="44" height="44"/>
+                                                            <rect key="frame" x="247" y="0.0" width="44" height="44"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="44" id="ZKC-oy-tDl"/>
                                                                 <constraint firstAttribute="height" constant="44" id="lsA-UO-EJe"/>
@@ -137,7 +137,7 @@
                                                             </state>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeO-fa-oEo">
-                                                            <rect key="frame" x="311" y="0.0" width="44" height="44"/>
+                                                            <rect key="frame" x="301" y="0.0" width="44" height="44"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="44" id="M6Z-K2-SJa"/>
                                                                 <constraint firstAttribute="height" constant="44" id="bcZ-Cc-bQe"/>
@@ -155,14 +155,14 @@
                                             <constraints>
                                                 <constraint firstItem="AXD-Du-Krx" firstAttribute="centerY" secondItem="pfX-vj-ZDL" secondAttribute="centerY" id="Fic-Jz-ss7"/>
                                                 <constraint firstAttribute="trailing" secondItem="AXD-Du-Krx" secondAttribute="trailing" constant="10" id="PeZ-e7-Ogw"/>
-                                                <constraint firstItem="AXD-Du-Krx" firstAttribute="leading" secondItem="pfX-vj-ZDL" secondAttribute="leading" constant="10" id="Vck-xn-MiE"/>
+                                                <constraint firstItem="AXD-Du-Krx" firstAttribute="leading" secondItem="pfX-vj-ZDL" secondAttribute="leading" constant="20" id="Vck-xn-MiE"/>
                                                 <constraint firstItem="AXD-Du-Krx" firstAttribute="top" secondItem="pfX-vj-ZDL" secondAttribute="top" constant="5" id="Vd6-qG-xU2"/>
                                                 <constraint firstAttribute="bottom" secondItem="AXD-Du-Krx" secondAttribute="bottom" constant="5" id="lfb-iJ-sks"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="lfb-iJ-sks"/>
                                                     <exclude reference="Vd6-qG-xU2"/>
+                                                    <exclude reference="lfb-iJ-sks"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
