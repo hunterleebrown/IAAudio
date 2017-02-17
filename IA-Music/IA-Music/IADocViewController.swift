@@ -22,6 +22,11 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var imageHeight: NSLayoutConstraint!
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
     
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
+    @IBOutlet weak var imageExpand: UIButton!
+    
+    
     var audioFiles = [IAFileMappable]()
     let service = IAService()
     
@@ -33,14 +38,16 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     var forcedShowNavigationBar = false
     
+    var colors: UIImageColors?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.rowHeight = 44
         self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
-
+        self.activityIndicatorView.color = IAColors.fairyRed
+        self.activityIndicatorView.startAnimation()
         
-        // Do any additional setup after loading the view.
         
         if let ident = identifier {
             
@@ -56,12 +63,10 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 if let jpg = self.doc?.jpg {
-                    //self.image.af_setImage(withURL: jpg)
                     self.setImage(url: jpg)
                     self.albumImage.backgroundColor = UIColor.black
 
                 } else {
-                    //self.image.af_setImage(withURL: (self.doc!.iconUrl()))
                     self.setImage(url: (self.doc!.iconUrl()))
                 }
                 
@@ -93,12 +98,15 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                     let size = image.size
                                     let height = (self.imageWidth.constant * size.height ) / size.width
                                     self.imageHeight.constant = round(height)
+                                    self.colors = image.getColors()
+                                    self.originalSize = CGSize(width: self.imageWidth.constant, height: self.imageHeight.constant)
                                     break
                                 case .failure(let _):
                                     break
                                 }
                                 
                                 self.layoutTableViewOffset()
+                                self.adjustColorsAndRemoveBlur()
                                 self.albumImage.backgroundColor = UIColor.white
                                 
         }
@@ -108,10 +116,64 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var fr = self.topView.frame
         print("frame size height: \(self.imageHeight.constant)")
         print("title size height: \(self.docTitle.bounds.size.height)")
-        fr.size.height = self.imageHeight.constant + self.docTitle.bounds.size.height + 30
+        fr.size.height = self.imageHeight.constant + self.docTitle.bounds.size.height + self.docDeets.bounds.size.height + 40
         self.topView.frame = fr
         self.tableView.tableHeaderView = self.topView
     }
+    
+    func adjustColorsAndRemoveBlur() {
+    
+        if let colored = self.colors {
+            self.topView.backgroundColor = colored.backgroundColor
+            self.docTitle.textColor = colored.primaryColor
+            self.docDeets.textColor = colored.detailColor
+            self.imageExpand.setTitleColor(colored.backgroundColor, for: .normal)
+            self.imageExpand.backgroundColor = UIColor(white: 1.0, alpha: 0.5)
+            self.imageExpand.setIAIcon(.arrowExpand, forState: .normal)
+
+        }
+        self.activityIndicatorView.stopAnimation()
+        
+        UIView.animate(withDuration: 0.33, animations: {
+            self.blurView.alpha = 0
+        }) { (done) in
+            self.blurView.isHidden = true
+        }
+    }
+    
+
+    var originalSize: CGSize?
+    var isExpanded = false
+    @IBAction func expandButton(_ sender: Any) {
+
+        if let img = albumImage.image {
+            var width = self.view.bounds.size.width
+            var height = (width * img.size.height ) / img.size.width
+            
+            if isExpanded, let size = originalSize {
+                height = size.height
+                width = size.width
+                docDeets.numberOfLines = 3
+            } else {
+                docDeets.numberOfLines = 0
+            }
+            
+            self.imageWidth.constant = width
+            self.imageHeight.constant = height
+            
+            UIView.animate(withDuration: 0.33, animations: {
+                self.topView.layoutIfNeeded()
+                self.layoutTableViewOffset()
+            }) { (done) in
+                self.isExpanded = !self.isExpanded
+            }
+            
+        }
+
+        
+    }
+    
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -164,6 +226,13 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.addButton.isHidden = doesPlayerFileExist(fileName: file.name!)
         cell.addButton.tag = indexPath.row
         cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
+        
+//        if let colored = colors {
+//            cell.titleLabel.textColor = colored.primaryColor
+//            cell.contentView.backgroundColor = colored.backgroundColor
+//            cell.addButton.setTitleColor(colored.primaryColor, for: .normal)
+//        }
+
         
         return cell
     }
