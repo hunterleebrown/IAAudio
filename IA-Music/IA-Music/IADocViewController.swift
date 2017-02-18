@@ -27,6 +27,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var imageExpand: UIButton!
     
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var addAllButton: UIButton!
     
     var audioFiles = [IAFileMappable]()
     let service = IAService()
@@ -80,6 +81,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
             self?.tableView.reloadData()
+         
         }
         
 
@@ -121,7 +123,12 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var fr = self.topView.frame
         print("frame size height: \(self.imageHeight.constant)")
         print("title size height: \(self.docTitle.bounds.size.height)")
-        fr.size.height = self.imageHeight.constant + self.docTitle.bounds.size.height + self.docDeets.bounds.size.height + 40
+        fr.size.height =
+            self.imageHeight.constant +
+            self.docTitle.bounds.size.height +
+            self.docDeets.bounds.size.height +
+            self.addAllButton.bounds.size.height + 60
+        
         self.topView.frame = fr
         self.tableView.tableHeaderView = self.topView
     }
@@ -141,6 +148,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
          
             self.docDeets.textColor = colored.primaryColor
+            self.addAllButton.setTitleColor(imageTextColor, for: .normal)
+            self.addAllButton.setTitleColor(colored.primaryColor, for: .highlighted)
 
         }
         self.activityIndicatorView.stopAnimation()
@@ -234,19 +243,25 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let file = audioFiles[indexPath.row]
         cell.audioFile = file
         cell.archiveDoc = self.doc
+        cell.addButton.tag = indexPath.row
+        
+        
+        cell.addButton.removeTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
+        cell.addButton.removeTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
         
          if doesPlayerFileExist(fileName: file.name!) {
-            cell.addButton.isEnabled = false
+//            cell.addButton.isEnabled = false
+            cell.addButton.setTitleColor(colors?.primaryColor, for: .normal)
             cell.addButton.setIAIcon(.checkmark, forState: .normal)
+            cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
          } else {
-            cell.addButton.isEnabled = true
+            //            cell.addButton.isEnabled = true
+            cell.addButton.setTitleColor(UIColor.white, for: .normal)
             cell.addButton.setIAIcon(.plus, forState: .normal)
+            cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         }
         
         cell.titleLabel.textColor = imageTextColor
-        
-        cell.addButton.tag = indexPath.row
-        cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         
 
         
@@ -260,6 +275,14 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
 
     }
+
+    @IBAction func didPressCheckmark(_ sender: UIButton) {
+        
+        if let doc = self.doc {
+            let file = audioFiles[sender.tag]
+            IARealmManger.sharedInstance.deleteFile(docAndFile: (doc:doc, file:file))
+        }
+    }
     
     @IBAction func didPressPlusButton(_ sender: UIButton) {
         if let doc = self.doc {
@@ -268,6 +291,11 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
     }
     
+    @IBAction func didPressAllAdd(_ sender: Any) {
+        for file in audioFiles {
+            IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc!, file:file))
+        }
+    }
     
     
     deinit {
