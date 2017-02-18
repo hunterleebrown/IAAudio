@@ -17,7 +17,9 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = audioFile?.title ?? audioFile?.name
             addButton.setIAIcon(.plusRound, forState: .normal)
-            self.addButton.tintColor = IAColors.fairyRed
+            
+            self.contentView.backgroundColor = isSelected ? IAColors.fairyCream : UIColor.clear
+            self.titleLabel.textColor = isSelected ? UIColor.fairyRed : UIColor.white
         }
     }
 
@@ -30,7 +32,8 @@ class IAAuidoFileTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.contentView.backgroundColor = selected ? IAColors.fairyCream : UIColor.white
+        self.contentView.backgroundColor = selected ? IAColors.fairyCream : UIColor.clear
+        self.titleLabel.textColor = selected ? UIColor.fairyRed : UIColor.white
     }
 
 

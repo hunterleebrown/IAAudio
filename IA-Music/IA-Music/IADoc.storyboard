@@ -54,23 +54,23 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SjA-7x-cx1">
-                                            <rect key="frame" x="20" y="230" width="335" height="14.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <rect key="frame" x="20" y="230" width="335" height="20.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3z-Fd-8de">
-                                            <rect key="frame" x="0.0" y="10" width="375" height="228"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <connections>
-                                                <action selector="expandButton:" destination="I80-Y9-BeD" eventType="touchUpInside" id="fTa-wS-i7g"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTQ-aJ-RsF">
-                                            <rect key="frame" x="162.5" y="248" width="49" height="30"/>
+                                            <rect key="frame" x="163" y="260" width="49" height="30"/>
                                             <state key="normal" title="Add All"/>
                                             <connections>
                                                 <action selector="didPressAllAdd:" destination="I80-Y9-BeD" eventType="touchUpInside" id="auV-T9-a09"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3z-Fd-8de">
+                                            <rect key="frame" x="0.0" y="10" width="375" height="240.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <connections>
+                                                <action selector="expandButton:" destination="I80-Y9-BeD" eventType="touchUpInside" id="fTa-wS-i7g"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -79,21 +79,21 @@
                                         <constraint firstAttribute="trailing" secondItem="e3z-Fd-8de" secondAttribute="trailing" id="0GG-5f-JWF"/>
                                         <constraint firstItem="OWo-lf-egW" firstAttribute="centerX" secondItem="RXC-hn-iEc" secondAttribute="centerX" id="2iC-fL-oim"/>
                                         <constraint firstAttribute="trailing" secondItem="ODt-hE-QyM" secondAttribute="trailing" constant="20" id="3M1-yE-ZFE"/>
+                                        <constraint firstItem="MTQ-aJ-RsF" firstAttribute="top" secondItem="SjA-7x-cx1" secondAttribute="bottom" constant="10" id="5Tr-CI-8Oa"/>
                                         <constraint firstItem="MTQ-aJ-RsF" firstAttribute="centerX" secondItem="RXC-hn-iEc" secondAttribute="centerX" id="8Lm-Dg-egC"/>
                                         <constraint firstItem="SjA-7x-cx1" firstAttribute="top" secondItem="ODt-hE-QyM" secondAttribute="bottom" constant="10" id="Dyp-JD-p3p"/>
                                         <constraint firstItem="SjA-7x-cx1" firstAttribute="leading" secondItem="RXC-hn-iEc" secondAttribute="leading" constant="20" id="J1P-Fc-Y2j"/>
+                                        <constraint firstItem="e3z-Fd-8de" firstAttribute="bottom" secondItem="SjA-7x-cx1" secondAttribute="bottom" id="PCG-Yt-jwh"/>
                                         <constraint firstItem="ODt-hE-QyM" firstAttribute="leading" secondItem="RXC-hn-iEc" secondAttribute="leading" constant="20" id="Rlr-q5-rzO"/>
-                                        <constraint firstItem="MTQ-aJ-RsF" firstAttribute="top" secondItem="e3z-Fd-8de" secondAttribute="bottom" constant="10" id="XcZ-fN-gwM"/>
                                         <constraint firstItem="e3z-Fd-8de" firstAttribute="leading" secondItem="RXC-hn-iEc" secondAttribute="leading" id="YTh-ch-XCx"/>
                                         <constraint firstItem="OWo-lf-egW" firstAttribute="top" secondItem="RXC-hn-iEc" secondAttribute="top" constant="10" id="ZgP-XQ-6bG"/>
-                                        <constraint firstAttribute="bottom" secondItem="MTQ-aJ-RsF" secondAttribute="bottom" constant="10" id="dtR-a4-f1b"/>
                                         <constraint firstItem="e3z-Fd-8de" firstAttribute="top" secondItem="OWo-lf-egW" secondAttribute="top" id="hvd-XF-L2q"/>
                                         <constraint firstItem="ODt-hE-QyM" firstAttribute="top" secondItem="OWo-lf-egW" secondAttribute="bottom" constant="10" id="kKD-3o-4mw"/>
                                         <constraint firstAttribute="trailing" secondItem="SjA-7x-cx1" secondAttribute="trailing" constant="20" id="lfh-D3-jfS"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="audioCell" id="sxr-wQ-LD8" customClass="IAAuidoFileTableViewCell" customModule="IA_Music" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="audioCell" id="sxr-wQ-LD8" customClass="IAAuidoFileTableViewCell" customModule="IA_Music" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="316" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sxr-wQ-LD8" id="Kwt-By-8kU">

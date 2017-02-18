@@ -62,7 +62,11 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 if let deets = self.docDeets {
-                    deets.text = self.doc?.noHTMLDescription()
+//                    deets.text = self.doc?.noHTMLDescription()
+                    if let rawHtml = self.doc?.rawDescription() {
+                        let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
+                        deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(stripped, font:deets.font )
+                    }
                 }
                 
                 if let jpg = self.doc?.jpg {

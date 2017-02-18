@@ -59,6 +59,9 @@ struct StringUtils {
 
 }
 
+
+
+
 extension NSMutableAttributedString {
     class func mutableAttributedTextWithFontFromHTML(_ textWithFont:String, font:UIFont)->NSMutableAttributedString {
         
@@ -73,6 +76,47 @@ extension NSMutableAttributedString {
         
         return NSMutableAttributedString(string: "")
     }
+    
+    class func mutableAttributedString(_ text:String, font:UIFont)->NSMutableAttributedString {
+        
+        do {
+            let attString =  try NSAttributedString(data: text.utf8Data!, options:[NSFontAttributeName: font, NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+            
+            return NSMutableAttributedString(attributedString: attString)
+            
+        } catch _ as NSError {
+            //print(error.localizedDescription)
+        }
+        
+        return NSMutableAttributedString(string: "")
+        
+    }
+    
+    class func bodyMutableAttributedString(_ html:String, font:UIFont)->NSMutableAttributedString {
+        let italicFontName: String = font.italic?.fontName ?? font.fontName
+        let boldFontName: String = font.bold?.fontName ?? font.fontName
+        let boldItalicFontName: String = font.bold?.italic?.fontName ?? font.fontName
+        let pointSize: String = String(describing: font.pointSize)
+        
+        var htmlCss: String = "<html><head><style type=\"text/css\">"
+        htmlCss += "body {backgroundColor:transparent !important; color:#000000; font-family: '\(font.fontName)'; font-size:\(pointSize)px; line-height:1em;}"
+        htmlCss += "p:first-child:first-letter {color:#FF0000;}"
+        htmlCss += "em,i {font-family: '\(italicFontName)'}"
+        htmlCss += "b,strong {font-family: '\(boldFontName)'}"
+        htmlCss += "b em,b i,em b,i b,strong em,strong i,em strong,i strong {font-family: '\(boldItalicFontName)'}"
+        htmlCss += "</style></head><body>\(html)</body></html>"
+        
+        let attString = NSMutableAttributedString.mutableAttributedString(htmlCss, font: font)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.lineSpacing = 2.25
+        paragraph.paragraphSpacing = font.lineHeight * 0.75
+        attString.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: NSMakeRange(0, attString.length))
+        
+//        let hunter = "hi".replacingOccurrences(of: <#T##String#>, with: <#T##String#>, options: <#T##String.CompareOptions#>, range: <#T##Range<String.Index>?#>)
+        
+        return attString
+    }
+    
 }
 
 
@@ -90,6 +134,14 @@ extension Data {
 extension String {
     var utf8Data: Data? {
         return data(using: .utf8)
+    }
+    
+    func remove(htmlTag tag:String)->String {
+        return self.replacingOccurrences(of:"(?i)<\(tag)\\b[^<]*>|</\(tag)\\b[^<]*>", with: "", options:.regularExpression, range: nil)
+    }
+    
+    func removeAttribute(htmlAttribute attribute:String)->String {
+        return self.replacingOccurrences(of:"(?i)\\s*\(attribute)=\\S*[^<']*'|\"*", with: "", options:.regularExpression, range: nil)
     }
 }
 

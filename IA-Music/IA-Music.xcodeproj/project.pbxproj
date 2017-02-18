@@ -80,6 +80,7 @@
 		5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BB1E5056B6000D4465 /* IADocViewController.swift */; };
 		5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */; };
 		5A615A141E515BC700B18161 /* IARealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A615A131E515BC700B18161 /* IARealmManager.swift */; };
+		5A7967F31E584592001F44B0 /* UIFont+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7967F21E584592001F44B0 /* UIFont+Common.swift */; };
 		5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */; };
 		5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */; };
 		5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */; };
@@ -162,6 +163,7 @@
 		5A5764BB1E5056B6000D4465 /* IADocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IADocViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAAuidoFileTableViewCell.swift; sourceTree = "<group>"; };
 		5A615A131E515BC700B18161 /* IARealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IARealmManager.swift; sourceTree = "<group>"; };
+		5A7967F21E584592001F44B0 /* UIFont+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Common.swift"; sourceTree = "<group>"; };
 		5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyMusicStash.storyboard; sourceTree = "<group>"; };
 		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; };
 		5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */,
+				5A7967F21E584592001F44B0 /* UIFont+Common.swift */,
 				5A5764B51E502C53000D4465 /* StringUtils.swift */,
 				5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */,
 			);
@@ -535,6 +538,7 @@
 				5A4115F61E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
 				5A4116241E4D57EE004F6B56 /* IASearchViewController.swift in Sources */,
 				5A4116061E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
+				5A7967F31E584592001F44B0 /* UIFont+Common.swift in Sources */,
 				5A4115C11E4D1E12004F6B56 /* IAPlayerViewController.swift in Sources */,
 				5A41158A1E4D046F004F6B56 /* AppDelegate.swift in Sources */,
 				5A4115F11E4D203F004F6B56 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
