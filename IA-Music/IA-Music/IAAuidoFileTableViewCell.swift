@@ -34,4 +34,9 @@ class IAAuidoFileTableViewCell: UITableViewCell {
     }
 
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clear
+    }
 }

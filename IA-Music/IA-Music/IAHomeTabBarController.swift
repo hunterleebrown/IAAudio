@@ -34,7 +34,9 @@ class IAHomeTabBarController: UITabBarController {
             object: nil
         )
 
-
+//
+//        self.colorNavigation()
+//        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
         
     }
 

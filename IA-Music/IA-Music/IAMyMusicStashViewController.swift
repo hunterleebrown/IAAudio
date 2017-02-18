@@ -22,6 +22,8 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "My Music Stash"
+        
         tableView.rowHeight = 54
         tableView.sectionHeaderHeight = 54
         tableView.sectionFooterHeight = 27
@@ -35,8 +37,13 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
             self?.tableView.reloadData()
         }
         
-        
+        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
     }
     
     override func viewDidLayoutSubviews() {

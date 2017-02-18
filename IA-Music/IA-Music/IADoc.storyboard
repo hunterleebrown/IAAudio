@@ -22,6 +22,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="elle-hunter" translatesAutoresizingMaskIntoConstraints="NO" id="Eh6-xY-KOC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yjx-sV-aSe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a1D-wG-y88">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FZG-9n-BhQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -56,7 +67,7 @@
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="e3z-Fd-8de" secondAttribute="trailing" id="0GG-5f-JWF"/>
                                         <constraint firstItem="OWo-lf-egW" firstAttribute="centerX" secondItem="RXC-hn-iEc" secondAttribute="centerX" id="2iC-fL-oim"/>
@@ -77,7 +88,7 @@
                                         <rect key="frame" x="0.0" y="316" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sxr-wQ-LD8" id="Kwt-By-8kU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hunter Lee Brown" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R1Q-LX-SLf">
@@ -100,6 +111,7 @@
                                                     <state key="normal" title="+"/>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="R1Q-LX-SLf" secondAttribute="bottom" constant="5" id="NBV-E5-uAM"/>
                                                 <constraint firstItem="3MX-Dz-Pps" firstAttribute="centerY" secondItem="Kwt-By-8kU" secondAttribute="centerY" id="T8r-fN-J09"/>
@@ -109,6 +121,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="3MX-Dz-Pps" secondAttribute="trailing" constant="10" id="vl7-VN-s4S"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="addButton" destination="3MX-Dz-Pps" id="clH-MI-cfk"/>
                                             <outlet property="titleLabel" destination="R1Q-LX-SLf" id="SDH-79-zHT"/>
@@ -146,14 +159,22 @@
                         <constraints>
                             <constraint firstItem="ngC-fO-pKT" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="1CA-Yy-M7J"/>
                             <constraint firstItem="FZG-9n-BhQ" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="2TC-W6-z8J"/>
+                            <constraint firstAttribute="trailing" secondItem="yjx-sV-aSe" secondAttribute="trailing" id="2gf-jc-jP9"/>
+                            <constraint firstAttribute="trailing" secondItem="Eh6-xY-KOC" secondAttribute="trailing" id="AC5-9R-4Mu"/>
+                            <constraint firstAttribute="bottom" secondItem="Eh6-xY-KOC" secondAttribute="bottom" id="AVY-0U-FkQ"/>
                             <constraint firstAttribute="trailing" secondItem="FZG-9n-BhQ" secondAttribute="trailing" id="Ai1-Vh-kZS"/>
                             <constraint firstItem="ut2-xx-780" firstAttribute="centerY" secondItem="Dgp-tK-OUI" secondAttribute="centerY" id="Fxd-nl-lCn"/>
+                            <constraint firstItem="ngC-fO-pKT" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="G60-0K-8GF"/>
+                            <constraint firstAttribute="bottom" secondItem="ngC-fO-pKT" secondAttribute="bottom" id="Og9-m9-Vdr"/>
+                            <constraint firstItem="Eh6-xY-KOC" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="V2A-l5-Wyn"/>
                             <constraint firstItem="Kqr-qj-VF7" firstAttribute="top" secondItem="FZG-9n-BhQ" secondAttribute="bottom" id="VR0-WX-IsT"/>
-                            <constraint firstItem="Kqr-qj-VF7" firstAttribute="top" secondItem="ngC-fO-pKT" secondAttribute="bottom" id="Z2W-uw-NaI"/>
                             <constraint firstAttribute="trailing" secondItem="ngC-fO-pKT" secondAttribute="trailing" id="d3n-TC-vQK"/>
                             <constraint firstItem="ut2-xx-780" firstAttribute="centerX" secondItem="Dgp-tK-OUI" secondAttribute="centerX" id="dAi-1S-bBA"/>
                             <constraint firstItem="FZG-9n-BhQ" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="f1a-ic-e9M"/>
-                            <constraint firstItem="ngC-fO-pKT" firstAttribute="top" secondItem="RtM-II-lVh" secondAttribute="bottom" id="uzH-RM-2b9"/>
+                            <constraint firstItem="yjx-sV-aSe" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="k53-Vq-OFr"/>
+                            <constraint firstAttribute="bottom" secondItem="yjx-sV-aSe" secondAttribute="bottom" id="rFe-Tk-vIU"/>
+                            <constraint firstItem="Eh6-xY-KOC" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="uWG-KF-ude"/>
+                            <constraint firstItem="yjx-sV-aSe" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="uwL-87-GRn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LDo-w6-ekt">
@@ -162,6 +183,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="ut2-xx-780" id="n2f-bJ-niQ"/>
                         <outlet property="albumImage" destination="OWo-lf-egW" id="1so-Y9-hSs"/>
+                        <outlet property="backgroundImage" destination="Eh6-xY-KOC" id="xEX-qe-2Ph"/>
                         <outlet property="blurView" destination="ngC-fO-pKT" id="kuX-uH-OU8"/>
                         <outlet property="docDeets" destination="SjA-7x-cx1" id="mgs-sE-wsu"/>
                         <outlet property="docTitle" destination="ODt-hE-QyM" id="b1d-lI-6Zg"/>
@@ -177,4 +199,7 @@
             <point key="canvasLocation" x="3408.8000000000002" y="-1167.1664167916042"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="elle-hunter" width="755" height="745"/>
+    </resources>
 </document>

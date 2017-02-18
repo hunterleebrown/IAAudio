@@ -26,6 +26,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     @IBOutlet weak var imageExpand: UIButton!
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     var audioFiles = [IAFileMappable]()
     let service = IAService()
@@ -48,7 +49,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
         self.activityIndicatorView.color = IAColors.fairyRed
         self.activityIndicatorView.startAnimation()
-        
+        self.tableView.backgroundColor = UIColor.clear
         self.colorNavigation()
         
         if let ident = identifier {
@@ -75,7 +76,6 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     self.audioFiles = files
                 }
                 
-                self.tableView.reloadData()
             })
         }
         notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
@@ -101,6 +101,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                     self.imageHeight.constant = round(height)
                                     self.colors = image.getColors()
                                     self.originalSize = CGSize(width: self.imageWidth.constant, height: self.imageHeight.constant)
+                                    
+                                    self.backgroundImage.image = image
                                     break
                                 case .failure(let _):
                                     break
@@ -108,8 +110,10 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                 
                                 self.layoutTableViewOffset()
                                 self.adjustColorsAndRemoveBlur()
-                                self.albumImage.backgroundColor = UIColor.white
                                 
+                                self.albumImage.backgroundColor = UIColor.white
+                                self.tableView.reloadData()
+
         }
     }
     
@@ -122,12 +126,21 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.tableView.tableHeaderView = self.topView
     }
     
+    var imageTextColor: UIColor?
+
     func adjustColorsAndRemoveBlur() {
     
         if let colored = self.colors {
-            self.topView.backgroundColor = colored.backgroundColor
-            self.docTitle.textColor = colored.primaryColor
-            self.docDeets.textColor = colored.detailColor
+//            self.topView.backgroundColor = colored.backgroundColor
+            if colored.backgroundColor.isDarkColor {
+                imageTextColor = UIColor.white
+                self.docTitle.textColor = imageTextColor
+            } else {
+                imageTextColor = UIColor.white
+                self.docTitle.textColor = imageTextColor
+            }
+         
+            self.docDeets.textColor = colored.primaryColor
 
         }
         self.activityIndicatorView.stopAnimation()
@@ -229,6 +242,8 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.addButton.isEnabled = true
             cell.addButton.setIAIcon(.plus, forState: .normal)
         }
+        
+        cell.titleLabel.textColor = imageTextColor
         
         cell.addButton.tag = indexPath.row
         cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)

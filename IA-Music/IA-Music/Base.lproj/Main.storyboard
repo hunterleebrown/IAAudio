@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,27 +43,38 @@
                                     <segue destination="NuS-Yj-POe" kind="embed" identifier="playerEmbedSegue" id="V9w-pX-vGC"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QO7-MI-LYE">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="tYW-Hc-PfZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6Ox-NB-jNH" secondAttribute="bottom" constant="66" id="2Tk-UJ-the"/>
-                            <constraint firstItem="6Ox-NB-jNH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="8YV-mA-61i"/>
                             <constraint firstItem="uXc-Lw-s5J" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Ap6-DE-BlS"/>
                             <constraint firstItem="uXc-Lw-s5J" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="bottom" constant="-66" placeholder="YES" id="EqM-xx-8xl"/>
+                            <constraint firstAttribute="trailing" secondItem="QO7-MI-LYE" secondAttribute="trailing" id="Ld6-8c-tJv"/>
                             <constraint firstAttribute="trailing" secondItem="6Ox-NB-jNH" secondAttribute="trailing" id="aPj-x2-qto"/>
                             <constraint firstItem="uXc-Lw-s5J" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bcL-F3-FoB"/>
                             <constraint firstAttribute="trailing" secondItem="uXc-Lw-s5J" secondAttribute="trailing" id="cQP-w2-eTs"/>
+                            <constraint firstItem="QO7-MI-LYE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dwk-sA-NUj"/>
                             <constraint firstItem="6Ox-NB-jNH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ksh-fo-dzX"/>
+                            <constraint firstItem="6Ox-NB-jNH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="mvu-r9-Cxu"/>
+                            <constraint firstItem="QO7-MI-LYE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="zX6-Yg-uVX"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="playerHolder" destination="uXc-Lw-s5J" id="5tG-t8-LGZ"/>
                         <outlet property="tabControllerHolder" destination="6Ox-NB-jNH" id="Vcg-bz-XR5"/>
+                        <outlet property="topViewCover" destination="QO7-MI-LYE" id="29f-V5-qlM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-677" y="-76"/>
+            <point key="canvasLocation" x="-678.75" y="-76.056338028169009"/>
         </scene>
         <!--IAPlayer-->
         <scene sceneID="zjs-7j-bIo">
@@ -91,6 +103,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7aj-zN-1K3">
+                        <rect key="frame" x="0.0" y="438" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="W51-Qk-xvG" kind="relationship" relationship="rootViewController" id="fju-fP-NZw"/>
                     </connections>

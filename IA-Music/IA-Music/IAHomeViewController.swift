@@ -13,6 +13,7 @@ class IAHomeViewController: UIViewController {
     
     @IBOutlet weak var playerHolder: UIView!
     @IBOutlet weak var tabControllerHolder: UIView!
+    @IBOutlet weak var topViewCover: UIView!
 
     var minimizedPlayerTopContraint: NSLayoutConstraint?
     var maximizedPlayerTopConstraint: NSLayoutConstraint?
@@ -28,6 +29,7 @@ class IAHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let mainViewMargins = self.view.layoutMarginsGuide
         self.minimizedPlayerTopContraint = self.playerHolder.topAnchor.constraint(equalTo: mainViewMargins.bottomAnchor, constant: -66)
         self.minimizedPlayerTopContraint?.isActive = true
@@ -47,9 +49,12 @@ class IAHomeViewController: UIViewController {
             object: nil
         )
         
-
+        self.topViewCover.backgroundColor = IAColors.fairyRed
         
-
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     override func didReceiveMemoryWarning() {

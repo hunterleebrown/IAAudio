@@ -32,12 +32,16 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
         self.searchBar.barTintColor = IAColors.fairyRed
         self.searchBar.tintColor = IAColors.fairyCream
         
+        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
+        
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
     }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

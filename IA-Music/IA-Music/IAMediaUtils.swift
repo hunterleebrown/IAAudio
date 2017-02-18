@@ -90,6 +90,19 @@ struct IAColors
 
 }
 
+extension UIColor {
+
+    class var fairyRed: UIColor {
+        return IAColors.fairyRed
+    }
+    
+    class var fairyCream: UIColor {
+        return IAColors.fairyCream
+    }
+    
+}
+
+
 extension UINavigationBar {
     var titleColor: UIColor? {
         get {
@@ -123,6 +136,7 @@ extension UINavigationBar {
 extension UIViewController {
     func colorNavigation() {
     
+ 
         self.navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.tintColor = IAColors.fairyCream
         self.navigationController?.navigationBar.barTintColor = IAColors.fairyRed
@@ -130,6 +144,8 @@ extension UIViewController {
         
         self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
         self.navigationController?.navigationBar.titleFont = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        
+        self.view.backgroundColor = IAColors.fairyRed
     }
 }
 
