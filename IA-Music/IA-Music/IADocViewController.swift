@@ -151,7 +151,7 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 self.docTitle.textColor = imageTextColor
             }
          
-            self.docDeets.textColor = colored.primaryColor
+            self.docDeets.textColor = UIColor.white
             self.addAllButton.setTitleColor(imageTextColor, for: .normal)
             self.addAllButton.setTitleColor(colored.primaryColor, for: .highlighted)
 

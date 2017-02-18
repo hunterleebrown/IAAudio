@@ -30,17 +30,27 @@ class IAMyStashTableViewCell: UITableViewCell {
                 img.af_setImage(withURL: url)
             }
             
-            if let push = pushButton {
-                push.setIAIcon(.iosArrowForward, forState: .normal)
-                push.layer.cornerRadius = 3.0
-                push.layer.borderColor = UIColor.lightGray.cgColor
-                push.layer.borderWidth = 0.5
+            if let track = trackTitle {
+                track.text = archive?.identifierTitle
+                track.highlightedTextColor = IAColors.fairyRed
             }
+            
+            if let download = downloadButton, let more = moreButton {
+                download.isHidden = true
+                more.isHidden = true
+            }
+            
         }
     }
     
     weak var file: IAPlayerFile? {
         didSet {
+
+            if let download = downloadButton, let more = moreButton {
+                download.isHidden = false
+                more.isHidden = false
+            }
+
             
             if let title = itemTitle {
                 title.text = (file?.title.isEmpty)! ? file?.name : file?.title
@@ -67,15 +77,6 @@ class IAMyStashTableViewCell: UITableViewCell {
                     download.isHidden = false
                     download.setIAIcon(.document, forState: UIControlState())
                 }
-                download.setTitleColor(IAColors.fairyRed, for: UIControlState())
-            }
-            
-            
-            if let more = moreButton {
-                more.titleLabel?.font = UIFont(name: "Helvetica", size: 40.0)
-                more.setIAIcon(.iosMoreOutline, forState: UIControlState())
-                more.setTitleColor(IAColors.fairyRed, for: UIControlState())
-                
             }
             
         }
@@ -84,6 +85,30 @@ class IAMyStashTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+//        self.contentView.backgroundColor = UIColor.fairyRed
+        self.itemTitle?.textColor = UIColor.fairyRed
+        
+        if let more = moreButton {
+//            more.titleLabel?.font = UIFont(name: "Helvetica", size: 40.0)
+            more.setIAIcon(.iosMoreOutline, forState: UIControlState())
+            more.setTitleColor(IAColors.fairyRed, for: UIControlState())
+            
+        }
+        
+        if let push = pushButton {
+            push.setTitleColor(UIColor.fairyRed, for: .normal)
+            push.setIAIcon(.iosArrowForward, forState: .normal)
+//            push.layer.cornerRadius = 3.0
+//            push.layer.borderColor = UIColor.fairyRed.cgColor
+//            push.layer.borderWidth = 0.5
+        }
+        
+        if let download = downloadButton {
+            download.setTitleColor(IAColors.fairyRed, for: UIControlState())
+        }
+        
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -9,6 +9,11 @@
 import UIKit
 import RealmSwift
 
+enum StashMode {
+    case song
+    case archive
+}
+
 class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var realm: Realm?
@@ -16,8 +21,14 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBarHolder: UIView!
     
+    var leftTopButton: UIBarButtonItem!
+    
     var archives: Results<IAArchive>!
+    var files: Results<IAPlayerFile>!
     var notificationToken: NotificationToken? = nil
+    
+    var mode: StashMode = .song
+    var numberOfRows = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,22 +36,49 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         self.title = "My Music Stash"
         
         tableView.rowHeight = 54
-        tableView.sectionHeaderHeight = 54
-        tableView.sectionFooterHeight = 27
+//        tableView.sectionHeaderHeight = 54
+        tableView.sectionFooterHeight = 0
 
         self.colorNavigation()
         
         realm = IARealmManger.sharedInstance.realm
+        
         archives = realm?.objects(IAArchive.self).sorted(byKeyPath: "identifierTitle")
+        files = realm?.objects(IAPlayerFile.self).sorted(byKeyPath: "title")
         
         notificationToken = realm?.addNotificationBlock { [weak self] notification, realm in
             self?.tableView.reloadData()
         }
         
         self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
+        
+        self.leftTopButton = UIBarButtonItem()
+        self.leftTopButton.title = "Files"
+        self.leftTopButton.target = self
+        self.leftTopButton.action = #selector(modeSwitch(sender:))
+        self.navigationItem.leftBarButtonItem = self.leftTopButton
+        
 
     }
 
+    
+    
+    func modeSwitch(sender:UIBarButtonItem){
+        switch mode {
+        case .song:
+            mode = .archive
+            self.leftTopButton.title = "Archives"
+
+        case .archive:
+            mode = .song
+            self.leftTopButton.title = "Files"
+
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
@@ -56,21 +94,50 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: - Table View
     func numberOfSections(in tableView: UITableView) -> Int {
-        return archives.count
+        
+        return 1
+        
+        switch mode {
+        case .archive:
+            return archives.count
+        case .song:
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch mode {
+        case .archive:
+            return 0
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        switch mode {
+        case .song:
+            return files.count
+        case .archive:
+            return archives.count
 
-        let archive = archives[section]
-        return archive.files.count
+        }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let archive = archives[section]
-        return archive.identifierTitle
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let archive = archives[section]
+//        return archive.identifierTitle
+//    }
     
     func  tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        return nil
+        
+        guard mode == .archive else {
+            return nil
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! IAMyStashTableViewCell
         let archive = archives[section]
         cell.archive = archive
@@ -97,9 +164,12 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
        
-        let archive = archives[indexPath.section]
-        if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
-            cell.file = file
+        switch mode {
+        case .song:
+            cell.file = files[indexPath.row]
+        case .archive:
+            let archive = archives[indexPath.row]
+            cell.archive = archive
         }
         
         return cell
@@ -107,12 +177,22 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     
 
     
+
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let archive = archives[indexPath.section]
-        if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
-            IAPlayer.sharedInstance.playFile(file: file)
-        }
+//        let archive = archives[indexPath.section]
+//        if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
+//            IAPlayer.sharedInstance.playFile(file: file)
+//        }
         
+        switch mode {
+        case .archive:
+            break
+        case .song:
+            let file = files[indexPath.row]
+            IAPlayer.sharedInstance.playFile(file: file)
+
+        }
         
     }
     
@@ -126,7 +206,9 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         
         switch editingStyle {
         case .delete:
-            self.deleteFile(indexPath: indexPath)
+            if mode == .song {
+//                self.deleteFile(indexPath: indexPath)
+            }
             break
         case .insert:
             break
