@@ -189,5 +189,27 @@ class IAFileMappable: Mappable {
         return nil
     }
     
+    var calculatedSize: String? {
+    
+        if let s = size {
+            if let rawSize = Int(s) {
+                return StringUtils.sizeString(size: rawSize)
+            }
+        }
+        return nil
+    }
+    
+    
+    func displayLength() -> String? {
+        if let l = length {
+            if let rawLength = Float(l) {
+                return StringUtils.timeFormatted(Int(rawLength))
+            } else {
+                return length
+            }
+        }
+        return nil
+    }
+    
     
 }

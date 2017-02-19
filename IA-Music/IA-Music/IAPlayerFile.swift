@@ -16,9 +16,28 @@ class IAPlayerFile: Object {
     dynamic var title = ""
     dynamic var urlString = ""
     dynamic var archive: IAArchive?
+    dynamic var size = ""
+    dynamic var length = ""
     
     func displayTitle() -> String {
         return title.isEmpty ? name : title
+    }
+    
+    
+    func displaySize() -> String? {
+        if let rawSize = Int(size) {
+            return StringUtils.sizeString(size: rawSize)
+        }
+        return nil
+    }
+    
+    func displayLength() -> String? {
+        if let rawLength = Float(length) {
+            return StringUtils.timeFormatted(Int(rawLength))
+        } else {
+            return length
+        }
+        return nil
     }
     
 }

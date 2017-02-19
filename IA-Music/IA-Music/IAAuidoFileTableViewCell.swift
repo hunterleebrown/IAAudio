@@ -12,6 +12,7 @@ class IAAuidoFileTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var length: UILabel!
     
     weak var audioFile: IAFileMappable? {
         didSet {
@@ -20,6 +21,10 @@ class IAAuidoFileTableViewCell: UITableViewCell {
             
             self.contentView.backgroundColor = isSelected ? IAColors.fairyCream : UIColor.clear
             self.titleLabel.textColor = isSelected ? UIColor.fairyRed : UIColor.white
+            
+            if let l = audioFile?.displayLength() {
+                self.length.text = l
+            }
         }
     }
 

@@ -101,6 +101,13 @@ class IARealmManger {
             newFile.title = title
         }
         newFile.urlString = docAndFile.doc.fileUrl(file: docAndFile.file).absoluteString
+        if let size = docAndFile.file.size {
+            newFile.size = size
+        }
+
+        if let length = docAndFile.file.length {
+            newFile.length = length
+        }
         
         if let track = docAndFile.file.cleanedTrack {
             newFile.displayOrder.value = Int16(track)

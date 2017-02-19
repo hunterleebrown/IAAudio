@@ -16,6 +16,8 @@ class IAMyStashTableViewCell: UITableViewCell {
     @IBOutlet weak var downloadButton: UIButton?
     @IBOutlet weak var moreButton: UIButton?
     @IBOutlet weak var pushButton: UIButton?
+    @IBOutlet weak var size: UILabel?
+    @IBOutlet weak var length: UILabel?
     
     var mode: StashMode!
     
@@ -85,7 +87,14 @@ class IAMyStashTableViewCell: UITableViewCell {
                     download.setIAIcon(.document, forState: UIControlState())
                 }
             }
-         
+            
+            if let s = size, let value = file?.displaySize() {
+                s.text = "\(value) mb"
+            }
+
+            if let l = length, let value = file?.displayLength() {
+                l.text = value
+            }
             self.accessoryType = .none
 
         }

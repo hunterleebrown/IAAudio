@@ -113,7 +113,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3MX-Dz-Pps">
-                                                    <rect key="frame" x="317" y="13" width="40" height="40"/>
+                                                    <rect key="frame" x="317" y="8" width="40" height="40"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="n4G-ot-u4B"/>
@@ -124,6 +124,15 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyI-hb-Fco">
+                                                    <rect key="frame" x="357" y="48" width="0.0" height="10"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="10" id="1fH-Gm-oh2"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -131,8 +140,10 @@
                                                 <constraint firstItem="BsD-fH-WEU" firstAttribute="top" secondItem="Kwt-By-8kU" secondAttribute="top" id="FOi-KH-QKR"/>
                                                 <constraint firstAttribute="trailing" secondItem="BsD-fH-WEU" secondAttribute="trailing" id="GdY-9p-y3w"/>
                                                 <constraint firstAttribute="bottom" secondItem="R1Q-LX-SLf" secondAttribute="bottom" constant="5" id="NBV-E5-uAM"/>
-                                                <constraint firstItem="3MX-Dz-Pps" firstAttribute="centerY" secondItem="Kwt-By-8kU" secondAttribute="centerY" id="T8r-fN-J09"/>
+                                                <constraint firstItem="FyI-hb-Fco" firstAttribute="trailing" secondItem="3MX-Dz-Pps" secondAttribute="trailing" id="PND-k5-vIP"/>
+                                                <constraint firstItem="3MX-Dz-Pps" firstAttribute="centerY" secondItem="Kwt-By-8kU" secondAttribute="centerY" constant="-5" id="T8r-fN-J09"/>
                                                 <constraint firstItem="R1Q-LX-SLf" firstAttribute="trailing" secondItem="3MX-Dz-Pps" secondAttribute="leading" constant="10" id="ZoJ-t0-y6q"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="FyI-hb-Fco" secondAttribute="bottom" id="bnV-v3-dFn"/>
                                                 <constraint firstItem="R1Q-LX-SLf" firstAttribute="top" secondItem="Kwt-By-8kU" secondAttribute="top" constant="5" id="fxs-Dh-Ewe"/>
                                                 <constraint firstItem="BsD-fH-WEU" firstAttribute="leading" secondItem="Kwt-By-8kU" secondAttribute="leading" id="o6v-Nr-HoV"/>
                                                 <constraint firstItem="R1Q-LX-SLf" firstAttribute="leading" secondItem="Kwt-By-8kU" secondAttribute="leadingMargin" constant="10" id="ubB-pU-eBA"/>
@@ -142,6 +153,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="addButton" destination="3MX-Dz-Pps" id="clH-MI-cfk"/>
+                                            <outlet property="length" destination="FyI-hb-Fco" id="XxD-Qu-BOT"/>
                                             <outlet property="titleLabel" destination="R1Q-LX-SLf" id="SDH-79-zHT"/>
                                         </connections>
                                     </tableViewCell>
@@ -222,14 +234,14 @@
                             <rect key="frame" x="1" y="30" width="240" height="128"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8H0-iP-LsZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="49"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="48"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxz-6E-Nqx">
-                                    <rect key="frame" x="0.0" y="49" width="240" height="79"/>
+                                    <rect key="frame" x="0.0" y="48" width="240" height="80"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

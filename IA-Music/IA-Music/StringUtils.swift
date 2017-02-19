@@ -56,6 +56,13 @@ struct StringUtils {
     
     
     
+    static func sizeString(size:Int)->String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.roundingMode = .up
+        let calc = size / 1000000
+        return numberFormatter.string(from: NSNumber(value:Int32(calc)))!
+    }
 
 }
 

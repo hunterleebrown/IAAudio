@@ -28,7 +28,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var addAllButton: UIButton!
-        
+    
     var audioFiles = [IAFileMappable]()
     let service = IAService()
     
