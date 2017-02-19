@@ -382,8 +382,8 @@
 			isa = PBXGroup;
 			children = (
 				5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */,
-				5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */,
 				5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */,
+				5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */,
 			);
 			name = "My Music Stash";
 			sourceTree = "<group>";

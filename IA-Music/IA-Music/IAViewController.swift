@@ -13,6 +13,20 @@ class IAViewController: UIViewController {
     
     //MARK: - Top Nav View
     @IBOutlet weak var topNavView: IATopNavView?
+    
+    func topTitle(text:String){
+        if let navTitle = self.topNavView?.topNavViewTitle {
+            navTitle.text = text
+        }
+    }
+    
+    func topSubTitle(text:String){
+        if let navTitle = self.topNavView?.topNavViewSubTitle {
+            navTitle.text = text
+        }
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,4 +55,60 @@ class IAViewController: UIViewController {
     }
     */
 
+}
+
+
+extension UINavigationBar {
+    var titleColor: UIColor? {
+        get {
+            if let attributes = self.titleTextAttributes {
+                return attributes[NSForegroundColorAttributeName] as? UIColor
+            }
+            return nil
+        }
+        set {
+            if let value = newValue {
+                self.titleTextAttributes = [NSForegroundColorAttributeName: value]
+            }
+        }
+    }
+    
+    var titleFont: UIFont? {
+        get {
+            if let attributes = self.titleTextAttributes {
+                return attributes[NSFontAttributeName] as? UIFont
+            }
+            return nil
+        }
+        set {
+            if let value = newValue {
+                self.titleTextAttributes = [NSFontAttributeName: value]
+            }
+        }
+    }
+}
+
+extension UIViewController {
+    
+    func colorNavigation() {
+        
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.isTranslucent = false
+        
+        self.navigationController?.navigationBar.titleColor = UIColor.black
+        
+    }
+    
+    func clearNavigation() {
+        
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = IAColors.fairyCream
+        
+    }
 }

@@ -54,17 +54,18 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
+
         //MARK: - Top Nav View Setting
         
-        if let topNavView = self.topNavView {
-            if let sDoc = searchDoc {
-                topNavView.topNavViewTitle.text = sDoc.title
-                if let creator = sDoc.displayCreator() {
-                    topNavView.topNavViewSubTitle.text = creator
-                }
+        if let sDoc = searchDoc {
+            self.topTitle(text: sDoc.title!)
+            if let creator = sDoc.displayCreator() {
+                self.topSubTitle(text: creator)
             }
         }
         
+        
+
         
         
         //MARK:
@@ -110,6 +111,10 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         }
         
 
+    }
+
+    func dismissViewController() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -212,8 +217,8 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.clearNavigation()
+        super.viewWillAppear(animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {

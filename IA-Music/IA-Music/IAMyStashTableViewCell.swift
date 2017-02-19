@@ -17,22 +17,25 @@ class IAMyStashTableViewCell: UITableViewCell {
     @IBOutlet weak var moreButton: UIButton?
     @IBOutlet weak var pushButton: UIButton?
     
+    var mode: StashMode!
     
     weak var archive: IAArchive? {
     
         didSet {
         
-            if let title = itemTitle {
+            mode = .archive
+            
+            if let title = trackTitle {
                 title.text = archive?.identifierTitle
-                title.highlightedTextColor = IAColors.fairyRed
+                title.highlightedTextColor = UIColor.white
             }
             if let img = trackImage, let url = IAMediaUtils.imageUrlFrom((archive?.identifier)!) {
                 img.af_setImage(withURL: url)
             }
             
-            if let track = trackTitle {
-                track.text = archive?.identifierTitle
-                track.highlightedTextColor = IAColors.fairyRed
+            if let track = itemTitle {
+                track.text = archive?.creator
+                track.highlightedTextColor = UIColor.white
             }
             
             if let download = downloadButton, let more = moreButton {
@@ -40,11 +43,14 @@ class IAMyStashTableViewCell: UITableViewCell {
                 more.isHidden = true
             }
             
+            self.accessoryType = .disclosureIndicator
         }
     }
     
     weak var file: IAPlayerFile? {
         didSet {
+
+            mode = .song
 
             if let download = downloadButton, let more = moreButton {
                 download.isHidden = false
@@ -52,9 +58,9 @@ class IAMyStashTableViewCell: UITableViewCell {
             }
 
             
-            if let title = itemTitle {
+            if let title = trackTitle {
                 title.text = (file?.title.isEmpty)! ? file?.name : file?.title
-                title.text = file?.archive?.identifierTitle
+//                title.text = file?.archive?.identifierTitle
                 title.highlightedTextColor = IAColors.fairyRed
             }
             
@@ -62,10 +68,11 @@ class IAMyStashTableViewCell: UITableViewCell {
                 img.af_setImage(withURL: url)
             }
             
-            if let track = trackTitle {
-                track.text = file?.displayTitle()
+            if let track = itemTitle {
+                track.text = file?.archive?.identifierTitle
                 track.highlightedTextColor = IAColors.fairyRed
             }
+            
             
             if let download = downloadButton {
                 if(file?.urlString.range(of: "http://") != nil) {
@@ -78,7 +85,9 @@ class IAMyStashTableViewCell: UITableViewCell {
                     download.setIAIcon(.document, forState: UIControlState())
                 }
             }
-            
+         
+            self.accessoryType = .none
+
         }
     }
         
@@ -87,28 +96,26 @@ class IAMyStashTableViewCell: UITableViewCell {
         // Initialization code
         
 //        self.contentView.backgroundColor = UIColor.fairyRed
-        self.itemTitle?.textColor = UIColor.fairyRed
+        self.itemTitle?.textColor = UIColor.white
         
         if let more = moreButton {
-//            more.titleLabel?.font = UIFont(name: "Helvetica", size: 40.0)
             more.setIAIcon(.iosMoreOutline, forState: UIControlState())
-            more.setTitleColor(IAColors.fairyRed, for: UIControlState())
+            more.setTitleColor(UIColor.white, for: UIControlState())
             
         }
         
         if let push = pushButton {
-            push.setTitleColor(UIColor.fairyRed, for: .normal)
+            push.setTitleColor(UIColor.white, for: .normal)
             push.setIAIcon(.iosArrowForward, forState: .normal)
-//            push.layer.cornerRadius = 3.0
-//            push.layer.borderColor = UIColor.fairyRed.cgColor
-//            push.layer.borderWidth = 0.5
         }
         
         if let download = downloadButton {
-            download.setTitleColor(IAColors.fairyRed, for: UIControlState())
+            download.setTitleColor(UIColor.fairyCream, for: UIControlState())
         }
         
+
         
+        self.tintColor = UIColor.fairyCream
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

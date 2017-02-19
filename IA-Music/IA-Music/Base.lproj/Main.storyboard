@@ -12,10 +12,12 @@
         <!--IADoc-->
         <scene sceneID="RsH-3W-xA6">
             <objects>
-                <viewControllerPlaceholder storyboardName="IADoc" id="ZTd-rN-7xc" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="IADoc" id="ZTd-rN-7xc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="agy-w2-n0g"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Wv-ZX-yRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="626"/>
+            <point key="canvasLocation" x="1580" y="718"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -32,7 +34,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ox-NB-jNH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="502"/>
                                 <connections>
-                                    <segue destination="OKD-Mc-mYA" kind="embed" identifier="tabEmbedSegue" id="uXA-Au-vst"/>
+                                    <segue destination="0LK-ht-Zdc" kind="embed" id="cve-63-fXq"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXc-Lw-s5J">
@@ -70,6 +72,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ae-SW-kuk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-7" y="627"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QOy-sc-Jru">
+            <objects>
+                <navigationController id="GPP-bt-vgS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hyh-sA-yhe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZTd-rN-7xc" kind="relationship" relationship="rootViewController" id="ymw-hO-f5S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WDI-Bm-1o0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956" y="669"/>
         </scene>
         <!--IAMyMusicStash-->
         <scene sceneID="ko1-Ko-Izq">
@@ -112,35 +130,21 @@
             </objects>
             <point key="canvasLocation" x="1713" y="-361"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="A3H-7O-jdL">
-            <objects>
-                <navigationController navigationBarHidden="YES" id="OKD-Mc-mYA" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8hT-aA-iWD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="0LK-ht-Zdc" kind="relationship" relationship="rootViewController" id="RlZ-dA-O4T"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="03e-62-Kfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="163" y="-76"/>
-        </scene>
         <!--Home Tab Bar Controller-->
         <scene sceneID="XBr-kW-mBQ">
             <objects>
                 <tabBarController id="0LK-ht-Zdc" customClass="IAHomeTabBarController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="QE2-Zf-8iB"/>
+                    <navigationItem key="navigationItem" id="QE2-Zf-8iB">
+                        <barButtonItem key="backBarButtonItem" title=" " id="HWw-IR-A3V"/>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="IWN-jR-Pfh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tabBar>
                     <connections>
                         <segue destination="naD-Sd-CMm" kind="relationship" relationship="viewControllers" id="73B-2f-lbi"/>
-                        <segue destination="ZTd-rN-7xc" kind="show" identifier="docPush" id="l2d-Uq-jRL"/>
                         <segue destination="KRi-lm-irR" kind="relationship" relationship="viewControllers" id="CJy-Jt-zSL"/>
+                        <segue destination="GPP-bt-vgS" kind="presentation" identifier="docPush" modalPresentationStyle="currentContext" id="U0t-U7-tBE"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uk6-60-U1X" userLabel="First Responder" sceneMemberID="firstResponder"/>

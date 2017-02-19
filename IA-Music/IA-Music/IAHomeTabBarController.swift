@@ -13,7 +13,8 @@ class IAHomeTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tabBar.barTintColor = IAColors.fairyRed
+        self.tabBar.barTintColor = UIColor.fairyRed
+        
         self.tabBar.tintColor = IAColors.fairyCream
         self.tabBar.unselectedItemTintColor = UIColor.black
         
@@ -44,8 +45,15 @@ class IAHomeTabBarController: UITabBarController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "docPush" {
-            let doc = segue.destination as! IADocViewController
+            let nav = segue.destination as! UINavigationController
+            let doc =  nav.viewControllers.first as! IADocViewController
             doc.identifier = IAPlayer.sharedInstance.fileIdentifier
+            
+            
+            if doc.navigationItem.leftBarButtonItem == nil {
+                let button = UIBarButtonItem(barButtonSystemItem: .done, target: doc, action: #selector(doc.dismissViewController))
+                doc.navigationItem.leftBarButtonItem = button
+            }
         }
     }
     

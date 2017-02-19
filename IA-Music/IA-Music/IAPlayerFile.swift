@@ -27,5 +27,6 @@ class IAPlayerFile: Object {
 class IAArchive: Object {
     dynamic var identifier = ""
     dynamic var identifierTitle = ""
+    dynamic var creator = ""
     let files = List<IAPlayerFile>()
 }

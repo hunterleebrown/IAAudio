@@ -20,5 +20,15 @@ class IATopNavView: UIView {
         // Drawing code
     }
     */
+    
+    
 
+    override func awakeFromNib() {
+        if let title = topNavViewTitle, let subtitle = topNavViewSubTitle {
+            for label in [title, subtitle] {
+                label.textColor = UIColor.fairyCream
+            }
+        }
+    }
+    
 }

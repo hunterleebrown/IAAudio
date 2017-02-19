@@ -56,7 +56,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTQ-aJ-RsF">
-                                            <rect key="frame" x="306" y="247.5" width="49" height="30"/>
+                                            <rect key="frame" x="306" y="248" width="49" height="30"/>
                                             <state key="normal" title="Add All">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -96,15 +96,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsD-fH-WEU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="yRj-47-xZc">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </view>
                                                     <blurEffect style="light"/>
                                                 </visualEffectView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R1Q-LX-SLf">
-                                                    <rect key="frame" x="18" y="5" width="309" height="56"/>
+                                                    <rect key="frame" x="18" y="5" width="309" height="55"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="rzR-Jc-yb8"/>
                                                     </constraints>
@@ -186,9 +186,9 @@
                             <constraint firstItem="ngC-fO-pKT" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="G60-0K-8GF"/>
                             <constraint firstAttribute="bottom" secondItem="ngC-fO-pKT" secondAttribute="bottom" id="Og9-m9-Vdr"/>
                             <constraint firstItem="Eh6-xY-KOC" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="V2A-l5-Wyn"/>
-                            <constraint firstItem="Kqr-qj-VF7" firstAttribute="top" secondItem="FZG-9n-BhQ" secondAttribute="bottom" id="VR0-WX-IsT"/>
                             <constraint firstAttribute="trailing" secondItem="ngC-fO-pKT" secondAttribute="trailing" id="d3n-TC-vQK"/>
                             <constraint firstItem="ut2-xx-780" firstAttribute="centerX" secondItem="Dgp-tK-OUI" secondAttribute="centerX" id="dAi-1S-bBA"/>
+                            <constraint firstAttribute="bottom" secondItem="FZG-9n-BhQ" secondAttribute="bottom" id="gK5-aX-b6R"/>
                             <constraint firstItem="yjx-sV-aSe" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="k53-Vq-OFr"/>
                             <constraint firstAttribute="bottom" secondItem="yjx-sV-aSe" secondAttribute="bottom" id="rFe-Tk-vIU"/>
                             <constraint firstItem="Eh6-xY-KOC" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="uWG-KF-ude"/>
@@ -196,7 +196,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LDo-w6-ekt">
-                        <barButtonItem key="backBarButtonItem" title="&quot; &quot;" id="0tP-qy-14C"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="0tP-qy-14C"/>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicatorView" destination="ut2-xx-780" id="n2f-bJ-niQ"/>
@@ -222,14 +222,14 @@
                             <rect key="frame" x="1" y="30" width="240" height="128"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8H0-iP-LsZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="45"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="49"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxz-6E-Nqx">
-                                    <rect key="frame" x="0.0" y="45" width="240" height="83"/>
+                                    <rect key="frame" x="0.0" y="49" width="240" height="79"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

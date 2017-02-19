@@ -31,6 +31,15 @@ class IARealmManger {
         }
     }
     
+    func archives(identifier:String) ->Results<IAArchive> {
+        let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
+        return realm.objects(IAArchive.self).filter(archivePredicate)
+    }
+    
+    func archives()->Results<IAArchive> {
+        return (realm?.objects(IAArchive.self).sorted(byKeyPath: "identifierTitle"))!
+    }
+    
     func deleteFile(docAndFile:ArchiveDocAndFile) {
     
         //Check for Archive first
@@ -77,6 +86,9 @@ class IARealmManger {
             archive = IAArchive()
             archive?.identifier = docAndFile.doc.identifier!
             archive?.identifierTitle = docAndFile.doc.title!
+            if let creator = docAndFile.doc.creator {
+                archive?.creator = creator
+            }
             try! realm.write {
                 realm.add(archive!)
             }

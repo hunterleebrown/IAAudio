@@ -246,6 +246,10 @@ class IAPlayer: NSObject {
                 self.observing = false
             }
             
+            if let controller = self.controlsController, controller.playingProgress != nil {
+                controller.playingProgress.setValue(Float(0), animated: false)
+            }
+            
             self.setPlayingInfo(playing: false)
             avPlayer = nil
         }
