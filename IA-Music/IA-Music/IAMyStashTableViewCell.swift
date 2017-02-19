@@ -43,7 +43,7 @@ class IAMyStashTableViewCell: UITableViewCell {
                 more.isHidden = true
             }
             
-            self.accessoryType = .disclosureIndicator
+//            self.accessoryType = .disclosureIndicator
         }
     }
     
@@ -120,7 +120,7 @@ class IAMyStashTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.contentView.backgroundColor = selected ? IAColors.fairyCream : UIColor.white
+        self.contentView.backgroundColor = UIColor.clear
     }
     
 

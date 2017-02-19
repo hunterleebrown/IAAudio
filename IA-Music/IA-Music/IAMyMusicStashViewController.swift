@@ -35,7 +35,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 54
+        tableView.rowHeight = 64
 //        tableView.sectionHeaderHeight = 54
         tableView.sectionFooterHeight = 0
         
@@ -68,7 +68,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             self.topTitle(text: (archives.first?.identifierTitle)!)
             self.topSubTitle(text: (archives.first?.creator)!)
             let rightButton = UIBarButtonItem()
-            rightButton.title = "Details"
+            rightButton.title = IAFontMapping.ARCHIVE
+            
+//            rightButton.title = "Details"
+//            rightButton.setIAIcon(.archive, iconSize: 44.0)
+            
             rightButton.target = self
             rightButton.tag = 0;
             rightButton.action = #selector(IAMyMusicStashViewController.pushDoc(sender:))
@@ -172,9 +176,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         return cell.contentView
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-            return UIView()
-    }
     
     
     

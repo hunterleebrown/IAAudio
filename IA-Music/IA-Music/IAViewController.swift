@@ -86,6 +86,7 @@ extension UINavigationBar {
             }
         }
     }
+    
 }
 
 extension UIViewController {
