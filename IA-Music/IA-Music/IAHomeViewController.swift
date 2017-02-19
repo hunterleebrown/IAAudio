@@ -49,7 +49,7 @@ class IAHomeViewController: UIViewController {
             object: nil
         )
         
-        self.topViewCover.backgroundColor = IAColors.fairyRed
+//        self.topViewCover.backgroundColor = IAColors.fairyRed
         
     }
     

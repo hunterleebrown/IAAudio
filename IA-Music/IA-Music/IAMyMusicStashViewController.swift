@@ -14,7 +14,7 @@ enum StashMode {
     case archive
 }
 
-class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
     var realm: Realm?
 
@@ -50,7 +50,6 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
             self?.tableView.reloadData()
         }
         
-        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
         
         self.leftTopButton = UIBarButtonItem()
         self.leftTopButton.title = "Files"
@@ -58,6 +57,7 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
         self.leftTopButton.action = #selector(modeSwitch(sender:))
         self.navigationItem.leftBarButtonItem = self.leftTopButton
         
+        self.clearNavigation()
 
     }
 
@@ -81,7 +81,7 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
+        self.colorNavigation()
     }
     
     override func viewDidLayoutSubviews() {
@@ -250,6 +250,11 @@ class IAMyMusicStashViewController: UIViewController, UITableViewDelegate, UITab
             if segue.identifier == "docPush" {
                 let controller = segue.destination as! IADocViewController
                 controller.identifier = archive.identifier
+               
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
+
             }
         }
         

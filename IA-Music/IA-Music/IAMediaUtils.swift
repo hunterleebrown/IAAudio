@@ -134,18 +134,30 @@ extension UINavigationBar {
 }
 
 extension UIViewController {
+    
     func colorNavigation() {
     
  
-        self.navigationController?.hidesBarsOnSwipe = true
-        self.navigationController?.navigationBar.tintColor = IAColors.fairyCream
-        self.navigationController?.navigationBar.barTintColor = IAColors.fairyRed
+        self.navigationController?.hidesBarsOnSwipe = false
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.isTranslucent = false
         
-        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
-        self.navigationController?.navigationBar.titleFont = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        self.navigationController?.navigationBar.titleColor = UIColor.black
         
-        self.view.backgroundColor = IAColors.fairyRed
+    }
+
+    func clearNavigation() {
+        
+        self.navigationController?.hidesBarsOnSwipe = false
+
+
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
     }
 }
 

@@ -1,18 +1,27 @@
 //
-//  IABrowseViewController.swift
+//  IAViewController.swift
 //  IA-Music
 //
-//  Created by Hunter Lee Brown on 2/9/17.
+//  Created by Hunter Lee Brown on 2/18/17.
 //  Copyright © 2017 Hunter Lee Brown. All rights reserved.
 //
 
 import UIKit
 
-class IABrowseViewController: UIViewController {
+
+class IAViewController: UIViewController {
+    
+    //MARK: - Top Nav View
+    @IBOutlet weak var topNavView: IATopNavView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if let topNav = self.topNavView, self.navigationController != nil {
+            topNav.frame = (self.navigationController?.navigationBar.bounds)!
+            self.navigationItem.titleView = topNav
+        }
+        
         // Do any additional setup after loading the view.
     }
 

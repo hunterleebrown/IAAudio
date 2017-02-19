@@ -66,8 +66,6 @@
 		5A4116141E4D2794004F6B56 /* IAMediaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */; };
 		5A4116181E4D280E004F6B56 /* IASearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116161E4D280E004F6B56 /* IASearchDoc.swift */; };
 		5A4116191E4D280E004F6B56 /* IAFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116171E4D280E004F6B56 /* IAFile.swift */; };
-		5A4116201E4D519E004F6B56 /* IAFindTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A41161F1E4D519E004F6B56 /* IAFindTabBarController.swift */; };
-		5A4116221E4D57D1004F6B56 /* IABrowseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116211E4D57D1004F6B56 /* IABrowseViewController.swift */; };
 		5A4116241E4D57EE004F6B56 /* IASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */; };
 		5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */; };
 		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
@@ -80,6 +78,9 @@
 		5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BB1E5056B6000D4465 /* IADocViewController.swift */; };
 		5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */; };
 		5A615A141E515BC700B18161 /* IARealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A615A131E515BC700B18161 /* IARealmManager.swift */; };
+		5A6DFBB81E5932D0002C0977 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A6DFBB71E5932D0002C0977 /* Search.storyboard */; };
+		5A6DFBBA1E594209002C0977 /* IAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6DFBB91E594209002C0977 /* IAViewController.swift */; };
+		5A6DFBBC1E5943C8002C0977 /* IATopNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */; };
 		5A7967F31E584592001F44B0 /* UIFont+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7967F21E584592001F44B0 /* UIFont+Common.swift */; };
 		5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */; };
 		5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */; };
@@ -149,8 +150,6 @@
 		5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMediaUtils.swift; sourceTree = "<group>"; };
 		5A4116161E4D280E004F6B56 /* IASearchDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDoc.swift; sourceTree = "<group>"; };
 		5A4116171E4D280E004F6B56 /* IAFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAFile.swift; sourceTree = "<group>"; };
-		5A41161F1E4D519E004F6B56 /* IAFindTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAFindTabBarController.swift; sourceTree = "<group>"; };
-		5A4116211E4D57D1004F6B56 /* IABrowseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IABrowseViewController.swift; sourceTree = "<group>"; };
 		5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchViewController.swift; sourceTree = "<group>"; };
 		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; };
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
@@ -163,6 +162,9 @@
 		5A5764BB1E5056B6000D4465 /* IADocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IADocViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAAuidoFileTableViewCell.swift; sourceTree = "<group>"; };
 		5A615A131E515BC700B18161 /* IARealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IARealmManager.swift; sourceTree = "<group>"; };
+		5A6DFBB71E5932D0002C0977 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		5A6DFBB91E594209002C0977 /* IAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAViewController.swift; sourceTree = "<group>"; };
+		5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IATopNavView.swift; sourceTree = "<group>"; };
 		5A7967F21E584592001F44B0 /* UIFont+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Common.swift"; sourceTree = "<group>"; };
 		5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyMusicStash.storyboard; sourceTree = "<group>"; };
 		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; };
@@ -262,15 +264,17 @@
 		5A4115B61E4D18F0004F6B56 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5A4115B71E4D1939004F6B56 /* IAHomeViewController.swift */,
+				5A4115BB1E4D19DE004F6B56 /* IAHomeTabBarController.swift */,
+				5A41158D1E4D046F004F6B56 /* Main.storyboard */,
 				5A47BE511E4DA03300FB0A7A /* Service */,
 				5A41161C1E4D44E9004F6B56 /* Lists */,
 				5A41161B1E4D44E2004F6B56 /* My Music Stash */,
 				5A41161A1E4D44D3004F6B56 /* Find */,
-				5A4115C21E4D1F9D004F6B56 /* Shared Subviews */,
 				5A4115BD1E4D1DDE004F6B56 /* Player */,
-				5A4115B71E4D1939004F6B56 /* IAHomeViewController.swift */,
-				5A4115BB1E4D19DE004F6B56 /* IAHomeTabBarController.swift */,
-				5A41158D1E4D046F004F6B56 /* Main.storyboard */,
+				5A4115C21E4D1F9D004F6B56 /* Shared Subviews */,
+				5A6DFBB91E594209002C0977 /* IAViewController.swift */,
+				5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -368,11 +372,8 @@
 		5A41161A1E4D44D3004F6B56 /* Find */ = {
 			isa = PBXGroup;
 			children = (
+				5A6DFBB61E5932B7002C0977 /* Search */,
 				5A5764BD1E506584000D4465 /* DocView */,
-				5A41161F1E4D519E004F6B56 /* IAFindTabBarController.swift */,
-				5A4116211E4D57D1004F6B56 /* IABrowseViewController.swift */,
-				5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */,
-				5A5764B31E502872000D4465 /* IASearchCell.swift */,
 			);
 			name = Find;
 			sourceTree = "<group>";
@@ -406,10 +407,20 @@
 			isa = PBXGroup;
 			children = (
 				5A5764BB1E5056B6000D4465 /* IADocViewController.swift */,
-				5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */,
 				5A10960F1E5185DC008DB3B7 /* IADoc.storyboard */,
+				5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */,
 			);
 			name = DocView;
+			sourceTree = "<group>";
+		};
+		5A6DFBB61E5932B7002C0977 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */,
+				5A5764B31E502872000D4465 /* IASearchCell.swift */,
+				5A6DFBB71E5932D0002C0977 /* Search.storyboard */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,6 +488,7 @@
 				5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */,
 				5A4115941E4D046F004F6B56 /* LaunchScreen.storyboard in Resources */,
 				5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */,
+				5A6DFBB81E5932D0002C0977 /* Search.storyboard in Resources */,
 				5A41160E1E4D203F004F6B56 /* Info.plist in Resources */,
 				5A4115B51E4D1803004F6B56 /* ionicons.ttf in Resources */,
 				5A4115BF1E4D1DF8004F6B56 /* IAPlayer.storyboard in Resources */,
@@ -549,12 +561,11 @@
 				5A4115F51E4D203F004F6B56 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				5A4116011E4D203F004F6B56 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				5A4116191E4D280E004F6B56 /* IAFile.swift in Sources */,
+				5A6DFBBA1E594209002C0977 /* IAViewController.swift in Sources */,
 				5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */,
-				5A4116221E4D57D1004F6B56 /* IABrowseViewController.swift in Sources */,
 				5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */,
 				5A41160C1E4D203F004F6B56 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
 				5A4116071E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
-				5A4116201E4D519E004F6B56 /* IAFindTabBarController.swift in Sources */,
 				5A4115FE1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
 				5A4115B41E4D1803004F6B56 /* IAIconType.swift in Sources */,
 				5A41160F1E4D203F004F6B56 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
@@ -564,6 +575,7 @@
 				5A4115F71E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				5A4115FF1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
 				5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */,
+				5A6DFBBC1E5943C8002C0977 /* IATopNavView.swift in Sources */,
 				5A4116101E4D203F004F6B56 /* NVActivityIndicatorShape.swift in Sources */,
 				5A4115F01E4D203F004F6B56 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				5A41160A1E4D203F004F6B56 /* NVActivityIndicatorAnimationPacman.swift in Sources */,

@@ -8,16 +8,14 @@
 
 import UIKit
 
-class IASearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class IASearchViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var searchBar: UISearchBar!
     
     var searchResults = [IASearchDocMappable]()
     var filteredSearchResults = [IASearchDocMappable]()
 
-    let searchController = UISearchController(searchResultsController: nil)
     
     let service = IAService()
     
@@ -27,18 +25,27 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = 90
         tableView.cellLayoutMarginsFollowReadableWidth = false
         
-        self.colorNavigation()
-
-        self.searchBar.barTintColor = IAColors.fairyRed
-        self.searchBar.tintColor = IAColors.fairyCream
+        searchBar.tintColor = UIColor.fairyCream
         
-        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
+        
+        searchBar.backgroundColor = UIColor.clear
+        searchBar.backgroundImage = UIImage()
+        searchBar.isTranslucent = true
+        searchBar.scopeBarBackgroundImage = UIImage()
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = UIColor.fairyCream
+        }
+
+        if let topNav = topNavView {
+            topNav.topNavViewTitle.text = "Search For Audio"
+            topNav.topNavViewSubTitle.text = "On The Internet Archive"
+        }
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
+        self.clearNavigation()
     }
     
 
@@ -67,11 +74,17 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "itemPush" {
+        if segue.identifier == "pushDoc" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let result = searchResults[indexPath.row]
                 let controller = segue.destination as! IADocViewController
                 controller.identifier = result.identifier
+                controller.searchDoc = result
+                
+                let backItem = UIBarButtonItem()
+                backItem.title = ""
+                navigationItem.backBarButtonItem = backItem
+                
             }
             
         }
@@ -81,6 +94,9 @@ class IASearchViewController: UIViewController, UITableViewDelegate, UITableView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
     }
+
+    
+    
     
 }
 

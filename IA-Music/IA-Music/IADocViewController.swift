@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -28,19 +28,18 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var addAllButton: UIButton!
-    
+        
     var audioFiles = [IAFileMappable]()
     let service = IAService()
     
     var identifier: String?
     var doc: IAArchiveDocMappable?
+    var searchDoc: IASearchDocMappable?
     
     var filesHash: [String:IAPlayerFile]?
     var notificationToken: NotificationToken? = nil
 
     var forcedShowNavigationBar = false
-    
-    var colors: UIImageColors?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,18 +50,40 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.activityIndicatorView.color = IAColors.fairyRed
         self.activityIndicatorView.startAnimation()
         self.tableView.backgroundColor = UIColor.clear
-        self.colorNavigation()
+        
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        //MARK: - Top Nav View Setting
+        
+        if let topNavView = self.topNavView {
+            if let sDoc = searchDoc {
+                topNavView.topNavViewTitle.text = sDoc.title
+                if let creator = sDoc.displayCreator() {
+                    topNavView.topNavViewSubTitle.text = creator
+                }
+            }
+        }
+        
+        
+        
+        //MARK:
         
         if let ident = identifier {
             
             service.archiveDoc(identifier: ident, completion: { (inDoc, error) in
                 self.doc = inDoc
-                if let title = self.doc?.title {
-                    self.docTitle.text = title
+                
+                if self.searchDoc == nil, let doc = self.doc {
+                    if let topNavView = self.topNavView {
+                        topNavView.topNavViewTitle.text = doc.title
+                            if let creator = doc.creator {
+                                topNavView.topNavViewSubTitle.text = creator
+                            }
+                    }
                 }
                 
                 if let deets = self.docDeets {
-//                    deets.text = self.doc?.noHTMLDescription()
                     if let rawHtml = self.doc?.rawDescription() {
                         let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
                         deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(stripped, font:deets.font )
@@ -91,6 +112,10 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func setImage(url:URL) {
         self.albumImage.af_setImage(withURL: url,
                                placeholderImage: nil,
@@ -105,7 +130,6 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                     let size = image.size
                                     let height = (self.imageWidth.constant * size.height ) / size.width
                                     self.imageHeight.constant = round(height)
-                                    self.colors = image.getColors()
                                     self.originalSize = CGSize(width: self.imageWidth.constant, height: self.imageHeight.constant)
                                     
                                     self.backgroundImage.image = image
@@ -125,37 +149,21 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func layoutTableViewOffset() {
         var fr = self.topView.frame
-        print("frame size height: \(self.imageHeight.constant)")
-        print("title size height: \(self.docTitle.bounds.size.height)")
+//        print("frame size height: \(self.imageHeight.constant)")
+//        print("title size height: \(self.docTitle.bounds.size.height)")
         fr.size.height =
             self.imageHeight.constant +
-            self.docTitle.bounds.size.height +
             self.docDeets.bounds.size.height +
-            self.addAllButton.bounds.size.height + 60
+            self.addAllButton.bounds.size.height + 50
         
         self.topView.frame = fr
         self.tableView.tableHeaderView = self.topView
     }
     
-    var imageTextColor: UIColor?
 
     func adjustColorsAndRemoveBlur() {
-    
-        if let colored = self.colors {
-//            self.topView.backgroundColor = colored.backgroundColor
-            if colored.backgroundColor.isDarkColor {
-                imageTextColor = UIColor.white
-                self.docTitle.textColor = imageTextColor
-            } else {
-                imageTextColor = UIColor.white
-                self.docTitle.textColor = imageTextColor
-            }
-         
-            self.docDeets.textColor = UIColor.white
-            self.addAllButton.setTitleColor(imageTextColor, for: .normal)
-            self.addAllButton.setTitleColor(colored.primaryColor, for: .highlighted)
-
-        }
+        
+        self.docDeets.textColor = UIColor.white
         self.activityIndicatorView.stopAnimation()
         
         UIView.animate(withDuration: 0.33, animations: {
@@ -205,18 +213,15 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navController = navigationController, navController.navigationBar.isHidden {
-            navController.setNavigationBarHidden(false, animated: false)
-            self.forcedShowNavigationBar = true
-        }
+        self.clearNavigation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if forcedShowNavigationBar, let navController = navigationController {
-            navController.setNavigationBarHidden(true, animated: false)
-        }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -254,20 +259,12 @@ class IADocViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.addButton.removeTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
         
          if doesPlayerFileExist(fileName: file.name!) {
-//            cell.addButton.isEnabled = false
-            cell.addButton.setTitleColor(colors?.primaryColor, for: .normal)
             cell.addButton.setIAIcon(.checkmark, forState: .normal)
             cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
          } else {
-            //            cell.addButton.isEnabled = true
-            cell.addButton.setTitleColor(UIColor.white, for: .normal)
             cell.addButton.setIAIcon(.plus, forState: .normal)
             cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         }
-        
-        cell.titleLabel.textColor = imageTextColor
-        
-
         
         return cell
     }

@@ -17,15 +17,12 @@ class IAHomeTabBarController: UITabBarController {
         self.tabBar.tintColor = IAColors.fairyCream
         self.tabBar.unselectedItemTintColor = UIColor.black
         
-        let searchTab = self.tabBar.items![2] as UITabBarItem
-        searchTab.setIAIcon(.iosSearch)
         
         let libraryTab = self.tabBar.items![0] as UITabBarItem
         libraryTab.setIAIcon(.iosMusicalNotes)
         
-        let listTab = self.tabBar.items![1] as UITabBarItem
-        listTab.setIAIcon(.iosListOutline)
-        
+        let searchTab = self.tabBar.items![1] as UITabBarItem
+        searchTab.setIAIcon(.iosSearch)
         
         NotificationCenter.default.addObserver(
             self,
@@ -33,11 +30,8 @@ class IAHomeTabBarController: UITabBarController {
             name: NSNotification.Name(rawValue: "pushDoc"),
             object: nil
         )
-
-//
-//        self.colorNavigation()
-//        self.navigationController?.navigationBar.titleColor = IAColors.fairyCream
         
+        self.clearNavigation()
     }
 
     override func didReceiveMemoryWarning() {
