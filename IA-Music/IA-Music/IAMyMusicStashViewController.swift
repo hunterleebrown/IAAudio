@@ -258,8 +258,8 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         case .archive:
             if archives.count == 1 {
                 let archive = archives[indexPath.section]
-                let file = archive.files[indexPath.row]
-                IAPlayer.sharedInstance.playFile(file: file)
+                let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row]
+                IAPlayer.sharedInstance.playFile(file: file!)
             } else {
                 chosenArchive = archives[indexPath.row]
                 self.performSegue(withIdentifier: "archivePush", sender: nil)
