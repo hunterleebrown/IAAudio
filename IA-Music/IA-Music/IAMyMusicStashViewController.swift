@@ -21,6 +21,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBarHolder: UIView!
     
+    @IBOutlet weak var archiveButtonsHolder: UIStackView!
+    @IBOutlet weak var archiveButtonsHeight: NSLayoutConstraint!
+    @IBOutlet weak var detailsButton: UIButton!
+    @IBOutlet weak var removeAllButton: UIButton!
+    
     var leftTopButton: UIBarButtonItem!
 
     var identifier: String?
@@ -51,6 +56,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         notificationToken = realm?.addNotificationBlock { [weak self] notification, realm in
             self?.tableView.reloadData()
+            self?.toggleArchvieButtons()
         }
         
         
@@ -80,34 +86,62 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             rightButton.tintColor = UIColor.fairyCream
         }
         
+        for button in [removeAllButton,detailsButton] {
+            button?.setTitleColor(UIColor.fairyCream, for: .normal)
+        }
+        
         if mode == .song {
             self.topTitle(text: "My Audio Stash")
         }
         
+        toggleArchvieButtons()
     }
 
     
-    
-    
+    func toggleArchvieButtons() {
+        if mode == .song {
+            self.archiveButtonsHeight.constant = 0
+            self.archiveButtonsHolder.isHidden = true
+        } else {
+            if archives.count == 1 {
+                self.archiveButtonsHeight.constant = 44
+                self.archiveButtonsHolder.isHidden = false
+            } else {
+                self.archiveButtonsHeight.constant = 0
+                self.archiveButtonsHolder.isHidden = true
+            }
+        }
+    }
+
+
     func modeSwitch(sender:UIBarButtonItem){
         switch mode {
         case .song:
             mode = .archive
             self.leftTopButton.title = "Archives"
-
         case .archive:
             mode = .song
             self.leftTopButton.title = "Files"
-
         }
         
         self.tableView.reloadData()
+        toggleArchvieButtons()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         self.clearNavigation()
         super.viewWillAppear(animated)
+        
+        if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
+            let cell = self.tableView.cellForRow(at: indexPathForSelectedRow) as! IAMyStashTableViewCell
+//            self.tableView.deselectRow(at: indexPathForSelectedRow, animated: false)
+            if let file = cell.file {
+                self.selectFileRowIfPlaying(indexPath: indexPathForSelectedRow, file: file)
+            }
+        }
+
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -189,11 +223,15 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
        
         switch mode {
         case .song:
-            cell.file = files[indexPath.row]
+            let file = files[indexPath.row]
+            cell.file = file
+            self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
         case .archive:
             if archives.count == 1 {
                 let archive = archives[indexPath.section]
-                cell.file = archive.files[indexPath.row]
+                let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row]     //archive.files[indexPath.row]
+                cell.file = file
+                self.selectFileRowIfPlaying(indexPath: indexPath, file: file!)
             } else {
                 let archive = archives[indexPath.row]
                 cell.archive = archive
@@ -204,6 +242,14 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
 
+    func selectFileRowIfPlaying(indexPath:IndexPath, file:IAPlayerFile) {
+    
+        if let playUrl = IAPlayer.sharedInstance.playUrl {
+            if file.urlString == playUrl.absoluteString {
+                self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .none)
+            }
+        }
+    }
     
     var chosenArchive: IAArchive?
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -231,7 +277,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     
     //MARK: - Editiing
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return archives.count == 1 ? true : false
+        return archives.count == 1 ? true : mode == .song ? true : true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -242,7 +288,12 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 let file = files[indexPath.row]
                 IARealmManger.sharedInstance.realm.delete(file)
             } else {
-                deleteFile(indexPath: indexPath)
+                if archives.count > 1 {
+                    self.deleteAllFiles(archive: archives.first!)
+//                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                } else {
+                    deleteFile(indexPath: indexPath)
+                }
             }
             break
         case .insert:
@@ -254,6 +305,19 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         if archives.count == 0 {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @IBAction func didTapRemoveAllFiles(_ sender: Any) {
+        self.deleteAllFiles(archive: archives.first!)
+        if archives.count == 0 {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @IBAction func fullArchiveDetails(_ sender: Any) {
+        let button = sender as! UIButton
+        button.tag = 0
+        self.performSegue(withIdentifier: "docPush", sender: button)
     }
     
     
@@ -273,7 +337,22 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 }
             }
         }
-
+    }
+    
+    func deleteAllFiles(archive: IAArchive)  {
+        
+        for file in IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)! {
+            try! IARealmManger.sharedInstance.realm.write {
+                IARealmManger.sharedInstance.realm.delete(file)
+            }
+            
+            let files = archive.files
+            if files.count == 0 {
+                try! IARealmManger.sharedInstance.realm.write {
+                    IARealmManger.sharedInstance.realm.delete(archive)
+                }
+            }
+        }
     }
     
     

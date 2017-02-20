@@ -37,7 +37,6 @@ class IAPlayerFile: Object {
         } else {
             return length
         }
-        return nil
     }
     
 }

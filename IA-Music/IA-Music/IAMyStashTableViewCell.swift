@@ -45,7 +45,11 @@ class IAMyStashTableViewCell: UITableViewCell {
                 more.isHidden = true
             }
             
-//            self.accessoryType = .disclosureIndicator
+            if let l = length {
+                l.text = ""
+            }
+            isSelected ? showSelected() : showUnselected()
+
         }
     }
     
@@ -97,6 +101,8 @@ class IAMyStashTableViewCell: UITableViewCell {
             }
             self.accessoryType = .none
 
+            isSelected ? showSelected() : showUnselected()
+
         }
     }
         
@@ -127,9 +133,41 @@ class IAMyStashTableViewCell: UITableViewCell {
         self.tintColor = UIColor.fairyCream
     }
     
+    func showSelected() {
+        self.contentView.backgroundColor = UIColor.fairyCream
+        
+        for label in [itemTitle, trackTitle, length, size] {
+            if let lab = label {
+                lab.textColor = UIColor.fairyRed
+            }
+        }
+        
+        for button in [downloadButton, moreButton] {
+            if let b = button {
+                b.setTitleColor(UIColor.fairyRed, for: .normal)
+            }
+        }
+    }
+
+    func showUnselected() {
+        self.contentView.backgroundColor = UIColor.clear
+        for label in [itemTitle, trackTitle, length, size] {
+            if let lab = label {
+                lab.textColor = UIColor.white
+            }
+        }
+        
+        for button in [downloadButton, moreButton] {
+            if let b = button {
+                b.setTitleColor(UIColor.fairyCream, for: .normal)
+            }
+        }
+        
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.contentView.backgroundColor = UIColor.clear
+        selected ? showSelected() : showUnselected()
     }
     
 

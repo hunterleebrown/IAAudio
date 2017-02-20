@@ -42,15 +42,6 @@ class IARealmManger {
     
     func deleteFile(docAndFile:ArchiveDocAndFile) {
     
-        //Check for Archive first
-        let archivePredicate = NSPredicate(format: "identifier = %@", docAndFile.doc.identifier!)
-        let archiveResults = realm.objects(IAArchive.self).filter(archivePredicate)
-        var archive : IAArchive?
-        if archiveResults.count > 0 {
-            archive = archiveResults.first
-        }
-        
-        //var existingFile = realm.objects(IAPlayerFile.self).filter("name = '\(docAndFile.file.name!)' AND archive.identifier = '\(docAndFile.doc.identifier!)'")
         let predicate = NSPredicate(format: "name = %@ AND archive.identifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
         let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
         
