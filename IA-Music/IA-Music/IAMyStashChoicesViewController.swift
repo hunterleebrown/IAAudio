@@ -117,7 +117,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case ChoiceSelctions.Data.rawValue:
-            return 120
+            return 66
         default:
             return 66
         }
@@ -207,7 +207,7 @@ enum StashChoice:Int {
         case .Archives:
             return "\(count) archive\(count > 1 ? "s" : "")"
         case .Files:
-            return "\(count) file\(count > 1 ? "s" : "")"
+            return "\(count) audio file\(count > 1 ? "s" : "")"
         }
     }
     
