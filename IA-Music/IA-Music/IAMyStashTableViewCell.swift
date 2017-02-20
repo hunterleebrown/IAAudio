@@ -134,7 +134,7 @@ class IAMyStashTableViewCell: UITableViewCell {
     }
     
     func showSelected() {
-        self.contentView.backgroundColor = UIColor.fairyCream
+        self.contentView.backgroundColor = UIColor.fairyCreamAlpha
         
         for label in [itemTitle, trackTitle, length, size] {
             if let lab = label {

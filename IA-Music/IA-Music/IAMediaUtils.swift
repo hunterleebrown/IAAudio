@@ -99,7 +99,10 @@ extension UIColor {
     class var fairyCream: UIColor {
         return IAColors.fairyCream
     }
-    
+
+    class var fairyCreamAlpha: UIColor {
+        return UIColor(red: 255.0/255.0, green: 239.0/255.0, blue: 189.0/255.0, alpha: 0.75)
+    }
 }
 
 

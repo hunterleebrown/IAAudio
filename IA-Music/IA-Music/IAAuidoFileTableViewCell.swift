@@ -19,7 +19,7 @@ class IAAuidoFileTableViewCell: UITableViewCell {
             titleLabel.text = audioFile?.title ?? audioFile?.name
             addButton.setIAIcon(.plusRound, forState: .normal)
             
-            self.contentView.backgroundColor = isSelected ? IAColors.fairyCream : UIColor.clear
+            self.contentView.backgroundColor = isSelected ? UIColor.fairyCreamAlpha : UIColor.clear
             self.titleLabel.textColor = isSelected ? UIColor.fairyRed : UIColor.white
             
             if let l = audioFile?.displayLength() {
@@ -33,18 +33,25 @@ class IAAuidoFileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.contentView.backgroundColor = isSelected ? UIColor.fairyCreamAlpha : UIColor.clear
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.contentView.backgroundColor = selected ? IAColors.fairyCream : UIColor.clear
+        self.contentView.backgroundColor = selected ? UIColor.fairyCreamAlpha : UIColor.clear
         self.titleLabel.textColor = selected ? UIColor.fairyRed : UIColor.white
+        self.addButton.setTitleColor(selected ? UIColor.fairyRed : UIColor.white, for: .normal)
+        self.length.textColor = selected ? UIColor.fairyRed : UIColor.white
+
     }
 
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.backgroundColor = UIColor.clear
+        self.contentView.backgroundColor = isSelected ? UIColor.fairyCreamAlpha : UIColor.clear
+        self.addButton.setTitleColor(isSelected ? UIColor.fairyRed : UIColor.white, for: .normal)
+        self.length.textColor = isSelected ? UIColor.fairyRed : UIColor.white
         self.backgroundColor = UIColor.clear
     }
 }

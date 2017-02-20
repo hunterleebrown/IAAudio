@@ -87,7 +87,8 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 if let deets = self.docDeets {
                     if let rawHtml = self.doc?.rawDescription() {
                         let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
-                        deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(stripped, font:deets.font )
+                        
+                        deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(rawHtml, font:deets.font )
                     }
                 }
                 

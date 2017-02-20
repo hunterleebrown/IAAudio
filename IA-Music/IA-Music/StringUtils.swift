@@ -87,7 +87,10 @@ extension NSMutableAttributedString {
     class func mutableAttributedString(_ text:String, font:UIFont)->NSMutableAttributedString {
         
         do {
-            let attString =  try NSAttributedString(data: text.utf8Data!, options:[NSFontAttributeName: font, NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+            let attString =  try NSAttributedString(data: text.utf8Data!,
+                                                    options:[
+                                                        NSFontAttributeName: font,
+                                                        NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
             
             return NSMutableAttributedString(attributedString: attString)
             
