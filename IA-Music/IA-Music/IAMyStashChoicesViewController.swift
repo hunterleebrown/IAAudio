@@ -24,7 +24,6 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
         super.viewDidLoad()
         
         self.topTitle(text: "My Audio Stash")
-        self.topSubTitle(text: "Your App Contains:")
         self.clearNavigation()
         
         self.tableView.sectionHeaderHeight = 44

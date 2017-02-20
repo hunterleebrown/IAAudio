@@ -95,6 +95,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         }
         
         toggleArchvieButtons()
+        
+        tableView.tableFooterView = UIView()
+
     }
 
     
