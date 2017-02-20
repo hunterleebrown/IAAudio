@@ -253,10 +253,10 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch  mode {
         case .song:
-            return 66.0
+            return 76.0
         case .archive:
             if archives.count == 1 {
-                return 66.0
+                return 76.0
             } else {
                 return 90.0
             }
