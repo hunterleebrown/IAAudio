@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archivebw" translatesAutoresizingMaskIntoConstraints="NO" id="wvW-ah-QwN">
-                                <rect key="frame" x="0.0" y="64" width="320" height="389"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YCm-Ah-f7k">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="453"/>
@@ -296,10 +296,10 @@
                             <constraint firstItem="a7M-rr-IR3" firstAttribute="top" secondItem="duG-nt-9rz" secondAttribute="bottom" id="Atv-FK-bUV"/>
                             <constraint firstItem="hQ6-T6-h3e" firstAttribute="top" secondItem="a7M-rr-IR3" secondAttribute="bottom" id="BRS-d3-5UK"/>
                             <constraint firstAttribute="trailing" secondItem="wvW-ah-QwN" secondAttribute="trailing" id="NeE-Gz-Qi9"/>
+                            <constraint firstItem="wvW-ah-QwN" firstAttribute="top" secondItem="gSb-he-lmV" secondAttribute="top" id="Txa-Ps-1M6"/>
                             <constraint firstAttribute="trailing" secondItem="a7M-rr-IR3" secondAttribute="trailing" id="WzJ-Qp-3Xp"/>
                             <constraint firstItem="wvW-ah-QwN" firstAttribute="leading" secondItem="gSb-he-lmV" secondAttribute="leading" id="ZPW-dz-1fJ"/>
                             <constraint firstItem="a7M-rr-IR3" firstAttribute="leading" secondItem="gSb-he-lmV" secondAttribute="leading" id="gnA-pr-vLo"/>
-                            <constraint firstItem="wvW-ah-QwN" firstAttribute="top" secondItem="duG-nt-9rz" secondAttribute="bottom" id="kBa-xq-nN7"/>
                             <constraint firstItem="hQ6-T6-h3e" firstAttribute="top" secondItem="YCm-Ah-f7k" secondAttribute="bottom" id="tnz-r5-os2"/>
                             <constraint firstItem="YCm-Ah-f7k" firstAttribute="top" secondItem="gSb-he-lmV" secondAttribute="top" id="vCQ-DY-dOL"/>
                             <constraint firstItem="YCm-Ah-f7k" firstAttribute="leading" secondItem="gSb-he-lmV" secondAttribute="leading" id="whU-O0-UX0"/>
