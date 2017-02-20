@@ -21,6 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="petabox" translatesAutoresizingMaskIntoConstraints="NO" id="X65-Oy-pbF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIj-Uw-Vi3">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5rq-tv-LCK">
@@ -180,6 +183,10 @@
                             <constraint firstAttribute="bottom" secondItem="ust-eo-Bqt" secondAttribute="bottom" id="Jl6-P3-aiC"/>
                             <constraint firstItem="ust-eo-Bqt" firstAttribute="top" secondItem="EFb-uh-udk" secondAttribute="bottom" id="KoO-Me-U0N"/>
                             <constraint firstItem="PIj-Uw-Vi3" firstAttribute="leading" secondItem="c96-6J-0l9" secondAttribute="leading" id="R4E-82-k03"/>
+                            <constraint firstAttribute="trailing" secondItem="X65-Oy-pbF" secondAttribute="trailing" id="fgr-NK-bhD"/>
+                            <constraint firstItem="X65-Oy-pbF" firstAttribute="top" secondItem="EFb-uh-udk" secondAttribute="bottom" id="gHO-YQ-gOV"/>
+                            <constraint firstItem="Oew-wh-xKD" firstAttribute="top" secondItem="X65-Oy-pbF" secondAttribute="bottom" id="h5P-rB-n4w"/>
+                            <constraint firstItem="X65-Oy-pbF" firstAttribute="leading" secondItem="c96-6J-0l9" secondAttribute="leading" id="isJ-w9-8kF"/>
                             <constraint firstItem="Oew-wh-xKD" firstAttribute="top" secondItem="PIj-Uw-Vi3" secondAttribute="bottom" id="nrG-M9-zeM"/>
                             <constraint firstItem="PIj-Uw-Vi3" firstAttribute="top" secondItem="c96-6J-0l9" secondAttribute="top" id="oX8-w3-d2e"/>
                             <constraint firstItem="EFb-uh-udk" firstAttribute="leading" secondItem="c96-6J-0l9" secondAttribute="leading" id="sPN-PI-EGq"/>
@@ -258,4 +265,7 @@
             <point key="canvasLocation" x="3230" y="35"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="petabox" width="800" height="531"/>
+    </resources>
 </document>

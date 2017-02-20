@@ -48,3 +48,8 @@ class IAArchive: Object {
     dynamic var creator = ""
     let files = List<IAPlayerFile>()
 }
+
+class IAList: Object {
+    dynamic var title = ""
+    let files = List<IAPlayerFile>()
+}

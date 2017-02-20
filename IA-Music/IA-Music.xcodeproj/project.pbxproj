@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A1096101E5185DC008DB3B7 /* IADoc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A10960F1E5185DC008DB3B7 /* IADoc.storyboard */; };
-		5A29692F1E514C5E00E7409F /* IAPlayerFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A29692E1E514C5E00E7409F /* IAPlayerFile.swift */; };
+		5A29692F1E514C5E00E7409F /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A29692E1E514C5E00E7409F /* RealmObjects.swift */; };
 		5A41158A1E4D046F004F6B56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4115891E4D046F004F6B56 /* AppDelegate.swift */; };
 		5A41158F1E4D046F004F6B56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A41158D1E4D046F004F6B56 /* Main.storyboard */; };
 		5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A4115901E4D046F004F6B56 /* Assets.xcassets */; };
@@ -71,6 +71,11 @@
 		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
 		5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE521E4DA04700FB0A7A /* IAService.swift */; };
 		5A47BE551E4DABC300FB0A7A /* IASearchDocMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */; };
+		5A525BFB1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */; };
+		5A525BFD1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */; };
+		5A525BFF1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */; };
+		5A525C011E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525C001E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift */; };
+		5A525C031E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525C021E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift */; };
 		5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B31E502872000D4465 /* IASearchCell.swift */; };
 		5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B51E502C53000D4465 /* StringUtils.swift */; };
 		5A5764B81E502E99000D4465 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5764B71E502E98000D4465 /* AlamofireImage.framework */; };
@@ -89,7 +94,7 @@
 
 /* Begin PBXFileReference section */
 		5A10960F1E5185DC008DB3B7 /* IADoc.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IADoc.storyboard; sourceTree = "<group>"; };
-		5A29692E1E514C5E00E7409F /* IAPlayerFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPlayerFile.swift; sourceTree = "<group>"; };
+		5A29692E1E514C5E00E7409F /* RealmObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjects.swift; sourceTree = "<group>"; };
 		5A4115861E4D046F004F6B56 /* IA-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IA-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A4115891E4D046F004F6B56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A41158E1E4D046F004F6B56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -155,6 +160,11 @@
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
 		5A47BE521E4DA04700FB0A7A /* IAService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAService.swift; sourceTree = "<group>"; };
 		5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDocMappable.swift; sourceTree = "<group>"; };
+		5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashChoicesViewController.swift; sourceTree = "<group>"; };
+		5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashChoicesTableViewCell.swift; sourceTree = "<group>"; };
+		5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyChoicesSectionHeaderView.swift; sourceTree = "<group>"; };
+		5A525C001E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyChoicesFindTableViewCell.swift; sourceTree = "<group>"; };
+		5A525C021E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyChoicesDataTableViewCell.swift; sourceTree = "<group>"; };
 		5A5764B31E502872000D4465 /* IASearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchCell.swift; sourceTree = "<group>"; };
 		5A5764B51E502C53000D4465 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		5A5764B71E502E98000D4465 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
@@ -195,7 +205,7 @@
 		5A29692D1E514C3E00E7409F /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				5A29692E1E514C5E00E7409F /* IAPlayerFile.swift */,
+				5A29692E1E514C5E00E7409F /* RealmObjects.swift */,
 				5A615A131E515BC700B18161 /* IARealmManager.swift */,
 			);
 			name = Realm;
@@ -223,6 +233,7 @@
 			children = (
 				5A4115B61E4D18F0004F6B56 /* View Controllers */,
 				5A4115AF1E4D1785004F6B56 /* Fonts and Icons */,
+				5A47BE511E4DA03300FB0A7A /* Service */,
 				5A4116151E4D27F2004F6B56 /* Model */,
 				5A4116121E4D277A004F6B56 /* Utils */,
 				5A4115891E4D046F004F6B56 /* AppDelegate.swift */,
@@ -267,9 +278,8 @@
 				5A4115B71E4D1939004F6B56 /* IAHomeViewController.swift */,
 				5A4115BB1E4D19DE004F6B56 /* IAHomeTabBarController.swift */,
 				5A41158D1E4D046F004F6B56 /* Main.storyboard */,
-				5A47BE511E4DA03300FB0A7A /* Service */,
 				5A41161C1E4D44E9004F6B56 /* Lists */,
-				5A41161B1E4D44E2004F6B56 /* My Music Stash */,
+				5A525BF91E5A794600B641C2 /* Stash Choices */,
 				5A41161A1E4D44D3004F6B56 /* Find */,
 				5A4115BD1E4D1DDE004F6B56 /* Player */,
 				5A4115C21E4D1F9D004F6B56 /* Shared Subviews */,
@@ -403,6 +413,19 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
+		5A525BF91E5A794600B641C2 /* Stash Choices */ = {
+			isa = PBXGroup;
+			children = (
+				5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */,
+				5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */,
+				5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */,
+				5A525C001E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift */,
+				5A525C021E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift */,
+				5A41161B1E4D44E2004F6B56 /* My Music Stash */,
+			);
+			name = "Stash Choices";
+			sourceTree = "<group>";
+		};
 		5A5764BD1E506584000D4465 /* DocView */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A4115FA1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
+				5A525BFF1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift in Sources */,
 				5A4116181E4D280E004F6B56 /* IASearchDoc.swift in Sources */,
 				5A4115F41E4D203F004F6B56 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				5A4115F21E4D203F004F6B56 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
@@ -556,6 +580,7 @@
 				5A4115F11E4D203F004F6B56 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				5A4115FD1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
 				5A4116001E4D203F004F6B56 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
+				5A525BFB1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift in Sources */,
 				5A4116041E4D203F004F6B56 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
 				5A4116021E4D203F004F6B56 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				5A4115F51E4D203F004F6B56 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
@@ -564,6 +589,7 @@
 				5A6DFBBA1E594209002C0977 /* IAViewController.swift in Sources */,
 				5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */,
 				5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */,
+				5A525C011E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift in Sources */,
 				5A41160C1E4D203F004F6B56 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
 				5A4116071E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
 				5A4115FE1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
@@ -587,8 +613,10 @@
 				5A4115FB1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
 				5A4115B81E4D1939004F6B56 /* IAHomeViewController.swift in Sources */,
 				5A615A141E515BC700B18161 /* IARealmManager.swift in Sources */,
-				5A29692F1E514C5E00E7409F /* IAPlayerFile.swift in Sources */,
+				5A29692F1E514C5E00E7409F /* RealmObjects.swift in Sources */,
+				5A525BFD1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift in Sources */,
 				5A4115F91E4D203F004F6B56 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
+				5A525C031E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

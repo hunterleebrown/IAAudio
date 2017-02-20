@@ -61,13 +61,13 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         
         if archives.count > 1 {
-            self.topTitle(text: "My Audio Stash")
-            self.leftTopButton = UIBarButtonItem()
-            self.leftTopButton.title = mode == .song ? "Songs" : "Archives"
-            self.leftTopButton.target = self
-            self.leftTopButton.action = #selector(modeSwitch(sender:))
-            self.navigationItem.leftBarButtonItem = self.leftTopButton
-            self.leftTopButton.tintColor = UIColor.fairyCream
+            self.topTitle(text: "Archives")
+//            self.leftTopButton = UIBarButtonItem()
+//            self.leftTopButton.title = mode == .song ? "Songs" : "Archives"
+//            self.leftTopButton.target = self
+//            self.leftTopButton.action = #selector(modeSwitch(sender:))
+//            self.navigationItem.leftBarButtonItem = self.leftTopButton
+//            self.leftTopButton.tintColor = UIColor.fairyCream
         }
         
         if archives.count == 1 {
@@ -91,7 +91,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         }
         
         if mode == .song {
-            self.topTitle(text: "My Audio Stash")
+            self.topTitle(text: "All Files")
         }
         
         toggleArchvieButtons()
