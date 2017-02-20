@@ -192,11 +192,22 @@ enum StashChoice:Int {
     var title: String {
         switch self {
         case .Lists:
-            return "Lists"
+            return "Playlists"
         case .Archives:
             return "Archives"
         case .Files:
             return "Files"
+        }
+    }
+    
+    var iconLabelText: String {
+        switch self {
+        case .Lists:
+            return IAFontMapping.COLLECTION
+        case .Archives:
+            return IAFontMapping.ARCHIVE
+        case .Files:
+            return IAIconType.document.text!
         }
     }
     

@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Iconochive-Regular.ttf">
+            <string>Iconochive-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--IADoc-->
         <scene sceneID="RsH-3W-xA6">
@@ -150,17 +155,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKh-j3-N2Y">
+                                                    <rect key="frame" x="10" y="5.5" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="C3b-Bp-Rnu"/>
+                                                        <constraint firstAttribute="height" constant="44" id="UsC-Oh-7Ak"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Iconochive-Regular" family="Iconochive-Regular" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="305-4D-wTg">
-                                                    <rect key="frame" x="10" y="9" width="267" height="38.5"/>
+                                                    <rect key="frame" x="64" y="9" width="213" height="38.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwB-wJ-SCe">
-                                                            <rect key="frame" x="0.0" y="0.0" width="267" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="213" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pp7-Xp-MCt">
-                                                            <rect key="frame" x="0.0" y="20.5" width="267" height="18"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="213" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -170,13 +185,16 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="sKh-j3-N2Y" firstAttribute="centerY" secondItem="Yjr-kb-v5b" secondAttribute="centerY" id="Jel-nV-BNl"/>
                                                 <constraint firstItem="305-4D-wTg" firstAttribute="centerY" secondItem="Yjr-kb-v5b" secondAttribute="centerY" id="Qyw-Fe-ZbU"/>
                                                 <constraint firstAttribute="trailing" secondItem="305-4D-wTg" secondAttribute="trailing" constant="10" id="S3j-gI-PTI"/>
-                                                <constraint firstItem="305-4D-wTg" firstAttribute="leading" secondItem="Yjr-kb-v5b" secondAttribute="leading" constant="10" id="o7Y-Jk-Pg1"/>
+                                                <constraint firstItem="sKh-j3-N2Y" firstAttribute="leading" secondItem="Yjr-kb-v5b" secondAttribute="leading" constant="10" id="cAk-kx-c9X"/>
+                                                <constraint firstItem="305-4D-wTg" firstAttribute="leading" secondItem="sKh-j3-N2Y" secondAttribute="trailing" constant="10" id="to2-y0-pB4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="choiceTypeIconLabel" destination="sKh-j3-N2Y" id="TxJ-FK-Blb"/>
                                             <outlet property="subTitle" destination="Pp7-Xp-MCt" id="PQG-4c-4Kt"/>
                                             <outlet property="title" destination="PwB-wJ-SCe" id="J0d-hy-kbS"/>
                                         </connections>

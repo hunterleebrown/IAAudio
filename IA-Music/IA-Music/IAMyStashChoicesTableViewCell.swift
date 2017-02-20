@@ -10,6 +10,7 @@ import UIKit
 
 class IAMyStashChoicesTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var choiceTypeIconLabel: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
     
@@ -18,6 +19,21 @@ class IAMyStashChoicesTableViewCell: UITableViewCell {
             if let tit = title {
                 tit.text = stashChoice?.title
             }
+            if let icon = choiceTypeIconLabel {
+                if let choice = stashChoice {
+                    switch  choice {
+                    case .Archives:
+                        fallthrough
+                    case .Lists:
+                        icon.font = UIFont(name: icon.font.familyName, size: 40)
+                        icon.text =  stashChoice.iconLabelText
+                    case .Files:
+                        icon.setIAIcon(.document, iconSize: 44)
+                        
+                    }
+                }
+            }
+            
             self.isSelected ? showSelected() : showUnselected()
         }
     }
@@ -54,7 +70,7 @@ class IAMyStashChoicesTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        selected ? showSelected() : showUnselected()
+//        selected ? showSelected() : showUnselected()
     }
     
 }
