@@ -33,6 +33,8 @@ class IAMyStashTableViewCell: UITableViewCell {
             }
             if let img = trackImage, let url = IAMediaUtils.imageUrlFrom((archive?.identifier)!) {
                 img.af_setImage(withURL: url)
+                img.layer.cornerRadius = 10.0
+                img.clipsToBounds = true
             }
             
             if let track = itemTitle {
@@ -72,6 +74,8 @@ class IAMyStashTableViewCell: UITableViewCell {
             
             if let img = trackImage, let archive = file?.archive, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
                 img.af_setImage(withURL: url)
+                img.layer.cornerRadius = 3.0
+                img.clipsToBounds = true
             }
             
             if let track = itemTitle {

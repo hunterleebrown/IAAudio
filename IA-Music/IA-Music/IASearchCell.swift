@@ -23,6 +23,8 @@ class IASearchCell: UITableViewCell {
             
             if let imageUrl = searchDoc?.iconUrl() {
                 itemImage?.af_setImage(withURL:imageUrl)
+                itemImage?.layer.cornerRadius = 10.0
+                itemImage?.clipsToBounds = true
             }
             
             itemTitle?.text = searchDoc?.title

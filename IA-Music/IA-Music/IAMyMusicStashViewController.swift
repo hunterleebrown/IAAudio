@@ -40,7 +40,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 64
 //        tableView.sectionHeaderHeight = 54
         tableView.sectionFooterHeight = 0
         
@@ -222,28 +221,47 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+
        
         switch mode {
         case .song:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
             let file = files[indexPath.row]
             cell.file = file
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
+            return cell
         case .archive:
             if archives.count == 1 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
                 let archive = archives[indexPath.section]
                 let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row]     //archive.files[indexPath.row]
                 cell.file = file
                 self.selectFileRowIfPlaying(indexPath: indexPath, file: file!)
+                return cell
+
             } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "archiveCell", for: indexPath) as! IAMyStashTableViewCell
                 let archive = archives[indexPath.row]
                 cell.archive = archive
+                return cell
             }
         }
         
-        return cell
+//        return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch  mode {
+        case .song:
+            return 66.0
+        case .archive:
+            if archives.count == 1 {
+                return 66.0
+            } else {
+                return 90.0
+            }
+        }
+    }
 
     func selectFileRowIfPlaying(indexPath:IndexPath, file:IAPlayerFile) {
     
