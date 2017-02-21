@@ -310,8 +310,8 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 IARealmManger.sharedInstance.realm.delete(file)
             } else {
                 if archives.count > 1 {
-                    self.deleteAllFiles(archive: archives.first!)
-//                    self.tableView.deleteRows(at: [indexPath], with: .fade)
+                    let archive = archives[indexPath.row]
+                    self.deleteAllFiles(archive: archive)
                 } else {
                     deleteFile(indexPath: indexPath)
                 }
@@ -366,14 +366,15 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             try! IARealmManger.sharedInstance.realm.write {
                 IARealmManger.sharedInstance.realm.delete(file)
             }
-            
-            let files = archive.files
-            if files.count == 0 {
-                try! IARealmManger.sharedInstance.realm.write {
-                    IARealmManger.sharedInstance.realm.delete(archive)
-                }
+        }
+        
+        let files = archive.files
+        if files.count == 0 {
+            try! IARealmManger.sharedInstance.realm.write {
+                IARealmManger.sharedInstance.realm.delete(archive)
             }
         }
+        
     }
     
     
