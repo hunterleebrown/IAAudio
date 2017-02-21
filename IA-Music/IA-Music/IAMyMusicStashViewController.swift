@@ -57,8 +57,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                     self?.tableView.endUpdates()
                     
-                    if results.count == 0 {
-                        self?.deleteAllFiles(archive: (self?.archives.first!)!)
+                    if self?.archives.count == 0 {
                         self?.navigationController?.popViewController(animated: true)
                     }
                     
@@ -77,12 +76,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.reloadData()
                 case .update(let results, let deletions, let insertions, let modifications):
                     self?.tableView.beginUpdates()
-                    
                     self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                     self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                     self?.tableView.endUpdates()
                     
-                    if results.count == 0 {
+                    if self?.archives.count == 0 {
                         self?.navigationController?.popViewController(animated: true)
                     }
 
@@ -103,6 +101,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                     self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                     self?.tableView.endUpdates()
+                    
+                    if results.count == 0 {
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                    
                 case .error(let error):
                     print (error)
                     break
@@ -148,13 +151,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 
         }
         
-        
         for button in [removeAllButton,detailsButton] {
             button?.setTitleColor(UIColor.fairyCream, for: .normal)
         }
         
         toggleArchvieButtons()
-        
         tableView.tableFooterView = UIView()
 
     }
@@ -189,6 +190,12 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         }
 
         if notificationToken != nil {
+            if mode == .AllArchives {
+                if archives.count == 0 {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+
             self.tableView.reloadData()
         }
     }
@@ -216,7 +223,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         case .AllArchives:
             return archives.count
         case .SingleArchive:
-            return (archives.first?.files.count)!
+            if let archive = archives.first {
+                return archive.files.count
+            } else {
+                return 0
+            }
         case .AllFiles:
             return files.count
         }
@@ -240,8 +251,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             
         case .SingleArchive:
             let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
-//            let archive = archives.first
-//            let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: (archive?.identifier)!)?[indexPath.row]
             let file = archiveFiles[indexPath.row]
             cell.file = file
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
@@ -285,8 +294,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 
         switch mode {
         case .SingleArchive:
-//            let archive = archives.first
-//            let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: (archive?.identifier)!)?[indexPath.row]
             let file = archiveFiles[indexPath.row]
             IAPlayer.sharedInstance.playFile(file: file)
             
@@ -319,19 +326,13 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 self.deleteAllFiles(archive: archive)
                 
             case .SingleArchive:
-                //                let archive = archives.first
-                let file = archiveFiles[indexPath.row] //IARealmManger.sharedInstance.defaultSortedFiles(identifier: (archive?.identifier)!)?[indexPath.row] {
+                let file = archiveFiles[indexPath.row]
                 print(file)
-                try! IARealmManger.sharedInstance.realm.write {
-                    IARealmManger.sharedInstance.realm.delete(file)
-                }
-                
+                IARealmManger.sharedInstance.deleteFile(file: file)
                 
             case .AllFiles:
                 let file = files[indexPath.row]
-                try! IARealmManger.sharedInstance.realm.write {
-                    IARealmManger.sharedInstance.realm.delete(file)
-                }
+                IARealmManger.sharedInstance.deleteFile(file: file)
             }
             
         case .insert:
@@ -340,14 +341,10 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             break
             
         }
-
     }
     
     @IBAction func didTapRemoveAllFiles(_ sender: Any) {
         self.deleteAllFiles(archive: archives.first!)
-        if archives.count == 0 {
-            self.navigationController?.popViewController(animated: true)
-        }
     }
     
     @IBAction func fullArchiveDetails(_ sender: Any) {
@@ -357,45 +354,13 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
     
-//    func deleteFile(indexPath:IndexPath)  {
-//        let archive = archives[indexPath.section]
-//        
-//        if let file = IARealmManger.sharedInstance.defaultSortedFiles(identifier: archive.identifier)?[indexPath.row] {
-//            try! IARealmManger.sharedInstance.realm.write {
-//                IARealmManger.sharedInstance.realm.delete(file)
-//                tableView.deleteRows(at: [indexPath], with: .fade)
-//            }
-//            
-//            let files = archive.files
-//            if files.count == 0 {
-//                try! IARealmManger.sharedInstance.realm.write {
-//                    IARealmManger.sharedInstance.realm.delete(archive)
-//                }
-//            }
-//        }
-//    }
     
     func deleteAllFiles(archive: IAArchive)  {
-        
-        for file in archive.files {
-            try! IARealmManger.sharedInstance.realm.write {
-                IARealmManger.sharedInstance.realm.delete(file)
-            }
-        }
-        
-        let files = archive.files
-        if files.count == 0 {
-            try! IARealmManger.sharedInstance.realm.write {
-                IARealmManger.sharedInstance.realm.delete(archive)
-            }
-        }
-        
+        IARealmManger.sharedInstance.deleteAllFiles(archive: archive)
     }
     
     
     //MARK: -
-    
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "docPush" {
@@ -431,6 +396,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 
     }
     
+    deinit {
+        notificationToken?.stop()
+    }
     
     
 }

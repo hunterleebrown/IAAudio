@@ -106,10 +106,31 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 
             })
         }
-        notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
-            self?.tableView.reloadData()
-         
-        }
+        
+        
+        let files = IARealmManger.sharedInstance.defaultSortedFiles(identifier: identifier!)
+        
+        notificationToken = files?.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
+            
+            switch changes {
+            case .update(let results, let deletions, let insertions, let modifications):
+                
+                print(results)
+                
+            default:
+                break
+            }
+            
+        })
+        
+        
+//        notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
+//            //self?.tableView.reloadData()
+//            
+//            if let indyPath = self?.updatedIndexPath {
+//                self?.tableView.reloadRows(at: [indyPath], with: .none)
+//            }
+//        }
         
 
     }
@@ -283,10 +304,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
 
     }
 
+    var updatedIndexPath: IndexPath?
     @IBAction func didPressCheckmark(_ sender: UIButton) {
         
         if let doc = self.doc {
             let file = audioFiles[sender.tag]
+            updatedIndexPath = IndexPath(row: sender.tag, section: 0)
             IARealmManger.sharedInstance.deleteFile(docAndFile: (doc:doc, file:file))
         }
     }
@@ -294,6 +317,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     @IBAction func didPressPlusButton(_ sender: UIButton) {
         if let doc = self.doc {
             let file = audioFiles[sender.tag]
+            updatedIndexPath = IndexPath(row: sender.tag, section: 0)
             IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
         }
     }
@@ -302,6 +326,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         for file in audioFiles {
             IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc!, file:file))
         }
+        
     }
     
     

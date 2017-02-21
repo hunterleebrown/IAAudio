@@ -23,23 +23,18 @@ class IARealmManger {
     init() {
         do {
             realm = try Realm()
-            
             debugPrint("Path to realm file: " + realm.configuration.fileURL!.absoluteString)
-
         } catch {
             print("Realm init error: \(error)")
         }
     }
     
-    func archives(identifier:String) ->Results<IAArchive> {
-        let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
-        return realm.objects(IAArchive.self).filter(archivePredicate)
-    }
+
     
-    func archives()->Results<IAArchive> {
-        return (realm?.objects(IAArchive.self).sorted(byKeyPath: "title"))!
-    }
+    //MARK: - Doc Use
     
+    // This is the use case of search results with just the archive identifier, and you want to remove a file 
+    // from an already stashed archive
     func deleteFile(docAndFile:ArchiveDocAndFile) {
     
         let predicate = NSPredicate(format: "name = %@ AND archiveIdentifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
@@ -54,7 +49,8 @@ class IARealmManger {
         }
     }
     
-    
+    // This is the use case of search results with just the archive identifier, and you want to add a file
+    // to an already stashed archive, or create a new archive
     func addFile(docAndFile:ArchiveDocAndFile) {
         
         //Check for Archive first
@@ -65,7 +61,6 @@ class IARealmManger {
             archive = archiveResults.first
         }
         
-        //var existingFile = realm.objects(IAPlayerFile.self).filter("name = '\(docAndFile.file.name!)' AND archive.identifier = '\(docAndFile.doc.identifier!)'")
         let predicate = NSPredicate(format: "name = %@ AND archiveIdentifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
         let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
         
@@ -111,6 +106,43 @@ class IARealmManger {
         
     }
     
+    //MARK: - Stash Use
+    // This will delete all files of the archive and then the archive
+    func deleteAllFiles(archive:IAArchive) {
+        try! realm.write {
+            realm.delete(archive.files)
+            realm.delete(archive)
+        }
+    }
+    
+    // This will delete the file, and the archive if the archive has no more files in it
+    func deleteFile(file:IAPlayerFile) {
+        let identifier = file.archiveIdentifier
+        try! realm.write {
+            realm.delete(file)
+            if let archive = self.archives(identifier: identifier).first {
+                if archive.files.count == 0 {
+                    realm.delete(archive)
+                }
+            }
+        }
+    }
+    
+    
+    
+    //MARK: - Helpers
+    
+    // Archives from identifier
+    func archives(identifier:String) ->Results<IAArchive> {
+        let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
+        return realm.objects(IAArchive.self).filter(archivePredicate)
+    }
+    
+    // All Archives
+    func archives()->Results<IAArchive> {
+        return (realm?.objects(IAArchive.self).sorted(byKeyPath: "title"))!
+    }
+    
     func hashOfArchiveFiles(identifier:String)->[String:IAPlayerFile]?{
         let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
         let archiveResults = realm.objects(IAArchive.self).filter(archivePredicate)
@@ -123,6 +155,7 @@ class IARealmManger {
                 for file in audFiles {
                     hash[file.name] = file
                 }
+                
                 return hash
             }
         }
@@ -131,7 +164,6 @@ class IARealmManger {
     }
     
     func defaultSortedFiles(identifier:String) -> Results<IAPlayerFile>? {
-        
         let archivePredicate = NSPredicate(format: "identifier = %@", identifier)
         let archiveResult = realm.objects(IAArchive.self).filter(archivePredicate).first
         return archiveResult?.files.sorted(byKeyPath: "displayOrder")
