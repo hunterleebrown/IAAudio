@@ -36,10 +36,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     var doc: IAArchiveDocMappable?
     var searchDoc: IASearchDocMappable?
     
-    var filesHash: [String:IAPlayerFile]?
     var notificationToken: NotificationToken? = nil
-
+    var archive: IAArchive?
+    
     var forcedShowNavigationBar = false
+    
+    var fileHashByName: [String:Int] = [String:Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +66,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
             }
         }
         
-        
 
-        
         
         //MARK:
         
         if let ident = identifier {
+            
             
             service.archiveDoc(identifier: ident, completion: { (inDoc, error) in
                 self.doc = inDoc
@@ -102,26 +103,22 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 
                 if let files = self.doc?.sortedFiles {
                     self.audioFiles = files
+                    
+                }
+                
+                if let ar = IARealmManger.sharedInstance.archives(identifier: ident).first {
+                    self.archive = ar
+                    self.setUpToken()
                 }
                 
             })
         }
         
         
-        let files = IARealmManger.sharedInstance.defaultSortedFiles(identifier: identifier!)
+      
         
-        notificationToken = files?.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
-            
-            switch changes {
-            case .update(let results, let deletions, let insertions, let modifications):
-                
-                print(results)
-                
-            default:
-                break
-            }
-            
-        })
+        
+
         
         
 //        notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
@@ -134,6 +131,55 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         
 
     }
+    
+    func setUpToken() {
+        
+        if let ar = self.archive {
+        
+            if notificationToken == nil {
+                notificationToken = IARealmManger.sharedInstance.defaultSortedFiles(identifier: ar.identifier)?.addNotificationBlock({[weak self] (changes ) in
+                    
+                    switch changes {
+                    case .initial(let results):
+//                        print("FIRST: \(results)")
+//                        self?.updateRows(playerFiles: results)
+                        break
+                    case .update(let results, _, _, _):
+                        print(results)
+                        self?.updateRows(playerFiles: results)
+                    case .error(let error):
+                        print (error)
+                        break
+                    }
+                })
+            }
+            
+        }
+        
+    }
+    
+    func updateRows(playerFiles:Results<IAPlayerFile>) {
+//        for file in playerFiles {
+//            if let rowIndex = self.fileHashByName[file.name] {
+//                let indexPath = IndexPath(row: rowIndex, section: 0)
+//                self.tableView.reloadRows(at: [indexPath], with: .none)
+//            }
+//        }
+        
+//        var playerHash = [String:Int]()
+//        for (index,file) in playerFiles.enumerated() {
+//            playerHash[file.name] = index
+//        }
+//        
+//        for (index,file) in audioFiles.enumerated() {
+//            if let rowIndex = playerHash[file.name!] {
+//                
+//            }
+//        }
+
+        self.tableView.reloadData()
+    }
+    
 
     func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
@@ -304,12 +350,10 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
 
     }
 
-    var updatedIndexPath: IndexPath?
     @IBAction func didPressCheckmark(_ sender: UIButton) {
         
         if let doc = self.doc {
             let file = audioFiles[sender.tag]
-            updatedIndexPath = IndexPath(row: sender.tag, section: 0)
             IARealmManger.sharedInstance.deleteFile(docAndFile: (doc:doc, file:file))
         }
     }
@@ -317,16 +361,28 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     @IBAction func didPressPlusButton(_ sender: UIButton) {
         if let doc = self.doc {
             let file = audioFiles[sender.tag]
-            updatedIndexPath = IndexPath(row: sender.tag, section: 0)
-            IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
+            
+            if let ar = self.archive ?? IARealmManger.sharedInstance.addArchive(doc: doc) {
+                self.archive = ar
+                IARealmManger.sharedInstance.addFile(archive: ar, file: file)
+                //                IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
+            }
+
+            setUpToken()
         }
     }
     
     @IBAction func didPressAllAdd(_ sender: Any) {
-        for file in audioFiles {
-            IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc!, file:file))
-        }
         
+        if let ar = self.archive ?? IARealmManger.sharedInstance.addArchive(doc: doc!) {
+            self.archive = ar
+            for file in audioFiles {
+                IARealmManger.sharedInstance.addFile(archive: ar, file: file)
+                //                IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc!, file:file))
+            }
+        }
+    
+        setUpToken()
     }
     
     
