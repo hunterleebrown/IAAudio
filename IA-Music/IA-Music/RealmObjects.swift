@@ -15,9 +15,13 @@ class IAPlayerFile: Object {
     dynamic var name  = ""
     dynamic var title = ""
     dynamic var urlString = ""
-    dynamic var archive: IAArchive?
     dynamic var size = ""
     dynamic var length = ""
+    dynamic var archiveIdentifier = ""
+    
+    override static func primaryKey() -> String? {
+        return "urlString"
+    }
     
     func displayTitle() -> String {
         return title.isEmpty ? name : title
@@ -44,12 +48,20 @@ class IAPlayerFile: Object {
 
 class IAArchive: Object {
     dynamic var identifier = ""
-    dynamic var identifierTitle = ""
+    dynamic var title = ""
     dynamic var creator = ""
     let files = List<IAPlayerFile>()
+    
+    override static func primaryKey() -> String? {
+        return "identifier"
+    }
 }
 
 class IAList: Object {
     dynamic var title = ""
     let files = List<IAPlayerFile>()
+    
+    override static func primaryKey() -> String? {
+        return "title"
+    }
 }

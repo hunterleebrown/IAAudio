@@ -227,9 +227,11 @@ class IAPlayer: NSObject {
     
     func playFile(file:IAPlayerFile) {
         
+        let archive = IARealmManger.sharedInstance.archives(identifier: file.archiveIdentifier).first
+        
         self.fileTitle = file.title.isEmpty ? file.name : file.title
-        self.fileIdentifierTitle = file.archive?.identifierTitle
-        self.fileIdentifier = file.archive?.identifier
+        self.fileIdentifierTitle = archive?.title
+        self.fileIdentifier = file.archiveIdentifier
         self.playUrl = URL(string: file.urlString)
         
         self.loadAndPlay()

@@ -28,7 +28,7 @@ class IAMyStashTableViewCell: UITableViewCell {
             mode = .archive
             
             if let title = trackTitle {
-                title.text = archive?.identifierTitle
+                title.text = archive?.title
                 title.highlightedTextColor = UIColor.white
             }
             if let img = trackImage, let url = IAMediaUtils.imageUrlFrom((archive?.identifier)!) {
@@ -68,19 +68,21 @@ class IAMyStashTableViewCell: UITableViewCell {
             
             if let title = trackTitle {
                 title.text = (file?.title.isEmpty)! ? file?.name : file?.title
-//                title.text = file?.archive?.identifierTitle
                 title.highlightedTextColor = IAColors.fairyRed
             }
             
-            if let img = trackImage, let archive = file?.archive, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
-                img.af_setImage(withURL: url)
-                img.layer.cornerRadius = 3.0
-                img.clipsToBounds = true
-            }
-            
-            if let track = itemTitle {
-                track.text = file?.archive?.identifierTitle
-                track.highlightedTextColor = IAColors.fairyRed
+            if let archive = IARealmManger.sharedInstance.archives(identifier: (file?.archiveIdentifier)!).first {
+                
+                if let img = trackImage, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
+                    img.af_setImage(withURL: url)
+                    img.layer.cornerRadius = 3.0
+                    img.clipsToBounds = true
+                }
+                
+                if let track = itemTitle {
+                    track.text = archive.title
+                    track.highlightedTextColor = IAColors.fairyRed
+                }
             }
             
             

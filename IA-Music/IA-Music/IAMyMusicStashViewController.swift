@@ -53,24 +53,51 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         files = realm?.objects(IAPlayerFile.self).sorted(byKeyPath: "title")
         
-        notificationToken = realm?.addNotificationBlock { [weak self] notification, realm in
-            self?.tableView.reloadData()
-            self?.toggleArchvieButtons()
-        }
+//        notificationToken = realm?.addNotificationBlock { [weak self] notification, realm in
+//            self?.tableView.reloadData()
+//            self?.toggleArchvieButtons()
+//        }
+        
+
+        notificationToken = archives.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAArchive>>) in
+            switch changes {
+            case .initial:
+                self?.tableView.reloadData()
+            case .update(let results, let deletions, let insertions, let modifications):
+//                self?.tableView.beginUpdates()
+                
+                print("results:\(results)")
+                print("deletions:\(deletions)")
+                print("insertions:\(insertions)")
+                print("modifications:\(modifications)")
+                
+//                if self?.mode == .archive && (self?.archives.count)! > 1 {
+//                    if insertions.count > 0 {
+//                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) },
+//                                                   with: .automatic)
+//                    }
+//                    
+//                    if deletions.count > 0 {
+//                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) },
+//                                                   with: .automatic)
+//                    }
+//                }
+                
+//                self?.tableView.endUpdates()
+                break
+            case .error(let error):
+                print (error)
+                break
+            }
+        })
         
         
         if archives.count > 1 {
             self.topTitle(text: "Archives")
-//            self.leftTopButton = UIBarButtonItem()
-//            self.leftTopButton.title = mode == .song ? "Songs" : "Archives"
-//            self.leftTopButton.target = self
-//            self.leftTopButton.action = #selector(modeSwitch(sender:))
-//            self.navigationItem.leftBarButtonItem = self.leftTopButton
-//            self.leftTopButton.tintColor = UIColor.fairyCream
         }
         
         if archives.count == 1 {
-            self.topTitle(text: (archives.first?.identifierTitle)!)
+            self.topTitle(text: (archives.first?.title)!)
             self.topSubTitle(text: (archives.first?.creator)!)
             let rightButton = UIBarButtonItem()
             rightButton.title = IAFontMapping.ARCHIVE
@@ -192,10 +219,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         }
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let archive = archives[section]
-//        return archive.identifierTitle
-//    }
+
     
     func  tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         

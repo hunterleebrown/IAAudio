@@ -37,12 +37,12 @@ class IARealmManger {
     }
     
     func archives()->Results<IAArchive> {
-        return (realm?.objects(IAArchive.self).sorted(byKeyPath: "identifierTitle"))!
+        return (realm?.objects(IAArchive.self).sorted(byKeyPath: "title"))!
     }
     
     func deleteFile(docAndFile:ArchiveDocAndFile) {
     
-        let predicate = NSPredicate(format: "name = %@ AND archive.identifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
+        let predicate = NSPredicate(format: "name = %@ AND archiveIdentifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
         let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
         
         if fileResults.count > 1 {
@@ -66,7 +66,7 @@ class IARealmManger {
         }
         
         //var existingFile = realm.objects(IAPlayerFile.self).filter("name = '\(docAndFile.file.name!)' AND archive.identifier = '\(docAndFile.doc.identifier!)'")
-        let predicate = NSPredicate(format: "name = %@ AND archive.identifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
+        let predicate = NSPredicate(format: "name = %@ AND archiveIdentifier = %@", docAndFile.file.name!, docAndFile.doc.identifier!)
         let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
         
         if fileResults.count > 0 {
@@ -76,7 +76,7 @@ class IARealmManger {
         if archive == nil {
             archive = IAArchive()
             archive?.identifier = docAndFile.doc.identifier!
-            archive?.identifierTitle = docAndFile.doc.title!
+            archive?.title = docAndFile.doc.title!
             if let creator = docAndFile.doc.creator {
                 archive?.creator = creator
             }
@@ -86,7 +86,7 @@ class IARealmManger {
         }
         
         let newFile = IAPlayerFile()
-        newFile.archive = archive
+        newFile.archiveIdentifier = docAndFile.doc.identifier!
         newFile.name = docAndFile.file.name!
         if let title = docAndFile.file.title {
             newFile.title = title
