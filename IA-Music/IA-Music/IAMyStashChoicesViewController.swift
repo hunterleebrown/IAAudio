@@ -151,7 +151,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
             let controller = segue.destination as? IAMyMusicStashViewController
             if let choice = selectedChoice {
                 if choice == StashChoice.Files {
-                    controller?.mode = .song
+                    controller?.mode = .AllFiles
                 }
             }
         }

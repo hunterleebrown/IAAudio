@@ -19,14 +19,11 @@ class IAMyStashTableViewCell: UITableViewCell {
     @IBOutlet weak var size: UILabel?
     @IBOutlet weak var length: UILabel?
     
-    var mode: StashMode!
     
     weak var archive: IAArchive? {
     
         didSet {
         
-            mode = .archive
-            
             if let title = trackTitle {
                 title.text = archive?.title
                 title.highlightedTextColor = UIColor.white
@@ -57,8 +54,6 @@ class IAMyStashTableViewCell: UITableViewCell {
     
     weak var file: IAPlayerFile? {
         didSet {
-
-            mode = .song
 
             if let download = downloadButton, let more = moreButton {
                 download.isHidden = false
