@@ -41,7 +41,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     
     var forcedShowNavigationBar = false
     
-    var fileHashByName: [String:Int] = [String:Int]()
+    var filesNameInRealm: [String:Bool] = [String:Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,22 +53,16 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         self.activityIndicatorView.startAnimation()
         self.tableView.backgroundColor = UIColor.clear
         
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
 
         //MARK: - Top Nav View Setting
-        
         if let sDoc = searchDoc {
             self.topTitle(text: sDoc.title!)
             if let creator = sDoc.displayCreator() {
                 self.topSubTitle(text: creator)
             }
         }
-        
-
-        
-        //MARK:
+        //MARK: -
         
         if let ident = identifier {
             
@@ -87,8 +81,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 
                 if let deets = self.docDeets {
                     if let rawHtml = self.doc?.rawDescription() {
-                        let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
-                        
+//                        let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
                         deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(rawHtml, font:deets.font )
                     }
                 }
@@ -103,49 +96,34 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 
                 if let files = self.doc?.sortedFiles {
                     self.audioFiles = files
-                    
-                }
-                
-                if let ar = IARealmManger.sharedInstance.archives(identifier: ident).first {
-                    self.archive = ar
-                    self.setUpToken()
+                    for file in files {
+                        self.filesNameInRealm[file.name!] = false
+                    }
                 }
                 
             })
         }
-        
-        
-      
-        
-        
-
-        
-        
-//        notificationToken = IARealmManger.sharedInstance.realm.addNotificationBlock { [weak self] notification, realm in
-//            //self?.tableView.reloadData()
-//            
-//            if let indyPath = self?.updatedIndexPath {
-//                self?.tableView.reloadRows(at: [indyPath], with: .none)
-//            }
-//        }
-        
 
     }
     
+    // An archive in Reaml has to be set up first before you can set up a notification token for it
     func setUpToken() {
+        
+        guard self.archive != nil else {
+            return
+        }
         
         if let ar = self.archive {
         
             if notificationToken == nil {
                 notificationToken = IARealmManger.sharedInstance.defaultSortedFiles(identifier: ar.identifier)?.addNotificationBlock({[weak self] (changes ) in
-                    
                     switch changes {
                     case .initial(let results):
-//                        print("FIRST: \(results)")
-//                        self?.updateRows(playerFiles: results)
+//                        print("INITIAL: \(results)")
+                        self?.updateRows(playerFiles: results)
                         break
                     case .update(let results, _, _, _):
-                        print(results)
+//                        print("UPDATE: \(results)")
                         self?.updateRows(playerFiles: results)
                     case .error(let error):
                         print (error)
@@ -158,26 +136,40 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    // This loops through all files in audioFiles, and if realm has it
+    // a check mark is added to the row.  If not, it restores the plus
     func updateRows(playerFiles:Results<IAPlayerFile>) {
-//        for file in playerFiles {
-//            if let rowIndex = self.fileHashByName[file.name] {
-//                let indexPath = IndexPath(row: rowIndex, section: 0)
-//                self.tableView.reloadRows(at: [indexPath], with: .none)
-//            }
-//        }
         
-//        var playerHash = [String:Int]()
-//        for (index,file) in playerFiles.enumerated() {
-//            playerHash[file.name] = index
-//        }
-//        
-//        for (index,file) in audioFiles.enumerated() {
-//            if let rowIndex = playerHash[file.name!] {
-//                
-//            }
-//        }
-
-        self.tableView.reloadData()
+        var playerHash = [String:Bool]()
+        for file in playerFiles {
+            playerHash[file.name] = true
+        }
+        var changedIndexPaths = [IndexPath]()
+        for (index,file) in self.audioFiles.enumerated() {
+//            print("\(file.name) \(index)")
+            let fileHash = filesNameInRealm[file.name!]
+            if playerHash[file.name!] != nil {
+                if fileHash == false {
+                    filesNameInRealm[file.name!] = true
+                    changedIndexPaths.append(IndexPath(row:index, section:0))
+                }
+            } else {
+                if fileHash == true {
+                    filesNameInRealm[file.name!] = false
+                    changedIndexPaths.append(IndexPath(row:index, section:0))
+                }
+            }
+        }
+        
+//        print(changedIndexPaths)
+//        print(filesNameInRealm)
+        
+        // If there are any changes, update the table
+        if changedIndexPaths.count > 0 {
+            self.tableView.reloadRows(at: changedIndexPaths, with: .none)
+        }
+        
+        
     }
     
 
@@ -189,6 +181,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         return .lightContent
     }
     
+    // MARK: Initial tableview.reloadData() happens here after the main image is fetched
     func setImage(url:URL) {
         self.albumImage.af_setImage(withURL: url,
                                placeholderImage: nil,
@@ -210,30 +203,40 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                                 case .failure(let _):
                                     break
                                 }
-                                
-                                self.layoutTableViewOffset()
-                                self.adjustColorsAndRemoveBlur()
-                                
-                                self.albumImage.backgroundColor = UIColor.white
-                                self.tableView.reloadData()
 
+                                self.tableView.reloadData()
+                                self.layoutTableViewOffset()
+                                self.albumImage.backgroundColor = UIColor.white
+                                
+                                // Now that initial set up of the UI is complete, lets set up a realm notification
+                                // token if there already is an archive
+                                if let ar = IARealmManger.sharedInstance.archives(identifier: self.identifier!).first {
+                                    self.archive = ar
+                                    self.setUpToken()
+                                }
         }
     }
     
+    // This is necessary to auto layout the tableViewHeaderView as AutoLayout is doesn't work with with
+    // UITableView.tableViewHeaderView's
     func layoutTableViewOffset() {
         var fr = self.topView.frame
 //        print("frame size height: \(self.imageHeight.constant)")
 //        print("title size height: \(self.docTitle.bounds.size.height)")
         fr.size.height =
             self.imageHeight.constant +
-            self.docDeets.bounds.size.height +
-            self.addAllButton.bounds.size.height + 50
+            10 + self.docDeets.bounds.size.height +
+            10 + self.addAllButton.bounds.size.height + 20
         
         self.topView.frame = fr
+        self.topView.setNeedsLayout()
         self.tableView.tableHeaderView = self.topView
+        self.adjustColorsAndRemoveBlur()
+
     }
     
-
+    // Remmoves the initial overlay that blocks the ui before 
+    // we've gotten a response from the Archive and laid out the tableview
     func adjustColorsAndRemoveBlur() {
         
         self.docDeets.textColor = UIColor.white
@@ -327,14 +330,20 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         cell.archiveDoc = self.doc
         cell.addButton.tag = indexPath.row
         
-        
+        // Not double targets just to be safe for reuse
         cell.addButton.removeTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         cell.addButton.removeTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
         
-         if doesPlayerFileExist(fileName: file.name!) {
-            cell.addButton.setIAIcon(.checkmark, forState: .normal)
-            cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
-         } else {
+        // There has to be a better way to express this logic
+        if let isInRealm = filesNameInRealm[file.name!]  {
+            if isInRealm {
+                cell.addButton.setIAIcon(.checkmark, forState: .normal)
+                cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
+            } else {
+                cell.addButton.setIAIcon(.plus, forState: .normal)
+                cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
+            }
+        } else {
             cell.addButton.setIAIcon(.plus, forState: .normal)
             cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         }
@@ -365,9 +374,8 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
             if let ar = self.archive ?? IARealmManger.sharedInstance.addArchive(doc: doc) {
                 self.archive = ar
                 IARealmManger.sharedInstance.addFile(archive: ar, file: file)
-                //                IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc, file:file))
             }
-
+            // Now that we have a realm Archive, set up notification (if not already set up)
             setUpToken()
         }
     }
@@ -378,10 +386,10 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
             self.archive = ar
             for file in audioFiles {
                 IARealmManger.sharedInstance.addFile(archive: ar, file: file)
-                //                IARealmManger.sharedInstance.addFile(docAndFile: (doc:doc!, file:file))
             }
         }
-    
+        
+        // Now that we have a realm Archive, set up notification (if not already set up)
         setUpToken()
     }
     
