@@ -159,7 +159,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         }
         
         // print(changedIndexPaths)
-        // print(filesNameInRealm)
+         print(filesNameInRealm)
         
         // If there are any changes, update the table
         if changedIndexPaths.count > 0 {
@@ -364,22 +364,17 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func didPressPlusButton(_ sender: UIButton) {
-        if let doc = self.doc {
-            let file = audioFiles[sender.tag]
-            
-            if let ar = self.archive ?? IARealmManger.sharedInstance.addArchive(doc: doc) {
-                self.archive = ar
-                IARealmManger.sharedInstance.addFile(archive: ar, file: file)
-            }
-            // Now that we have a realm Archive, set up notification (if not already set up)
-            setUpToken()
+        let file = audioFiles[sender.tag]
+        if let ar = reInitArchive(archive: self.archive) {
+            IARealmManger.sharedInstance.addFile(archive: ar, file: file)
         }
+        // Now that we have a realm Archive, set up notification (if not already set up)
+        setUpToken()
     }
     
     @IBAction func didPressAllAdd(_ sender: Any) {
         
-        if let ar = self.archive ?? IARealmManger.sharedInstance.addArchive(doc: doc!) {
-            self.archive = ar
+        if let ar = self.reInitArchive(archive: self.archive) {
             for file in audioFiles {
                 IARealmManger.sharedInstance.addFile(archive: ar, file: file)
             }
@@ -389,6 +384,19 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         setUpToken()
     }
     
+    fileprivate func reInitArchive(archive:IAArchive?) -> IAArchive? {
+        
+        if let ar = archive {
+            if ar.isInvalidated {
+                notificationToken = nil
+                self.archive = IARealmManger.sharedInstance.addArchive(doc: doc!)
+            }
+        } else {
+            self.archive = IARealmManger.sharedInstance.addArchive(doc: doc!)
+        }
+        
+        return self.archive
+    }
     
     deinit {
         notificationToken?.stop()
