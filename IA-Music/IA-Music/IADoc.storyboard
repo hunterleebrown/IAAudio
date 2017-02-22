@@ -152,6 +152,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="addButton" destination="3MX-Dz-Pps" id="clH-MI-cfk"/>
+                                            <outlet property="colorBackground" destination="DRe-7s-ZyC" id="LRy-PA-tKH"/>
                                             <outlet property="length" destination="FyI-hb-Fco" id="XxD-Qu-BOT"/>
                                             <outlet property="titleLabel" destination="R1Q-LX-SLf" id="SDH-79-zHT"/>
                                         </connections>
@@ -163,9 +164,9 @@
                                 </connections>
                             </tableView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngC-fO-pKT">
-                                <rect key="frame" x="0.0" y="500" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="480" width="375" height="387"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ea8-a0-8eQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="387"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="dark"/>
@@ -233,14 +234,14 @@
                             <rect key="frame" x="1" y="30" width="240" height="128"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8H0-iP-LsZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="48"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxz-6E-Nqx">
-                                    <rect key="frame" x="0.0" y="48" width="240" height="80"/>
+                                    <rect key="frame" x="0.0" y="50" width="240" height="78"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -262,7 +263,7 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3615" y="-1155"/>
+            <point key="canvasLocation" x="3613.5999999999999" y="-1155.472263868066"/>
         </scene>
     </scenes>
 </document>

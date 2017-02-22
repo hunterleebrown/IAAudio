@@ -58,7 +58,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.endUpdates()
                     
                     if self?.archives.count == 0 {
-                        self?.navigationController?.popViewController(animated: true)
+                        self?.popIfCorrectController()
                     }
                     
                 case .error(let error):
@@ -81,7 +81,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.endUpdates()
                     
                     if self?.archives.count == 0 {
-                        self?.navigationController?.popViewController(animated: true)
+                        self?.popIfCorrectController()
                     }
 
                 case .error(let error):
@@ -103,7 +103,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.endUpdates()
                     
                     if results.count == 0 {
-                        self?.navigationController?.popViewController(animated: true)
+                        self?.popIfCorrectController()
                     }
                     
                 case .error(let error):
@@ -113,6 +113,15 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 
             })
         }
+    }
+    
+    
+    func popIfCorrectController(){
+    
+        if (self.navigationController?.visibleViewController as? IAMyMusicStashViewController) != nil {
+           _ = self.navigationController?.popViewController(animated: true)
+        }
+       
     }
     
     
@@ -190,14 +199,18 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         }
 
         if notificationToken != nil {
-            if mode == .AllArchives {
-                if archives.count == 0 {
-                    self.navigationController?.popViewController(animated: true)
+            if mode == .AllArchives || mode == .SingleArchive{
+                if archives.count == 0 || archives.isInvalidated {
+                    self.popIfCorrectController()
                 }
             }
+            
 
             self.tableView.reloadData()
         }
+        
+
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -344,19 +357,25 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func didTapRemoveAllFiles(_ sender: Any) {
-        self.deleteAllFiles(archive: archives.first!)
+        if let archive = archives.first {
+            self.deleteAllFiles(archive: archive)
+        }
     }
     
     @IBAction func fullArchiveDetails(_ sender: Any) {
-        let button = sender as! UIButton
-        button.tag = 0
-        self.performSegue(withIdentifier: "docPush", sender: button)
+        if archives.first != nil {
+            let button = sender as! UIButton
+            button.tag = 0
+            self.performSegue(withIdentifier: "docPush", sender: button)
+        }
     }
     
     
     
     func deleteAllFiles(archive: IAArchive)  {
-        IARealmManger.sharedInstance.deleteAllFiles(archive: archive)
+        if !archive.isInvalidated {
+            IARealmManger.sharedInstance.deleteAllFiles(archive: archive)
+        }
     }
     
     

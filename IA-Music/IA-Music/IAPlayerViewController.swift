@@ -232,9 +232,16 @@ class IAPlayer: NSObject {
         self.fileTitle = file.title.isEmpty ? file.name : file.title
         self.fileIdentifierTitle = archive?.title
         self.fileIdentifier = file.archiveIdentifier
-        self.playUrl = URL(string: file.urlString)
         
-        self.loadAndPlay()
+        if let escapedString = file.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+            
+            print(escapedString)
+            
+            if let url = URL(string:escapedString) {
+                self.playUrl = url
+                self.loadAndPlay()
+            }
+        }
     }
     
     
@@ -262,7 +269,7 @@ class IAPlayer: NSObject {
             controller.nowPlayingTitle.text = self.fileTitle
             controller.nowPlayingItemButton.setTitle(self.fileIdentifierTitle, for: .normal)
         }
-        
+                
         avPlayer = AVPlayer(url: self.playUrl as URL)
         
         avPlayer?.addObserver(self, forKeyPath: "rate", options:.new, context: &observerContext)
