@@ -205,33 +205,36 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ekC-5V-y1K">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="42" width="240" height="44"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="c1Y-af-NTR">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="49"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="c1Y-af-NTR">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="22"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Rr-PK-a8Z">
-                                    <rect key="frame" x="0.0" y="49" width="240" height="79"/>
+                                    <rect key="frame" x="0.0" y="22" width="240" height="22"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="vxo-tf-J4s"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="ekC-5V-y1K" firstAttribute="centerY" secondItem="UX8-7L-jUp" secondAttribute="centerY" id="DSR-k2-voD"/>
                         <constraint firstItem="ekC-5V-y1K" firstAttribute="leading" secondItem="UX8-7L-jUp" secondAttribute="leading" id="FcH-dQ-IH6"/>
                         <constraint firstAttribute="trailing" secondItem="ekC-5V-y1K" secondAttribute="trailing" id="LiV-1w-g77"/>
-                        <constraint firstItem="ekC-5V-y1K" firstAttribute="top" secondItem="UX8-7L-jUp" secondAttribute="top" id="YJU-WJ-mN2"/>
-                        <constraint firstAttribute="bottom" secondItem="ekC-5V-y1K" secondAttribute="bottom" id="mKq-bB-lor"/>
                     </constraints>
                     <connections>
+                        <outlet property="titleStackView" destination="ekC-5V-y1K" id="TSh-kn-5L8"/>
                         <outlet property="topNavViewSubTitle" destination="1Rr-PK-a8Z" id="6Lh-MH-6OV"/>
                         <outlet property="topNavViewTitle" destination="c1Y-af-NTR" id="zb4-Js-4eN"/>
                     </connections>
@@ -244,7 +247,7 @@
             <objects>
                 <navigationController id="LSO-Gh-jq9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="KyY-rL-7XB"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3r0-IH-4W3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3r0-IH-4W3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

@@ -200,7 +200,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                                     
                                     self.backgroundImage.image = image
                                     break
-                                case .failure(let _):
+                                case .failure( _):
                                     break
                                 }
 

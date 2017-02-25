@@ -12,6 +12,7 @@ class IATopNavView: UIView {
 
     @IBOutlet weak var topNavViewTitle: UILabel!
     @IBOutlet weak var topNavViewSubTitle: UILabel!
+    @IBOutlet weak var titleStackView: UIStackView!
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -24,9 +25,22 @@ class IATopNavView: UIView {
     
 
     override func awakeFromNib() {
+        
+        if let stack = titleStackView {
+            stack.alignment = .center
+            stack.distribution = .fillProportionally
+            stack.spacing = 1.0
+        }
+        
         if let title = topNavViewTitle, let subtitle = topNavViewSubTitle {
+            title.font = UIFont.preferredFont(forTextStyle: .caption1)
+            subtitle.font = UIFont.preferredFont(forTextStyle: .caption2)
+            
+//            title.pinn
+            
             for label in [title, subtitle] {
                 label.textColor = UIColor.fairyCream
+                label.numberOfLines = 1
             }
         }
     }

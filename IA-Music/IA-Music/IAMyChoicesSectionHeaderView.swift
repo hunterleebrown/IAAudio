@@ -21,7 +21,7 @@ class IAMyChoicesSectionHeaderTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         
-        if let tit = title {
+        if (title) != nil {
             title.textColor = UIColor.fairyCream
         }
         self.contentView.backgroundColor = UIColor.clear

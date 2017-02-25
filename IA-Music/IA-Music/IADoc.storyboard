@@ -231,33 +231,36 @@
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YsW-CC-4aP">
-                            <rect key="frame" x="1" y="30" width="240" height="128"/>
+                            <rect key="frame" x="1" y="30" width="240" height="44"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8H0-iP-LsZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8H0-iP-LsZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="22"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxz-6E-Nqx">
-                                    <rect key="frame" x="0.0" y="50" width="240" height="78"/>
+                                    <rect key="frame" x="0.0" y="22" width="240" height="22"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" placeholder="YES" id="5BL-dh-TsN"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="YsW-CC-4aP" firstAttribute="leading" secondItem="gdX-NX-bmg" secondAttribute="leading" id="E9P-EI-dkP"/>
                         <constraint firstAttribute="trailing" secondItem="YsW-CC-4aP" secondAttribute="trailing" id="Mub-yb-5Ar"/>
-                        <constraint firstItem="YsW-CC-4aP" firstAttribute="top" secondItem="gdX-NX-bmg" secondAttribute="top" id="RPt-NQ-jSn"/>
-                        <constraint firstAttribute="bottom" secondItem="YsW-CC-4aP" secondAttribute="bottom" id="ohu-gP-ZfI"/>
+                        <constraint firstItem="YsW-CC-4aP" firstAttribute="centerY" secondItem="gdX-NX-bmg" secondAttribute="centerY" id="pPn-18-Uka"/>
                     </constraints>
                     <connections>
+                        <outlet property="titleStackView" destination="YsW-CC-4aP" id="KnE-XX-yoN"/>
                         <outlet property="topNavViewSubTitle" destination="Zxz-6E-Nqx" id="z1X-d7-j2P"/>
                         <outlet property="topNavViewTitle" destination="8H0-iP-LsZ" id="zjL-8V-52r"/>
                     </connections>
