@@ -39,7 +39,10 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     var mode: StashMode = .AllArchives
     var numberOfRows = 0
     
+    var filteredFiles: Results<IAPlayerFile>!
+    var filteredArchives: Results<IAArchive>!
     
+    var searchController: UISearchController!
     
     func setUpNotification(mode:StashMode)->NotificationToken {
     
@@ -130,11 +133,31 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         tableView.sectionFooterHeight = 0
         
+        searchController = UISearchController(searchResultsController:nil)
+        searchController.searchResultsUpdater = self
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        
+        searchController.searchBar.barTintColor = UIColor.clear
+        searchController.searchBar.tintColor = UIColor.fairyCream
+        searchController.searchBar.backgroundColor = UIColor.clear
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.isTranslucent = true
+        searchController.searchBar.scopeBarBackgroundImage = UIImage()
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = UIColor.fairyCream
+            textField.backgroundColor = UIColor.clear
+        }
+    
+
+        
         switch mode {
         case .AllArchives:
             archives = RealmManager.archives()
             notificationToken = self.setUpNotification(mode: .AllArchives)
             self.topTitle(text: "All Archives")
+            
             
         case .SingleArchive:
             archives = RealmManager.archives(identifier: identifier!)
@@ -151,12 +174,15 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             rightButton.action = #selector(IAMyMusicStashViewController.pushDoc(sender:))
             self.navigationItem.rightBarButtonItem = rightButton
             rightButton.tintColor = UIColor.fairyCream
+            
+
         
         case .AllFiles:
             let realm = RealmManager.realm
             files = realm?.objects(IAPlayerFile.self).sorted(byKeyPath: "title")
             notificationToken = self.setUpNotification(mode: .AllFiles)
             self.topTitle(text: "All Files")
+            
 
         }
         
@@ -166,6 +192,10 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         toggleArchvieButtons()
         tableView.tableFooterView = UIView()
+        self.tableView.tableHeaderView = searchController.searchBar
+        self.tableView.tableHeaderView?.backgroundColor = UIColor.clear
+
+        self.tableView.backgroundColor = UIColor.clear
 
     }
 
@@ -234,14 +264,27 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         switch mode {
         case .AllArchives:
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return filteredArchives.count
+            }
             return archives.count
         case .SingleArchive:
+            
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return filteredFiles.count
+            }
+            
             if let archive = archives.first {
                 return archive.files.count
             } else {
                 return 0
             }
         case .AllFiles:
+            
+            if searchController.isActive && searchController.searchBar.text != "" {
+                return filteredFiles.count
+            }
+            
             return files.count
         }
         
@@ -258,22 +301,39 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         switch mode {
         case .AllArchives:
             let cell = tableView.dequeueReusableCell(withIdentifier: "archiveCell", for: indexPath) as! IAMyStashTableViewCell
-            cell.archive = archives[indexPath.row]
-            
+           
+            let archive: IAArchive!
+            if searchController.isActive && searchController.searchBar.text != "" {
+                archive = filteredArchives[indexPath.row]
+            } else {
+                archive = archives[indexPath.row]
+            }
+            cell.archive = archive
             return cell
             
         case .SingleArchive:
             let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
-            let file = archiveFiles[indexPath.row]
+            let file: IAPlayerFile!
+            if searchController.isActive && searchController.searchBar.text != "" {
+                file = filteredFiles[indexPath.row]
+            } else {
+               file = archiveFiles[indexPath.row]
+            }
             cell.file = file
+            
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
             
             return cell
 
         case .AllFiles:
             let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
-            let file = files[indexPath.row]
-            cell.file = files[indexPath.row]
+            let file: IAPlayerFile!
+            if searchController.isActive && searchController.searchBar.text != "" {
+                file = filteredFiles[indexPath.row]
+            } else {
+                file = files[indexPath.row]
+            }
+            cell.file = file
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
             
             return cell
@@ -378,6 +438,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         }
     }
     
+
+    
+    
     
     //MARK: -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -420,7 +483,46 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
     
+    // MARK: searching
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        
+        let predicate = NSPredicate(format: "title CONTAINS[c] %@", searchText)
+        
+        switch mode {
+        case .SingleArchive:
+            filteredFiles = archiveFiles.filter(predicate)
+        case .AllFiles:
+            filteredFiles = files.filter(predicate)
+        case .AllArchives:
+            filteredArchives = archives.filter(predicate)
+        }
+        
+        tableView.reloadData()
+    }
+    
 }
 
+
+extension IAMyMusicStashViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
+}
+
+extension IAMyMusicStashViewController: UISearchBarDelegate {
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchController.searchBar.tintColor = UIColor.fairyCream
+        searchController.searchBar.backgroundColor = UIColor.clear
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.isTranslucent = true
+        searchController.searchBar.scopeBarBackgroundImage = UIImage()
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = UIColor.fairyCream
+        }
+    }
+
+}
 
 
