@@ -86,10 +86,12 @@ struct StringUtils {
         return formatter
     }()
     
-    
+    static var numberFormatter:NumberFormatter {
+        return NumberFormatter()
+    }
     
     static func sizeString(size:Int)->String {
-        let numberFormatter = NumberFormatter()
+        let numberFormatter = self.numberFormatter
         numberFormatter.numberStyle = .decimal
         numberFormatter.roundingMode = .up
         let calc = size / 1000000

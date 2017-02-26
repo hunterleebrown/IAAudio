@@ -14,6 +14,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet var topView: UIView!
+    @IBOutlet weak var topViewHolder: UIView!
     @IBOutlet weak var topViewTopContraint: NSLayoutConstraint!
     
     @IBOutlet weak var docTitle: UILabel!
@@ -28,6 +29,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var addAllButton: UIButton!
+    @IBOutlet weak var numberOfFilesLabel: UILabel!
     
     var audioFiles = [IAFileMappable]()
     let service = IAService()
@@ -96,7 +98,13 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 
                 if let files = self.doc?.sortedFiles {
                     self.audioFiles = files
+                    let count = files.count
+                    let formatter = StringUtils.numberFormatter
+                    let number = NSNumber(value:count)
+                    self.numberOfFilesLabel.text = "\(formatter.string(from: number)!) files"
                 }
+                
+                self.addAllButton.setTitleColor(UIColor.darkGray, for: .disabled)
                 
             })
         }
@@ -117,9 +125,17 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 switch changes {
                 case .initial(let results):
                     self?.updateRows(playerFiles: results)
+                    if let files = self?.audioFiles {
+                        self?.addAllButton.isEnabled = files.count > results.count
+                    }
                     break
                 case .update(let results, _, _, _):
                     self?.updateRows(playerFiles: results)
+                    
+                    if let files = self?.audioFiles {
+                        self?.addAllButton.isEnabled = files.count > results.count
+                    }
+                    
                 case .error(let error):
                     print (error)
                     break
@@ -191,19 +207,26 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                                 switch response.result {
                                 case .success(let image):
                                     let size = image.size
-                                    let height = (self.imageWidth.constant * size.height ) / size.width
-                                    self.imageHeight.constant = round(height)
-                                    self.originalSize = CGSize(width: self.imageWidth.constant, height: self.imageHeight.constant)
+                                    let height = round((self.imageWidth.constant * size.height ) / size.width)
+                                    
+                                    self.imageHeight.constant = height
+                                    
+                                    self.originalSize = CGSize(
+                                        width: self.imageWidth.constant,
+                                        height: height)
+                                    
                                     
                                     self.backgroundImage.image = image
+                                    
+                                    
                                     break
                                 case .failure( _):
                                     break
                                 }
-
-                                self.tableView.reloadData()
                                 self.layoutTableViewOffset()
-                                self.albumImage.backgroundColor = UIColor.white
+                                self.tableView.reloadData()
+                                
+//                                self.albumImage.backgroundColor = UIColor.white
                                 
                                 // Now that initial set up of the UI is complete, lets set up a realm notification
                                 // token if there already is an archive
@@ -219,17 +242,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
      UITableView.tableViewHeaderView's
      */
     func layoutTableViewOffset() {
-        var fr = self.topView.frame
-        // print("frame size height: \(self.imageHeight.constant)")
-        // print("title size height: \(self.docTitle.bounds.size.height)")
-        fr.size.height =
-            self.imageHeight.constant +
-            10 + self.docDeets.bounds.size.height +
-            10 + self.addAllButton.bounds.size.height + 20
         
+        var fr = self.topView.frame
+        fr.size.height = self.topViewHolder.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
         self.topView.frame = fr
-        self.topView.setNeedsLayout()
         self.tableView.tableHeaderView = self.topView
+        
         self.adjustColorsAndRemoveBlur()
 
     }
@@ -253,10 +271,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     var originalSize: CGSize?
     var isExpanded = false
     @IBAction func expandButton(_ sender: Any) {
+        
+        print("image bounds------->\(self.originalSize!)")
 
         if let img = albumImage.image {
             var width = self.view.bounds.size.width
-            var height = (width * img.size.height ) / img.size.width
+            var height = round((width * img.size.height ) / img.size.width)
             
             if isExpanded, let size = originalSize {
                 height = size.height
@@ -266,16 +286,16 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 docDeets.numberOfLines = 0
             }
             
-            self.imageWidth.constant = width
             self.imageHeight.constant = height
-            
+            self.imageWidth.constant = width
+
             UIView.animate(withDuration: 0.33, animations: {
-                self.topView.layoutIfNeeded()
+                self.topViewHolder.layoutIfNeeded()
                 self.layoutTableViewOffset()
             }) { (done) in
                 self.isExpanded = !self.isExpanded
+                self.tableView.setContentOffset(CGPoint.zero, animated: true)
             }
-            
         }
     }
     
@@ -371,14 +391,21 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func didPressAllAdd(_ sender: Any) {
         
-        if let ar = self.reInitArchive(archive: self.archive) {
-            for file in audioFiles {
-                RealmManager.addFile(archive: ar, file: file)
+        //self.alert(title: "Are you sure you want to add all files?", message: nil)
+        
+        self.alert(title: "Are you sure you want to add all files?", message: nil) { 
+            print("we said to go ahead")
+            if let ar = self.reInitArchive(archive: self.archive) {
+                for file in self.audioFiles {
+                    RealmManager.addFile(archive: ar, file: file)
+                }
             }
+            
+            // Now that we have a realm Archive, set up notification (if not already set up)
+            self.setUpToken()
         }
         
-        // Now that we have a realm Archive, set up notification (if not already set up)
-        setUpToken()
+
     }
     
     fileprivate func reInitArchive(archive:IAArchive?) -> IAArchive? {

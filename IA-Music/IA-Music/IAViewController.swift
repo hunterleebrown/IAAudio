@@ -112,4 +112,35 @@ extension UIViewController {
         self.navigationController?.navigationBar.tintColor = IAColors.fairyCream
         
     }
+    
+    func alert(title:String, message:String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle:UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.view.tintColor = IAColors.fairyRed
+        self.present(alert, animated: true, completion: nil);
+    
+    }
+
+    func alert(title:String, message:String?, completion:@escaping ()->Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle:UIAlertControllerStyle.alert)
+
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
+            if(self.presentingViewController != nil) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) -> Void in
+            completion()
+        }))
+        
+        alert.view.tintColor = IAColors.fairyRed
+        self.present(alert, animated: true, completion: nil);
+        
+    }
+
+    
+    
 }
