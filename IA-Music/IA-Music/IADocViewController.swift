@@ -115,7 +115,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         if let ar = self.archive {
         
             if notificationToken == nil {
-                notificationToken = IARealmManger.sharedInstance.defaultSortedFiles(identifier: ar.identifier)?.addNotificationBlock({[weak self] (changes ) in
+                notificationToken = RealmManager.defaultSortedFiles(identifier: ar.identifier)?.addNotificationBlock({[weak self] (changes ) in
                     switch changes {
                     case .initial(let results):
                         self?.updateRows(playerFiles: results)
@@ -210,7 +210,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                                 
                                 // Now that initial set up of the UI is complete, lets set up a realm notification
                                 // token if there already is an archive
-                                if let ar = IARealmManger.sharedInstance.archives(identifier: self.identifier!).first {
+                                if let ar = RealmManager.archives(identifier: self.identifier!).first {
                                     self.archive = ar
                                     self.setUpToken()
                                 }
@@ -306,7 +306,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     
     func doesPlayerFileExist(fileName:String)->Bool {
         if let ident = identifier {
-            if let hash = IARealmManger.sharedInstance.hashOfArchiveFiles(identifier: ident) {
+            if let hash = RealmManager.hashOfArchiveFiles(identifier: ident) {
                 return hash[fileName] != nil
             }
         }
@@ -358,7 +358,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         if self.doc != nil {
             let file = audioFiles[sender.tag]
             if let playerFile = filesNameInRealm[file.name!] {
-                IARealmManger.sharedInstance.deleteFile(file: playerFile!)
+                RealmManager.deleteFile(file: playerFile!)
             }
         }
     }
@@ -366,7 +366,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     @IBAction func didPressPlusButton(_ sender: UIButton) {
         let file = audioFiles[sender.tag]
         if let ar = reInitArchive(archive: self.archive) {
-            IARealmManger.sharedInstance.addFile(archive: ar, file: file)
+            RealmManager.addFile(archive: ar, file: file)
         }
         // Now that we have a realm Archive, set up notification (if not already set up)
         setUpToken()
@@ -376,7 +376,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         
         if let ar = self.reInitArchive(archive: self.archive) {
             for file in audioFiles {
-                IARealmManger.sharedInstance.addFile(archive: ar, file: file)
+                RealmManager.addFile(archive: ar, file: file)
             }
         }
         
@@ -389,10 +389,10 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         if let ar = archive {
             if ar.isInvalidated {
                 notificationToken = nil
-                self.archive = IARealmManger.sharedInstance.addArchive(doc: doc!)
+                self.archive = RealmManager.addArchive(doc: doc!)
             }
         } else {
-            self.archive = IARealmManger.sharedInstance.addArchive(doc: doc!)
+            self.archive = RealmManager.addArchive(doc: doc!)
         }
         
         return self.archive

@@ -116,7 +116,7 @@
 		5A4115B71E4D1939004F6B56 /* IAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAHomeViewController.swift; sourceTree = "<group>"; };
 		5A4115BB1E4D19DE004F6B56 /* IAHomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAHomeTabBarController.swift; sourceTree = "<group>"; };
 		5A4115BE1E4D1DF8004F6B56 /* IAPlayer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAPlayer.storyboard; sourceTree = "<group>"; };
-		5A4115C01E4D1E12004F6B56 /* IAPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPlayerViewController.swift; sourceTree = "<group>"; };
+		5A4115C01E4D1E12004F6B56 /* IAPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAPlayerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A4115CD1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallBeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallBeat.swift; sourceTree = "<group>"; };
 		5A4115CE1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallClipRotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallClipRotate.swift; sourceTree = "<group>"; };
 		5A4115CF1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallClipRotateMultiple.swift; sourceTree = "<group>"; };
@@ -156,11 +156,11 @@
 		5A4116161E4D280E004F6B56 /* IASearchDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDoc.swift; sourceTree = "<group>"; };
 		5A4116171E4D280E004F6B56 /* IAFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAFile.swift; sourceTree = "<group>"; };
 		5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchViewController.swift; sourceTree = "<group>"; };
-		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; };
+		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
 		5A47BE521E4DA04700FB0A7A /* IAService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAService.swift; sourceTree = "<group>"; };
 		5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDocMappable.swift; sourceTree = "<group>"; };
-		5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashChoicesViewController.swift; sourceTree = "<group>"; };
+		5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyStashChoicesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashChoicesTableViewCell.swift; sourceTree = "<group>"; };
 		5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyChoicesSectionHeaderView.swift; sourceTree = "<group>"; };
 		5A525C001E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyChoicesFindTableViewCell.swift; sourceTree = "<group>"; };
@@ -169,15 +169,15 @@
 		5A5764B51E502C53000D4465 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		5A5764B71E502E98000D4465 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
 		5A5764B91E50461C000D4465 /* IAArchiveDocMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAArchiveDocMappable.swift; sourceTree = "<group>"; };
-		5A5764BB1E5056B6000D4465 /* IADocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IADocViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
+		5A5764BB1E5056B6000D4465 /* IADocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IADocViewController.swift; sourceTree = "<group>"; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAAuidoFileTableViewCell.swift; sourceTree = "<group>"; };
-		5A615A131E515BC700B18161 /* IARealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IARealmManager.swift; sourceTree = "<group>"; };
+		5A615A131E515BC700B18161 /* IARealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IARealmManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A6DFBB71E5932D0002C0977 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5A6DFBB91E594209002C0977 /* IAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAViewController.swift; sourceTree = "<group>"; };
 		5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IATopNavView.swift; sourceTree = "<group>"; };
 		5A7967F21E584592001F44B0 /* UIFont+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Common.swift"; sourceTree = "<group>"; };
 		5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyMusicStash.storyboard; sourceTree = "<group>"; };
-		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; };
+		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

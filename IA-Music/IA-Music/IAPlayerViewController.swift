@@ -230,7 +230,7 @@ class IAPlayer: NSObject {
     
     func playFile(file:IAPlayerFile) {
         
-        let archive = IARealmManger.sharedInstance.archives(identifier: file.archiveIdentifier).first
+        let archive = RealmManager.archives(identifier: file.archiveIdentifier).first
         
         self.fileTitle = file.title.isEmpty ? file.name : file.title
         self.fileIdentifierTitle = archive?.title

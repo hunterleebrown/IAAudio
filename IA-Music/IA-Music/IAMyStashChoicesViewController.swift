@@ -29,7 +29,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
         self.tableView.sectionHeaderHeight = 44
         self.tableView.tableFooterView = UIView()
         
-        realm = IARealmManger.sharedInstance.realm
+        realm = RealmManager.realm
         
         if let fc = realm?.objects(IAPlayerFile.self) {
             filesCount = fc.count

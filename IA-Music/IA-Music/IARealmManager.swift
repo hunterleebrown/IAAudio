@@ -11,6 +11,7 @@ import RealmSwift
 
 typealias ArchiveDocAndFile = (doc:IAArchiveDocMappable, file:IAFileMappable)
 
+let RealmManager = IARealmManger.sharedInstance
 
 class IARealmManger {
     

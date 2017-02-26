@@ -66,7 +66,7 @@ class IAMyStashTableViewCell: UITableViewCell {
                 title.highlightedTextColor = IAColors.fairyRed
             }
             
-            if let archive = IARealmManger.sharedInstance.archives(identifier: (file?.archiveIdentifier)!).first {
+            if let archive = RealmManager.archives(identifier: (file?.archiveIdentifier)!).first {
                 
                 if let img = trackImage, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
                     img.af_setImage(withURL: url)

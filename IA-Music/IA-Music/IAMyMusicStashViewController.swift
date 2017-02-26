@@ -132,13 +132,13 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         switch mode {
         case .AllArchives:
-            archives = IARealmManger.sharedInstance.archives()
+            archives = RealmManager.archives()
             notificationToken = self.setUpNotification(mode: .AllArchives)
             self.topTitle(text: "All Archives")
             
         case .SingleArchive:
-            archives = IARealmManger.sharedInstance.archives(identifier: identifier!)
-            archiveFiles = IARealmManger.sharedInstance.defaultSortedFiles(identifier: identifier!)
+            archives = RealmManager.archives(identifier: identifier!)
+            archiveFiles = RealmManager.defaultSortedFiles(identifier: identifier!)
             notificationToken = self.setUpNotification(mode: .SingleArchive)
             
             self.topTitle(text: (archives.first?.title)!)
@@ -153,7 +153,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             rightButton.tintColor = UIColor.fairyCream
         
         case .AllFiles:
-            let realm = IARealmManger.sharedInstance.realm
+            let realm = RealmManager.realm
             files = realm?.objects(IAPlayerFile.self).sorted(byKeyPath: "title")
             notificationToken = self.setUpNotification(mode: .AllFiles)
             self.topTitle(text: "All Files")
@@ -341,11 +341,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             case .SingleArchive:
                 let file = archiveFiles[indexPath.row]
                 print(file)
-                IARealmManger.sharedInstance.deleteFile(file: file)
+                RealmManager.deleteFile(file: file)
                 
             case .AllFiles:
                 let file = files[indexPath.row]
-                IARealmManger.sharedInstance.deleteFile(file: file)
+                RealmManager.deleteFile(file: file)
             }
             
         case .insert:
@@ -374,7 +374,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     
     func deleteAllFiles(archive: IAArchive)  {
         if !archive.isInvalidated {
-            IARealmManger.sharedInstance.deleteAllFiles(archive: archive)
+            RealmManager.deleteAllFiles(archive: archive)
         }
     }
     
