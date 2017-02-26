@@ -80,20 +80,16 @@ class IAArchiveDocMappable: Mappable {
     }
     
     var sortedFiles: [IAFileMappable]? {
-        guard files != nil else { return nil}
+        guard let audFiles = files else { return nil}
         
-        let audioFiles = files?.filter({ (f) -> Bool in
+        let audioFiles = audFiles.filter({ (f) -> Bool in
             f.format == IAFileMappableFormat.mp3
         })
         
-        if let fs = audioFiles {
-            return fs.sorted(by: { (one, two) -> Bool in
-                guard one.cleanedTrack != nil, two.cleanedTrack != nil else { return false}
-                return one.cleanedTrack! < two.cleanedTrack!
-            })
-        }
-    
-        return nil
+        return audioFiles.sorted(by: { (one, two) -> Bool in
+            guard one.cleanedTrack != nil, two.cleanedTrack != nil else { return false}
+            return one.cleanedTrack! < two.cleanedTrack!
+        })    
     }
     
     func iconUrl()->URL {
@@ -105,26 +101,21 @@ class IAArchiveDocMappable: Mappable {
         return metadata["description"] as? String ?? nil
     }
     func noHTMLDescription()->String? {
-        guard desc != nil else { return nil }
-        if let desc = self.rawDescription() {
-            return desc.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-        }
-        return nil
+        guard let des = desc else { return nil }
+        return des.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
     
     var jpg: URL? {
         
-        let jpgs = files?.filter({ (file) -> Bool in
+        guard let allFiles = files else { return nil }
+        
+        let jpgs = allFiles.filter({ (file) -> Bool in
             file.format == .jpg
         })
         
-        if let js = jpgs {
-            guard js.count > 0  else { return nil}
-            if let name = js.first?.name {
-                return URL(string:"http://archive.org/download/\(identifier!)/\(name)")
-            }
-        }
-        return nil
+        guard jpgs.count > 0, let firstJpeg = jpgs.first, let name = firstJpeg.name else { return nil}
+        
+        return URL(string:"http://archive.org/download/\(identifier!)/\(name)")
     }
     
     func fileUrl(file:IAFileMappable) ->URL {

@@ -108,26 +108,23 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
      */
     func setUpToken() {
         
-        guard self.archive != nil else {
+        guard let ar = self.archive else {
             return
         }
         
-        if let ar = self.archive {
-        
-            if notificationToken == nil {
-                notificationToken = RealmManager.defaultSortedFiles(identifier: ar.identifier)?.addNotificationBlock({[weak self] (changes ) in
-                    switch changes {
-                    case .initial(let results):
-                        self?.updateRows(playerFiles: results)
-                        break
-                    case .update(let results, _, _, _):
-                        self?.updateRows(playerFiles: results)
-                    case .error(let error):
-                        print (error)
-                        break
-                    }
-                })
-            }
+        if notificationToken == nil {
+            notificationToken = RealmManager.defaultSortedFiles(identifier: ar.identifier)?.addNotificationBlock({[weak self] (changes ) in
+                switch changes {
+                case .initial(let results):
+                    self?.updateRows(playerFiles: results)
+                    break
+                case .update(let results, _, _, _):
+                    self?.updateRows(playerFiles: results)
+                case .error(let error):
+                    print (error)
+                    break
+                }
+            })
         }
         
     }
