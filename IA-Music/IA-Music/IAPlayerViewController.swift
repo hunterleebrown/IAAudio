@@ -63,6 +63,9 @@ class IAPlayerViewController: UIViewController {
         self.airPlayPicker.showsVolumeSlider = false
         
         IAPlayer.sharedInstance.controlsController = self
+        
+        self.playerIcon.layer.cornerRadius = 3.0
+        
 
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

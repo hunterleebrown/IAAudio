@@ -25,12 +25,15 @@ class IAHomeTabBarController: UITabBarController {
         let searchTab = self.tabBar.items![1] as UITabBarItem
         searchTab.setIAIcon(.iosSearch)
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(IAHomeTabBarController.didPressDocTitle),
-            name: NSNotification.Name(rawValue: "pushDoc"),
-            object: nil
-        )
+
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "pushDoc"), object: nil, queue: nil) { notification in
+            
+            if IAPlayer.sharedInstance.fileIdentifier != nil {
+                self.performSegue(withIdentifier: "docPush", sender: nil)
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "minimizePlayer"), object: nil)
+            }
+        }
         
         self.clearNavigation()
     }
@@ -54,14 +57,6 @@ class IAHomeTabBarController: UITabBarController {
                 let button = UIBarButtonItem(barButtonSystemItem: .done, target: doc, action: #selector(doc.dismissViewController))
                 doc.navigationItem.leftBarButtonItem = button
             }
-        }
-    }
-    
-    
-    func didPressDocTitle() {
-        if IAPlayer.sharedInstance.fileIdentifier != nil {
-            self.performSegue(withIdentifier: "docPush", sender: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "minimizePlayer"), object: nil)
         }
     }
     

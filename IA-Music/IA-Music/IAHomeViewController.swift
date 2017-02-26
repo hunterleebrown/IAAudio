@@ -41,15 +41,11 @@ class IAHomeViewController: UIViewController {
         
         self.playerHolder.superview?.layoutIfNeeded()
         
+        NotificationCenter.default.addObserver(forName:
+            NSNotification.Name(rawValue: "minimizePlayer"), object: nil, queue: nil) { notification in
+                self.showFullPlayer(false)
+        }
         
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(IAHomeViewController.minimizePlayer),
-            name: NSNotification.Name(rawValue: "minimizePlayer"),
-            object: nil
-        )
-        
-//        self.topViewCover.backgroundColor = IAColors.fairyRed
         
     }
     
@@ -92,9 +88,6 @@ class IAHomeViewController: UIViewController {
         }
     }
     
-    func minimizePlayer() {
-        self.showFullPlayer(false)
-    }
     
     func showFullPlayer(_ isFull:Bool){
         
