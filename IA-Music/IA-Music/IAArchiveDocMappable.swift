@@ -202,11 +202,7 @@ class IAFileMappable: Mappable {
     
     func displayLength() -> String? {
         if let l = length {
-            if let rawLength = Float(l) {
-                return StringUtils.timeFormatted(Int(rawLength))
-            } else {
-                return StringUtils.timeFormatter(timeString: l)
-            }
+            return StringUtils.timeFormatter(timeString: l)
         }
         return nil
     }

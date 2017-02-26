@@ -35,7 +35,13 @@ struct StringUtils {
     static func timeFormatter(timeString:String) -> String {
         
         let timeComponents = timeString.components(separatedBy: ":")
-        guard timeComponents.count > 0 && timeComponents.count < 3 else { return timeString }
+        guard timeComponents.count > 1 && timeComponents.count < 3 else {
+            
+            if let time = Float(timeString) {
+                return StringUtils.timeFormatted(Int(time.rounded()))
+            }
+            return timeString
+        }
         
         let seconds = Int(timeComponents.last!)
         let minutes = Int(timeComponents[0])
