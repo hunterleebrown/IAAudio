@@ -107,13 +107,18 @@ class IAArchiveDocMappable: Mappable {
     
     var jpg: URL? {
         
-        guard let allFiles = files else { return nil }
+        guard
+            let allFiles = files else { return nil }
         
         let jpgs = allFiles.filter({ (file) -> Bool in
             file.format == .jpg
         })
         
-        guard jpgs.count > 0, let firstJpeg = jpgs.first, let name = firstJpeg.name else { return nil}
+        guard
+            jpgs.count > 0,
+            let firstJpeg = jpgs.first,
+            let name = firstJpeg.name
+            else { return nil}
         
         return URL(string:"http://archive.org/download/\(identifier!)/\(name)")
     }
