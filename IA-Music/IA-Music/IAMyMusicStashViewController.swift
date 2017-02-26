@@ -55,10 +55,16 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 case .initial:
                     self?.tableView.reloadData()
                 case .update(let results, let deletions, let insertions, let modifications):
-                    self?.tableView.beginUpdates()
-                    self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self?.tableView.endUpdates()
+                    
+                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                        
+                    } else {
+                        
+                        self?.tableView.beginUpdates()
+                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.endUpdates()
+                    }
                     
                     if self?.archives.count == 0 {
                         self?.popIfCorrectController()
@@ -78,10 +84,16 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 case .initial:
                     self?.tableView.reloadData()
                 case .update(let results, let deletions, let insertions, let modifications):
-                    self?.tableView.beginUpdates()
-                    self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self?.tableView.endUpdates()
+                    
+                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                        
+                    } else {
+                        
+                        self?.tableView.beginUpdates()
+                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.endUpdates()
+                    }
                     
                     if self?.archives.count == 0 {
                         self?.popIfCorrectController()
@@ -100,10 +112,20 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 case .initial:
                     self?.tableView.reloadData()
                 case .update(let results, let deletions, let insertions, let modifications):
-                    self?.tableView.beginUpdates()
-                    self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                    self?.tableView.endUpdates()
+                    
+                    
+                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                        
+                    } else {
+                        
+                        self?.tableView.beginUpdates()
+                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.endUpdates()
+                    }
+                    
+                    
+
                     
                     if results.count == 0 {
                         self?.popIfCorrectController()
@@ -367,15 +389,29 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 
         switch mode {
         case .SingleArchive:
-            let file = archiveFiles[indexPath.row]
+            let file:IAPlayerFile!
+            if searchController.isActive && searchController.searchBar.text != "" {
+                file = filteredFiles[indexPath.row]
+            } else {
+               file = archiveFiles[indexPath.row]
+            }
             IAPlayer.sharedInstance.playFile(file: file)
             
         case .AllFiles:
-            let file = files[indexPath.row]
+            let file: IAPlayerFile!
+            if searchController.isActive && searchController.searchBar.text != "" {
+                file = filteredFiles[indexPath.row]
+            } else {
+                file = files[indexPath.row]
+            }
             IAPlayer.sharedInstance.playFile(file: file)
             
         case .AllArchives:
-            chosenArchive = archives[indexPath.row]
+            if searchController.isActive && searchController.searchBar.text != "" {
+                chosenArchive = filteredArchives[indexPath.row]
+            } else {
+                chosenArchive = archives[indexPath.row]
+            }
             self.performSegue(withIdentifier: "archivePush", sender: nil)
         }
         
@@ -395,17 +431,39 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             
             switch mode {
             case .AllArchives:
-                let archive = archives[indexPath.row]
-                self.deleteAllFiles(archive: archive)
+                let archive: IAArchive!
+                
+                if searchController.isActive && searchController.searchBar.text != "" {
+                    archive = filteredArchives[indexPath.row]
+                    self.deleteAllFiles(archive: archive)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                } else {
+                    archive = archives[indexPath.row]
+                    self.deleteAllFiles(archive: archive)
+                }
                 
             case .SingleArchive:
-                let file = archiveFiles[indexPath.row]
+                let file: IAPlayerFile!
+                if searchController.isActive && searchController.searchBar.text != "" {
+                    file = filteredFiles[indexPath.row]
+                    RealmManager.deleteFile(file: file)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                } else {
+                    file = archiveFiles[indexPath.row]
+                    RealmManager.deleteFile(file: file)
+                }
                 print(file)
-                RealmManager.deleteFile(file: file)
                 
             case .AllFiles:
-                let file = files[indexPath.row]
-                RealmManager.deleteFile(file: file)
+                let file: IAPlayerFile!
+                if searchController.isActive && searchController.searchBar.text != "" {
+                    file = filteredFiles[indexPath.row]
+                    RealmManager.deleteFile(file: file)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                } else {
+                    file = files[indexPath.row]
+                    RealmManager.deleteFile(file: file)
+                }
             }
             
         case .insert:
