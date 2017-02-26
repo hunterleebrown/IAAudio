@@ -32,6 +32,29 @@ struct StringUtils {
         
     }
     
+    static func timeFormatter(timeString:String) -> String {
+        
+        let timeComponents = timeString.components(separatedBy: ":")
+        guard timeComponents.count > 0 && timeComponents.count < 3 else { return timeString }
+        
+        let seconds = Int(timeComponents.last!)
+        let minutes = Int(timeComponents[0])
+        
+        let secs = String(format: "%02d", arguments: [seconds!])
+        
+        if minutes! <= 60 {
+            let mins = String(format: "%02d", arguments: [minutes!])
+            return "\(mins):\(secs)"
+        }
+        
+        let hours = minutes! / 60
+        let minutesRemainder = minutes! % 60
+        
+        let h = String(format: "%02d", hours)
+        let m = String(format: "%02d", minutesRemainder)
+        
+        return "\(h):\(m):\(secs)"
+    }
     
     static func timeFormatted(_ totalSeconds:Int) ->String {
         
@@ -41,10 +64,13 @@ struct StringUtils {
         
         let secs = String(format: "%02d", arguments: [seconds])
         let mins = String(format: "%02d", arguments: [minutes])
-        let hs = String(format: "%02d", arguments: [hours])
         
-        return "\(hs):\(mins):\(secs)"
-    
+        if hours > 0 {
+            let hs = String(format: "%02d", arguments: [hours])
+            return "\(hs):\(mins):\(secs)"
+        } else {
+            return "\(mins):\(secs)"
+        }
     }
     
     

@@ -205,7 +205,7 @@ class IAFileMappable: Mappable {
             if let rawLength = Float(l) {
                 return StringUtils.timeFormatted(Int(rawLength))
             } else {
-                return length
+                return StringUtils.timeFormatter(timeString: l)
             }
         }
         return nil

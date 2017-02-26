@@ -36,10 +36,10 @@ class IAPlayerFile: Object {
     }
     
     func displayLength() -> String? {
-        if let rawLength = Float(length) {
-            return StringUtils.timeFormatted(Int(rawLength))
+        if let rawLength = Int(length) {
+            return StringUtils.timeFormatted(rawLength)
         } else {
-            return length
+            return StringUtils.timeFormatter(timeString: length)
         }
     }
     
