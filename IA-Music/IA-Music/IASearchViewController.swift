@@ -26,8 +26,6 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
         tableView.cellLayoutMarginsFollowReadableWidth = false
         
         searchBar.tintColor = UIColor.fairyCream
-        
-        
         searchBar.backgroundColor = UIColor.clear
         searchBar.backgroundImage = UIImage()
         searchBar.isTranslucent = true

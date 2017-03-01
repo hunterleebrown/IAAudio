@@ -44,112 +44,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     
     var searchController: UISearchController!
     
-    func setUpNotification(mode:StashMode)->NotificationToken {
-    
-        switch mode {
-        case .SingleArchive:
-            
-            return archiveFiles.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
-                
-                switch changes {
-                case .initial:
-                    self?.tableView.reloadData()
-                case .update(let results, let deletions, let insertions, let modifications):
-                    
-                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
-                        
-                    } else {
-                        
-                        self?.tableView.beginUpdates()
-                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.endUpdates()
-                    }
-                    
-                    if self?.archives.count == 0 {
-                        self?.popIfCorrectController()
-                    }
-                    
-                case .error(let error):
-                    print (error)
-                    break
-                }
-                
-            })
-            
-        case .AllArchives:
-            return archives.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAArchive>>) in
-            
-                switch changes {
-                case .initial:
-                    self?.tableView.reloadData()
-                case .update(let results, let deletions, let insertions, let modifications):
-                    
-                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
-                        
-                    } else {
-                        
-                        self?.tableView.beginUpdates()
-                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.endUpdates()
-                    }
-                    
-                    if self?.archives.count == 0 {
-                        self?.popIfCorrectController()
-                    }
-
-                case .error(let error):
-                    print (error)
-                    break
-                }
-                
-            })
-        case .AllFiles:
-            return files.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
-                
-                switch changes {
-                case .initial:
-                    self?.tableView.reloadData()
-                case .update(let results, let deletions, let insertions, let modifications):
-                    
-                    
-                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
-                        
-                    } else {
-                        
-                        self?.tableView.beginUpdates()
-                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.endUpdates()
-                    }
-                    
-                    
-
-                    
-                    if results.count == 0 {
-                        self?.popIfCorrectController()
-                    }
-                    
-                case .error(let error):
-                    print (error)
-                    break
-                }
-                
-            })
-        }
-    }
-    
-    
-    func popIfCorrectController(){
-    
-        if (self.navigationController?.visibleViewController as? IAMyMusicStashViewController) != nil {
-           _ = self.navigationController?.popViewController(animated: true)
-        }
-       
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -161,11 +55,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         searchController.dimsBackgroundDuringPresentation = false
         
         
-        searchController.searchBar.barTintColor = UIColor.clear
         searchController.searchBar.tintColor = UIColor.fairyCream
         searchController.searchBar.backgroundColor = UIColor.clear
-        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.barTintColor = UIColor.clear
         searchController.searchBar.isTranslucent = true
+        searchController.searchBar.backgroundImage = UIImage()
         searchController.searchBar.scopeBarBackgroundImage = UIImage()
         if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             textField.textColor = UIColor.fairyCream
@@ -214,7 +108,10 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         toggleArchvieButtons()
         tableView.tableFooterView = UIView()
-        self.tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchBar.frame = self.searchBarHolder.bounds
+        self.searchBarHolder.addSubview(searchController.searchBar)
+        
         self.tableView.tableHeaderView?.backgroundColor = UIColor.clear
 
         self.tableView.backgroundColor = UIColor.clear
@@ -234,10 +131,109 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             self.archiveButtonsHeight.constant = 44
             self.archiveButtonsHolder.isHidden = false
         }
-    
     }
 
+    func setUpNotification(mode:StashMode)->NotificationToken {
+        
+        switch mode {
+        case .SingleArchive:
+            
+            return archiveFiles.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
+                
+                switch changes {
+                case .initial:
+                    self?.tableView.reloadData()
+                case .update(let results, let deletions, let insertions, let modifications):
+                    
+                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                        
+                    } else {
+                        
+                        self?.tableView.beginUpdates()
+                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.endUpdates()
+                    }
+                    
+                    if self?.archives.count == 0 {
+                        self?.popIfCorrectController()
+                    }
+                    
+                case .error(let error):
+                    print (error)
+                    break
+                }
+                
+            })
+            
+        case .AllArchives:
+            return archives.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAArchive>>) in
+                
+                switch changes {
+                case .initial:
+                    self?.tableView.reloadData()
+                case .update(let results, let deletions, let insertions, let modifications):
+                    
+                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                        
+                    } else {
+                        
+                        self?.tableView.beginUpdates()
+                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.endUpdates()
+                    }
+                    
+                    if self?.archives.count == 0 {
+                        self?.popIfCorrectController()
+                    }
+                    
+                case .error(let error):
+                    print (error)
+                    break
+                }
+                
+            })
+        case .AllFiles:
+            return files.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
+                
+                switch changes {
+                case .initial:
+                    self?.tableView.reloadData()
+                case .update(let results, let deletions, let insertions, let modifications):
+                    
+                    
+                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                        
+                    } else {
+                        
+                        self?.tableView.beginUpdates()
+                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.endUpdates()
+                    }
+                    
+                    if results.count == 0 {
+                        self?.popIfCorrectController()
+                    }
+                    
+                case .error(let error):
+                    print (error)
+                    break
+                }
+                
+            })
+        }
+    }
     
+    
+    func popIfCorrectController(){
+        
+        if (self.navigationController?.visibleViewController as? IAMyMusicStashViewController) != nil {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         self.clearNavigation()
@@ -257,7 +253,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 }
             }
             
-
             self.tableView.reloadData()
         }
         
@@ -414,10 +409,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             }
             self.performSegue(withIdentifier: "archivePush", sender: nil)
         }
-        
-        
     }
-    
     
     //MARK: - Editiing
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -488,17 +480,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         }
     }
     
-    
-    
     func deleteAllFiles(archive: IAArchive)  {
         if !archive.isInvalidated {
             RealmManager.deleteAllFiles(archive: archive)
         }
     }
-    
-
-    
-    
     
     //MARK: -
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -544,14 +530,16 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     // MARK: searching
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         
-        let predicate = NSPredicate(format: "title CONTAINS[c] %@", searchText)
         
         switch mode {
         case .SingleArchive:
+            let predicate = NSPredicate(format: "title CONTAINS[c] %@ OR name CONTAINS[c] %@", searchText, searchText)
             filteredFiles = archiveFiles.filter(predicate)
         case .AllFiles:
+            let predicate = NSPredicate(format: "title CONTAINS[c] %@ OR name CONTAINS[c] %@", searchText, searchText)
             filteredFiles = files.filter(predicate)
         case .AllArchives:
+            let predicate = NSPredicate(format: "title CONTAINS[c] %@", searchText)
             filteredArchives = archives.filter(predicate)
         }
         
@@ -570,16 +558,6 @@ extension IAMyMusicStashViewController: UISearchResultsUpdating {
 
 extension IAMyMusicStashViewController: UISearchBarDelegate {
 
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchController.searchBar.tintColor = UIColor.fairyCream
-        searchController.searchBar.backgroundColor = UIColor.clear
-        searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.isTranslucent = true
-        searchController.searchBar.scopeBarBackgroundImage = UIImage()
-        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textField.textColor = UIColor.fairyCream
-        }
-    }
 
 }
 
