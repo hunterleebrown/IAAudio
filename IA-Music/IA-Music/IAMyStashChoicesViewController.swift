@@ -107,6 +107,9 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
 
         if indexPath.section == ChoiceSelctions.Data.rawValue {
             let cell = self.tableView.dequeueReusableCell(withIdentifier: "dataCell") as! IAMyChoicesDataTableViewCell
+            let counts = RealmManager.totalDeviceStorage()
+            cell.numberOfDownloadedFiles.text = "\(counts.numberOfFiles)"
+            cell.diskSpaceUsage.text = counts.size
             return cell
         }
         
