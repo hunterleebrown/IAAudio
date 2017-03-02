@@ -110,7 +110,7 @@ extension UIColor {
 struct IAMediaUtils
 {
     
-//    static func downloadFilePath(_ response: HTTPURLResponse, file:PlayerFile) ->String{
+//    static func downloadFilePath(_ response: HTTPURLResponse, file:IAPlayerFile) ->String{
 //        let fileName = response.suggestedFilename!
 //        return IAMediaUtils.removeSpecialCharsFromString(fileName)
 //    }

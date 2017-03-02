@@ -8,6 +8,8 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
+
 
 typealias ArchiveDocAndFile = (doc:IAArchiveDocMappable, file:IAFileMappable)
 
@@ -229,5 +231,59 @@ class IARealmManger {
         let archiveResult = realm.objects(IAArchive.self).filter(archivePredicate).first
         return archiveResult?.files.sorted(byKeyPath: "displayOrder")
     }
+    
+    
+    
+    
+    
+    // MARK: - Downloading
+    
+    
+    
+    static func downloadFilePath(_ response: HTTPURLResponse, file:IAPlayerFile) ->String{
+        let fileName = response.suggestedFilename!
+        return IAMediaUtils.removeSpecialCharsFromString(fileName)
+    }
+    
+    func downloadFile(playerFile:IAPlayerFile) {
+        
+        let destination: DownloadRequest.DownloadFileDestination = { _, response in
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let trackPath = documentsURL.appendingPathComponent("tracks/\(playerFile.archiveIdentifier)/\(IARealmManger.downloadFilePath(response, file: playerFile))")
+            
+            return (trackPath, [.removePreviousFile, .createIntermediateDirectories])
+        }
+     
+        print("----------->: \(destination)")
+        
+        if let escapedUrl = playerFile.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+            //            Alamofire.download(url, to: destination).responseData { response in
+            //                if let destinationUrl = response.destinationURL ? {
+            //                    completionHandler(destinationUrl)
+            //                }
+            
+            
+            Alamofire.download(escapedUrl, to: destination).response { response in
+                print(response)
+                
+                
+                if response.error == nil, let downloadPath = response.destinationURL?.path {
+                    print("------> downloaded file to here: \(downloadPath)")
+                }
+            }
+            
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }

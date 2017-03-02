@@ -318,7 +318,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         switch mode {
         case .AllArchives:
             let cell = tableView.dequeueReusableCell(withIdentifier: "archiveCell", for: indexPath) as! IAMyStashTableViewCell
-           
+            if let downloadButton = cell.downloadButton {
+                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+            }
             let archive: IAArchive!
             if searchController.isActive && searchController.searchBar.text != "" {
                 archive = filteredArchives[indexPath.row]
@@ -330,6 +332,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             
         case .SingleArchive:
             let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+            if let downloadButton = cell.downloadButton {
+                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+            }
             let file: IAPlayerFile!
             if searchController.isActive && searchController.searchBar.text != "" {
                 file = filteredFiles[indexPath.row]
@@ -337,13 +342,17 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                file = archiveFiles[indexPath.row]
             }
             cell.file = file
-            
+            cell.downloadButton?.tag = indexPath.row
+            cell.downloadButton?.addTarget(self, action:#selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
             
             return cell
 
         case .AllFiles:
             let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+            if let downloadButton = cell.downloadButton {
+                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+            }
             let file: IAPlayerFile!
             if searchController.isActive && searchController.searchBar.text != "" {
                 file = filteredFiles[indexPath.row]
@@ -351,6 +360,8 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 file = files[indexPath.row]
             }
             cell.file = file
+            cell.downloadButton?.tag = indexPath.row
+            cell.downloadButton?.addTarget(self, action:#selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
             
             return cell
@@ -545,6 +556,32 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         tableView.reloadData()
     }
+    
+    
+    func didPressDownloadButton(sender:UIButton) {
+        
+        let file: IAPlayerFile!
+        if searchController.isActive && searchController.searchBar.text != "" {
+            file = filteredFiles[sender.tag]
+        } else {
+            
+            switch mode {
+            case .AllFiles:
+                file = files[sender.tag]
+            case .SingleArchive:
+                file = archiveFiles[sender.tag]
+            default:
+                return
+            }
+            
+        }
+        
+        print("-------------> didPressDownloadButton: \(file)")
+        
+        RealmManager.downloadFile(playerFile: file)
+    }
+    
+    
     
 }
 
