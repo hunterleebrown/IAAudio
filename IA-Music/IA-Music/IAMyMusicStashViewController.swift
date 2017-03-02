@@ -152,6 +152,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                         self?.tableView.beginUpdates()
                         self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                         self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                         self?.tableView.endUpdates()
                     }
                     
@@ -181,6 +182,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                         self?.tableView.beginUpdates()
                         self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                         self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                         self?.tableView.endUpdates()
                     }
                     
@@ -210,6 +212,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                         self?.tableView.beginUpdates()
                         self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                         self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                        self?.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
                         self?.tableView.endUpdates()
                     }
                     

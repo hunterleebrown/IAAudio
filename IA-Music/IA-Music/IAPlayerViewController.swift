@@ -236,14 +236,22 @@ class IAPlayer: NSObject {
         self.fileIdentifierTitle = archive?.title
         self.fileIdentifier = file.archiveIdentifier
         
-        if let escapedString = file.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-            
-            print(escapedString)
-            
-            if let url = URL(string:escapedString) {
-                self.playUrl = url
-                self.loadAndPlay()
+        var playerUrl:URL?
+        
+        if file.downloaded {
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let fileUrl = documentsURL.appendingPathComponent(file.urlString)
+            playerUrl = fileUrl
+        } else {
+            if let escapedString = file.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+                playerUrl = URL(string:escapedString)
             }
+        }
+        
+        if let url = playerUrl {
+            print("--------> playerUrl: \(url.absoluteString)")
+            self.playUrl = url
+            self.loadAndPlay()
         }
     }
     

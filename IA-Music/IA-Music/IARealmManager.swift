@@ -240,41 +240,47 @@ class IARealmManger {
     
     
     
-    static func downloadFilePath(_ response: HTTPURLResponse, file:IAPlayerFile) ->String{
+    static func downloadFilePath(_ response: HTTPURLResponse) ->String{
         let fileName = response.suggestedFilename!
         return IAMediaUtils.removeSpecialCharsFromString(fileName)
     }
     
     func downloadFile(playerFile:IAPlayerFile) {
         
-        let destination: DownloadRequest.DownloadFileDestination = { _, response in
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let trackPath = documentsURL.appendingPathComponent("tracks/\(playerFile.archiveIdentifier)/\(IARealmManger.downloadFilePath(response, file: playerFile))")
+        let identifier = playerFile.archiveIdentifier
+        if let fileName = playerFile.name.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+            let filePath = "tracks/\(identifier)/\(fileName)"
             
-            return (trackPath, [.removePreviousFile, .createIntermediateDirectories])
-        }
-     
-        print("----------->: \(destination)")
-        
-        if let escapedUrl = playerFile.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-            //            Alamofire.download(url, to: destination).responseData { response in
-            //                if let destinationUrl = response.destinationURL ? {
-            //                    completionHandler(destinationUrl)
-            //                }
-            
-            
-            Alamofire.download(escapedUrl, to: destination).response { response in
-                print(response)
-                
-                
-                if response.error == nil, let downloadPath = response.destinationURL?.path {
-                    print("------> downloaded file to here: \(downloadPath)")
-                }
+            let destination: DownloadRequest.DownloadFileDestination = { _, response in
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let trackPath = documentsURL.appendingPathComponent("tracks/\(identifier)/\(IARealmManger.downloadFilePath(response))")
+                return (trackPath, [.removePreviousFile, .createIntermediateDirectories])
             }
             
+            print("----------->: \(destination)")
             
+            if let escapedUrl = playerFile.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
+                
+                // TODO: add pregress download and prehaps queue the downloads up somehow
+                Alamofire.download(escapedUrl, to: destination).response { response in
+                    print(response)
+                    if response.error == nil, let downloadPath = response.destinationURL?.path {
+                        print("------> downloaded file to here: \(downloadPath)")
+                        self.updateFileWithLocalPath(playerFile: playerFile, localPath: filePath)
+                    }
+                }
+            }
         }
         
+    }
+    
+    
+    func updateFileWithLocalPath(playerFile:IAPlayerFile, localPath:String) {
+    
+        try! realm.write {
+            playerFile.urlString = localPath
+            playerFile.downloaded = true
+        }
     }
     
     

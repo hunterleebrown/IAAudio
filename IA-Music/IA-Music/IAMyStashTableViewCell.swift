@@ -81,8 +81,8 @@ class IAMyStashTableViewCell: UITableViewCell {
             }
             
             
-            if let download = downloadButton {
-                if(file?.urlString.range(of: "http://") != nil) {
+            if let download = downloadButton, let f = file {
+                if(!f.downloaded) {
                     download.setIAIcon(.iosCloudDownloadOutline, forState: UIControlState())
                     download.isHidden = false
                     download.isEnabled = true

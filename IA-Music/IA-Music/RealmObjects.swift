@@ -19,9 +19,9 @@ class IAPlayerFile: Object {
     dynamic var length = ""
     dynamic var archiveIdentifier = ""
     
-    override static func primaryKey() -> String? {
-        return "urlString"
-    }
+//    override static func primaryKey() -> String? {
+//        return "urlString"
+//    }
     
     func displayTitle() -> String {
         return title.isEmpty ? name : title
