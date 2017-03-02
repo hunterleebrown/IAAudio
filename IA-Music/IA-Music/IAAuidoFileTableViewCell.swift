@@ -17,7 +17,7 @@ class IAAuidoFileTableViewCell: UITableViewCell {
     
     weak var audioFile: IAFileMappable? {
         didSet {
-            titleLabel.text = audioFile?.title ?? audioFile?.name
+            titleLabel.text = audioFile?.displayName
             addButton.setIAIcon(.plusRound, forState: .normal)
             
             self.colorBackground.backgroundColor = isSelected ? UIColor.fairyCreamAlpha : UIColor.darkGray

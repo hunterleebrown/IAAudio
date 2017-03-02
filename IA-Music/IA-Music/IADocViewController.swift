@@ -31,6 +31,9 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var addAllButton: UIButton!
     @IBOutlet weak var numberOfFilesLabel: UILabel!
     
+    var filteredAudioFiles = [IAFileMappable]()
+    @IBOutlet weak var searchBarHolder: UIView!
+    
     var audioFiles = [IAFileMappable]()
     let service = IAService()
     
@@ -108,6 +111,11 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 
             })
         }
+        
+        self.initSearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.frame = self.searchBarHolder.bounds
+        self.searchBarHolder.addSubview(searchController.searchBar)
 
     }
     
@@ -336,12 +344,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return audioFiles.count
+        return isSearching() ? filteredAudioFiles.count : audioFiles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "audioCell", for: indexPath) as! IAAuidoFileTableViewCell
-        let file = audioFiles[indexPath.row]
+        let file = isSearching() ? filteredAudioFiles[indexPath.row] : audioFiles[indexPath.row]
         cell.audioFile = file
         cell.archiveDoc = self.doc
         cell.addButton.tag = indexPath.row
@@ -363,17 +371,28 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let file = audioFiles[indexPath.row]
+        let file = isSearching() ? filteredAudioFiles[indexPath.row] : audioFiles[indexPath.row]
+        
         if let theDoc = doc {
             IAPlayer.sharedInstance.playFile(file: file, doc: theDoc)
         }
 
     }
+    
+    func filterContentForSearchText(searchText: String) {
+        
+        filteredAudioFiles = audioFiles.filter({( file : IAFileMappable) -> Bool in
+            return file.displayName.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
+    }
+    
 
     @IBAction func didPressCheckmark(_ sender: UIButton) {
         
         if self.doc != nil {
-            let file = audioFiles[sender.tag]
+            let file = isSearching() ? filteredAudioFiles[sender.tag] : audioFiles[sender.tag]
             if let playerFile = filesNameInRealm[file.name!] {
                 RealmManager.deleteFile(file: playerFile!)
             }
@@ -381,7 +400,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func didPressPlusButton(_ sender: UIButton) {
-        let file = audioFiles[sender.tag]
+        let file = isSearching() ? filteredAudioFiles[sender.tag] : audioFiles[sender.tag]
         if let ar = reInitArchive(archive: self.archive) {
             RealmManager.addFile(archive: ar, file: file)
         }
@@ -426,4 +445,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         notificationToken?.stop()
     }
     
+}
+
+
+extension IADocViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+    }
 }

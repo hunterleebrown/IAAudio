@@ -42,31 +42,15 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     var filteredFiles: Results<IAPlayerFile>!
     var filteredArchives: Results<IAArchive>!
     
-    var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.sectionFooterHeight = 0
         
-        searchController = UISearchController(searchResultsController:nil)
+        self.initSearchController()
         searchController.searchResultsUpdater = self
-        definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
         
-        
-        searchController.searchBar.tintColor = UIColor.fairyCream
-        searchController.searchBar.backgroundColor = UIColor.clear
-        searchController.searchBar.barTintColor = UIColor.clear
-        searchController.searchBar.isTranslucent = true
-        searchController.searchBar.backgroundImage = UIImage()
-        searchController.searchBar.scopeBarBackgroundImage = UIImage()
-        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
-            textField.textColor = UIColor.fairyCream
-            textField.backgroundColor = UIColor.clear
-        }
-    
-
         
         switch mode {
         case .AllArchives:
@@ -113,7 +97,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         self.searchBarHolder.addSubview(searchController.searchBar)
         
         self.tableView.tableHeaderView?.backgroundColor = UIColor.clear
-
         self.tableView.backgroundColor = UIColor.clear
 
     }
@@ -145,7 +128,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.reloadData()
                 case .update(let results, let deletions, let insertions, let modifications):
                     
-                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                    if (self?.isSearching())!{
                         
                     } else {
                         
@@ -175,7 +158,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     self?.tableView.reloadData()
                 case .update(let results, let deletions, let insertions, let modifications):
                     
-                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                    if (self?.isSearching())! {
                         
                     } else {
                         
@@ -205,7 +188,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 case .update(let results, let deletions, let insertions, let modifications):
                     
                     
-                    if (self?.searchController.isActive)! && self?.searchController.searchBar.text != "" {
+                    if (self?.isSearching())! {
                         
                     } else {
                         
@@ -284,13 +267,12 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         switch mode {
         case .AllArchives:
-            if searchController.isActive && searchController.searchBar.text != "" {
-                return filteredArchives.count
-            }
-            return archives.count
+            
+            return isSearching() ? filteredArchives.count : archives.count
+            
         case .SingleArchive:
             
-            if searchController.isActive && searchController.searchBar.text != "" {
+            if isSearching() {
                 return filteredFiles.count
             }
             
@@ -301,11 +283,8 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             }
         case .AllFiles:
             
-            if searchController.isActive && searchController.searchBar.text != "" {
-                return filteredFiles.count
-            }
-            
-            return files.count
+            return isSearching() ? filteredFiles.count : files.count
+
         }
         
     }
@@ -324,12 +303,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             if let downloadButton = cell.downloadButton {
                 downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
-            let archive: IAArchive!
-            if searchController.isActive && searchController.searchBar.text != "" {
-                archive = filteredArchives[indexPath.row]
-            } else {
-                archive = archives[indexPath.row]
-            }
+            
+            let archive = isSearching() ? filteredArchives[indexPath.row] : archives[indexPath.row]
+            
             cell.archive = archive
             return cell
             
@@ -338,12 +314,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             if let downloadButton = cell.downloadButton {
                 downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
-            let file: IAPlayerFile!
-            if searchController.isActive && searchController.searchBar.text != "" {
-                file = filteredFiles[indexPath.row]
-            } else {
-               file = archiveFiles[indexPath.row]
-            }
+            let file = isSearching() ? filteredFiles[indexPath.row] : archiveFiles[indexPath.row]
             cell.file = file
             cell.downloadButton?.tag = indexPath.row
             cell.downloadButton?.addTarget(self, action:#selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
@@ -356,12 +327,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             if let downloadButton = cell.downloadButton {
                 downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
-            let file: IAPlayerFile!
-            if searchController.isActive && searchController.searchBar.text != "" {
-                file = filteredFiles[indexPath.row]
-            } else {
-                file = files[indexPath.row]
-            }
+            let file = isSearching() ? filteredFiles[indexPath.row] : files[indexPath.row]
             cell.file = file
             cell.downloadButton?.tag = indexPath.row
             cell.downloadButton?.addTarget(self, action:#selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
@@ -398,29 +364,15 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 
         switch mode {
         case .SingleArchive:
-            let file:IAPlayerFile!
-            if searchController.isActive && searchController.searchBar.text != "" {
-                file = filteredFiles[indexPath.row]
-            } else {
-               file = archiveFiles[indexPath.row]
-            }
+            let file = isSearching() ? filteredFiles[indexPath.row] : archiveFiles[indexPath.row]
             IAPlayer.sharedInstance.playFile(file: file)
             
         case .AllFiles:
-            let file: IAPlayerFile!
-            if searchController.isActive && searchController.searchBar.text != "" {
-                file = filteredFiles[indexPath.row]
-            } else {
-                file = files[indexPath.row]
-            }
+            let file = isSearching() ? filteredFiles[indexPath.row] : files[indexPath.row]
             IAPlayer.sharedInstance.playFile(file: file)
             
         case .AllArchives:
-            if searchController.isActive && searchController.searchBar.text != "" {
-                chosenArchive = filteredArchives[indexPath.row]
-            } else {
-                chosenArchive = archives[indexPath.row]
-            }
+            chosenArchive = isSearching() ? filteredArchives[indexPath.row] : archives[indexPath.row]
             self.performSegue(withIdentifier: "archivePush", sender: nil)
         }
     }
@@ -439,7 +391,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             case .AllArchives:
                 let archive: IAArchive!
                 
-                if searchController.isActive && searchController.searchBar.text != "" {
+                if isSearching() {
                     archive = filteredArchives[indexPath.row]
                     self.deleteAllFiles(archive: archive)
                     tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -450,7 +402,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 
             case .SingleArchive:
                 let file: IAPlayerFile!
-                if searchController.isActive && searchController.searchBar.text != "" {
+                if isSearching() {
                     file = filteredFiles[indexPath.row]
                     RealmManager.deleteFile(file: file)
                     tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -462,7 +414,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 
             case .AllFiles:
                 let file: IAPlayerFile!
-                if searchController.isActive && searchController.searchBar.text != "" {
+                if isSearching() {
                     file = filteredFiles[indexPath.row]
                     RealmManager.deleteFile(file: file)
                     tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -564,7 +516,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     func didPressDownloadButton(sender:UIButton) {
         
         let file: IAPlayerFile!
-        if searchController.isActive && searchController.searchBar.text != "" {
+        if isSearching() {
             file = filteredFiles[sender.tag]
         } else {
             

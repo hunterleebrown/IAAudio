@@ -204,5 +204,9 @@ class IAFileMappable: Mappable {
         return nil
     }
     
+    var displayName: String {
+        return self.title ?? self.name!
+    }
+    
     
 }

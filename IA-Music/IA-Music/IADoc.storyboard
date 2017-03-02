@@ -32,8 +32,15 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCI-8H-W5r">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="N2g-i3-NMS"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FZG-9n-BhQ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="RXC-hn-iEc">
@@ -232,21 +239,24 @@
                             <constraint firstItem="ngC-fO-pKT" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="1CA-Yy-M7J"/>
                             <constraint firstItem="FZG-9n-BhQ" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="2TC-W6-z8J"/>
                             <constraint firstAttribute="trailing" secondItem="yjx-sV-aSe" secondAttribute="trailing" id="2gf-jc-jP9"/>
+                            <constraint firstItem="OCI-8H-W5r" firstAttribute="top" secondItem="RtM-II-lVh" secondAttribute="bottom" id="4nn-Qe-GzV"/>
                             <constraint firstAttribute="trailing" secondItem="Eh6-xY-KOC" secondAttribute="trailing" id="AC5-9R-4Mu"/>
                             <constraint firstAttribute="bottom" secondItem="Eh6-xY-KOC" secondAttribute="bottom" id="AVY-0U-FkQ"/>
                             <constraint firstAttribute="trailing" secondItem="FZG-9n-BhQ" secondAttribute="trailing" id="Ai1-Vh-kZS"/>
-                            <constraint firstItem="FZG-9n-BhQ" firstAttribute="top" secondItem="RtM-II-lVh" secondAttribute="bottom" id="EXV-2a-guP"/>
                             <constraint firstItem="ut2-xx-780" firstAttribute="centerY" secondItem="Dgp-tK-OUI" secondAttribute="centerY" id="Fxd-nl-lCn"/>
                             <constraint firstItem="ngC-fO-pKT" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="G60-0K-8GF"/>
                             <constraint firstAttribute="bottom" secondItem="ngC-fO-pKT" secondAttribute="bottom" id="Og9-m9-Vdr"/>
+                            <constraint firstItem="FZG-9n-BhQ" firstAttribute="top" secondItem="OCI-8H-W5r" secondAttribute="bottom" id="Rkr-Eh-O5f"/>
                             <constraint firstItem="Eh6-xY-KOC" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="V2A-l5-Wyn"/>
                             <constraint firstAttribute="trailing" secondItem="ngC-fO-pKT" secondAttribute="trailing" id="d3n-TC-vQK"/>
                             <constraint firstItem="ut2-xx-780" firstAttribute="centerX" secondItem="Dgp-tK-OUI" secondAttribute="centerX" id="dAi-1S-bBA"/>
+                            <constraint firstItem="OCI-8H-W5r" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="exu-4m-eGH"/>
                             <constraint firstAttribute="bottom" secondItem="FZG-9n-BhQ" secondAttribute="bottom" id="gK5-aX-b6R"/>
                             <constraint firstItem="yjx-sV-aSe" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="k53-Vq-OFr"/>
                             <constraint firstAttribute="bottom" secondItem="yjx-sV-aSe" secondAttribute="bottom" id="rFe-Tk-vIU"/>
                             <constraint firstItem="Eh6-xY-KOC" firstAttribute="leading" secondItem="Dgp-tK-OUI" secondAttribute="leading" id="uWG-KF-ude"/>
                             <constraint firstItem="yjx-sV-aSe" firstAttribute="top" secondItem="Dgp-tK-OUI" secondAttribute="top" id="uwL-87-GRn"/>
+                            <constraint firstAttribute="trailing" secondItem="OCI-8H-W5r" secondAttribute="trailing" id="yaU-cj-3mW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LDo-w6-ekt">
@@ -263,6 +273,7 @@
                         <outlet property="imageHeight" destination="0h6-yo-1p4" id="nEd-9v-eJh"/>
                         <outlet property="imageWidth" destination="ve1-CB-PHx" id="lS0-KO-1ij"/>
                         <outlet property="numberOfFilesLabel" destination="hRx-ya-vtr" id="WzA-9j-EaO"/>
+                        <outlet property="searchBarHolder" destination="OCI-8H-W5r" id="1kl-An-itW"/>
                         <outlet property="tableView" destination="FZG-9n-BhQ" id="yxW-G7-kA7"/>
                         <outlet property="topNavView" destination="gdX-NX-bmg" id="imD-TV-hFa"/>
                         <outlet property="topView" destination="RXC-hn-iEc" id="VtT-Kb-Pcg"/>

@@ -13,6 +13,7 @@ class IAViewController: UIViewController {
     
     //MARK: - Top Nav View
     @IBOutlet weak var topNavView: IATopNavView?
+    var searchController: UISearchController!
     
     func topTitle(text:String){
         if let navTitle = self.topNavView?.topNavViewTitle {
@@ -44,16 +45,27 @@ class IAViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func initSearchController() {
+        searchController = UISearchController(searchResultsController: nil)
+        definesPresentationContext = true
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        searchController.searchBar.tintColor = UIColor.fairyCream
+        searchController.searchBar.backgroundColor = UIColor.clear
+        searchController.searchBar.barTintColor = UIColor.clear
+        searchController.searchBar.isTranslucent = true
+        searchController.searchBar.backgroundImage = UIImage()
+        searchController.searchBar.scopeBarBackgroundImage = UIImage()
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = UIColor.fairyCream
+            textField.backgroundColor = UIColor.clear
+        }
     }
-    */
+    
+    func isSearching() -> Bool {
+        guard searchController != nil else { return false }
+        return searchController.isActive && searchController.searchBar.text != ""
+    }
 
 }
 
@@ -141,6 +153,5 @@ extension UIViewController {
         
     }
 
-    
     
 }
