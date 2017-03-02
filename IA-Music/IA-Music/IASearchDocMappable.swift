@@ -40,7 +40,7 @@ class IASearchDocMappable: Mappable {
     }
 
     
-    func displaySubject()->String? {
+    var displaySubject: String? {
         if let sub = subject as? Array<String> {
             return sub.joined(separator: ", ")
         } else if let sub = subject as? String {
@@ -50,7 +50,7 @@ class IASearchDocMappable: Mappable {
         return nil
     }
     
-    func displayCreator()->String? {
+    var displayCreator: String? {
         if let sub = creator as? Array<String> {
             return sub.joined(separator: ", ")
         } else if let sub = creator as? String {
@@ -60,21 +60,21 @@ class IASearchDocMappable: Mappable {
         return nil
     }
     
-    func displayArchiveDate()->String? {
+    var displayArchiveDate: String? {
         if let date = archiveDate {
             return StringUtils.shortDateFromDateString(date)
         }
         return nil
     }
     
-    func displayContentDate()->String? {
+    var displayContentDate: String? {
         if let date = contentDate {
             return StringUtils.shortDateFromDateString(date)
         }
         return nil
     }
     
-    func iconUrl()->URL {
+    var iconUrl: URL {
         let itemImageUrl = "http://archive.org/services/img/\(identifier!)"
         return URL(string: itemImageUrl)!
     }

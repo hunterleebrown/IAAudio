@@ -93,11 +93,11 @@ class IAMyStashTableViewCell: UITableViewCell {
                 }
             }
             
-            if let s = size, let value = file?.displaySize() {
+            if let s = size, let value = file?.displaySize {
                 s.text = "\(value) mb"
             }
 
-            if let l = length, let value = file?.displayLength() {
+            if let l = length, let value = file?.displayLength {
                 l.text = value
             }
             self.accessoryType = .none

@@ -21,7 +21,7 @@ class IASearchCell: UITableViewCell {
     var searchDoc: IASearchDocMappable? {
         didSet {
             
-            if let imageUrl = searchDoc?.iconUrl() {
+            if let imageUrl = searchDoc?.iconUrl {
                 itemImage?.af_setImage(withURL:imageUrl)
                 itemImage?.layer.cornerRadius = 10.0
                 itemImage?.clipsToBounds = true
@@ -29,14 +29,14 @@ class IASearchCell: UITableViewCell {
             
             itemTitle?.text = searchDoc?.title
             
-            if let cr = searchDoc?.displayCreator() {
+            if let cr = searchDoc?.displayCreator {
                 self.creator?.text = cr
                 self.creator?.isHidden = false
             } else {
                 self.creator?.isHidden = true
             }
             
-            if let date = searchDoc?.displayContentDate() {
+            if let date = searchDoc?.displayContentDate {
                 if date.isEmpty {
                     self.dateLabel?.isHidden = true
                 } else {

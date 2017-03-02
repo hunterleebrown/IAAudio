@@ -196,7 +196,8 @@ class IAFileMappable: Mappable {
     }
     
     
-    func displayLength() -> String? {
+    var displayLength: String? {
+        
         if let l = length {
             return StringUtils.timeFormatter(timeString: l)
         }

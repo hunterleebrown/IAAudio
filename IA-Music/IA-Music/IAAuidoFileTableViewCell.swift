@@ -23,7 +23,7 @@ class IAAuidoFileTableViewCell: UITableViewCell {
             self.colorBackground.backgroundColor = isSelected ? UIColor.fairyCreamAlpha : UIColor.darkGray
             self.titleLabel.textColor = isSelected ? UIColor.fairyRed : UIColor.white
             
-            if let l = audioFile?.displayLength() {
+            if let l = audioFile?.displayLength {
                 self.length.text = l
             }
         }

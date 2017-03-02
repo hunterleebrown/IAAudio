@@ -23,19 +23,18 @@ class IAPlayerFile: Object {
 //        return "urlString"
 //    }
     
-    func displayTitle() -> String {
+    var displayTitle: String {
         return title.isEmpty ? name : title
     }
     
-    
-    func displaySize() -> String? {
+    var displaySize: String? {
         if let rawSize = Int(size) {
             return StringUtils.sizeString(size: rawSize)
         }
         return nil
     }
     
-    func displayLength() -> String? {
+    var displayLength: String? {
         if !length.isEmpty {
             return StringUtils.timeFormatter(timeString: length)
         }

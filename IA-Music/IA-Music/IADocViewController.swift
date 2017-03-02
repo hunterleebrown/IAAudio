@@ -60,7 +60,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         //MARK: - Top Nav View Setting
         if let sDoc = searchDoc {
             self.topTitle(text: sDoc.title!)
-            if let creator = sDoc.displayCreator() {
+            if let creator = sDoc.displayCreator {
                 self.topSubTitle(text: creator)
             }
         }
