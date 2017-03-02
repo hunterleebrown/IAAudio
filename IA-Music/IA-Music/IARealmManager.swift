@@ -47,8 +47,8 @@ class IARealmManger {
             return
         }
         
-        try! realm.write {
-            realm.delete(fileResults)
+        if let file = fileResults.first {
+            deleteFile(file: file)
         }
     }
     
@@ -162,27 +162,69 @@ class IARealmManger {
     }
     
     //MARK: - Stash Use
-    // This will delete all files of the archive and then the archive
+    
+    /**
+     * This will delete all files of the archive and then the archive
+     */
     func deleteAllFiles(archive:IAArchive) {
+        
+        deleteArchiveFolderOffDisk(archiveIdentifier: archive.identifier)
+        
         try! realm.write {
             realm.delete(archive.files)
             realm.delete(archive)
         }
     }
     
-    // This will delete the file, and the archive if the archive has no more files in it
+    /**
+     * This will delete the file, and the archive if the archive has no more files in it
+     */
     func deleteFile(file:IAPlayerFile) {
+        
+        deleteFileOffDisk(file: file)
+        
         let identifier = file.archiveIdentifier
         try! realm.write {
             realm.delete(file)
             if let archive = self.archives(identifier: identifier).first {
                 if archive.files.count == 0 {
+                    deleteArchiveFolderOffDisk(archiveIdentifier: identifier)
                     realm.delete(archive)
                 }
             }
         }
     }
     
+    /**
+     * Deletes the file on disk if it's downloaded
+     */
+    func deleteFileOffDisk(file:IAPlayerFile) {
+        // Remove the file from the disk
+        if file.downloaded {
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let trackPath = documentsURL.appendingPathComponent(file.urlString)
+            if FileManager.default.fileExists(atPath: trackPath.path) {
+                do {
+                    try FileManager.default.removeItem(at: trackPath)
+                } catch  {
+                    print("couldn't delete: \(trackPath)")
+                }
+            }
+        }
+    }
+    
+    func deleteArchiveFolderOffDisk(archiveIdentifier:String) {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let archivePath = documentsURL.appendingPathComponent("tracks/\(archiveIdentifier)")
+        
+        print("-------------> archive disk path: \(archivePath)")
+        
+        do {
+            try FileManager.default.removeItem(at: archivePath)
+        } catch  {
+            print("------------> couldn't remove: \(archivePath)")
+        }
+    }
     
     
     //MARK: - Helpers
@@ -248,9 +290,7 @@ class IARealmManger {
     func downloadFile(playerFile:IAPlayerFile) {
         
         let identifier = playerFile.archiveIdentifier
-        if let fileName = playerFile.name.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
-            let filePath = "tracks/\(identifier)/\(fileName)"
-            
+        
             let destination: DownloadRequest.DownloadFileDestination = { _, response in
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let trackPath = documentsURL.appendingPathComponent("tracks/\(identifier)/\(IARealmManger.downloadFilePath(response))")
@@ -266,11 +306,14 @@ class IARealmManger {
                     print(response)
                     if response.error == nil, let downloadPath = response.destinationURL?.path {
                         print("------> downloaded file to here: \(downloadPath)")
-                        self.updateFileWithLocalPath(playerFile: playerFile, localPath: filePath)
+                        
+                        if let lastPath = response.destinationURL?.lastPathComponent {
+                            let savedPath = "tracks/\(identifier)/\(lastPath)"
+                            self.updateFileWithLocalPath(playerFile: playerFile, localPath: savedPath)
+                        }
                     }
                 }
             }
-        }
         
     }
     
