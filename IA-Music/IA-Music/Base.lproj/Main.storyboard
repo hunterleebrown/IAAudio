@@ -385,11 +385,11 @@
             </objects>
             <point key="canvasLocation" x="3531" y="152"/>
         </scene>
-        <!--My Music Stash-->
+        <!--My Audio Stash-->
         <scene sceneID="8Rz-ST-zL0">
             <objects>
                 <navigationController id="naD-Sd-CMm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Music Stash" id="BH4-nT-Uos"/>
+                    <tabBarItem key="tabBarItem" title="My Audio Stash" id="BH4-nT-Uos"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pao-aL-8bY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

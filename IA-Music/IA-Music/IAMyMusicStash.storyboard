@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Music Stash-->
+        <!--My Audio Stash-->
         <scene sceneID="bwG-Yp-cQE">
             <objects>
                 <viewController id="6zi-bb-Jhv" customClass="IAMyMusicStashViewController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
@@ -302,7 +302,7 @@
                             <constraint firstAttribute="trailing" secondItem="ust-eo-Bqt" secondAttribute="trailing" id="vPf-1P-WgA"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Music Stash" id="jZj-hq-HqX"/>
+                    <tabBarItem key="tabBarItem" title="My Audio Stash" id="jZj-hq-HqX"/>
                     <navigationItem key="navigationItem" id="eIK-Vb-p7b"/>
                     <connections>
                         <outlet property="archiveButtonsHeight" destination="zxV-fa-z0d" id="5JY-Xx-LU2"/>
