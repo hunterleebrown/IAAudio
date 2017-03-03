@@ -163,7 +163,10 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
             playerHash[file.name] = file
         }
         var changedIndexPaths = [IndexPath]()
-        for (index,file) in self.audioFiles.enumerated() {
+        
+        let files = isSearching() ? filteredAudioFiles : audioFiles
+        
+        for (index,file) in files.enumerated() {
             // print("\(file.name) \(index)")
             let fileHash = filesNameInRealm[file.name!]
             if playerHash[file.name!] != nil {

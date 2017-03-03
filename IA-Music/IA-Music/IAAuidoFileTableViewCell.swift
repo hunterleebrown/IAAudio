@@ -35,7 +35,6 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.colorBackground.backgroundColor = isSelected ? UIColor.fairyCreamAlpha : UIColor.darkGray
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -44,7 +43,6 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         self.titleLabel.textColor = selected ? UIColor.fairyRed : UIColor.white
         self.addButton.setTitleColor(selected ? UIColor.fairyRed : UIColor.white, for: .normal)
         self.length.textColor = selected ? UIColor.fairyRed : UIColor.white
-
     }
 
 
@@ -55,6 +53,5 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         self.length.textColor = isSelected ? UIColor.fairyRed : UIColor.white
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear
-
     }
 }
