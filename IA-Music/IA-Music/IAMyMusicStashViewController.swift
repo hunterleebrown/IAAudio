@@ -530,10 +530,21 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             }
             
         }
+
+        switch file.sizeType {
+        case .unknown:
+            alert(title: "File size is unknown", message: "The size of this file is unkown. Download it anyway?", completion: { 
+                RealmManager.downloadFile(playerFile: file)
+            })
+        case .appropriate:
+            RealmManager.downloadFile(playerFile: file)
+        case .large:
+            alert(title: "File size is very large.", message: "This file is large at \(file.displaySize!) MB. It will take a long time to download. You have \(RealmManager.deviceRemainingFreeSpaceInBytes()!) MB remaining free. Download anyway?", completion: {
+                RealmManager.downloadFile(playerFile: file)
+            })
+        }
         
-        print("-------------> didPressDownloadButton: \(file)")
         
-        RealmManager.downloadFile(playerFile: file)
     }
     
     

@@ -227,6 +227,7 @@ class IARealmManger {
     }
     
     
+    //MARK: - Device Storage
     func totalDeviceStorage()->(size:String, numberOfFiles:Int) {
         var totalDownloadSize = 0
         var totalFiles = 0
@@ -259,7 +260,21 @@ class IARealmManger {
         } catch {
             print("ERROR IN FILE FETCH -- or no contentsOfDirectoryAtPath  \(error)")
         }
-        return ("\(StringUtils.sizeString(size:totalDownloadSize)) mb", totalFiles)
+        return ("\(StringUtils.sizeString(size:totalDownloadSize)) MB", totalFiles)
+    }
+    
+    
+    func deviceRemainingFreeSpaceInBytes() -> String? {
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        guard
+            let systemAttributes = try? FileManager.default.attributesOfFileSystem(forPath: documentDirectory),
+            let freeSize = systemAttributes[.systemFreeSize] as? NSNumber
+            else {
+                // something failed
+                return nil
+        }
+        
+        return StringUtils.sizeString(size: freeSize.intValue)
     }
     
     

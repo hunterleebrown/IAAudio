@@ -9,6 +9,10 @@
 import Foundation
 import RealmSwift
 
+enum FileSizeType {
+    case appropriate, large, unknown
+}
+
 class IAPlayerFile: Object {
     let displayOrder = RealmOptional<Int16>()
     dynamic var downloaded = false
@@ -39,6 +43,20 @@ class IAPlayerFile: Object {
             return StringUtils.timeFormatter(timeString: length)
         }
         return nil
+    }
+    
+    var sizeType: FileSizeType {
+    
+        if let rawSize = Int(size) {
+            let calc = rawSize / 1000000
+            if calc > 50 {
+                return FileSizeType.large
+            }
+        } else {
+            return FileSizeType.unknown
+        }
+        
+        return FileSizeType.appropriate
     }
     
 }
