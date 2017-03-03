@@ -151,10 +151,9 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "stashPush" {
-            let controller = segue.destination as? IAMyMusicStashViewController
-            if let choice = selectedChoice {
+            if let controller = segue.destination as? IAMyMusicStashViewController, let choice = selectedChoice {
                 if choice == StashChoice.Files {
-                    controller?.mode = .AllFiles
+                    controller.mode = .AllFiles
                 }
             }
         }
