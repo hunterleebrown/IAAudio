@@ -97,6 +97,14 @@ class IAPlayerViewController: UIViewController {
         
         nowPlayingItemButton.setTitleColor(IAColors.fairyCream, for: .normal)
         
+        airPlayPicker.tintColor = UIColor.fairyCream
+        
+        if let routeButton = airPlayPicker.subviews.last as? UIButton,
+            let routeButtonTemplateImage  = routeButton.currentImage?.withRenderingMode(.alwaysTemplate)
+        {
+            airPlayPicker.setRouteButtonImage(routeButtonTemplateImage, for: .normal)
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

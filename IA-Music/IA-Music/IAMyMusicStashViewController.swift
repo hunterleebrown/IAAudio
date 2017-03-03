@@ -305,8 +305,8 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             }
             
             let archive = isSearching() ? filteredArchives[indexPath.row] : archives[indexPath.row]
-            
             cell.archive = archive
+            
             return cell
             
         case .SingleArchive:
@@ -334,7 +334,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
             
             return cell
-
         }
     }
     

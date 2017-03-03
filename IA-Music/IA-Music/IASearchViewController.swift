@@ -14,8 +14,6 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchBar: UISearchBar!
     
     var searchResults = [IASearchDocMappable]()
-    var filteredSearchResults = [IASearchDocMappable]()
-
     
     let service = IAService()
     
@@ -45,8 +43,6 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
         super.viewWillAppear(animated)
         self.clearNavigation()
     }
-    
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,24 +74,16 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
                 let controller = segue.destination as! IADocViewController
                 controller.identifier = result.identifier
                 controller.searchDoc = result
-                
                 let backItem = UIBarButtonItem()
                 backItem.title = ""
                 navigationItem.backBarButtonItem = backItem
-                
             }
-            
         }
     }
-    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.searchBar.resignFirstResponder()
     }
-
-    
-    
-    
 }
 
 
