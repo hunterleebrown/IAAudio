@@ -535,6 +535,8 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             }
             
         }
+        
+        sender.isEnabled = false
 
         switch file.sizeType {
         case .unknown:

@@ -82,15 +82,21 @@ class IAMyStashTableViewCell: UITableViewCell {
             
             
             if let download = downloadButton, let f = file {
+                
+                
                 if(!f.downloaded) {
-                    download.setIAIcon(.iosCloudDownloadOutline, forState: UIControlState())
+                    download.setIAIcon(.iosCloudDownloadOutline, forState:.normal)
                     download.isHidden = false
                     download.isEnabled = true
+                    download.setTitleColor(UIColor.darkGray, for: .disabled)
                 } else {
-                    download.isEnabled = false
                     download.isHidden = false
-                    download.setIAIcon(.document, forState: UIControlState())
+                    download.isEnabled = false
+                    download.setIAIcon(.document, forState:.normal)
+                    download.setTitleColor(UIColor.fairyCream, for: .disabled)
                 }
+                
+
             }
             
             if let s = size, let value = file?.displaySize {
