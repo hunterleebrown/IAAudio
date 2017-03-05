@@ -103,6 +103,15 @@ extension IASearchViewController: UISearchBarDelegate {
         }
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        guard IAReachability.isConnectedToNetwork() else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "networkAlert"), object: nil)
+            return
+        }
+        
+    }
+    
 }
 
 

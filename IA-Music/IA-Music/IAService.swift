@@ -12,8 +12,6 @@ import UIKit
 import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
-import XCGLogger
-
 
 enum SearchFields : Int {
     case all = 0

@@ -41,9 +41,12 @@ class IAHomeViewController: UIViewController {
         
         self.playerHolder.superview?.layoutIfNeeded()
         
-        NotificationCenter.default.addObserver(forName:
-            NSNotification.Name(rawValue: "minimizePlayer"), object: nil, queue: nil) { notification in
-                self.showFullPlayer(false)
+        NotificationCenter.default.addObserver( forName: NSNotification.Name(rawValue: "minimizePlayer"), object: nil, queue: nil) { notification in
+            self.showFullPlayer(false)
+        }
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "networkAlert"), object: nil, queue: nil) { notification in
+            self.alert(title: "Internet Connection Failure", message: "In order to stream, download, or view resources from the Internet Archive, your network connection must be working.")
         }
         
         

@@ -251,6 +251,7 @@ class IAPlayer: NSObject {
             let fileUrl = documentsURL.appendingPathComponent(file.urlString)
             playerUrl = fileUrl
         } else {
+            
             if let escapedString = file.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
                 playerUrl = URL(string:escapedString)
             }
@@ -265,6 +266,13 @@ class IAPlayer: NSObject {
     
     
     private func loadAndPlay() {
+        
+        if playUrl.absoluteString.contains("http") {
+            guard IAReachability.isConnectedToNetwork() else {
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "networkAlert"), object: nil)
+                return
+            }
+        }
         
         if let player = avPlayer {
             player.pause()

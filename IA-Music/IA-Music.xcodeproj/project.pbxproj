@@ -13,14 +13,10 @@
 		5A41158F1E4D046F004F6B56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A41158D1E4D046F004F6B56 /* Main.storyboard */; };
 		5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A4115901E4D046F004F6B56 /* Assets.xcassets */; };
 		5A4115941E4D046F004F6B56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A4115921E4D046F004F6B56 /* LaunchScreen.storyboard */; };
-		5A4115A51E4D0B3D004F6B56 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A41159C1E4D0B3D004F6B56 /* XCGLogger.framework */; };
-		5A4115A61E4D0B3D004F6B56 /* SwinjectStoryboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A41159D1E4D0B3D004F6B56 /* SwinjectStoryboard.framework */; };
-		5A4115A71E4D0B3D004F6B56 /* Swinject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A41159E1E4D0B3D004F6B56 /* Swinject.framework */; };
 		5A4115A81E4D0B3D004F6B56 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A41159F1E4D0B3D004F6B56 /* RealmSwift.framework */; };
 		5A4115A91E4D0B3D004F6B56 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A01E4D0B3D004F6B56 /* Realm.framework */; };
 		5A4115AA1E4D0B3D004F6B56 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */; };
 		5A4115AB1E4D0B3D004F6B56 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A21E4D0B3D004F6B56 /* ObjectMapper.framework */; };
-		5A4115AC1E4D0B3D004F6B56 /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A31E4D0B3D004F6B56 /* MBProgressHUD.framework */; };
 		5A4115AD1E4D0B3D004F6B56 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A41E4D0B3D004F6B56 /* Alamofire.framework */; };
 		5A4115B31E4D1803004F6B56 /* IAIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4115B01E4D1803004F6B56 /* IAIcon.swift */; };
 		5A4115B41E4D1803004F6B56 /* IAIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4115B11E4D1803004F6B56 /* IAIconType.swift */; };
@@ -88,6 +84,7 @@
 		5A6DFBBC1E5943C8002C0977 /* IATopNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */; };
 		5A7967F31E584592001F44B0 /* UIFont+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7967F21E584592001F44B0 /* UIFont+Common.swift */; };
 		5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */; };
+		5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */; };
 		5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */; };
 		5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */; };
 /* End PBXBuildFile section */
@@ -101,9 +98,6 @@
 		5A4115901E4D046F004F6B56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A4115931E4D046F004F6B56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A4115951E4D046F004F6B56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A41159C1E4D0B3D004F6B56 /* XCGLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCGLogger.framework; path = Carthage/Build/iOS/XCGLogger.framework; sourceTree = "<group>"; };
-		5A41159D1E4D0B3D004F6B56 /* SwinjectStoryboard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwinjectStoryboard.framework; path = Carthage/Build/iOS/SwinjectStoryboard.framework; sourceTree = "<group>"; };
-		5A41159E1E4D0B3D004F6B56 /* Swinject.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swinject.framework; path = Carthage/Build/iOS/Swinject.framework; sourceTree = "<group>"; };
 		5A41159F1E4D0B3D004F6B56 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		5A4115A01E4D0B3D004F6B56 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
@@ -177,6 +171,7 @@
 		5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IATopNavView.swift; sourceTree = "<group>"; };
 		5A7967F21E584592001F44B0 /* UIFont+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Common.swift"; sourceTree = "<group>"; };
 		5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyMusicStash.storyboard; sourceTree = "<group>"; };
+		5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAReachability.swift; sourceTree = "<group>"; };
 		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,11 +184,7 @@
 				5A5764B81E502E99000D4465 /* AlamofireImage.framework in Frameworks */,
 				5A4115AB1E4D0B3D004F6B56 /* ObjectMapper.framework in Frameworks */,
 				5A4115A91E4D0B3D004F6B56 /* Realm.framework in Frameworks */,
-				5A4115AC1E4D0B3D004F6B56 /* MBProgressHUD.framework in Frameworks */,
-				5A4115A61E4D0B3D004F6B56 /* SwinjectStoryboard.framework in Frameworks */,
-				5A4115A51E4D0B3D004F6B56 /* XCGLogger.framework in Frameworks */,
 				5A4115A81E4D0B3D004F6B56 /* RealmSwift.framework in Frameworks */,
-				5A4115A71E4D0B3D004F6B56 /* Swinject.framework in Frameworks */,
 				5A4115AD1E4D0B3D004F6B56 /* Alamofire.framework in Frameworks */,
 				5A4115AA1E4D0B3D004F6B56 /* AlamofireObjectMapper.framework in Frameworks */,
 			);
@@ -248,9 +239,6 @@
 			isa = PBXGroup;
 			children = (
 				5A5764B71E502E98000D4465 /* AlamofireImage.framework */,
-				5A41159C1E4D0B3D004F6B56 /* XCGLogger.framework */,
-				5A41159D1E4D0B3D004F6B56 /* SwinjectStoryboard.framework */,
-				5A41159E1E4D0B3D004F6B56 /* Swinject.framework */,
 				5A41159F1E4D0B3D004F6B56 /* RealmSwift.framework */,
 				5A4115A01E4D0B3D004F6B56 /* Realm.framework */,
 				5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */,
@@ -359,6 +347,7 @@
 		5A4116121E4D277A004F6B56 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */,
 				5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */,
 				5A7967F21E584592001F44B0 /* UIFont+Common.swift */,
 				5A5764B51E502C53000D4465 /* StringUtils.swift */,
@@ -537,13 +526,9 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Swinject.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/SwinjectStoryboard.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/XCGLogger.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/MBProgressHUD.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
@@ -572,6 +557,7 @@
 				5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */,
 				5A5764BA1E50461C000D4465 /* IAArchiveDocMappable.swift in Sources */,
 				5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */,
+				5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */,
 				5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */,
 				5A41160D1E4D203F004F6B56 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
 				5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */,

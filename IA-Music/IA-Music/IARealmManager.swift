@@ -343,6 +343,11 @@ class IARealmManger {
     
     func downloadFile(playerFile:IAPlayerFile) {
         
+        guard IAReachability.isConnectedToNetwork() else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "networkAlert"), object: nil)
+            return
+        }
+        
         let identifier = playerFile.archiveIdentifier
         
             let destination: DownloadRequest.DownloadFileDestination = { _, response in

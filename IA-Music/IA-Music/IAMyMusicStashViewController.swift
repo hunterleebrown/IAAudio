@@ -438,6 +438,12 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func fullArchiveDetails(_ sender: Any) {
+        
+        guard IAReachability.isConnectedToNetwork() else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "networkAlert"), object: nil)
+            return
+        }
+        
         if archives.first != nil {
             let button = sender as! UIButton
             button.tag = 0

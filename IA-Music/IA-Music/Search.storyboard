@@ -42,20 +42,16 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <searchBar contentMode="redraw" barStyle="black" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ABp-Gf-gBZ">
-                                <rect key="frame" x="0.0" y="64" width="375" height="88"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>On the Archive</string>
-                                    <string>In Your Stash</string>
-                                </scopeButtonTitles>
                                 <connections>
                                     <outlet property="delegate" destination="af5-WW-a7H" id="AEE-0p-WJ3"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DOk-Ts-AzW">
-                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="a7G-mf-95M">
                                     <rect key="frame" x="0.0" y="148" width="375" height="128"/>
