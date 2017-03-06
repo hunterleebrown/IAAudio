@@ -447,10 +447,19 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         
         return self.archive
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let search = self.searchController {
+            search.searchBar.resignFirstResponder()
+        }
+    }
+    
     
     deinit {
         notificationToken?.stop()
     }
+    
+
     
 }
 
