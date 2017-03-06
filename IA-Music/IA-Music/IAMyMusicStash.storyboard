@@ -63,7 +63,7 @@
                                                     <rect key="frame" x="10" y="5" width="355" height="123"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pJl-fC-hBl">
-                                                            <rect key="frame" x="0.0" y="22" width="80" height="80"/>
+                                                            <rect key="frame" x="0.0" y="21.5" width="80" height="80"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="80" id="XCS-Vr-d2K"/>
@@ -137,7 +137,7 @@
                                                     <rect key="frame" x="10" y="34" width="355" height="66"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNg-7I-YRD">
-                                                            <rect key="frame" x="0.0" y="17" width="33" height="33"/>
+                                                            <rect key="frame" x="0.0" y="16.5" width="33" height="33"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="33" id="hOv-dr-A6C"/>
@@ -260,14 +260,14 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkt-Ja-w6w">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
                                         <state key="normal" title="Full Archive"/>
                                         <connections>
                                             <action selector="fullArchiveDetails:" destination="6zi-bb-Jhv" eventType="touchUpInside" id="UV3-YR-5vv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvF-Tk-adu">
-                                        <rect key="frame" x="188" y="0.0" width="187" height="44"/>
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
                                         <state key="normal" title="Delete All"/>
                                         <connections>
                                             <action selector="didTapRemoveAllFiles:" destination="6zi-bb-Jhv" eventType="touchUpInside" id="pD4-We-9vp"/>

@@ -85,9 +85,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                 }
                 
                 if let deets = self.docDeets {
-                    if let rawHtml = self.doc?.rawDescription() {
+                    if let rawHtml = self.doc?.noHTMLDescription() {
                         // let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
-                        deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(rawHtml, font:deets.font )
+                        
+                        let htmlWrapper = "<html><pre style='font-family:Sans-Serif'>\(rawHtml)</pre></html>"
+                        
+                        deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(htmlWrapper, font:deets.font )
                     }
                 }
                 
@@ -97,6 +100,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
 
                 } else {
                     self.setImage(url: (self.doc!.iconUrl()))
+                    self.albumImage.backgroundColor = UIColor.white
                 }
                 
                 if let files = self.doc?.sortedFiles {

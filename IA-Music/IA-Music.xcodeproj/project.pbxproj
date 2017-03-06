@@ -267,7 +267,7 @@
 				5A4115BB1E4D19DE004F6B56 /* IAHomeTabBarController.swift */,
 				5A41158D1E4D046F004F6B56 /* Main.storyboard */,
 				5A41161C1E4D44E9004F6B56 /* Lists */,
-				5A525BF91E5A794600B641C2 /* Stash Choices */,
+				5A525BF91E5A794600B641C2 /* Stash */,
 				5A41161A1E4D44D3004F6B56 /* Find */,
 				5A4115BD1E4D1DDE004F6B56 /* Player */,
 				5A4115C21E4D1F9D004F6B56 /* Shared Subviews */,
@@ -401,17 +401,13 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
-		5A525BF91E5A794600B641C2 /* Stash Choices */ = {
+		5A525BF91E5A794600B641C2 /* Stash */ = {
 			isa = PBXGroup;
 			children = (
-				5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */,
-				5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */,
-				5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */,
-				5A525C001E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift */,
-				5A525C021E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift */,
+				CE60679F1E6DE21E00151A96 /* Choices */,
 				5A41161B1E4D44E2004F6B56 /* My Music Stash */,
 			);
-			name = "Stash Choices";
+			name = Stash;
 			sourceTree = "<group>";
 		};
 		5A5764BD1E506584000D4465 /* DocView */ = {
@@ -432,6 +428,18 @@
 				5A6DFBB71E5932D0002C0977 /* Search.storyboard */,
 			);
 			name = Search;
+			sourceTree = "<group>";
+		};
+		CE60679F1E6DE21E00151A96 /* Choices */ = {
+			isa = PBXGroup;
+			children = (
+				5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */,
+				5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */,
+				5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */,
+				5A525C001E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift */,
+				5A525C021E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift */,
+			);
+			name = Choices;
 			sourceTree = "<group>";
 		};
 		CE8C036D1E679E8B00C68E86 /* _OLD_Reference */ = {
