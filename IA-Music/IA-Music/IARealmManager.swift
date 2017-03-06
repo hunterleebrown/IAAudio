@@ -78,7 +78,22 @@ class IARealmManger {
         return archive
     }
     
+    func addAll(archive:IAArchive, files:[IAFileMappable]) {
+        try! realm.write {
+            for file in files {
+                self.addRealmFile(archive: archive, file: file)
+            }
+        }
+    }
+    
     func addFile(archive:IAArchive, file:IAFileMappable) {
+        try! realm.write {
+            self.addRealmFile(archive: archive, file: file)
+        }
+    }
+    
+    internal func addRealmFile(archive:IAArchive, file: IAFileMappable) {
+    
         let predicate = NSPredicate(format: "name = %@ AND archiveIdentifier = %@", file.name!, archive.identifier)
         let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
         
@@ -87,11 +102,9 @@ class IARealmManger {
         }
         
         let playerFile = createPlayerFile(identifier: archive.identifier, file: file)
-        
-        try! realm.write {
-            realm.add(playerFile)
-            archive.files.append(playerFile)
-        }
+    
+        realm.add(playerFile)
+        archive.files.append(playerFile)
     }
     
     

@@ -422,11 +422,8 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         self.alert(title: "Are you sure you want to add all files?", message: nil) { 
             print("we said to go ahead")
             if let ar = self.reInitArchive(archive: self.archive) {
-                for file in self.audioFiles {
-                    RealmManager.addFile(archive: ar, file: file)
-                }
+                RealmManager.addAll(archive: ar, files: self.audioFiles)
             }
-            
             // Now that we have a realm Archive, set up notification (if not already set up)
             self.setUpToken()
         }
