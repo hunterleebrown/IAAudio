@@ -151,8 +151,10 @@ class IARealmManger {
     
     private func createPlayerFile(identifier:String, file:IAFileMappable)->IAPlayerFile {
         let newFile = IAPlayerFile()
-        newFile.archiveIdentifier = identifier
-        newFile.name = file.name!
+
+        newFile.setCompoundName(name: file.name!)
+        newFile.setCompoundArchiveIdentifier(identifier: identifier)
+        
         if let title = file.title {
             newFile.title = title
         }

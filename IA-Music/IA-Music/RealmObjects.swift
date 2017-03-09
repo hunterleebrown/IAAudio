@@ -22,10 +22,26 @@ class IAPlayerFile: Object {
     dynamic var size = ""
     dynamic var length = ""
     dynamic var archiveIdentifier = ""
+    dynamic var compoundKey = ""
     
-//    override static func primaryKey() -> String? {
-//        return "urlString"
-//    }
+    
+    func setCompoundName(name:String) {
+        self.name = name
+        compoundKey = compoundKeyValue()
+    }
+
+    func setCompoundArchiveIdentifier(identifier:String) {
+        self.archiveIdentifier = identifier
+        compoundKey = compoundKeyValue()
+    }
+    
+    func compoundKeyValue() -> String {
+        return "\(archiveIdentifier)-\(name)"
+    }
+    
+    override static func primaryKey() -> String? {
+        return "compoundKey"
+    }
     
     var displayTitle: String {
         return title.isEmpty ? name : title
