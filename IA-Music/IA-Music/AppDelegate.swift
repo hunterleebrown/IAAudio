@@ -41,6 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // Nothing to do!
                     // Realm will automatically detect new properties and removed properties
                     // And will update the schema on disk automatically
+                    
+                    migration.enumerateObjects(ofType: IAPlayerFile.className()) { oldObject, newObject in
+                        // combine name fields into a single field
+                        let identifier = oldObject!["archiveIdentifier"] as! String
+                        let name = oldObject!["name"] as! String
+//
+                        newObject!["compoundKey"] = "\(identifier)-\(name)"
+                    }
+                    
                 }
         })
         
