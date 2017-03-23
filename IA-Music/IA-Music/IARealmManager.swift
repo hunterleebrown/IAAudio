@@ -92,7 +92,7 @@ class IARealmManger {
         }
     }
     
-    internal func addRealmFile(archive:IAArchive, file: IAFileMappable) {
+    func addRealmFile(archive:IAArchive, file: IAFileMappable) {
     
         let predicate = NSPredicate(format: "name = %@ AND archiveIdentifier = %@", file.name!, archive.identifier)
         let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
@@ -151,8 +151,13 @@ class IARealmManger {
     
     private func createPlayerFile(identifier:String, file:IAFileMappable)->IAPlayerFile {
         let newFile = IAPlayerFile()
-        newFile.archiveIdentifier = identifier
-        newFile.name = file.name!
+        
+//        newFile.archiveIdentifier = identifier
+//        newFile.name = file.name!
+        
+        newFile.setCompoundName(name: file.name!)
+        newFile.setCompoundArchiveIdentifier(identifier: identifier)
+        
         if let title = file.title {
             newFile.title = title
         }
