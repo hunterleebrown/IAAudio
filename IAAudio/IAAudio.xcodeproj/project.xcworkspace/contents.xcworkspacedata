@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:IA-Music.xcodeproj">
+      location = "self:/Users/hunter/Projects/IA/newMusic/IAAudio/IA-Music/IAAudio.xcodeproj">
    </FileRef>
 </Workspace>

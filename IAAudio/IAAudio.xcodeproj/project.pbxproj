@@ -92,7 +92,7 @@
 /* Begin PBXFileReference section */
 		5A10960F1E5185DC008DB3B7 /* IADoc.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IADoc.storyboard; sourceTree = "<group>"; };
 		5A29692E1E514C5E00E7409F /* RealmObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmObjects.swift; sourceTree = "<group>"; };
-		5A4115861E4D046F004F6B56 /* IA-Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IA-Music.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A4115861E4D046F004F6B56 /* IAAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IAAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A4115891E4D046F004F6B56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A41158E1E4D046F004F6B56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5A4115901E4D046F004F6B56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,7 +102,6 @@
 		5A4115A01E4D0B3D004F6B56 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		5A4115A21E4D0B3D004F6B56 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
-		5A4115A31E4D0B3D004F6B56 /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		5A4115A41E4D0B3D004F6B56 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5A4115B01E4D1803004F6B56 /* IAIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAIcon.swift; sourceTree = "<group>"; };
 		5A4115B11E4D1803004F6B56 /* IAIconType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAIconType.swift; sourceTree = "<group>"; };
@@ -205,7 +204,7 @@
 		5A41157D1E4D046F004F6B56 = {
 			isa = PBXGroup;
 			children = (
-				5A4115881E4D046F004F6B56 /* IA-Music */,
+				5A4115881E4D046F004F6B56 /* IAAudio */,
 				5A4115871E4D046F004F6B56 /* Products */,
 				5A41159B1E4D0B3A004F6B56 /* Frameworks */,
 			);
@@ -214,12 +213,12 @@
 		5A4115871E4D046F004F6B56 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5A4115861E4D046F004F6B56 /* IA-Music.app */,
+				5A4115861E4D046F004F6B56 /* IAAudio.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5A4115881E4D046F004F6B56 /* IA-Music */ = {
+		5A4115881E4D046F004F6B56 /* IAAudio */ = {
 			isa = PBXGroup;
 			children = (
 				5A4115B61E4D18F0004F6B56 /* View Controllers */,
@@ -232,7 +231,7 @@
 				5A4115921E4D046F004F6B56 /* LaunchScreen.storyboard */,
 				5A4115951E4D046F004F6B56 /* Info.plist */,
 			);
-			path = "IA-Music";
+			path = IAAudio;
 			sourceTree = "<group>";
 		};
 		5A41159B1E4D0B3A004F6B56 /* Frameworks */ = {
@@ -243,7 +242,6 @@
 				5A4115A01E4D0B3D004F6B56 /* Realm.framework */,
 				5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */,
 				5A4115A21E4D0B3D004F6B56 /* ObjectMapper.framework */,
-				5A4115A31E4D0B3D004F6B56 /* MBProgressHUD.framework */,
 				5A4115A41E4D0B3D004F6B56 /* Alamofire.framework */,
 			);
 			name = Frameworks;
@@ -454,9 +452,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5A4115851E4D046F004F6B56 /* IA-Music */ = {
+		5A4115851E4D046F004F6B56 /* IAAudio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5A4115981E4D046F004F6B56 /* Build configuration list for PBXNativeTarget "IA-Music" */;
+			buildConfigurationList = 5A4115981E4D046F004F6B56 /* Build configuration list for PBXNativeTarget "IAAudio" */;
 			buildPhases = (
 				5A4115821E4D046F004F6B56 /* Sources */,
 				5A4115831E4D046F004F6B56 /* Frameworks */,
@@ -467,9 +465,9 @@
 			);
 			dependencies = (
 			);
-			name = "IA-Music";
+			name = IAAudio;
 			productName = "IA-Music";
-			productReference = 5A4115861E4D046F004F6B56 /* IA-Music.app */;
+			productReference = 5A4115861E4D046F004F6B56 /* IAAudio.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -489,7 +487,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5A4115811E4D046F004F6B56 /* Build configuration list for PBXProject "IA-Music" */;
+			buildConfigurationList = 5A4115811E4D046F004F6B56 /* Build configuration list for PBXProject "IAAudio" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -502,7 +500,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5A4115851E4D046F004F6B56 /* IA-Music */,
+				5A4115851E4D046F004F6B56 /* IAAudio */,
 			);
 		};
 /* End PBXProject section */
@@ -746,9 +744,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "IA-Music/Info.plist";
+				INFOPLIST_FILE = IAAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hunterleebrown.IA-Audio";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hunterleebrown.IAAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -763,9 +761,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "IA-Music/Info.plist";
+				INFOPLIST_FILE = IAAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hunterleebrown.IA-Audio";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hunterleebrown.IAAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -774,7 +772,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5A4115811E4D046F004F6B56 /* Build configuration list for PBXProject "IA-Music" */ = {
+		5A4115811E4D046F004F6B56 /* Build configuration list for PBXProject "IAAudio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5A4115961E4D046F004F6B56 /* Debug */,
@@ -783,7 +781,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5A4115981E4D046F004F6B56 /* Build configuration list for PBXNativeTarget "IA-Music" */ = {
+		5A4115981E4D046F004F6B56 /* Build configuration list for PBXNativeTarget "IAAudio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5A4115991E4D046F004F6B56 /* Debug */,

@@ -1,5 +1,6 @@
+#carthage bootstrap --platform iOS --no-use-binaries
 github "Alamofire/Alamofire" ~> 4.2.0
 github "Alamofire/AlamofireImage" ~> 3.1
 github "realm/realm-cocoa" ~> 2.2.0
-github "Hearst-DD/ObjectMapper" == 2.2.1
+github "Hearst-DD/ObjectMapper" ~> 2.2
 github "tristanhimmelman/AlamofireObjectMapper" ~> 4.0.1
