@@ -52,6 +52,40 @@ class IAMyStashTableViewCell: UITableViewCell {
         }
     }
     
+    
+    weak var playlist: IAList? {
+        
+        didSet {
+            
+            if let title = trackTitle {
+                title.text = playlist?.title
+                title.highlightedTextColor = UIColor.white
+            }
+//            if let img = trackImage, let url = IAMediaUtils.imageUrlFrom((archive?.identifier)!) {
+//                img.af_setImage(withURL: url)
+//                img.layer.cornerRadius = 10.0
+//                img.clipsToBounds = true
+//            }
+            
+//            if let track = itemTitle {
+//                track.text = archive?.creator
+//                track.highlightedTextColor = UIColor.white
+//            }
+            
+            if let download = downloadButton, let more = moreButton {
+                download.isHidden = true
+                more.isHidden = true
+            }
+            
+            if let l = length {
+                l.text = ""
+            }
+            isSelected ? showSelected() : showUnselected()
+            
+        }
+    }
+    
+    
     weak var file: IAPlayerFile? {
         didSet {
 
@@ -112,6 +146,69 @@ class IAMyStashTableViewCell: UITableViewCell {
 
         }
     }
+    
+    weak var playlistFile: IAListFile? {
+        didSet {
+            
+            if let download = downloadButton, let more = moreButton {
+                download.isHidden = false
+                more.isHidden = false
+            }
+            
+            
+            if let title = trackTitle {
+                title.text = (playlistFile?.file?.title.isEmpty)! ? playlistFile?.file?.name : playlistFile?.file?.title
+                title.highlightedTextColor = IAColors.fairyRed
+            }
+            
+            if let archive = RealmManager.archives(identifier: (playlistFile?.file?.archiveIdentifier)!).first {
+                
+                if let img = trackImage, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
+                    img.af_setImage(withURL: url)
+                    img.layer.cornerRadius = 3.0
+                    img.clipsToBounds = true
+                }
+                
+                if let track = itemTitle {
+                    track.text = archive.title
+                    track.highlightedTextColor = IAColors.fairyRed
+                }
+            }
+            
+            
+            if let download = downloadButton, let f = playlistFile?.file {
+                
+                
+                if(!f.downloaded) {
+                    download.setIAIcon(.iosCloudDownloadOutline, forState:.normal)
+                    download.isHidden = false
+                    download.isEnabled = true
+                    download.setTitleColor(UIColor.darkGray, for: .disabled)
+                } else {
+                    download.isHidden = false
+                    download.isEnabled = false
+                    download.setIAIcon(.document, forState:.normal)
+                    download.setTitleColor(UIColor.fairyCream, for: .disabled)
+                }
+                
+                
+            }
+            
+            if let s = size, let value = playlistFile?.file?.displaySize {
+                s.text = "\(value) MB"
+            }
+            
+            if let l = length, let value = playlistFile?.file?.displayLength {
+                l.text = value
+            }
+            self.accessoryType = .none
+            
+            isSelected ? showSelected() : showUnselected()
+            
+        }
+    }
+    
+    
         
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -346,7 +346,11 @@ class IARealmManger {
         return archiveResult?.files.sorted(byKeyPath: "displayOrder")
     }
     
-    
+    func playlistFilesForLust(list:IAList) -> Results<IAListFile>? {
+        let predicate = NSPredicate(format: "title = %@", list.title)
+        let result = realm.objects(IAList.self).filter(predicate).first
+        return result?.files.sorted(byKeyPath: "displayOrder")
+    }
     
     
     

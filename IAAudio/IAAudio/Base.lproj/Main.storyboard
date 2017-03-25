@@ -27,7 +27,7 @@
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="IAHomeViewController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="IAHomeViewController" customModule="IAAudio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -98,7 +98,7 @@
         <!--My Stash Choices View Controller-->
         <scene sceneID="zMP-sN-7um">
             <objects>
-                <viewController id="SGz-8g-usB" customClass="IAMyStashChoicesViewController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SGz-8g-usB" customClass="IAMyStashChoicesViewController" customModule="IAAudio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="duG-nt-9rz"/>
                         <viewControllerLayoutGuide type="bottom" id="hQ6-T6-h3e"/>
@@ -122,7 +122,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="389"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="choicesHeader" selectionStyle="default" indentationWidth="10" reuseIdentifier="choicesHeader" id="ISi-dJ-xpU" customClass="IAMyChoicesSectionHeaderTableViewCell" customModule="IA_Music" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="choicesHeader" selectionStyle="default" indentationWidth="10" reuseIdentifier="choicesHeader" id="ISi-dJ-xpU" customClass="IAMyChoicesSectionHeaderTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ISi-dJ-xpU" id="Mr0-Gr-AFq">
@@ -149,7 +149,7 @@
                                             <outlet property="title" destination="31I-Ab-USh" id="DZq-GS-hyJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="choiceCell" rowHeight="56" id="c6y-zm-i67" customClass="IAMyStashChoicesTableViewCell" customModule="IA_Music" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="choiceCell" rowHeight="56" id="c6y-zm-i67" customClass="IAMyStashChoicesTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c6y-zm-i67" id="Yjr-kb-v5b">
@@ -200,7 +200,7 @@
                                             <outlet property="title" destination="PwB-wJ-SCe" id="J0d-hy-kbS"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dataCell" rowHeight="118" id="qRf-VR-bUY" customClass="IAMyChoicesDataTableViewCell" customModule="IA_Music" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dataCell" rowHeight="118" id="qRf-VR-bUY" customClass="IAMyChoicesDataTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="320" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qRf-VR-bUY" id="xlU-zX-7aG">
@@ -267,7 +267,7 @@
                                             <outlet property="numberOfDownloadedFiles" destination="7yw-IO-Ltd" id="K0L-xQ-KEV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="findCell" id="wwg-Pk-iyX" customClass="IAMyChoicesFindTableViewCell" customModule="IA_Music" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="findCell" id="wwg-Pk-iyX" customClass="IAMyChoicesFindTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="246" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wwg-Pk-iyX" id="piq-90-anA">
@@ -333,7 +333,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3wg-UV-Bjq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="VD6-CY-pYo" customClass="IATopNavView" customModule="IA_Music" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="VD6-CY-pYo" customClass="IATopNavView" customModule="IAAudio" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -419,7 +419,7 @@
         <!--Home Tab Bar Controller-->
         <scene sceneID="XBr-kW-mBQ">
             <objects>
-                <tabBarController id="0LK-ht-Zdc" customClass="IAHomeTabBarController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="0LK-ht-Zdc" customClass="IAHomeTabBarController" customModule="IAAudio" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="QE2-Zf-8iB">
                         <barButtonItem key="backBarButtonItem" title=" " id="HWw-IR-A3V"/>
                     </navigationItem>

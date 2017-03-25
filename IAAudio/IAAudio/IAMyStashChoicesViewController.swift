@@ -142,9 +142,9 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
         
         if indexPath.section == ChoiceSelctions.Content.rawValue {
             selectedChoice = StashChoice.init(rawValue: indexPath.row)
-            if selectedChoice != StashChoice.Lists {
+//            if selectedChoice != StashChoice.Lists {
                 self.performSegue(withIdentifier: "stashPush", sender: nil)
-            }
+//            }
         }
     }
 
@@ -154,6 +154,9 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
             if let controller = segue.destination as? IAMyMusicStashViewController, let choice = selectedChoice {
                 if choice == StashChoice.Files {
                     controller.mode = .AllFiles
+                }
+                if choice == .Lists {
+                    controller.mode = .AllPlaylists
                 }
             }
         }
