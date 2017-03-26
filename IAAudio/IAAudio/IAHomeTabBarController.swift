@@ -35,7 +35,6 @@ class IAHomeTabBarController: UITabBarController {
             }
         }
         
-        self.view.backgroundColor = UIColor.green
         self.clearNavigation()
     }
 

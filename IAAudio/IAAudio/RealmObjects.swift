@@ -22,6 +22,7 @@ class IAPlayerFile: Object {
     dynamic var size = ""
     dynamic var length = ""
     dynamic var archiveIdentifier = ""
+    dynamic var archiveTitle = ""
     dynamic var compoundKey = ""
     
     
@@ -92,13 +93,9 @@ class IAArchive: Object {
 class IAList: Object {
     dynamic var title = ""
     let files = List<IAListFile>()
-    
-    override static func primaryKey() -> String? {
-        return "title"
-    }
 }
 
 class IAListFile: Object {
     dynamic var file: IAPlayerFile!
-    let playlistOrder = RealmOptional<Int16>()
+    dynamic var playlistOrder = 0
 }

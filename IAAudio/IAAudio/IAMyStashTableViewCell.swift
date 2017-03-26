@@ -61,16 +61,7 @@ class IAMyStashTableViewCell: UITableViewCell {
                 title.text = playlist?.title
                 title.highlightedTextColor = UIColor.white
             }
-//            if let img = trackImage, let url = IAMediaUtils.imageUrlFrom((archive?.identifier)!) {
-//                img.af_setImage(withURL: url)
-//                img.layer.cornerRadius = 10.0
-//                img.clipsToBounds = true
-//            }
-            
-//            if let track = itemTitle {
-//                track.text = archive?.creator
-//                track.highlightedTextColor = UIColor.white
-//            }
+
             
             if let download = downloadButton, let more = moreButton {
                 download.isHidden = true

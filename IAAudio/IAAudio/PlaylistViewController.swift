@@ -1,0 +1,168 @@
+//
+//  PlaylistViewController.swift
+//  IAAudio
+//
+//  Created by Hunter Lee Brown on 3/25/17.
+//  Copyright © 2017 Hunter Lee Brown. All rights reserved.
+//
+
+import UIKit
+
+class PlaylistViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    var playList: IAList?
+    
+    @IBOutlet weak var playListTitleInput: UITextField!
+    
+    @IBOutlet weak var playlistTable: UITableView!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var searchBarHolder: UIView!
+    
+    var playlistFiles = [IAListFile]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        let storyboard = UIStoryboard(name: "Playlist", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "PlaylistFindTableViewController") as! PlaylistFindTableViewController
+        controller.playListController = self
+        let searchResultsController = controller
+        
+        self.initSearchController(searchResultsController:searchResultsController)
+        self.searchController.searchBar.placeholder = "Find Tracks To Add"
+        self.searchController.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        self.searchController.searchBar.frame = self.searchBarHolder.bounds
+        self.searchController.searchResultsUpdater = searchResultsController
+        self.searchBarHolder.addSubview(searchController.searchBar)
+        
+        
+        playListTitleInput.tintColor = UIColor.fairyCream
+        playListTitleInput.backgroundColor = UIColor.clear
+        playListTitleInput.textColor = UIColor.fairyCream
+        playListTitleInput.layer.borderColor = UIColor.fairyCream.cgColor
+        playListTitleInput.layer.cornerRadius = 5.0
+        playListTitleInput.layer.borderWidth = 1.0
+        
+        playListTitleInput.attributedPlaceholder = NSAttributedString(string: "Playlist Title",
+                                                               attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        
+        for button in [deleteButton, saveButton] {
+            button?.setTitleColor(UIColor.fairyCream, for: .normal)
+        }
+        
+        playlistTable.sectionFooterHeight = 0
+
+        self.topTitle(text: "New Playlist")
+        
+        if let playL = playList {
+            for file in playL.files {
+                playlistFiles.append(file)
+            }
+            playlistTable.reloadData()
+            playListTitleInput.text = playL.title
+            self.topTitle(text: playL.title)
+        }
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.clearNavigation()
+        super.viewWillAppear(animated)
+
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)]
+        
+    }
+    
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return playlistFiles.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+        cell.playlistFile = playlistFiles[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 76.0
+    }
+
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        switch editingStyle {
+        case .delete:
+            self.playlistFiles.remove(at: indexPath.row)
+            self.playlistTable.deleteRows(at: [indexPath], with: .automatic)
+            
+            if playList != nil {
+                self.savePlaylist()
+            }
+            
+        default:
+            break
+        }
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let pl = playList {
+            IAPlayer.sharedInstance.playPlaylist(list: pl, start: indexPath.row)
+        }
+        
+    }
+    
+    func appendPlaylistFile(playlistFile:IAListFile)->Bool {
+        
+        if !self.playlistFiles.contains( where: { $0.file.compoundKey == playlistFile.file.compoundKey }) {
+            self.playlistFiles.append(playlistFile)
+            self.playlistTable.reloadData()
+            
+            if playList != nil {
+                self.savePlaylist()
+            }
+            
+            return true
+        }
+        
+        return false
+    }
+    
+    @IBAction func savePlaylist() {
+
+        if (playListTitleInput.text?.isEmpty)! {
+            alert(title: "Playlist Title", message: "Titles must not be empty")
+            return
+        }
+        let title = self.playListTitleInput.text
+        RealmManager.syncPlaylist(files: self.playlistFiles, title: title!, list: playList)
+        
+    }
+
+}

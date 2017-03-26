@@ -236,7 +236,7 @@ class IAPlayer: NSObject {
         self.loadAndPlay()
     }
     
-    func playFile(file:IAPlayerFile) {
+    func playFile(file:IAPlayerFile, playListWithIndex:PlaylistWithIndex? = nil) {
         
         let archive = RealmManager.archives(identifier: file.archiveIdentifier).first
         
@@ -260,12 +260,18 @@ class IAPlayer: NSObject {
         if let url = playerUrl {
             print("--------> playerUrl: \(url.absoluteString)")
             self.playUrl = url
-            self.loadAndPlay()
+            self.loadAndPlay(playListWithIndex: playListWithIndex)
         }
     }
     
+    typealias PlaylistWithIndex = (list:IAList, index:Int)
     
-    private func loadAndPlay() {
+    func playPlaylist(list:IAList, start:Int) {
+        self.playFile(file: list.files[start].file, playListWithIndex: (list:list, index:start))
+    }
+    
+    
+    private func loadAndPlay(playListWithIndex:PlaylistWithIndex? = nil) {
         
         if playUrl.absoluteString.contains("http") {
             guard IAReachability.isConnectedToNetwork() else {

@@ -23,14 +23,7 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
         tableView.rowHeight = 90
         tableView.cellLayoutMarginsFollowReadableWidth = false
         
-        searchBar.tintColor = UIColor.fairyCream
-        searchBar.backgroundColor = UIColor.clear
-        searchBar.backgroundImage = UIImage()
-        searchBar.isTranslucent = true
-        searchBar.scopeBarBackgroundImage = UIImage()
-        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
-            textField.textColor = UIColor.fairyCream
-        }
+        searchBar.fairy()
 
         if let topNav = topNavView {
             topNav.topNavViewTitle.text = "Search For Audio"

@@ -13,7 +13,6 @@ enum StashMode {
     case SingleArchive
     case AllArchives
     case AllFiles
-    case SinglePlaylist
     case AllPlaylists
 }
 
@@ -94,11 +93,16 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             playLists = realm?.objects(IAList.self).sorted(byKeyPath: "title")
             notificationToken = self.setUpNotification(mode: .AllPlaylists)
             self.topTitle(text:"All Playlists")
+                        
+            let rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(IAMyMusicStashViewController.pushNewPlaylist(sender:)))
+            self.navigationItem.rightBarButtonItem = rightButton
+            rightButton.tintColor = UIColor.fairyCream
             
-        case .SinglePlaylist:
-            let realm = RealmManager.realm
-            playListFiles = realm?.objects(IAListFile.self).sorted(byKeyPath: "playlistOrder")
-            self.topTitle(text:(playLists.first?.title)!)
+            if RealmManager.archives().count == 0 {
+                rightButton.isEnabled = false
+            }
+            
+            
         }
         
         for button in [removeAllButton,detailsButton] {
@@ -131,11 +135,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         case .AllPlaylists:
             self.archiveButtonsHeight.constant = 0
             self.archiveButtonsHolder.isHidden = true
-        case .SinglePlaylist:
-            self.archiveButtonsHeight.constant = 44
-            self.archiveButtonsHolder.isHidden = false
-            self.detailsButton.setTitle("Edit List", for: .normal)
-            self.removeAllButton.setTitle("Delete List", for: .normal)
         }
     }
 
@@ -233,36 +232,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 
             })
             
-        case .SinglePlaylist:
-            return playListFiles.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAListFile>>) in
-                
-                switch changes {
-                case .initial:
-                    self?.tableView.reloadData()
-                case .update(let results, let deletions, let insertions, let modifications):
-                    
-                    
-                    if (self?.isSearching())! {
-                        
-                    } else {
-                        
-                        self?.tableView.beginUpdates()
-                        self?.tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
-                        self?.tableView.endUpdates()
-                    }
-                    
-                    if results.count == 0 {
-                        self?.popIfCorrectController()
-                    }
-                    
-                case .error(let error):
-                    print (error)
-                    break
-                }
-                
-            })
         case .AllPlaylists:
             
             return playLists.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAList>>) in
@@ -374,10 +343,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
             return isSearching() ? filteredPlaylists.count : playLists.count
             
-        case .SinglePlaylist:
-            
-            return isSearching() ? filteredListFiles.count : playListFiles.count
-            
         }
         
     }
@@ -385,6 +350,12 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     
     func pushDoc(sender:UIButton){
         self.performSegue(withIdentifier: "docPush", sender: sender)
+    }
+
+    func pushNewPlaylist(sender:UIButton){
+        
+        self.performSegue(withIdentifier: "playlistPush", sender: sender)
+        
     }
     
     
@@ -429,26 +400,13 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             return cell
             
         case .AllPlaylists:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "archiveCell", for: indexPath) as! IAMyStashTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! IAMyStashTableViewCell
             if let downloadButton = cell.downloadButton {
                 downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
             
             let playlist = isSearching() ? filteredPlaylists[indexPath.row] : playLists[indexPath.row]
             cell.playlist = playlist
-            
-            return cell
-            
-        case .SinglePlaylist:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
-            if let downloadButton = cell.downloadButton {
-                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
-            }
-            let file = isSearching() ? filteredListFiles[indexPath.row] : playListFiles[indexPath.row]
-            cell.playlistFile = file
-            cell.downloadButton?.tag = indexPath.row
-            cell.downloadButton?.addTarget(self, action:#selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
-            self.selectFileRowIfPlaying(indexPath: indexPath, file: file.file)
             
             return cell
             
@@ -460,13 +418,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         switch mode {
         case .SingleArchive:
             fallthrough
-        case .SinglePlaylist:
-            fallthrough
         case .AllFiles:
-            return 76.0
-        case .AllArchives:
             fallthrough
         case .AllPlaylists:
+            return 76.0
+        case .AllArchives:
             return 90.0
         }
     }
@@ -492,10 +448,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         case .AllFiles:
             let file = isSearching() ? filteredFiles[indexPath.row] : files[indexPath.row]
             IAPlayer.sharedInstance.playFile(file: file)
-            
-        case .SinglePlaylist:
-            let file = isSearching() ? filteredListFiles[indexPath.row] : playListFiles[indexPath.row]
-            IAPlayer.sharedInstance.playFile(file: file.file)
             
         case .AllArchives:
             chosenArchive = isSearching() ? filteredArchives[indexPath.row] : archives[indexPath.row]
@@ -552,9 +504,17 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     file = files[indexPath.row]
                     RealmManager.deleteFile(file: file)
                 }
-                
-            default:
-                break
+
+            case .AllPlaylists:
+                let playList: IAList!
+                if isSearching() {
+                    playList = filteredPlaylists[indexPath.row]
+                    RealmManager.deletePlaylist(list: playList)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                } else {
+                    playList = playLists[indexPath.row]
+                    RealmManager.deletePlaylist(list: playList)
+                }
             }
             
         case .insert:
@@ -624,6 +584,13 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             }
         }
         
+        if segue.identifier == "playlistPush" {
+            if let playList = chosenPlaylist {
+                let controller = segue.destination as! PlaylistViewController
+                controller.playList = playList
+            }
+            chosenPlaylist = nil
+        }
 
     }
     
@@ -650,10 +617,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         case .AllPlaylists:
             let predicate = NSPredicate(format: "title CONTAINS[c] %@", searchText)
             filteredPlaylists = playLists.filter(predicate)
-            
-        case .SinglePlaylist:
-            let predicate = NSPredicate(format: "title CONTAINS[c] %@ OR name CONTAINS[c] %@", searchText, searchText)
-            filteredListFiles = playListFiles.filter(predicate)
         }
         
         tableView.reloadData()
@@ -672,8 +635,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 file = files[sender.tag]
             case .SingleArchive:
                 file = archiveFiles[sender.tag]
-            case .SinglePlaylist:
-                file = playListFiles[sender.tag].file
             default:
                 return
             }

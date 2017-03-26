@@ -152,11 +152,11 @@ class IARealmManger {
     private func createPlayerFile(identifier:String, file:IAFileMappable)->IAPlayerFile {
         let newFile = IAPlayerFile()
         
-//        newFile.archiveIdentifier = identifier
-//        newFile.name = file.name!
-        
         newFile.setCompoundName(name: file.name!)
         newFile.setCompoundArchiveIdentifier(identifier: identifier)
+        
+        let archive = self.archives(identifier: identifier).first
+        newFile.archiveTitle = (archive?.title)!
         
         if let title = file.title {
             newFile.title = title
@@ -241,6 +241,43 @@ class IARealmManger {
             try FileManager.default.removeItem(at: archivePath)
         } catch  {
             print("------------> couldn't remove: \(archivePath)")
+        }
+    }
+    
+    //MARK: -- Playlist Use
+    
+    func deletePlaylist(list:IAList) {
+    
+        try! realm.write {
+            realm.delete(list.files)
+            realm.delete(list)
+        }
+    }
+    
+    func syncPlaylist(files:[IAListFile], title:String, list:IAList?) {
+        
+        try! realm.write {
+            if let playList = list {
+                playList.title = title
+                for file in files {
+                    if !(list?.files.contains( where: { $0.file.compoundKey == file.file.compoundKey }))! {
+                        playList.files.append(file)
+                    }
+                }
+                
+                let deleteFiles = playList.files.filter{!files.contains($0)}
+                if deleteFiles.count > 0 {
+                    realm.delete(deleteFiles)
+                }
+                
+            } else {
+                let playList = IAList()
+                playList.title = title
+                for file in files {
+                    playList.files.append(file)
+                }
+                realm.add(playList)
+            }
         }
     }
     

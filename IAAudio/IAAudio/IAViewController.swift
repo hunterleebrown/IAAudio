@@ -10,6 +10,8 @@ import UIKit
 
 
 class IAViewController: UIViewController {
+
+    
     
     //MARK: - Top Nav View
     @IBOutlet weak var topNavView: IATopNavView?
@@ -38,6 +40,7 @@ class IAViewController: UIViewController {
         }
         
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,8 +48,8 @@ class IAViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func initSearchController() {
-        searchController = UISearchController(searchResultsController: nil)
+    func initSearchController(searchResultsController:UIViewController? = nil) {
+        searchController = UISearchController(searchResultsController: searchResultsController)
         definesPresentationContext = true
         searchController.dimsBackgroundDuringPresentation = false
         
@@ -66,6 +69,8 @@ class IAViewController: UIViewController {
         guard searchController != nil else { return false }
         return searchController.isActive && searchController.searchBar.text != ""
     }
+    
+
 
 }
 

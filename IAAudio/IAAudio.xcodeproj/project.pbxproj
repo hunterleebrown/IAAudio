@@ -83,6 +83,11 @@
 		5A6DFBBA1E594209002C0977 /* IAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6DFBB91E594209002C0977 /* IAViewController.swift */; };
 		5A6DFBBC1E5943C8002C0977 /* IATopNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */; };
 		5A7967F31E584592001F44B0 /* UIFont+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7967F21E584592001F44B0 /* UIFont+Common.swift */; };
+		5A92D8A11E86F6DE00E0EB61 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A92D8A01E86F6DE00E0EB61 /* PlaylistViewController.swift */; };
+		5A92D8A31E86F97A00E0EB61 /* Playlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A92D8A21E86F97A00E0EB61 /* Playlist.storyboard */; };
+		5A92D8A51E871BA000E0EB61 /* UISearchBar+Fairy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A92D8A41E871BA000E0EB61 /* UISearchBar+Fairy.swift */; };
+		5A92D8A71E87245E00E0EB61 /* PlaylistFindTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A92D8A61E87245E00E0EB61 /* PlaylistFindTableViewController.swift */; };
+		5A92D8A91E872F8B00E0EB61 /* PlaylistFindTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A92D8A81E872F8B00E0EB61 /* PlaylistFindTableViewCell.swift */; };
 		5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */; };
 		5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */; };
 		5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */; };
@@ -169,6 +174,11 @@
 		5A6DFBB91E594209002C0977 /* IAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAViewController.swift; sourceTree = "<group>"; };
 		5A6DFBBB1E5943C8002C0977 /* IATopNavView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IATopNavView.swift; sourceTree = "<group>"; };
 		5A7967F21E584592001F44B0 /* UIFont+Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Common.swift"; sourceTree = "<group>"; };
+		5A92D8A01E86F6DE00E0EB61 /* PlaylistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		5A92D8A21E86F97A00E0EB61 /* Playlist.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playlist.storyboard; sourceTree = "<group>"; };
+		5A92D8A41E871BA000E0EB61 /* UISearchBar+Fairy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Fairy.swift"; sourceTree = "<group>"; };
+		5A92D8A61E87245E00E0EB61 /* PlaylistFindTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistFindTableViewController.swift; sourceTree = "<group>"; };
+		5A92D8A81E872F8B00E0EB61 /* PlaylistFindTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistFindTableViewCell.swift; sourceTree = "<group>"; };
 		5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyMusicStash.storyboard; sourceTree = "<group>"; };
 		5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAReachability.swift; sourceTree = "<group>"; };
 		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -348,6 +358,7 @@
 				5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */,
 				5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */,
 				5A7967F21E584592001F44B0 /* UIFont+Common.swift */,
+				5A92D8A41E871BA000E0EB61 /* UISearchBar+Fairy.swift */,
 				5A5764B51E502C53000D4465 /* StringUtils.swift */,
 				5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */,
 			);
@@ -387,6 +398,10 @@
 		5A41161C1E4D44E9004F6B56 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
+				5A92D8A01E86F6DE00E0EB61 /* PlaylistViewController.swift */,
+				5A92D8A21E86F97A00E0EB61 /* Playlist.storyboard */,
+				5A92D8A61E87245E00E0EB61 /* PlaylistFindTableViewController.swift */,
+				5A92D8A81E872F8B00E0EB61 /* PlaylistFindTableViewCell.swift */,
 			);
 			name = Lists;
 			sourceTree = "<group>";
@@ -519,6 +534,7 @@
 				5A4115B51E4D1803004F6B56 /* ionicons.ttf in Resources */,
 				5A4115BF1E4D1DF8004F6B56 /* IAPlayer.storyboard in Resources */,
 				5A41158F1E4D046F004F6B56 /* Main.storyboard in Resources */,
+				5A92D8A31E86F97A00E0EB61 /* Playlist.storyboard in Resources */,
 				5A1096101E5185DC008DB3B7 /* IADoc.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,6 +572,7 @@
 				5A4115FA1E4D203F004F6B56 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
 				5A525BFF1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift in Sources */,
 				5A4116181E4D280E004F6B56 /* IASearchDoc.swift in Sources */,
+				5A92D8A51E871BA000E0EB61 /* UISearchBar+Fairy.swift in Sources */,
 				5A4115F41E4D203F004F6B56 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				5A4115F21E4D203F004F6B56 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				5A4115F81E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
@@ -568,7 +585,10 @@
 				5A41160D1E4D203F004F6B56 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
 				5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */,
 				5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */,
+				5A92D8A91E872F8B00E0EB61 /* PlaylistFindTableViewCell.swift in Sources */,
 				5A4116051E4D203F004F6B56 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
+				5A92D8A71E87245E00E0EB61 /* PlaylistFindTableViewController.swift in Sources */,
+				5A92D8A11E86F6DE00E0EB61 /* PlaylistViewController.swift in Sources */,
 				5A4116091E4D203F004F6B56 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
 				5A4115BC1E4D19DE004F6B56 /* IAHomeTabBarController.swift in Sources */,
 				5A4115F61E4D203F004F6B56 /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
