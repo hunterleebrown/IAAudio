@@ -17,7 +17,6 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var playlistTable: UITableView!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var searchBarHolder: UIView!
     
     var playlistFiles = [IAListFile]()
@@ -50,7 +49,8 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         playListTitleInput.attributedPlaceholder = NSAttributedString(string: "Playlist Title",
                                                                attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         
-        for button in [deleteButton, saveButton] {
+        
+        for button in [saveButton] {
             button?.setTitleColor(UIColor.fairyCream, for: .normal)
         }
         
@@ -59,22 +59,27 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         self.topTitle(text: "New Playlist")
         
         if let playL = playList {
-            for file in playL.files {
+            for file in playL.files.sorted(byKeyPath: "playlistOrder") {
                 playlistFiles.append(file)
             }
             playlistTable.reloadData()
             playListTitleInput.text = playL.title
             self.topTitle(text: playL.title)
         }
+        
+        
+        
+        let rightButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(PlaylistViewController.toggleEditMode(sender:)))
+        
+        self.navigationItem.rightBarButtonItem = rightButton
+        rightButton.tintColor = UIColor.fairyCream
+        
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.clearNavigation()
         super.viewWillAppear(animated)
-
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)]
-        
     }
     
 
@@ -88,6 +93,10 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
+    }
+    
+    func toggleEditMode(sender:UIBarButtonItem) {
+        self.playlistTable.isEditing = !self.playlistTable.isEditing
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,6 +120,10 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         return true
     }
 
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -122,16 +135,26 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
             if playList != nil {
                 self.savePlaylist()
             }
-            
+        
         default:
             break
         }
         
     }
     
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.playlistFiles[sourceIndexPath.row]
+        self.playlistFiles.remove(at: sourceIndexPath.row)
+        self.playlistFiles.insert(movedObject, at: destinationIndexPath.row)
+        
+        if playList != nil {
+            self.savePlaylist()
+        }
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
         if let pl = playList {
             IAPlayer.sharedInstance.playPlaylist(list: pl, start: indexPath.row)
         }
@@ -160,6 +183,8 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
             alert(title: "Playlist Title", message: "Titles must not be empty")
             return
         }
+        print(self.playlistFiles)
+        
         let title = self.playListTitleInput.text
         RealmManager.syncPlaylist(files: self.playlistFiles, title: title!, list: playList)
         

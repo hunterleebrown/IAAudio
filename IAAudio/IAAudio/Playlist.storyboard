@@ -133,8 +133,8 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="wNr-5n-vPS"/>
                                                     <exclude reference="Uge-f8-n3C"/>
+                                                    <exclude reference="wNr-5n-vPS"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -170,12 +170,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="akA-FH-a0R">
                                 <rect key="frame" x="36" y="617" width="303" height="30"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5A1-4b-k21">
-                                        <rect key="frame" x="0.0" y="0.0" width="146.5" height="30"/>
-                                        <state key="normal" title="Delete Playlist"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSb-e5-yK2">
-                                        <rect key="frame" x="156.5" y="0.0" width="146.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="303" height="30"/>
                                         <state key="normal" title="Save"/>
                                         <connections>
                                             <action selector="savePlaylist" destination="0cg-KN-Zcx" eventType="touchUpInside" id="whP-Na-EcK"/>
@@ -207,7 +203,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="3Rr-IN-Wfd"/>
                     <connections>
-                        <outlet property="deleteButton" destination="5A1-4b-k21" id="iA6-LW-7Ta"/>
                         <outlet property="playListTitleInput" destination="IMq-Id-xtY" id="pYJ-6r-P7u"/>
                         <outlet property="playlistTable" destination="PEM-Nc-5Xf" id="BZC-Wi-98C"/>
                         <outlet property="saveButton" destination="rSb-e5-yK2" id="toK-n2-H91"/>
@@ -356,8 +351,8 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="plj-CZ-g79"/>
                                             <exclude reference="Tzl-dS-MGl"/>
+                                            <exclude reference="plj-CZ-g79"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>

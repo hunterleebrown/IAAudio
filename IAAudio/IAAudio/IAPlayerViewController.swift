@@ -45,6 +45,10 @@ class IAPlayerViewController: UIViewController {
     weak var baseViewController: IAHomeViewController!
     var sliderIsTouched : Bool = false
 
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -267,7 +271,10 @@ class IAPlayer: NSObject {
     typealias PlaylistWithIndex = (list:IAList, index:Int)
     
     func playPlaylist(list:IAList, start:Int) {
-        self.playFile(file: list.files[start].file, playListWithIndex: (list:list, index:start))
+        
+        let startFile = list.files.filter("playlistOrder == \(start)").first?.file
+        
+        self.playFile(file: startFile!, playListWithIndex: (list:list, index:start))
     }
     
     

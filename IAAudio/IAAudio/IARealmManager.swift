@@ -259,7 +259,8 @@ class IARealmManger {
         try! realm.write {
             if let playList = list {
                 playList.title = title
-                for file in files {
+                for (index,file) in files.enumerated() {
+                    file.playlistOrder = index
                     if !(list?.files.contains( where: { $0.file.compoundKey == file.file.compoundKey }))! {
                         playList.files.append(file)
                     }
@@ -269,11 +270,17 @@ class IARealmManger {
                 if deleteFiles.count > 0 {
                     realm.delete(deleteFiles)
                 }
+//                
+//                for (index,file) in files.enumerated() {
+//                    file.playlistOrder = index
+//                }
+                
                 
             } else {
                 let playList = IAList()
                 playList.title = title
-                for file in files {
+                for (index,file) in files.enumerated() {
+                    file.playlistOrder = index
                     playList.files.append(file)
                 }
                 realm.add(playList)
