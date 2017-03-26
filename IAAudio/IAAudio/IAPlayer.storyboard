@@ -250,6 +250,51 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B2l-w8-ria">
                                 <rect key="frame" x="0.0" y="166" width="375" height="501"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="nowPlayingCell" id="6za-oy-IXz" customClass="NowPlayingTableViewCell" customModule="IAAudio" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6za-oy-IXz" id="zcz-to-mim">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="68e-ws-cSX">
+                                                    <rect key="frame" x="10" y="2" width="355" height="39.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lww-wt-4WD">
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="25"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wun-1Z-Csu">
+                                                            <rect key="frame" x="0.0" y="25" width="355" height="14.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="68e-ws-cSX" secondAttribute="trailing" constant="10" id="YTq-kg-4yt"/>
+                                                <constraint firstItem="68e-ws-cSX" firstAttribute="top" secondItem="zcz-to-mim" secondAttribute="top" constant="2" id="ox2-Mm-Ip2"/>
+                                                <constraint firstAttribute="bottom" secondItem="68e-ws-cSX" secondAttribute="bottom" constant="2" id="piT-pq-Jvz"/>
+                                                <constraint firstItem="68e-ws-cSX" firstAttribute="leading" secondItem="zcz-to-mim" secondAttribute="leading" constant="10" id="uc4-tb-J7s"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="subTitleLabel" destination="wun-1Z-Csu" id="R8e-1i-4gY"/>
+                                            <outlet property="titleLabel" destination="lww-wt-4WD" id="EPh-1z-p9W"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="m34-IB-XFo" id="Tpf-Yn-gbU"/>
+                                    <outlet property="delegate" destination="m34-IB-XFo" id="OOu-8x-ROZ"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,6 +316,7 @@
                         <outlet property="maxTime" destination="HdK-el-sB3" id="R6W-XN-Teg"/>
                         <outlet property="minTime" destination="hqD-lj-ymQ" id="htn-mp-dVq"/>
                         <outlet property="nowPlayingItemButton" destination="tT7-jE-Amb" id="x93-94-PQJ"/>
+                        <outlet property="nowPlayingTable" destination="B2l-w8-ria" id="E10-xz-Tzk"/>
                         <outlet property="nowPlayingTitle" destination="yjn-4I-NAf" id="4k5-mQ-u0Q"/>
                         <outlet property="playButton" destination="M5j-dE-d5Y" id="bSF-vd-ysU"/>
                         <outlet property="playerControlsView" destination="NAQ-H4-tZT" id="VNM-QA-hZr"/>

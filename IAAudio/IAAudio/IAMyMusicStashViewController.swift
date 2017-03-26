@@ -419,9 +419,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         case .SingleArchive:
             fallthrough
         case .AllFiles:
-            fallthrough
-        case .AllPlaylists:
             return 76.0
+        case .AllPlaylists:
+            return 44.0
         case .AllArchives:
             return 90.0
         }

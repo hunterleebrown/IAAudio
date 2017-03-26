@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MediaPlayer
 import AVFoundation
-
+import RealmSwift
 
 class IAPlayerViewController: UIViewController {
 
@@ -42,13 +42,23 @@ class IAPlayerViewController: UIViewController {
 
     @IBOutlet weak var playerIcon: UIImageView!
     
+    @IBOutlet weak var nowPlayingTable: UITableView!
+    
     weak var baseViewController: IAHomeViewController!
     var sliderIsTouched : Bool = false
+    
+    var playerTableFiles = [IAListFile]()
+    
+    var playList: IAList? {
+        didSet {
+            self.playerTableFiles.removeAll()
+            for file in (playList?.files.sorted(byKeyPath: "playlistOrder"))! {
+                playerTableFiles.append(file)
+            }
+            self.nowPlayingTable.reloadData()
+        }
+    }
 
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,8 +89,11 @@ class IAPlayerViewController: UIViewController {
             print("Can't set category or active session")
         }
         
-        self.view.backgroundColor = IAColors.fairyRed
-
+        self.view.backgroundColor = UIColor.fairyRed
+        
+        self.nowPlayingTable.sectionFooterHeight = 0.0
+        self.nowPlayingTable.backgroundColor = UIColor.darkGray
+        
     }
 
     func buttonColors() {
@@ -136,9 +149,9 @@ class IAPlayerViewController: UIViewController {
         if(sender == self.playButton){
             IAPlayer.sharedInstance.didTapPlayButton()
         } else if sender == self.forwardButton {
-//            IAPlayer.sharedInstance.advancePlaylist()
+            IAPlayer.sharedInstance.advancePlaylist()
         } else if sender == self.backwardButton {
-//            IAPlayer.sharedInstance.reversePlaylist()
+            IAPlayer.sharedInstance.reversePlaylist()
         } else if sender == self.randomButton {
             self.randomButton.isSelected = !self.randomButton.isSelected
         }
@@ -206,9 +219,44 @@ class IAPlayerViewController: UIViewController {
             }
         }
     }
+}
+
+extension IAPlayerViewController: UITableViewDelegate, UITableViewDataSource {
+
+    
+    // MARK: - Table view data source
+    
+     func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return playerTableFiles.count
+    }
+    
+     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "nowPlayingCell", for: indexPath) as! NowPlayingTableViewCell
+        
+        let file = playerTableFiles[indexPath.row]
+        cell.titleLabel.text = file.file.displayTitle
+        cell.subTitleLabel.text = file.file.archiveTitle
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        Player.playPlaylist(list: playList!, start: indexPath.row)
+    }
+    
     
 }
 
+let Player = IAPlayer.sharedInstance
 
 class IAPlayer: NSObject {
 
@@ -220,6 +268,7 @@ class IAPlayer: NSObject {
     
     fileprivate var observerContext = 0
     
+
     static let sharedInstance: IAPlayer = {
         return IAPlayer()
     }()
@@ -229,6 +278,9 @@ class IAPlayer: NSObject {
     var fileIdentifier: String?
     
     var mediaArtwork : MPMediaItemArtwork?
+    
+    typealias PlaylistWithIndex = (list:IAList, index:Int)
+    var playingPlaylistWithIndex: PlaylistWithIndex?
     
     func playFile(file:IAFileMappable, doc:IAArchiveDocMappable){
         
@@ -268,15 +320,12 @@ class IAPlayer: NSObject {
         }
     }
     
-    typealias PlaylistWithIndex = (list:IAList, index:Int)
-    
     func playPlaylist(list:IAList, start:Int) {
         
         let startFile = list.files.filter("playlistOrder == \(start)").first?.file
         
         self.playFile(file: startFile!, playListWithIndex: (list:list, index:start))
     }
-    
     
     private func loadAndPlay(playListWithIndex:PlaylistWithIndex? = nil) {
         
@@ -317,6 +366,23 @@ class IAPlayer: NSObject {
         
         avPlayer?.play()
         self.setPlayingInfo(playing: true)
+        
+        if let pI = playListWithIndex {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+            
+            self.controlsController?.playList = pI.list
+            self.playingPlaylistWithIndex = pI
+            
+            NotificationCenter.default.addObserver(self, selector: #selector(IAPlayer.continuePlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        
+        } else {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        }
+        
+    }
+    
+    func continuePlaying() {
+        advancePlaylist()
     }
     
     
@@ -331,8 +397,26 @@ class IAPlayer: NSObject {
                 self.setPlayingInfo(playing: true)
             }
         }
-        
     }
+
+    func advancePlaylist() {
+        if let pI = playingPlaylistWithIndex {
+            let nextIndex = pI.index + 1
+            if nextIndex < pI.list.files.count {
+                Player.playPlaylist(list: pI.list, start: nextIndex)
+            }
+        }
+    }
+    
+    func reversePlaylist() {
+        if let pI = playingPlaylistWithIndex {
+            let previousIndex = pI.index - 1
+            if previousIndex >= 0 {
+                Player.playPlaylist(list: pI.list, start: previousIndex)
+            }
+        }
+    }
+    
     
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
