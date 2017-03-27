@@ -18,7 +18,9 @@ class IAMyStashTableViewCell: UITableViewCell {
     @IBOutlet weak var pushButton: UIButton?
     @IBOutlet weak var size: UILabel?
     @IBOutlet weak var length: UILabel?
+    @IBOutlet weak var trackIconLabel: UILabel!
     
+    @IBOutlet weak var playlistPlayButton: UIButton!
     
     weak var archive: IAArchive? {
     
@@ -53,26 +55,48 @@ class IAMyStashTableViewCell: UITableViewCell {
     }
     
     
-    weak var playlist: IAList? {
+    var playlist: IAList? {
         
         didSet {
             
             if let title = trackTitle {
                 title.text = playlist?.title
                 title.highlightedTextColor = UIColor.white
+                
+                if let list = playlist, let subTitle = itemTitle {
+                    subTitle.text = "\(list.files.count) track\(list.files.count == 1 ? "" : "s")"
+                }
             }
 
             
-            if let download = downloadButton, let more = moreButton {
-                download.isHidden = true
-                more.isHidden = true
+            if let icon = trackIconLabel {
+                icon.font = UIFont(name: IAFontMapping.IAFontFamily, size:33.0)
+                icon.text = IAFontMapping.COLLECTION
             }
             
-            if let l = length {
-                l.text = ""
+            if let playButton = playlistPlayButton {
+                playButton.setIAIcon(.play, forState: .normal)
+                if let list = playlist {
+                    if list.files.count < 1 {
+                        playButton.isEnabled = false
+                    } else {
+                        playButton.isEnabled = true
+                    }
+                }
             }
+            
             isSelected ? showSelected() : showUnselected()
             
+        }
+    }
+    
+    
+    @IBAction func playPlaylist(_ sender: Any) {
+        
+        if let list = playlist {
+            if list.files.count > 0 {
+                Player.playPlaylist(list: list, start: 0)
+            }
         }
     }
     

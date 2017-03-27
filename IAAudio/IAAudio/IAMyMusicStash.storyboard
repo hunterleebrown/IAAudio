@@ -8,6 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Iconochive-Regular.ttf">
+            <string>Iconochive-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--My Audio Stash-->
         <scene sceneID="bwG-Yp-cQE">
@@ -60,7 +65,7 @@
                                                     <rect key="frame" x="10" y="5" width="355" height="123"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pJl-fC-hBl">
-                                                            <rect key="frame" x="0.0" y="22" width="80" height="80"/>
+                                                            <rect key="frame" x="0.0" y="21.5" width="80" height="80"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="80" id="XCS-Vr-d2K"/>
@@ -134,7 +139,7 @@
                                                     <rect key="frame" x="10" y="34" width="355" height="66"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hNg-7I-YRD">
-                                                            <rect key="frame" x="0.0" y="17" width="33" height="33"/>
+                                                            <rect key="frame" x="0.0" y="16.5" width="33" height="33"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="33" id="hOv-dr-A6C"/>
@@ -262,31 +267,55 @@
                                                     </view>
                                                     <blurEffect style="light"/>
                                                 </visualEffectView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CPS-gT-ymn">
-                                                    <rect key="frame" x="10" y="34" width="355" height="66"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CPS-gT-ymn">
+                                                    <rect key="frame" x="10" y="45" width="355" height="44"/>
                                                     <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2g-HW-jxZ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="44" id="F0y-lg-in5"/>
+                                                                <constraint firstAttribute="height" constant="44" id="JfU-rP-0mJ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Iconochive-Regular" family="Iconochive-Regular" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="KI1-Of-lKD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="66"/>
+                                                            <rect key="frame" x="54" y="0.0" width="247" height="44"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="999" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="999" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.64999997615814209" translatesAutoresizingMaskIntoConstraints="NO" id="iFF-yg-Rnx">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="33"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="247" height="22"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EU-5e-ssm">
-                                                                    <rect key="frame" x="0.0" y="33" width="355" height="33"/>
+                                                                    <rect key="frame" x="0.0" y="22" width="247" height="22"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RBM-mS-VJd">
+                                                            <rect key="frame" x="311" y="0.0" width="44" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="44" id="Ofy-IQ-R1i"/>
+                                                                <constraint firstAttribute="width" constant="44" id="uZX-Me-T1p"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                            <state key="normal" title="p">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="disabled">
+                                                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="playPlaylist:" destination="dfJ-cZ-fju" eventType="touchUpInside" id="P99-UY-NRs"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="66" id="9Qn-zn-0Sy"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -303,14 +332,16 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
-                                                    <exclude reference="8fK-LQ-r17"/>
                                                     <exclude reference="5ab-f5-ufd"/>
+                                                    <exclude reference="8fK-LQ-r17"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="itemTitle" destination="3EU-5e-ssm" id="Vwo-Sd-cbh"/>
+                                            <outlet property="playlistPlayButton" destination="RBM-mS-VJd" id="FkD-47-1IS"/>
+                                            <outlet property="trackIconLabel" destination="V2g-HW-jxZ" id="TgZ-vJ-LeD"/>
                                             <outlet property="trackTitle" destination="iFF-yg-Rnx" id="7Ti-E2-3Hi"/>
                                         </connections>
                                     </tableViewCell>
@@ -324,14 +355,14 @@
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkt-Ja-w6w">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
                                         <state key="normal" title="Full Archive"/>
                                         <connections>
                                             <action selector="fullArchiveDetails:" destination="6zi-bb-Jhv" eventType="touchUpInside" id="UV3-YR-5vv"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qvF-Tk-adu">
-                                        <rect key="frame" x="188" y="0.0" width="187" height="44"/>
+                                        <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
                                         <state key="normal" title="Delete All"/>
                                         <connections>
                                             <action selector="didTapRemoveAllFiles:" destination="6zi-bb-Jhv" eventType="touchUpInside" id="pD4-We-9vp"/>
