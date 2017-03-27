@@ -18,6 +18,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var playlistTable: UITableView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var searchBarHolder: UIView!
+    @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     
     var playlistFiles = [IAListFile]()
     
@@ -74,6 +75,10 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         self.navigationItem.rightBarButtonItem = rightButton
         rightButton.tintColor = UIColor.fairyCream
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+
 
     }
     
@@ -161,6 +166,10 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        playListTitleInput.resignFirstResponder()
+    }
+    
     func appendPlaylistFile(playlistFile:IAListFile)->Bool {
         
         if !self.playlistFiles.contains( where: { $0.file.compoundKey == playlistFile.file.compoundKey }) {
@@ -190,4 +199,26 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         
     }
 
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            bottomLayoutConstraint.constant = keyboardSize.height + 20
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+     
+            bottomLayoutConstraint.constant = 20
+
+    }
+    
+    deinit {
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
 }

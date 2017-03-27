@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,7 +37,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PEM-Nc-5Xf">
-                                <rect key="frame" x="0.0" y="84" width="375" height="449"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="499"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="stashCell" id="R8k-xs-Jyv" customClass="IAMyStashTableViewCell" customModule="IAAudio" customModuleProvider="target">
@@ -154,46 +153,43 @@
                                 </connections>
                             </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YEx-hF-jV0">
-                                <rect key="frame" x="20" y="553" width="335" height="44"/>
+                                <rect key="frame" x="20" y="603" width="335" height="44"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Playlist Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMq-Id-xtY">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="akA-FH-a0R">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="V8j-JE-aBo"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="akA-FH-a0R">
-                                <rect key="frame" x="36" y="617" width="303" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSb-e5-yK2">
-                                        <rect key="frame" x="0.0" y="0.0" width="303" height="30"/>
-                                        <state key="normal" title="Save"/>
-                                        <connections>
-                                            <action selector="savePlaylist" destination="0cg-KN-Zcx" eventType="touchUpInside" id="whP-Na-EcK"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Playlist Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMq-Id-xtY">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="V8j-JE-aBo"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rSb-e5-yK2">
+                                                <rect key="frame" x="242" y="0.0" width="93" height="44"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="savePlaylist" destination="0cg-KN-Zcx" eventType="touchUpInside" id="whP-Na-EcK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ap7-b2-2dg" firstAttribute="top" secondItem="akA-FH-a0R" secondAttribute="bottom" constant="20" id="8AA-ge-FQD"/>
                             <constraint firstItem="PEM-Nc-5Xf" firstAttribute="leading" secondItem="PBF-B7-BVy" secondAttribute="leading" id="BnX-fV-6Jt"/>
                             <constraint firstAttribute="trailing" secondItem="YEx-hF-jV0" secondAttribute="trailing" constant="20" id="CcO-P2-fXE"/>
-                            <constraint firstItem="akA-FH-a0R" firstAttribute="leading" secondItem="PBF-B7-BVy" secondAttribute="leadingMargin" constant="20" id="HUe-yb-TGJ"/>
                             <constraint firstAttribute="trailing" secondItem="PEM-Nc-5Xf" secondAttribute="trailing" id="L1M-Xf-g6b"/>
+                            <constraint firstItem="Ap7-b2-2dg" firstAttribute="top" secondItem="YEx-hF-jV0" secondAttribute="bottom" constant="20" id="Luj-vQ-9vy"/>
                             <constraint firstItem="Js2-Yn-ipe" firstAttribute="leading" secondItem="PBF-B7-BVy" secondAttribute="leading" id="N75-Xm-oTY"/>
                             <constraint firstItem="PEM-Nc-5Xf" firstAttribute="top" secondItem="1MW-Ar-nh5" secondAttribute="bottom" constant="20" id="QiK-jY-v6W"/>
                             <constraint firstAttribute="trailing" secondItem="Js2-Yn-ipe" secondAttribute="trailing" id="XGd-YU-u9O"/>
-                            <constraint firstItem="akA-FH-a0R" firstAttribute="top" secondItem="YEx-hF-jV0" secondAttribute="bottom" constant="20" id="ab1-EO-LX2"/>
                             <constraint firstItem="1MW-Ar-nh5" firstAttribute="leading" secondItem="PBF-B7-BVy" secondAttribute="leading" id="fxW-Kz-dbO"/>
                             <constraint firstItem="YEx-hF-jV0" firstAttribute="leading" secondItem="PBF-B7-BVy" secondAttribute="leading" constant="20" id="hyI-LX-E4b"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="akA-FH-a0R" secondAttribute="trailing" constant="20" id="iYP-j0-0QC"/>
                             <constraint firstItem="YEx-hF-jV0" firstAttribute="top" secondItem="PEM-Nc-5Xf" secondAttribute="bottom" constant="20" id="l0s-FX-6az"/>
                             <constraint firstItem="Js2-Yn-ipe" firstAttribute="top" secondItem="PBF-B7-BVy" secondAttribute="top" id="pFA-4N-Coq"/>
                             <constraint firstItem="1MW-Ar-nh5" firstAttribute="top" secondItem="VF3-A8-Jjv" secondAttribute="bottom" id="sdH-XL-DvV"/>
@@ -203,6 +199,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="3Rr-IN-Wfd"/>
                     <connections>
+                        <outlet property="bottomLayoutConstraint" destination="Luj-vQ-9vy" id="3ID-9G-L4n"/>
                         <outlet property="playListTitleInput" destination="IMq-Id-xtY" id="pYJ-6r-P7u"/>
                         <outlet property="playlistTable" destination="PEM-Nc-5Xf" id="BZC-Wi-98C"/>
                         <outlet property="saveButton" destination="rSb-e5-yK2" id="toK-n2-H91"/>
