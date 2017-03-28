@@ -20,6 +20,8 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchBarHolder: UIView!
     @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var actionLabel: UILabel!
+    
     var playlistFiles = [IAListFile]()
     
     override func viewDidLoad() {
@@ -47,13 +49,16 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         playListTitleInput.layer.cornerRadius = 5.0
         playListTitleInput.layer.borderWidth = 1.0
         
-        playListTitleInput.attributedPlaceholder = NSAttributedString(string: "Playlist Title",
-                                                               attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+        playListTitleInput.attributedPlaceholder =
+            NSAttributedString(string: "Playlist Title",
+                               attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         
         
         for button in [saveButton] {
             button?.setTitleColor(UIColor.fairyCream, for: .normal)
         }
+        
+        actionLabel.textColor = UIColor.fairyCream
         
         playlistTable.sectionFooterHeight = 0
 
@@ -117,7 +122,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 76.0
+        return 55.0
     }
 
     
@@ -186,6 +191,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         return false
     }
     
+    
     @IBAction func savePlaylist() {
 
         if (playListTitleInput.text?.isEmpty)! {
@@ -196,7 +202,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         
         let title = self.playListTitleInput.text
         RealmManager.syncPlaylist(files: self.playlistFiles, title: title!, list: playList)
-        
+        displayActionMessage(message: "playlist saved")
     }
 
     func keyboardWillShow(notification: NSNotification) {
@@ -213,6 +219,22 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
             bottomLayoutConstraint.constant = 20
 
     }
+    
+    func displayActionMessage(message:String) {
+    
+        actionLabel.text = message
+        
+        UIView.animate(withDuration: 0.33, animations: { 
+            self.actionLabel.alpha = 1.0
+        }) { (complete) in
+            
+            UIView.animate(withDuration: 0.33, delay: 2.0, options: [], animations: {
+                self.actionLabel.alpha = 0.0
+            }, completion: nil)
+        }
+    
+    }
+    
     
     deinit {
         

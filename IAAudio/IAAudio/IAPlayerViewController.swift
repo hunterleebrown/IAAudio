@@ -43,6 +43,8 @@ class IAPlayerViewController: UIViewController {
     @IBOutlet weak var playerIcon: UIImageView!
     
     @IBOutlet weak var nowPlayingTable: UITableView!
+    @IBOutlet weak var nowPlayingBanner: UIView!
+    @IBOutlet weak var nowPlayingBannerLabel: UILabel!
     
     weak var baseViewController: IAHomeViewController!
     var sliderIsTouched : Bool = false
@@ -93,6 +95,9 @@ class IAPlayerViewController: UIViewController {
         
         self.nowPlayingTable.sectionFooterHeight = 0.0
         self.nowPlayingTable.backgroundColor = UIColor.darkGray
+        
+        self.nowPlayingBannerLabel.textColor = UIColor.fairyCream
+        self.nowPlayingBanner.backgroundColor = UIColor.fairyRed
         
     }
 
@@ -219,6 +224,23 @@ class IAPlayerViewController: UIViewController {
             }
         }
     }
+    
+    func displayNowPlayingTitle(message:String) {
+        
+        nowPlayingBannerLabel.text = message
+        
+        UIView.animate(withDuration: 0.33, animations: {
+            self.nowPlayingBanner.alpha = 1.0
+        }) { (complete) in
+            
+            UIView.animate(withDuration: 0.33, delay: 2.0, options: [], animations: {
+                self.nowPlayingBanner.alpha = 0.0
+            }, completion: nil)
+        }
+        
+    }
+    
+    
 }
 
 extension IAPlayerViewController: UITableViewDelegate, UITableViewDataSource {
@@ -357,6 +379,7 @@ class IAPlayer: NSObject {
         if let controller = controlsController {
             controller.nowPlayingTitle.text = self.fileTitle
             controller.nowPlayingItemButton.setTitle(self.fileIdentifierTitle, for: .normal)
+            controller.displayNowPlayingTitle(message: self.fileTitle!)
         }
                 
         avPlayer = AVPlayer(url: self.playUrl as URL)
