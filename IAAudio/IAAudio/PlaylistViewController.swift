@@ -207,18 +207,23 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
 
     func keyboardWillShow(notification: NSNotification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            bottomLayoutConstraint.constant = keyboardSize.height + 20
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            animateKeyboardTray(amount: keyboardSize.height + 20 - (66 + 49)) //66 is the playerHeight and 49 is the tabBar height
         }
         
     }
     
     func keyboardWillHide(notification: NSNotification) {
-     
-            bottomLayoutConstraint.constant = 20
-
+        animateKeyboardTray(amount:20)
     }
+    
+    func animateKeyboardTray(amount:CGFloat) {
+        
+        UIView.animate(withDuration: 0.33, animations: {
+            self.bottomLayoutConstraint.constant = amount
+        })
+    }
+    
     
     func displayActionMessage(message:String) {
     
@@ -237,10 +242,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     
     
     deinit {
-        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
     }
 }
