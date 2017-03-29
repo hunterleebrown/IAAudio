@@ -218,9 +218,10 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     }
     
     func animateKeyboardTray(amount:CGFloat) {
-        
+        self.bottomLayoutConstraint.constant = amount
+
         UIView.animate(withDuration: 0.33, animations: {
-            self.bottomLayoutConstraint.constant = amount
+            self.view.layoutIfNeeded()
         })
     }
     
