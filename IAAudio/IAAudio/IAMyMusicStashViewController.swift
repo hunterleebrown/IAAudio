@@ -90,7 +90,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 
         case .AllPlaylists:
             let realm = RealmManager.realm
-            playLists = realm?.objects(IAList.self).sorted(byKeyPath: "title")
+            playLists = realm?.objects(IAList.self).sorted(byKeyPath: "title").filter("title != '\(RealmManager.NOWPLAYING)'")
             notificationToken = self.setUpNotification(mode: .AllPlaylists)
             self.topTitle(text:"All Playlists")
                         

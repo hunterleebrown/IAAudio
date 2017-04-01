@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import NVActivityIndicatorView
 
 class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -55,7 +56,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
         self.activityIndicatorView.color = IAColors.fairyRed
-        self.activityIndicatorView.startAnimation()
+        self.activityIndicatorView.startAnimating()
         self.tableView.backgroundColor = UIColor.clear
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -274,7 +275,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     func adjustColorsAndRemoveBlur() {
         
         self.docDeets.textColor = UIColor.white
-        self.activityIndicatorView.stopAnimation()
+        self.activityIndicatorView.stopAnimating()
         
         UIView.animate(withDuration: 0.33, animations: {
             self.blurView.alpha = 0

@@ -39,7 +39,7 @@ class IAHomeViewController: UIViewController {
         self.maximizedPlayerTopConstraint?.isActive = false
         self.maximizedPlayerTopConstraint?.identifier = "maximizePlayer"
         
-        self.playerHolder.superview?.layoutIfNeeded()
+//        self.playerHolder.superview?.layoutIfNeeded()
         
         NotificationCenter.default.addObserver( forName: NSNotification.Name(rawValue: "minimizePlayer"), object: nil, queue: nil) { notification in
             self.showFullPlayer(false)

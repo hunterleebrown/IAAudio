@@ -11,6 +11,7 @@ import UIKit
 import MediaPlayer
 import AVFoundation
 import RealmSwift
+import NVActivityIndicatorView
 
 class IAPlayerViewController: UIViewController {
 
@@ -66,8 +67,6 @@ class IAPlayerViewController: UIViewController {
         
         self.buttonColors()
         
-        self.activityIndicator.hidesWhenStopped = false
-        self.activityIndicator.type = .lineScaleParty
         self.playButton.setIAIcon(.iosPlayOutline, forState: .normal)
         self.forwardButton.setIAIcon(.iosSkipforwardOutline, forState: .normal)
         self.backwardButton.setIAIcon(.iosSkipbackwardOutline, forState: .normal)
@@ -457,7 +456,7 @@ class IAPlayer: NSObject {
                 
                 self.playing  = player.rate > 0.0
                 if controller.activityIndicator != nil {
-                    player.rate > 0.0 ? controller.activityIndicator.startAnimation() : controller.activityIndicator.stopAnimation()
+                    player.rate > 0.0 ? controller.activityIndicator.startAnimating() : controller.activityIndicator.stopAnimating()
                 }
                 
                 self.monitorPlayback()

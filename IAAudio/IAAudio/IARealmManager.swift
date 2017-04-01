@@ -18,6 +18,7 @@ let RealmManager = IARealmManger.sharedInstance
 class IARealmManger {
     
     var realm: Realm!
+    var NOWPLAYING = "_NOWPLAYING"
  
     static let sharedInstance: IARealmManger = {
         return IARealmManger()
@@ -27,12 +28,20 @@ class IARealmManger {
         do {
             realm = try Realm()
             debugPrint("Path to realm file: " + realm.configuration.fileURL!.absoluteString)
+            self.createNowPlayingList()
         } catch {
             print("Realm init error: \(error)")
         }
     }
     
-
+    func createNowPlayingList() {
+        var nowPlayingList = realm.objects(IAList.self).filter("title = '\(NOWPLAYING)'").first
+        if nowPlayingList == nil {
+            self.syncPlaylist(files: [], title: "_NOWPLAYING", list: nil)
+        }
+    }
+    
+    
     
     //MARK: - Doc Use
     

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I80-Y9-BeD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="I80-Y9-BeD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Doc View Controller-->
         <scene sceneID="gCH-FR-u9q">
             <objects>
-                <viewController id="I80-Y9-BeD" customClass="IADocViewController" customModule="IA_Music" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="I80-Y9-BeD" customClass="IADocViewController" customModule="IAAudio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RtM-II-lVh"/>
                         <viewControllerLayoutGuide type="bottom" id="Kqr-qj-VF7"/>
@@ -138,11 +138,11 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="audioCell" id="sxr-wQ-LD8" customClass="IAAuidoFileTableViewCell" customModule="IA_Music" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="audioCell" id="sxr-wQ-LD8" customClass="IAAuidoFileTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="316" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sxr-wQ-LD8" id="Kwt-By-8kU">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRe-7s-ZyC">
@@ -220,7 +220,7 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ut2-xx-780" customClass="NVActivityIndicatorView" customModule="IA_Music" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ut2-xx-780" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
                                 <rect key="frame" x="157" y="303" width="60" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -228,7 +228,6 @@
                                     <constraint firstAttribute="width" constant="60" id="uNj-JC-4fe"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="NO"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="BallGridPulse"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -281,7 +280,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6GI-ed-Th3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="gdX-NX-bmg" customClass="IATopNavView" customModule="IA_Music" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="gdX-NX-bmg" customClass="IATopNavView" customModule="IAAudio" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                     <subviews>

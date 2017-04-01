@@ -31,16 +31,6 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
         
         realm = RealmManager.realm
         
-        if let fc = realm?.objects(IAPlayerFile.self) {
-            filesCount = fc.count
-        }
-        if let ac = realm?.objects(IAArchive.self) {
-            archivesCount = ac.count
-        }
-        if let lc = realm?.objects(IAList.self) {
-            listCount = lc.count
-        }
-        
         self.realmCounts()
         
         notificationToken = realm?.addNotificationBlock { [weak self] notification, realm in
@@ -64,7 +54,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
         if let ac = realm?.objects(IAArchive.self) {
             archivesCount = ac.count
         }
-        if let lc = realm?.objects(IAList.self) {
+        if let lc = realm?.objects(IAList.self).filter("title != '_NOWPLAYING'") {
             listCount = lc.count
         }
     }
