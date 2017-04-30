@@ -59,11 +59,9 @@ class PlaylistFindTableViewController: UITableViewController  {
         let file = filteredFiles[indexPath.row]
 
         if let parentVC = playListController {
-            let newPlaylistFile = IAListFile()
-            newPlaylistFile.file = file
             
-            if !parentVC.appendPlaylistFile(playlistFile: newPlaylistFile )  {
-                self.alert(title: "Track already on Playlist", message: "\(newPlaylistFile.file.displayTitle) is already on the playlist")
+            if !parentVC.appendPlaylistFile(playlistFile: file )  {
+                self.alert(title: "Track already on Playlist", message: "\(file.displayTitle) is already on the playlist")
             }
         }
     }

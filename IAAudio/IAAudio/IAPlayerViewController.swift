@@ -50,17 +50,11 @@ class IAPlayerViewController: UIViewController {
     weak var baseViewController: IAHomeViewController!
     var sliderIsTouched : Bool = false
     
-    var playerTableFiles = [IAListFile]()
+    var playerTableFiles: List<IAPlayerFile>!
     
-    var playList: IAList? {
-        didSet {
-            self.playerTableFiles.removeAll()
-            for file in (playList?.files.sorted(byKeyPath: "playlistOrder"))! {
-                playerTableFiles.append(file)
-            }
-            self.nowPlayingTable.reloadData()
-        }
-    }
+    var notificationToken: NotificationToken? = nil
+    
+    var playList: IAList? 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +91,32 @@ class IAPlayerViewController: UIViewController {
         
         self.nowPlayingBannerLabel.textColor = UIColor.fairyCream
         self.nowPlayingBanner.backgroundColor = UIColor.fairyRed
+        
+        
+        playList = RealmManager.realm.objects(IAList.self).filter("title = '\(RealmManager.NOWPLAYING)'").first
+        
+        if let list = playList {
+            playerTableFiles = list.files
+            
+            notificationToken = playerTableFiles.addNotificationBlock{ change in
+                switch change {
+                case .initial(let nowPlayingList):
+                    self.nowPlayingTable.reloadData()
+                case .update(let nowPlayingList, let deletions, let insertions, let modifications):
+                    
+                    self.nowPlayingTable.beginUpdates()
+                    self.nowPlayingTable.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                    self.nowPlayingTable.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                    self.nowPlayingTable.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) }, with: .automatic)
+                    self.nowPlayingTable.endUpdates()
+                    
+                    break
+                case .error(let error):
+                    break;
+                }
+            }
+            
+        }
         
     }
 
@@ -265,8 +285,8 @@ extension IAPlayerViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "nowPlayingCell", for: indexPath) as! NowPlayingTableViewCell
         
         let file = playerTableFiles[indexPath.row]
-        cell.titleLabel.text = file.file.displayTitle
-        cell.subTitleLabel.text = file.file.archiveTitle
+        cell.titleLabel.text = file.displayTitle
+        cell.subTitleLabel.text = file.archiveTitle
         return cell
     }
     
@@ -343,10 +363,13 @@ class IAPlayer: NSObject {
     
     func playPlaylist(list:IAList, start:Int) {
         
-        let startFile = list.files.filter("playlistOrder == \(start)").first?.file
+        RealmManager.syncPlaylist(files: Array(list.files), list: RealmManager.nowPlayingList())
         
-        self.playFile(file: startFile!, playListWithIndex: (list:list, index:start))
+        let startFile =  list.files[start] //RealmManager.nowPlayingList().files.filter("playlistOrder == \(start)").first?.file
+        self.playFile(file: startFile, playListWithIndex: (list:RealmManager.nowPlayingList(), index:start))
     }
+    
+
     
     private func loadAndPlay(playListWithIndex:PlaylistWithIndex? = nil) {
         

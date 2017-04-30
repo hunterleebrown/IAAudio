@@ -263,33 +263,39 @@ class IARealmManger {
         }
     }
     
-    func syncPlaylist(files:[IAListFile], title:String, list:IAList?) {
+    func deleteNowPlayingFiles() {
+        try! realm.write {
+            realm.delete(nowPlayingList().files)
+        }
+    }
+    
+    func nowPlayingList()->IAList {
+        return realm.objects(IAList.self).filter("title = '\(RealmManager.NOWPLAYING)'").first!
+    }
+    
+    func syncPlaylist(files:[IAPlayerFile], title:String? = nil, list:IAList?) {
         
         try! realm.write {
             if let playList = list {
-                playList.title = title
-                for (index,file) in files.enumerated() {
-                    file.playlistOrder = index
-                    if !(list?.files.contains( where: { $0.file.compoundKey == file.file.compoundKey }))! {
-                        playList.files.append(file)
-                    }
+                
+                if let tit = title {
+                    playList.title = tit
                 }
                 
-                let deleteFiles = playList.files.filter{!files.contains($0)}
-                if deleteFiles.count > 0 {
-                    realm.delete(deleteFiles)
+                list?.files.removeAll()
+                for file in files {
+                    list?.files.append(file)
                 }
-//                
-//                for (index,file) in files.enumerated() {
-//                    file.playlistOrder = index
-//                }
                 
                 
             } else {
                 let playList = IAList()
-                playList.title = title
-                for (index,file) in files.enumerated() {
-                    file.playlistOrder = index
+                
+                if let tit = title {
+                    playList.title = tit
+                }
+                
+                for file in files {
                     playList.files.append(file)
                 }
                 realm.add(playList)
@@ -399,10 +405,10 @@ class IARealmManger {
         return archiveResult?.files.sorted(byKeyPath: "displayOrder")
     }
     
-    func playlistFilesForLust(list:IAList) -> Results<IAListFile>? {
+    func playlistFilesForLust(list:IAList) -> List<IAPlayerFile>? {
         let predicate = NSPredicate(format: "title = %@", list.title)
         let result = realm.objects(IAList.self).filter(predicate).first
-        return result?.files.sorted(byKeyPath: "displayOrder")
+        return result?.files //.sorted(byKeyPath: "displayOrder")
     }
     
     

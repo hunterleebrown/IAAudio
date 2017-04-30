@@ -162,7 +162,7 @@ class IAMyStashTableViewCell: UITableViewCell {
         }
     }
     
-    weak var playlistFile: IAListFile? {
+    weak var playlistFile: IAPlayerFile? {
         didSet {
             
             if let download = downloadButton, let more = moreButton {
@@ -172,11 +172,11 @@ class IAMyStashTableViewCell: UITableViewCell {
             
             
             if let title = trackTitle {
-                title.text = (playlistFile?.file?.title.isEmpty)! ? playlistFile?.file?.name : playlistFile?.file?.title
+                title.text = (playlistFile?.title.isEmpty)! ? playlistFile?.name : playlistFile?.title
                 title.highlightedTextColor = IAColors.fairyRed
             }
             
-            if let archive = RealmManager.archives(identifier: (playlistFile?.file?.archiveIdentifier)!).first {
+            if let archive = RealmManager.archives(identifier: (playlistFile?.archiveIdentifier)!).first {
                 
                 if let img = trackImage, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
                     img.af_setImage(withURL: url)
@@ -191,7 +191,7 @@ class IAMyStashTableViewCell: UITableViewCell {
             }
             
             
-            if let download = downloadButton, let f = playlistFile?.file {
+            if let download = downloadButton, let f = playlistFile {
                 
                 
                 if(!f.downloaded) {
@@ -209,11 +209,11 @@ class IAMyStashTableViewCell: UITableViewCell {
                 
             }
             
-            if let s = size, let value = playlistFile?.file?.displaySize {
+            if let s = size, let value = playlistFile?.displaySize {
                 s.text = "\(value) MB"
             }
             
-            if let l = length, let value = playlistFile?.file?.displayLength {
+            if let l = length, let value = playlistFile?.displayLength {
                 l.text = value
             }
             self.accessoryType = .none

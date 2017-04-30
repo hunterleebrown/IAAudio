@@ -22,7 +22,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var actionLabel: UILabel!
     
-    var playlistFiles = [IAListFile]()
+    var playlistFiles = [IAPlayerFile]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,10 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         self.topTitle(text: "New Playlist")
         
         if let playL = playList {
-            for file in playL.files.sorted(byKeyPath: "playlistOrder") {
+            
+            
+            
+            for file in playL.files {
                 playlistFiles.append(file)
             }
             playlistTable.reloadData()
@@ -117,6 +120,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+        
         cell.playlistFile = playlistFiles[indexPath.row]
         return cell
     }
@@ -175,9 +179,9 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         playListTitleInput.resignFirstResponder()
     }
     
-    func appendPlaylistFile(playlistFile:IAListFile)->Bool {
+    func appendPlaylistFile(playlistFile:IAPlayerFile)->Bool {
         
-        if !self.playlistFiles.contains( where: { $0.file.compoundKey == playlistFile.file.compoundKey }) {
+        if !self.playlistFiles.contains( where: { $0.compoundKey == playlistFile.compoundKey }) {
             self.playlistFiles.append(playlistFile)
             self.playlistTable.reloadData()
             
@@ -201,6 +205,9 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         print(self.playlistFiles)
         
         let title = self.playListTitleInput.text
+        
+        print(self.playlistFiles);
+        
         RealmManager.syncPlaylist(files: self.playlistFiles, title: title!, list: playList)
         displayActionMessage(message: "playlist saved")
     }

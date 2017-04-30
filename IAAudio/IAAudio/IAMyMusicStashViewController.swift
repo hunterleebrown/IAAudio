@@ -34,7 +34,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     var files: Results<IAPlayerFile>!
     var archiveFiles: Results<IAPlayerFile>!
     var playLists: Results<IAList>!
-    var playListFiles: Results<IAListFile>!
+    var playListFiles: Results<IAPlayerFile>!
     
     var notificationToken: NotificationToken? = nil
     
@@ -44,7 +44,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     var filteredFiles: Results<IAPlayerFile>!
     var filteredArchives: Results<IAArchive>!
     var filteredPlaylists: Results<IAList>!
-    var filteredListFiles: Results<IAListFile>!
+    var filteredListFiles: Results<IAPlayerFile>!
     
     
     override func viewDidLoad() {
@@ -455,6 +455,8 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             
         case .AllPlaylists:
             chosenPlaylist = isSearching() ? filteredPlaylists[indexPath.row] : playLists[indexPath.row]
+            
+            
             self.performSegue(withIdentifier: "playlistPush", sender: nil)
         }
     }
@@ -586,6 +588,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         if segue.identifier == "playlistPush" {
             if let playList = chosenPlaylist {
+                
+                
+                
                 let controller = segue.destination as! PlaylistViewController
                 controller.playList = playList
             }

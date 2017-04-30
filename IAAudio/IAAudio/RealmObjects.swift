@@ -92,10 +92,6 @@ class IAArchive: Object {
 
 class IAList: Object {
     dynamic var title = ""
-    let files = List<IAListFile>()
+    let files = List<IAPlayerFile>()
 }
 
-class IAListFile: Object {
-    dynamic var file: IAPlayerFile!
-    dynamic var playlistOrder = 0
-}
