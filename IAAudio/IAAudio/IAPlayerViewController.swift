@@ -325,7 +325,7 @@ class IAPlayer: NSObject {
     
     func playFile(file:IAFileMappable, doc:IAArchiveDocMappable){
         
-        self.fileTitle = file.title
+        self.fileTitle = file.title ?? file.name
         self.fileIdentifierTitle = doc.title
         self.fileIdentifier = doc.identifier
         self.playUrl = doc.fileUrl(file: file)
@@ -337,7 +337,7 @@ class IAPlayer: NSObject {
         
         let archive = RealmManager.archives(identifier: file.archiveIdentifier).first
         
-        self.fileTitle = file.title.isEmpty ? file.name : file.title
+        self.fileTitle = file.displayTitle
         self.fileIdentifierTitle = archive?.title
         self.fileIdentifier = file.archiveIdentifier
         
