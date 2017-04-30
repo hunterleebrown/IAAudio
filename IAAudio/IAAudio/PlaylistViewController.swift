@@ -126,7 +126,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55.0
+        return 66.0
     }
 
     

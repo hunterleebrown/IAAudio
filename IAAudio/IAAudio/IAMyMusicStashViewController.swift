@@ -421,7 +421,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         case .AllFiles:
             return 76.0
         case .AllPlaylists:
-            return 44.0
+            return 66.0
         case .AllArchives:
             return 90.0
         }
