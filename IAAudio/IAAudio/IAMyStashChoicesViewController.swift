@@ -189,9 +189,9 @@ enum StashChoice:Int {
         case .Lists:
             return "Playlists"
         case .Archives:
-            return "Archives"
+            return "All Archives"
         case .Files:
-            return "Files"
+            return "All Files"
         }
     }
     
@@ -200,7 +200,7 @@ enum StashChoice:Int {
         case .Lists:
             return IAFontMapping.COLLECTION
         case .Archives:
-            return IAFontMapping.ARCHIVE
+            return IAFontMapping.FOLDER
         case .Files:
             return IAIconType.document.text!
         }
