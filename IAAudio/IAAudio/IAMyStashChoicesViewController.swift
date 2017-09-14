@@ -60,7 +60,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,7 +170,7 @@ enum ChoiceSelctions: Int {
         case .Content:
             return "Content"
         case .Data:
-            return "Details"
+            return ""
         case .Find:
             return "Find More Audio"
         }
