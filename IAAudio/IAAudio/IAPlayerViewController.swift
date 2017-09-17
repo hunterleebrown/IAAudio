@@ -117,6 +117,9 @@ class IAPlayerViewController: UIViewController {
             }
             
         }
+
+        self.hideTitles(hide: true)
+
         
     }
 
@@ -145,7 +148,14 @@ class IAPlayerViewController: UIViewController {
         {
             airPlayPicker.setRouteButtonImage(routeButtonTemplateImage, for: .normal)
         }
-        
+
+    }
+
+    func hideTitles(hide:Bool) {
+        if self.nowPlayingItemButton != nil && self.nowPlayingTitle != nil {
+            self.nowPlayingItemButton.isHidden = hide
+            self.nowPlayingTitle.isHidden = hide
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -158,14 +168,17 @@ class IAPlayerViewController: UIViewController {
 
     @IBAction func expandPlayer() {
         self.baseViewController.playerMove()
+        self.hideTitles(hide: self.baseViewController.playerIsExpanded)
     }
 
     @IBAction func playerUp() {
         self.baseViewController.showFullPlayer(true)
+        self.hideTitles(hide: true)
     }
 
     @IBAction func playerDown() {
         self.baseViewController.showFullPlayer(false)
+        self.hideTitles(hide: false)
     }
     
     @IBAction func didPressButton(_ sender:UIButton){

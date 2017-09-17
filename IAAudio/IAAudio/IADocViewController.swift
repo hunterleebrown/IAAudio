@@ -69,7 +69,12 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
             }
         }
         //MARK: -
-        
+
+        self.initSearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.frame = self.searchBarHolder.bounds
+        self.searchBarHolder.addSubview(searchController.searchBar)
+
         if let ident = identifier {
             
             
@@ -84,7 +89,11 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                             }
                     }
                 }
-                
+
+                if let title = self.doc?.title {
+                    self.searchController.searchBar.placeholder = "Search tracks: \(title)"
+                }
+
                 if let deets = self.docDeets {
                     if let rawHtml = self.doc?.noHTMLDescription() {
                         // let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
@@ -117,10 +126,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
             })
         }
         
-        self.initSearchController()
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.frame = self.searchBarHolder.bounds
-        self.searchBarHolder.addSubview(searchController.searchBar)
+
 
     }
     

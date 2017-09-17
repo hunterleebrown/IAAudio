@@ -280,9 +280,10 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         
         if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
-            let cell = self.tableView.cellForRow(at: indexPathForSelectedRow) as! IAMyStashTableViewCell
-            if let file = cell.file {
-                self.selectFileRowIfPlaying(indexPath: indexPathForSelectedRow, file: file)
+            if let cell = self.tableView.cellForRow(at: indexPathForSelectedRow) as? IAMyStashTableViewCell {
+                if let file = cell.file {
+                    self.selectFileRowIfPlaying(indexPath: indexPathForSelectedRow, file: file)
+                }
             }
         }
 
