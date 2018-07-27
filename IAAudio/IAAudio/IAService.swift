@@ -41,9 +41,15 @@ class IAService {
             case .creator:
                 self._queryString = "creator:\(newValue!)"
             }
-            
+
+            let nots = ["podcasts_mirror", "web", "webwidecrawl", "samples_only"]
+            var queryExclusions = ""
+            for not in nots {
+                queryExclusions += " AND NOT collection:\(not)"
+            }
+
             self.parameters = [
-                "q" : "\(self._queryString!) AND NOT collection:web AND NOT collection:webwidecrawl AND format:\"VBR MP3\" AND (mediatype:audio OR mediatype:etree)",
+                "q" : "\(self._queryString!)\(queryExclusions) AND format:\"VBR MP3\" AND (mediatype:audio OR mediatype:etree)",
                 "output" : "json",
                 "rows" : "50"
             ];

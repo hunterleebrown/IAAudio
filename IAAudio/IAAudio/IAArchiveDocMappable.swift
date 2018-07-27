@@ -151,6 +151,17 @@ class IAFileMappable: Mappable {
         switch map.JSON["format"] as! String {
         case IAFileMappableFormat.mp3.rawValue:
             format = .mp3
+
+//            if let n = map.JSON["name"] as! String? {
+//                if let _ = n.range(of: "_78_") {
+//                    if map.JSON["title"] != nil {
+//                        break
+//                    } else {
+//                        return nil
+//                    }
+//                }
+//            }
+
         case IAFileMappableFormat.jpg.rawValue:
             format = .jpg
             if map.JSON["source"] as! String == "origin" {

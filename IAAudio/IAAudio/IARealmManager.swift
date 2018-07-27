@@ -27,7 +27,7 @@ class IARealmManger {
     init() {
         do {
             realm = try Realm()
-            debugPrint("Path to realm file: " + realm.configuration.fileURL!.absoluteString)
+            print("Path to realm file: " + realm.configuration.fileURL!.absoluteString)
             self.createNowPlayingList()
         } catch {
             print("Realm init error: \(error)")
