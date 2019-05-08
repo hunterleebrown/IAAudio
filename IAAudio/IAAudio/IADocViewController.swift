@@ -140,7 +140,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         }
         
         if notificationToken == nil {
-            notificationToken = RealmManager.defaultSortedFiles(identifier: ar.identifier)?.addNotificationBlock({[weak self] (changes ) in
+            notificationToken = RealmManager.defaultSortedFiles(identifier: ar.identifier)?.observe({[weak self] (changes ) in
                 switch changes {
                 case .initial(let results):
                     self?.updateRows(playerFiles: results)
@@ -460,7 +460,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     
     
     deinit {
-        notificationToken?.stop()
+        notificationToken?.invalidate()
     }
     
 

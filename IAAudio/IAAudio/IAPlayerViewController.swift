@@ -98,7 +98,7 @@ class IAPlayerViewController: UIViewController {
         if let list = playList {
             playerTableFiles = list.files
             
-            notificationToken = playerTableFiles.addNotificationBlock{ change in
+            notificationToken = playerTableFiles.observe{ change in
                 switch change {
                 case .initial(let nowPlayingList):
                     self.nowPlayingTable.reloadData()

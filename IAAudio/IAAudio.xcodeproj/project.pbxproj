@@ -59,6 +59,8 @@
 		5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */; };
 		5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */; };
 		5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */; };
+		CE806FF022838249000575EE /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = CE806FEE22838249000575EE /* Cartfile.resolved */; };
+		CE806FF122838249000575EE /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = CE806FEF22838249000575EE /* Cartfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAReachability.swift; sourceTree = "<group>"; };
 		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
+		CE806FEE22838249000575EE /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
+		CE806FEF22838249000575EE /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 		5A41159B1E4D0B3A004F6B56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE806FEF22838249000575EE /* Cartfile */,
+				CE806FEE22838249000575EE /* Cartfile.resolved */,
 				5AB71E981E90707800D8481D /* NVActivityIndicatorView.framework */,
 				5A5764B71E502E98000D4465 /* AlamofireImage.framework */,
 				5A41159F1E4D0B3D004F6B56 /* RealmSwift.framework */,
@@ -413,7 +419,9 @@
 				5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */,
 				5A4115941E4D046F004F6B56 /* LaunchScreen.storyboard in Resources */,
 				5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */,
+				CE806FF022838249000575EE /* Cartfile.resolved in Resources */,
 				5A6DFBB81E5932D0002C0977 /* Search.storyboard in Resources */,
+				CE806FF122838249000575EE /* Cartfile in Resources */,
 				5A4115B51E4D1803004F6B56 /* ionicons.ttf in Resources */,
 				5A4115BF1E4D1DF8004F6B56 /* IAPlayer.storyboard in Resources */,
 				5A41158F1E4D046F004F6B56 /* Main.storyboard in Resources */,

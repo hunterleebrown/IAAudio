@@ -143,7 +143,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         switch mode {
         case .SingleArchive:
             
-            return archiveFiles.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
+            return archiveFiles.observe({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
                 
                 switch changes {
                 case .initial:
@@ -173,7 +173,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             })
             
         case .AllArchives:
-            return archives.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAArchive>>) in
+            return archives.observe({[weak self] (changes: RealmCollectionChange<Results<IAArchive>>) in
                 
                 switch changes {
                 case .initial:
@@ -202,7 +202,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 
             })
         case .AllFiles:
-            return files.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
+            return files.observe({[weak self] (changes: RealmCollectionChange<Results<IAPlayerFile>>) in
                 
                 switch changes {
                 case .initial:
@@ -234,7 +234,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             
         case .AllPlaylists:
             
-            return playLists.addNotificationBlock({[weak self] (changes: RealmCollectionChange<Results<IAList>>) in
+            return playLists.observe({[weak self] (changes: RealmCollectionChange<Results<IAList>>) in
                 
                 switch changes {
                 case .initial:
@@ -601,7 +601,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
     deinit {
-        notificationToken?.stop()
+        notificationToken?.invalidate()
     }
     
     
