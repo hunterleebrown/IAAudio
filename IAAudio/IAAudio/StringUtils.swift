@@ -107,8 +107,13 @@ extension NSMutableAttributedString {
     class func mutableAttributedTextWithFontFromHTML(_ textWithFont:String, font:UIFont)->NSMutableAttributedString {
         
         do {
-            let attString =  try NSAttributedString(data: textWithFont.utf8Data!, options:[NSFontAttributeName: font, NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
-            
+//            let attString =  try NSAttributedString(data: textWithFont.utf8Data!, options:[NSFontAttributeName: font, NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+
+            let attString = try NSAttributedString(data: textWithFont.utf8Data!, options: [
+                NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html,
+                NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8
+                ], documentAttributes: nil)
+
             return NSMutableAttributedString(attributedString: attString)
             
         } catch let error as NSError {
@@ -121,11 +126,11 @@ extension NSMutableAttributedString {
     class func mutableAttributedString(_ text:String, font:UIFont)->NSMutableAttributedString {
         
         do {
-            let attString =  try NSAttributedString(data: text.utf8Data!,
-                                                    options:[
-                                                        NSFontAttributeName: font,
-                                                        NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
-            
+            let attString = try NSAttributedString(data: text.utf8Data!, options: [
+                NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html,
+                NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8
+                ], documentAttributes: nil)
+
             return NSMutableAttributedString(attributedString: attString)
             
         } catch _ as NSError {
@@ -136,7 +141,7 @@ extension NSMutableAttributedString {
         
     }
     
-    class func bodyMutableAttributedString(_ html:String, font:UIFont)->NSMutableAttributedString {
+    class func bodyMutableAttributedString(_ html:String, font:UIFont)->NSMutableAttributedString? {
         let italicFontName: String = font.italic?.fontName ?? font.fontName
         let boldFontName: String = font.bold?.fontName ?? font.fontName
         let boldItalicFontName: String = font.bold?.italic?.fontName ?? font.fontName
@@ -149,16 +154,36 @@ extension NSMutableAttributedString {
         htmlCss += "b,strong {font-family: '\(boldFontName)'}"
         htmlCss += "b em,b i,em b,i b,strong em,strong i,em strong,i strong {font-family: '\(boldItalicFontName)'}"
         htmlCss += "</style></head><body>\(html)</body></html>"
-        
-        let attString = NSMutableAttributedString.mutableAttributedString(htmlCss, font: font)
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.lineSpacing = 2.25
-        paragraph.paragraphSpacing = font.lineHeight * 0.75
-        attString.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: NSMakeRange(0, attString.length))
-        
+
+
+
+        let data = Data(htmlCss.utf8)
+
+
+        var attString: NSAttributedString? {
+            do {
+                return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+            } catch {
+                return nil
+            }
+        }
+
+//        let attString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+//            yourLabel.attributedText = attributedString
+
+//        let attString = NSMutableAttributedString.mutableAttributedString(htmlCss, font: font)
+//        let paragraph = NSMutableParagraphStyle()
+//        paragraph.lineSpacing = 2.25
+//        paragraph.paragraphSpacing = font.lineHeight * 0.75
+//        attString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraph, range: NSMakeRange(0, attString.length))
+
 //        let hunter = "hi".replacingOccurrences(of: <#T##String#>, with: <#T##String#>, options: <#T##String.CompareOptions#>, range: <#T##Range<String.Index>?#>)
-        
-        return attString
+
+        guard let aString = attString else {
+            return nil;
+        }
+
+        return NSMutableAttributedString(attributedString: aString)
     }
     
 }
@@ -168,7 +193,13 @@ extension NSMutableAttributedString {
 extension Data {
     var attributedString: NSAttributedString? {
         do {
-            return try NSAttributedString(data: self, options:[NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+//            return try NSAttributedString(data: self, options:[NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue], documentAttributes: nil)
+
+            return try NSAttributedString(data: self, options: [
+                NSAttributedString.DocumentReadingOptionKey.documentType : NSAttributedString.DocumentType.html,
+                NSAttributedString.DocumentReadingOptionKey.characterEncoding: String.Encoding.utf8
+                ], documentAttributes: nil)
+
         } catch let error as NSError {
             print(error.localizedDescription)
         }

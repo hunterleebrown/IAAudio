@@ -79,13 +79,13 @@ extension UINavigationBar {
     var titleColor: UIColor? {
         get {
             if let attributes = self.titleTextAttributes {
-                return attributes[NSForegroundColorAttributeName] as? UIColor
+                return attributes[NSAttributedStringKey.foregroundColor] as? UIColor
             }
             return nil
         }
         set {
             if let value = newValue {
-                self.titleTextAttributes = [NSForegroundColorAttributeName: value]
+                self.titleTextAttributes = [NSAttributedStringKey.foregroundColor: value]
             }
         }
     }
@@ -93,13 +93,13 @@ extension UINavigationBar {
     var titleFont: UIFont? {
         get {
             if let attributes = self.titleTextAttributes {
-                return attributes[NSFontAttributeName] as? UIFont
+                return attributes[NSAttributedStringKey.font] as? UIFont
             }
             return nil
         }
         set {
             if let value = newValue {
-                self.titleTextAttributes = [NSFontAttributeName: value]
+                self.titleTextAttributes = [NSAttributedStringKey.font: value]
             }
         }
     }

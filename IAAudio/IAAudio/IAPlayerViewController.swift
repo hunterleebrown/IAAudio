@@ -439,7 +439,7 @@ class IAPlayer: NSObject {
         
     }
     
-    func continuePlaying() {
+    @objc func continuePlaying() {
         advancePlaylist()
     }
     

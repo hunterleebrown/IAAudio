@@ -99,8 +99,10 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                         // let stripped = rawHtml.removeAttribute(htmlAttribute: "style").removeAttribute(htmlAttribute: "class").remove(htmlTag: "font")
                         
                         let htmlWrapper = "<html><pre style='font-family:Sans-Serif'>\(rawHtml)</pre></html>"
-                        
-                        deets.attributedText = NSMutableAttributedString.bodyMutableAttributedString(htmlWrapper, font:deets.font )
+
+                        if let aText = NSMutableAttributedString.bodyMutableAttributedString(htmlWrapper, font:deets.font ) {
+                            deets.attributedText =  aText
+                        }
                     }
                 }
                 
@@ -205,7 +207,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     }
     
 
-    func dismissViewController() {
+    @objc func dismissViewController() {
         self.dismiss(animated: true, completion: nil)
     }
     

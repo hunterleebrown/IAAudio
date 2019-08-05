@@ -51,7 +51,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         
         playListTitleInput.attributedPlaceholder =
             NSAttributedString(string: "Playlist Title",
-                               attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+                               attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
         
         
         for button in [saveButton] {
@@ -108,7 +108,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         return 1
     }
     
-    func toggleEditMode(sender:UIBarButtonItem) {
+    @objc func toggleEditMode(sender:UIBarButtonItem) {
         self.playlistTable.isEditing = !self.playlistTable.isEditing
     }
     
@@ -212,7 +212,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         displayActionMessage(message: "playlist saved")
     }
 
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             animateKeyboardTray(amount: keyboardSize.height + 20 - (66 + 49)) //66 is the playerHeight and 49 is the tabBar height
@@ -220,7 +220,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         animateKeyboardTray(amount:20)
     }
     

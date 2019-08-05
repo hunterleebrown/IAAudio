@@ -349,11 +349,11 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
     
-    func pushDoc(sender:UIButton){
+    @objc func pushDoc(sender:UIButton){
         self.performSegue(withIdentifier: "docPush", sender: sender)
     }
 
-    func pushNewPlaylist(sender:UIButton){
+    @objc func pushNewPlaylist(sender:UIButton){
         
         self.performSegue(withIdentifier: "playlistPush", sender: sender)
         
@@ -629,7 +629,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     }
     
     
-    func didPressDownloadButton(sender:UIButton) {
+    @objc func didPressDownloadButton(sender:UIButton) {
         
         let file: IAPlayerFile!
         if isSearching() {

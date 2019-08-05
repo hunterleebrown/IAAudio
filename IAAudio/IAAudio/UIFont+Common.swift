@@ -12,11 +12,11 @@ import UIKit
 extension UIFont {
     
     func withTraits(traits:UIFontDescriptorSymbolicTraits...) -> UIFont? {
-        let attributes: [String : Any] = [
-            UIFontDescriptorFamilyAttribute : familyName,
-            UIFontDescriptorSizeAttribute : pointSize,
-            UIFontDescriptorTraitsAttribute : [UIFontSymbolicTrait : UIFontDescriptorSymbolicTraits(traits).rawValue,
-                                               UIFontWeightTrait : self.weight]
+        let attributes: [UIFontDescriptor.AttributeName : Any] = [
+            UIFontDescriptor.AttributeName.family : familyName,
+            UIFontDescriptor.AttributeName.size : pointSize,
+            UIFontDescriptor.AttributeName.traits : [UIFontDescriptor.AttributeName.symbolic : UIFontDescriptorSymbolicTraits(traits).rawValue,
+                                                              UIFontDescriptor.TraitKey.weight : self.weight]
         ]
         
         let descriptor = UIFontDescriptor(fontAttributes: attributes)
@@ -25,8 +25,8 @@ extension UIFont {
     
     var weight: Double {
         get {
-            let fontAttributes = fontDescriptor.object(forKey: UIFontDescriptorTraitsAttribute) as? NSDictionary
-            return (fontAttributes?[UIFontWeightTrait] as? Double) ?? Double(UIFontWeightRegular)
+            let fontAttributes = fontDescriptor.object(forKey: UIFontDescriptor.AttributeName.traits) as? NSDictionary
+            return (fontAttributes?[UIFontDescriptor.TraitKey.weight] as? Double) ?? Double(UIFont.Weight.regular.rawValue)
         }
     }
     
