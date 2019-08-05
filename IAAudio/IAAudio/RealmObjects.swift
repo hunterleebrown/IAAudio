@@ -15,15 +15,15 @@ enum FileSizeType {
 
 class IAPlayerFile: Object {
     let displayOrder = RealmOptional<Int16>()
-    dynamic var downloaded = false
-    dynamic var name  = ""
-    dynamic var title = ""
-    dynamic var urlString = ""
-    dynamic var size = ""
-    dynamic var length = ""
-    dynamic var archiveIdentifier = ""
-    dynamic var archiveTitle = ""
-    dynamic var compoundKey = ""
+    @objc dynamic var downloaded = false
+    @objc dynamic var name  = ""
+    @objc dynamic var title = ""
+    @objc dynamic var urlString = ""
+    @objc dynamic var size = ""
+    @objc dynamic var length = ""
+    @objc dynamic var archiveIdentifier = ""
+    @objc dynamic var archiveTitle = ""
+    @objc dynamic var compoundKey = ""
     
     
     func setCompoundName(name:String) {
@@ -80,9 +80,9 @@ class IAPlayerFile: Object {
 
 
 class IAArchive: Object {
-    dynamic var identifier = ""
-    dynamic var title = ""
-    dynamic var creator = ""
+    @objc dynamic var identifier = ""
+    @objc dynamic var title = ""
+    @objc dynamic var creator = ""
     let files = List<IAPlayerFile>()
     
     override static func primaryKey() -> String? {
@@ -91,7 +91,7 @@ class IAArchive: Object {
 }
 
 class IAList: Object {
-    dynamic var title = ""
+    @objc dynamic var title = ""
     let files = List<IAPlayerFile>()
 }
 

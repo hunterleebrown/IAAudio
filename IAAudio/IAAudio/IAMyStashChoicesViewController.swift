@@ -33,7 +33,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
         
         self.realmCounts()
         
-        notificationToken = realm?.addNotificationBlock { [weak self] notification, realm in
+        notificationToken = realm?.observe { [weak self] notification, realm in
             self?.realmCounts()
             self?.tableView.reloadData()
         }

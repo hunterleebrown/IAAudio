@@ -18,7 +18,7 @@ public extension UIBarButtonItem {
         let font = UIFont(name: IAIconStruct.FontName, size: iconSize)
         
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        setTitleTextAttributes([NSFontAttributeName: font!], for: UIControlState())
+        setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
         title = icon.text
     }
     
@@ -32,7 +32,7 @@ public extension UIBarButtonItem {
             FontLoader.loadFontIfNeeded()
             let font = UIFont(name: IAIconStruct.FontName, size: 23)
             assert(font != nil,IAIconStruct.ErrorAnnounce)
-            setTitleTextAttributes([NSFontAttributeName: font!], for: UIControlState())
+            setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
             title = newValue?.text
         }
         
@@ -53,7 +53,7 @@ public extension UIBarButtonItem {
         let font = UIFont(name: IAIconStruct.FontName, size: size)
         
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        setTitleTextAttributes([NSFontAttributeName: font!], for: UIControlState())
+        setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
         
         var text = prefixText
         if let iconText = icon?.text {
@@ -105,13 +105,13 @@ public extension UIButton {
             assert(textFont != nil, IAIconStruct.ErrorAnnounce)
             titleLabel.font = textFont!
             
-            let textAttribute = [NSFontAttributeName : titleLabel.font]
+            let textAttribute = [NSAttributedStringKey.font : titleLabel.font]
             let myString = NSMutableAttributedString(string: prefixText, attributes: textAttribute )
             
             if let iconText = icon?.text {
                 
                 let iconFont = UIFont(name: IAIconStruct.FontName, size: iconSize ?? size ?? titleLabel.font.pointSize)!
-                let iconAttribute = [NSFontAttributeName : iconFont]
+                let iconAttribute = [NSAttributedStringKey.font : iconFont]
                 
                 let iconString = NSAttributedString(string: iconText, attributes: iconAttribute)
                 myString.append(iconString)
@@ -128,7 +128,7 @@ public extension UIButton {
     func setIAIconTitleColor(_ color: UIColor) {
         
         let attributedString = NSMutableAttributedString(attributedString: titleLabel!.attributedText!)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: color, range: NSMakeRange(0, titleLabel!.text!.characters.count))
+        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: NSMakeRange(0, titleLabel!.text!.count))
     }
 }
 
@@ -181,14 +181,14 @@ public extension UILabel {
         assert(textFont != nil, IAIconStruct.ErrorAnnounce)
         font = textFont!
         
-        let textAttribute = [NSFontAttributeName : font]
+        let textAttribute = [NSAttributedStringKey.font : font]
         let myString = NSMutableAttributedString(string: prefixText, attributes: textAttribute )
         
         
         if let iconText = icon?.text {
             
             let iconFont = UIFont(name: IAIconStruct.FontName, size: iconSize ?? size ?? self.font.pointSize)!
-            let iconAttribute = [NSFontAttributeName : iconFont]
+            let iconAttribute = [NSAttributedStringKey.font : iconFont]
             
             
             let iconString = NSAttributedString(string: iconText, attributes: iconAttribute)
@@ -233,7 +233,7 @@ public extension UISegmentedControl {
         FontLoader.loadFontIfNeeded()
         let font = UIFont(name: IAIconStruct.FontName, size: 23)
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        setTitleTextAttributes([NSFontAttributeName: font!], for: UIControlState())
+        setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
         setTitle(icon.text, forSegmentAt: segment)
     }
 }
@@ -253,7 +253,7 @@ public extension UIImage {
         FontLoader.loadFontIfNeeded()
         let font = UIFont(name: IAIconStruct.FontName, size: fontSize)
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        let attributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: textColor, NSBackgroundColorAttributeName: backgroundColor, NSParagraphStyleAttributeName: paragraph]
+        let attributes = [NSAttributedStringKey.font: font!, NSAttributedStringKey.foregroundColor: textColor, NSAttributedStringKey.backgroundColor: backgroundColor, NSAttributedStringKey.paragraphStyle: paragraph]
         
         let attributedString = NSAttributedString(string: icon.text!, attributes: attributes)
         UIGraphicsBeginImageContextWithOptions(size, false , 0.0)
@@ -294,7 +294,7 @@ private class FontLoader {
                 let provider = CGDataProvider(data: data as CFData)
                 let font = CGFont(provider!)
                 var error: Unmanaged<CFError>?
-                if !CTFontManagerRegisterGraphicsFont(font, &error) {
+        if !CTFontManagerRegisterGraphicsFont(font!, &error) {
                     let errorDescription: CFString = CFErrorCopyDescription(error!.takeUnretainedValue())
                     let nsError = error!.takeUnretainedValue() as AnyObject as! NSError
                     NSException(name: NSExceptionName.internalInconsistencyException, reason: errorDescription as String, userInfo: [NSUnderlyingErrorKey: nsError]).raise()
