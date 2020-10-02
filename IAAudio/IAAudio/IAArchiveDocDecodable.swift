@@ -9,19 +9,46 @@
 import Foundation
 
 
-struct Metadata: Codable {
+class DocMetadata: Decodable {
     var identifier: String?
     var description: String?
-    var subject: String?
+    var subject: [String] = [String]()
     var creator: String?
     var uploader: String?
     var title: String?
     var artist: String?
+
+    enum CodingKeys: String, CodingKey {
+        case identifier
+        case description
+        case subject
+        case creator
+        case uploader
+        case title
+        case artist
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.identifier = try values.decodeIfPresent(String.self, forKey: .identifier)
+        self.description = try values.decodeIfPresent(String.self, forKey: .description)
+        if let singleSubject = try? values.decodeIfPresent(String.self, forKey: .subject) {
+             //if a single venue decoded append it to array
+            self.subject.append(singleSubject)
+        } else if let multiSubject = try? values.decode([String].self, forKey: .subject) {
+             //if a multi venue decoded, set it as venue
+            self.subject = multiSubject
+         }
+        self.creator = try values.decodeIfPresent(String.self, forKey: .creator)
+        self.title = try values.decodeIfPresent(String.self, forKey: .title)
+        self.artist = try values.decodeIfPresent(String.self, forKey: .artist)
+    }
+
 }
 
 class IAArchiveDocDecodable: Decodable {
 
-    var metadata: Metadata
+    var metadata: DocMetadata
 //    var reviews: [[String:String]]
     var files: [IAFileMappable]?
 
@@ -33,12 +60,8 @@ class IAArchiveDocDecodable: Decodable {
 
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        //self.metadata = try values.decode([String: Any].self, forKey: .metadata)
-        self.metadata = try values.decode(Metadata.self, forKey: .metadata)
-
-        let throwables = try values.decode([Throwable<IAFileMappable>].self, forKey: .files)
-        self.files = throwables.compactMap { try? $0.result.get() }
-
+        self.metadata = try values.decode(DocMetadata.self, forKey: .metadata)
+        self.files = try values.decodeIfPresent([IAFileMappable].self, forKey: .files)
     }
 
 
@@ -56,7 +79,7 @@ class IAArchiveDocDecodable: Decodable {
 
     var subject: String? {
         get {
-            return metadata.subject
+            return metadata.subject.joined(separator: ", ")
         }
     }
     
@@ -148,7 +171,16 @@ class IAFileMappable: Decodable {
     var title : String?
     var track : String?
     var size : String?
-    var format: IAFileMappableFormat?
+    var format: IAFileMappableFormat? {
+        get {
+            if let raw = self.rawFormat {
+                return IAFileMappableFormat(rawValue: raw)
+            }
+
+            return nil
+        }
+    }
+    var rawFormat: String?
     var length: String?
     
 
@@ -157,7 +189,7 @@ class IAFileMappable: Decodable {
         case title
         case track
         case size
-        case fromat
+        case format
         case length
       }
 
@@ -167,7 +199,7 @@ class IAFileMappable: Decodable {
         self.title = try values.decodeIfPresent(String.self, forKey: .title)
         self.track = try values.decodeIfPresent(String.self, forKey: .track)
         self.size = try values.decodeIfPresent(String.self, forKey: .size)
-        self.format = try values.decodeIfPresent(IAFileMappableFormat.self, forKey: .fromat)
+        self.rawFormat = try values.decodeIfPresent(String.self, forKey: .format)
         self.length = try values.decodeIfPresent(String.self, forKey: .length)
 
     }
@@ -210,6 +242,7 @@ class IAFileMappable: Decodable {
     var displayName: String {
         return self.title ?? self.name!
     }
-    
+
+
     
 }

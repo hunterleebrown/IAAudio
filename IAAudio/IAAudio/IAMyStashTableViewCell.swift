@@ -233,8 +233,8 @@ class IAMyStashTableViewCell: UITableViewCell {
         self.itemTitle?.textColor = UIColor.white
         
         if let more = moreButton {
-            more.setIAIcon(.iosMoreOutline, forState: UIControlState())
-            more.setTitleColor(UIColor.white, for: UIControlState())
+            more.setIAIcon(.iosMoreOutline, forState: UIControl.State())
+            more.setTitleColor(UIColor.white, for: UIControl.State())
             
         }
         
@@ -244,7 +244,7 @@ class IAMyStashTableViewCell: UITableViewCell {
         }
         
         if let download = downloadButton {
-            download.setTitleColor(UIColor.fairyCream, for: UIControlState())
+            download.setTitleColor(UIColor.fairyCream, for: UIControl.State())
         }
         
 

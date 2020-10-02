@@ -8,7 +8,37 @@
 
 import Foundation
 
-class IASearchDecodable: Decodable {
+class IAResponse: Decodable {
+    var docs: [IASearchDocDecodable] = [IASearchDocDecodable]()
+
+    enum CodingKeys: String, CodingKey {
+        case docs
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.docs = try values.decodeIfPresent([IASearchDocDecodable].self, forKey: .docs)!
+    }
+}
+
+
+class IASearchResults: Decodable {
+    var response: IAResponse?
+
+    enum CodingKeys: String, CodingKey {
+        case response
+    }
+
+    public required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        if let resp = try values.decodeIfPresent(IAResponse.self, forKey: .response) {
+            self.response = resp
+        } 
+    }
+}
+
+
+class IASearchDocDecodable: Decodable {
     
     var identifier: String?
     var title: String?

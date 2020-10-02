@@ -51,7 +51,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         
         playListTitleInput.attributedPlaceholder =
             NSAttributedString(string: "Playlist Title",
-                               attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+                               attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         
         
         for button in [saveButton] {
@@ -84,8 +84,8 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         rightButton.tintColor = UIColor.fairyCream
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
 
     }
@@ -139,7 +139,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     }
     
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
         case .delete:
@@ -214,7 +214,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
 
     @objc func keyboardWillShow(notification: NSNotification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             animateKeyboardTray(amount: keyboardSize.height + 20 - (66 + 49)) //66 is the playerHeight and 49 is the tabBar height
         }
         
@@ -250,7 +250,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }

@@ -18,7 +18,7 @@ public extension UIBarButtonItem {
         let font = UIFont(name: IAIconStruct.FontName, size: iconSize)
         
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
+        setTitleTextAttributes([NSAttributedString.Key.font: font!], for: UIControl.State())
         title = icon.text
     }
     
@@ -32,13 +32,13 @@ public extension UIBarButtonItem {
             FontLoader.loadFontIfNeeded()
             let font = UIFont(name: IAIconStruct.FontName, size: 23)
             assert(font != nil,IAIconStruct.ErrorAnnounce)
-            setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
+            setTitleTextAttributes([NSAttributedString.Key.font: font!], for: UIControl.State())
             title = newValue?.text
         }
         
         get {
             if let title = title {
-                if let index =  IAIcons.index(of: title) {
+                if let index =  IAIcons.firstIndex(of: title) {
                     return IAIconType(rawValue: index)
                 }
             }
@@ -53,7 +53,7 @@ public extension UIBarButtonItem {
         let font = UIFont(name: IAIconStruct.FontName, size: size)
         
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
+        setTitleTextAttributes([NSAttributedString.Key.font: font!], for: UIControl.State())
         
         var text = prefixText
         if let iconText = icon?.text {
@@ -70,7 +70,7 @@ public extension UIButton {
     /**
      To set an icon, use i.e. `buttonName.setIAIcon(IAIconType.play, forState: .Normal)`
      */
-    func setIAIcon(_ icon: IAIconType, forState state: UIControlState) {
+    func setIAIcon(_ icon: IAIconType, forState state: UIControl.State) {
         
         if let titleLabel = titleLabel {
             
@@ -86,7 +86,7 @@ public extension UIButton {
     /**
      To set an icon, use i.e. `buttonName.setIAIcon(IAIconType.play, iconSize: 35, forState: .Normal)`
      */
-    func setIAIcon(_ icon: IAIconType, iconSize: CGFloat, forState state: UIControlState) {
+    func setIAIcon(_ icon: IAIconType, iconSize: CGFloat, forState state: UIControl.State) {
         
         setIAIcon(icon, forState: state)
         if let fontName = titleLabel?.font.fontName {
@@ -96,7 +96,7 @@ public extension UIButton {
     }
     
     
-    func setIAIconText(prefixText: String, icon: IAIconType?, postfixText: String, size: CGFloat?, forState state: UIControlState, iconSize: CGFloat? = nil) {
+    func setIAIconText(prefixText: String, icon: IAIconType?, postfixText: String, size: CGFloat?, forState state: UIControl.State, iconSize: CGFloat? = nil) {
         
         if let titleLabel = titleLabel {
             
@@ -105,13 +105,13 @@ public extension UIButton {
             assert(textFont != nil, IAIconStruct.ErrorAnnounce)
             titleLabel.font = textFont!
             
-            let textAttribute = [NSAttributedStringKey.font : titleLabel.font]
+            let textAttribute = [NSAttributedString.Key.font : titleLabel.font]
             let myString = NSMutableAttributedString(string: prefixText, attributes: textAttribute )
             
             if let iconText = icon?.text {
                 
                 let iconFont = UIFont(name: IAIconStruct.FontName, size: iconSize ?? size ?? titleLabel.font.pointSize)!
-                let iconAttribute = [NSAttributedStringKey.font : iconFont]
+                let iconAttribute = [NSAttributedString.Key.font : iconFont]
                 
                 let iconString = NSAttributedString(string: iconText, attributes: iconAttribute)
                 myString.append(iconString)
@@ -128,7 +128,7 @@ public extension UIButton {
     func setIAIconTitleColor(_ color: UIColor) {
         
         let attributedString = NSMutableAttributedString(attributedString: titleLabel!.attributedText!)
-        attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: NSMakeRange(0, titleLabel!.text!.count))
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: NSMakeRange(0, titleLabel!.text!.count))
     }
 }
 
@@ -155,7 +155,7 @@ public extension UILabel {
         get {
             if let text = text {
                 
-                if let index =  IAIcons.index(of: text) {
+                if let index =  IAIcons.firstIndex(of: text) {
                     
                     return IAIconType(rawValue: index)
                 }
@@ -181,14 +181,14 @@ public extension UILabel {
         assert(textFont != nil, IAIconStruct.ErrorAnnounce)
         font = textFont!
         
-        let textAttribute = [NSAttributedStringKey.font : font]
+        let textAttribute = [NSAttributedString.Key.font : font]
         let myString = NSMutableAttributedString(string: prefixText, attributes: textAttribute )
         
         
         if let iconText = icon?.text {
             
             let iconFont = UIFont(name: IAIconStruct.FontName, size: iconSize ?? size ?? self.font.pointSize)!
-            let iconAttribute = [NSAttributedStringKey.font : iconFont]
+            let iconAttribute = [NSAttributedString.Key.font : iconFont]
             
             
             let iconString = NSAttributedString(string: iconText, attributes: iconAttribute)
@@ -233,7 +233,7 @@ public extension UISegmentedControl {
         FontLoader.loadFontIfNeeded()
         let font = UIFont(name: IAIconStruct.FontName, size: 23)
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        setTitleTextAttributes([NSAttributedStringKey.font: font!], for: UIControlState())
+        setTitleTextAttributes([NSAttributedString.Key.font: font!], for: UIControl.State())
         setTitle(icon.text, forSegmentAt: segment)
     }
 }
@@ -253,7 +253,7 @@ public extension UIImage {
         FontLoader.loadFontIfNeeded()
         let font = UIFont(name: IAIconStruct.FontName, size: fontSize)
         assert(font != nil, IAIconStruct.ErrorAnnounce)
-        let attributes = [NSAttributedStringKey.font: font!, NSAttributedStringKey.foregroundColor: textColor, NSAttributedStringKey.backgroundColor: backgroundColor, NSAttributedStringKey.paragraphStyle: paragraph]
+        let attributes = [NSAttributedString.Key.font: font!, NSAttributedString.Key.foregroundColor: textColor, NSAttributedString.Key.backgroundColor: backgroundColor, NSAttributedString.Key.paragraphStyle: paragraph]
         
         let attributedString = NSAttributedString(string: icon.text!, attributes: attributes)
         UIGraphicsBeginImageContextWithOptions(size, false , 0.0)

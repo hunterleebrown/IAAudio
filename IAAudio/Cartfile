@@ -1,7 +1,0 @@
-#carthage bootstrap --platform iOS --no-use-binaries
-github "Alamofire/Alamofire"
-github "Alamofire/AlamofireImage"
-github "Hearst-DD/ObjectMapper"
-github "ninjaprox/NVActivityIndicatorView"
-github "realm/realm-cocoa"
-github "tristanhimmelman/AlamofireObjectMapper" "5.2.1"

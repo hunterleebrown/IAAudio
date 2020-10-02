@@ -79,13 +79,13 @@ extension UINavigationBar {
     var titleColor: UIColor? {
         get {
             if let attributes = self.titleTextAttributes {
-                return attributes[NSAttributedStringKey.foregroundColor] as? UIColor
+                return attributes[NSAttributedString.Key.foregroundColor] as? UIColor
             }
             return nil
         }
         set {
             if let value = newValue {
-                self.titleTextAttributes = [NSAttributedStringKey.foregroundColor: value]
+                self.titleTextAttributes = [NSAttributedString.Key.foregroundColor: value]
             }
         }
     }
@@ -93,13 +93,13 @@ extension UINavigationBar {
     var titleFont: UIFont? {
         get {
             if let attributes = self.titleTextAttributes {
-                return attributes[NSAttributedStringKey.font] as? UIFont
+                return attributes[NSAttributedString.Key.font] as? UIFont
             }
             return nil
         }
         set {
             if let value = newValue {
-                self.titleTextAttributes = [NSAttributedStringKey.font: value]
+                self.titleTextAttributes = [NSAttributedString.Key.font: value]
             }
         }
     }
@@ -131,8 +131,8 @@ extension UIViewController {
     }
     
     func alert(title:String, message:String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle:UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.destructive, handler: { (action) -> Void in
+        let alert = UIAlertController(title: title, message: message, preferredStyle:UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertAction.Style.destructive, handler: { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }))
         alert.view.tintColor = IAColors.fairyRed
@@ -141,7 +141,7 @@ extension UIViewController {
     }
 
     func alert(title:String, message:String?, completion:@escaping ()->Void) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle:UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle:UIAlertController.Style.alert)
 
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
             if(self.presentingViewController != nil) {

@@ -77,7 +77,7 @@ class IAPlayerViewController: UIViewController {
         
 
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             
@@ -210,7 +210,7 @@ class IAPlayerViewController: UIViewController {
         if let player = IAPlayer.sharedInstance.avPlayer {
             let duration = CMTimeGetSeconds((player.currentItem?.duration)!)
             let sec = duration * Float64(self.playingProgress.value)
-            let seakTime:CMTime = CMTimeMakeWithSeconds(sec, 600)
+            let seakTime:CMTime = CMTimeMakeWithSeconds(sec, preferredTimescale: 600)
             player.seek(to: seakTime)
             IAPlayer.sharedInstance.updatePlayerTimes()
         }
@@ -229,7 +229,7 @@ class IAPlayerViewController: UIViewController {
     
         if IAPlayer.sharedInstance.avPlayer != nil {
             
-            if (event!.type == UIEventType.remoteControl) {
+            if (event!.type == UIEvent.EventType.remoteControl) {
                 switch (event!.subtype) {
                 case .remoteControlPause:
                     IAPlayer.sharedInstance.didTapPlayButton()
@@ -336,7 +336,7 @@ class IAPlayer: NSObject {
     typealias PlaylistWithIndex = (list:IAList, index:Int)
     var playingPlaylistWithIndex: PlaylistWithIndex?
     
-    func playFile(file:IAFileMappable, doc:IAArchiveDocMappable){
+    func playFile(file:IAFileMappable, doc:IAArchiveDocDecodable){
         
         self.fileTitle = file.title ?? file.name
         self.fileIdentifierTitle = doc.title
@@ -485,9 +485,9 @@ class IAPlayer: NSObject {
                 print("rate changed: \(player.rate)")
                 
                 if player.rate == 0 {
-                    controller.playButton.setIAIcon(.iosPlayOutline, forState: UIControlState())
+                    controller.playButton.setIAIcon(.iosPlayOutline, forState: UIControl.State())
                 } else {
-                    controller.playButton.setIAIcon(.iosPauseOutline, forState: UIControlState())
+                    controller.playButton.setIAIcon(.iosPauseOutline, forState: UIControl.State())
                 }
                 
                 self.playing  = player.rate > 0.0
@@ -623,19 +623,14 @@ class IAPlayer: NSObject {
     
     func setActiveAudioSession(){
         let audioSession = AVAudioSession.sharedInstance()
-        if(audioSession.category != AVAudioSessionCategoryPlayback)
-        {
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-                try audioSession.setActive(true)
-            }
-            catch {
-                fatalError("Failure to session: \(error)")
-                
-            }
+
+        do {
+            try audioSession.setCategory(.playback, options: .defaultToSpeaker)
+            try audioSession.setActive(true)
+        }
+        catch {
+            fatalError("Failure to session: \(error)")
         }
     }
     
 }
-
-

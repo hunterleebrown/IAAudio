@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,11 +13,6 @@
 		5A41158F1E4D046F004F6B56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A41158D1E4D046F004F6B56 /* Main.storyboard */; };
 		5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A4115901E4D046F004F6B56 /* Assets.xcassets */; };
 		5A4115941E4D046F004F6B56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A4115921E4D046F004F6B56 /* LaunchScreen.storyboard */; };
-		5A4115A81E4D0B3D004F6B56 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A41159F1E4D0B3D004F6B56 /* RealmSwift.framework */; };
-		5A4115A91E4D0B3D004F6B56 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A01E4D0B3D004F6B56 /* Realm.framework */; };
-		5A4115AA1E4D0B3D004F6B56 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */; };
-		5A4115AB1E4D0B3D004F6B56 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A21E4D0B3D004F6B56 /* ObjectMapper.framework */; };
-		5A4115AD1E4D0B3D004F6B56 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A4115A41E4D0B3D004F6B56 /* Alamofire.framework */; };
 		5A4115B31E4D1803004F6B56 /* IAIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4115B01E4D1803004F6B56 /* IAIcon.swift */; };
 		5A4115B41E4D1803004F6B56 /* IAIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4115B11E4D1803004F6B56 /* IAIconType.swift */; };
 		5A4115B51E4D1803004F6B56 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A4115B21E4D1803004F6B56 /* ionicons.ttf */; };
@@ -32,7 +27,7 @@
 		5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */; };
 		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
 		5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE521E4DA04700FB0A7A /* IAService.swift */; };
-		5A47BE551E4DABC300FB0A7A /* IASearchDocMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */; };
+		5A47BE551E4DABC300FB0A7A /* IASearchDocDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE541E4DABC300FB0A7A /* IASearchDocDecodable.swift */; };
 		5A525BFB1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */; };
 		5A525BFD1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */; };
 		5A525BFF1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */; };
@@ -40,8 +35,7 @@
 		5A525C031E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525C021E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift */; };
 		5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B31E502872000D4465 /* IASearchCell.swift */; };
 		5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B51E502C53000D4465 /* StringUtils.swift */; };
-		5A5764B81E502E99000D4465 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A5764B71E502E98000D4465 /* AlamofireImage.framework */; };
-		5A5764BA1E50461C000D4465 /* IAArchiveDocMappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B91E50461C000D4465 /* IAArchiveDocMappable.swift */; };
+		5A5764BA1E50461C000D4465 /* IAArchiveDocDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B91E50461C000D4465 /* IAArchiveDocDecodable.swift */; };
 		5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BB1E5056B6000D4465 /* IADocViewController.swift */; };
 		5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */; };
 		5A615A141E515BC700B18161 /* IARealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A615A131E515BC700B18161 /* IARealmManager.swift */; };
@@ -54,13 +48,17 @@
 		5A92D8A51E871BA000E0EB61 /* UISearchBar+Fairy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A92D8A41E871BA000E0EB61 /* UISearchBar+Fairy.swift */; };
 		5A92D8A71E87245E00E0EB61 /* PlaylistFindTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A92D8A61E87245E00E0EB61 /* PlaylistFindTableViewController.swift */; };
 		5A92D8AB1E879BCF00E0EB61 /* NowPlayingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A92D8AA1E879BCF00E0EB61 /* NowPlayingTableViewCell.swift */; };
-		5AB71E991E90707800D8481D /* NVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AB71E981E90707800D8481D /* NVActivityIndicatorView.framework */; };
 		5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */; };
 		5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */; };
 		5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */; };
+		5AE923FD2526BBE6004BC744 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE923FC2526BBE6004BC744 /* Alamofire */; };
+		5AE924012526BC25004BC744 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924002526BC25004BC744 /* AlamofireImage */; };
+		5AE924052526BC4D004BC744 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924042526BC4D004BC744 /* ObjectMapper */; };
+		5AE924092526BC83004BC744 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924082526BC83004BC744 /* NVActivityIndicatorView */; };
+		5AE9240D2526BCEC004BC744 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE9240C2526BCEC004BC744 /* Realm */; };
+		5AE9240F2526BCEC004BC744 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE9240E2526BCEC004BC744 /* RealmSwift */; };
+		5AE924192526D164004BC744 /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE924182526D164004BC744 /* Throwable.swift */; };
 		5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */; };
-		CE806FF022838249000575EE /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = CE806FEE22838249000575EE /* Cartfile.resolved */; };
-		CE806FF122838249000575EE /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = CE806FEF22838249000575EE /* Cartfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,11 +70,6 @@
 		5A4115901E4D046F004F6B56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A4115931E4D046F004F6B56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A4115951E4D046F004F6B56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5A41159F1E4D0B3D004F6B56 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		5A4115A01E4D0B3D004F6B56 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
-		5A4115A21E4D0B3D004F6B56 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
-		5A4115A41E4D0B3D004F6B56 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		5A4115B01E4D1803004F6B56 /* IAIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAIcon.swift; sourceTree = "<group>"; };
 		5A4115B11E4D1803004F6B56 /* IAIconType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAIconType.swift; sourceTree = "<group>"; };
 		5A4115B21E4D1803004F6B56 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
@@ -91,7 +84,7 @@
 		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
 		5A47BE521E4DA04700FB0A7A /* IAService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAService.swift; sourceTree = "<group>"; };
-		5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDocMappable.swift; sourceTree = "<group>"; };
+		5A47BE541E4DABC300FB0A7A /* IASearchDocDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDocDecodable.swift; sourceTree = "<group>"; };
 		5A525BFA1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyStashChoicesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A525BFC1E5A7CAE00B641C2 /* IAMyStashChoicesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyStashChoicesTableViewCell.swift; sourceTree = "<group>"; };
 		5A525BFE1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyChoicesSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -99,8 +92,7 @@
 		5A525C021E5AA0A300B641C2 /* IAMyChoicesDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyChoicesDataTableViewCell.swift; sourceTree = "<group>"; };
 		5A5764B31E502872000D4465 /* IASearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchCell.swift; sourceTree = "<group>"; };
 		5A5764B51E502C53000D4465 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
-		5A5764B71E502E98000D4465 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
-		5A5764B91E50461C000D4465 /* IAArchiveDocMappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAArchiveDocMappable.swift; sourceTree = "<group>"; };
+		5A5764B91E50461C000D4465 /* IAArchiveDocDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAArchiveDocDecodable.swift; sourceTree = "<group>"; };
 		5A5764BB1E5056B6000D4465 /* IADocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IADocViewController.swift; sourceTree = "<group>"; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAAuidoFileTableViewCell.swift; sourceTree = "<group>"; };
 		5A615A131E515BC700B18161 /* IARealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IARealmManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -113,13 +105,11 @@
 		5A92D8A41E871BA000E0EB61 /* UISearchBar+Fairy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Fairy.swift"; sourceTree = "<group>"; };
 		5A92D8A61E87245E00E0EB61 /* PlaylistFindTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistFindTableViewController.swift; sourceTree = "<group>"; };
 		5A92D8AA1E879BCF00E0EB61 /* NowPlayingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingTableViewCell.swift; sourceTree = "<group>"; };
-		5AB71E981E90707800D8481D /* NVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NVActivityIndicatorView.framework; path = Carthage/Build/iOS/NVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		5AB89AED1E53F9B300A9836A /* IAMyMusicStash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyMusicStash.storyboard; sourceTree = "<group>"; };
 		5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAReachability.swift; sourceTree = "<group>"; };
 		5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyStashTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5AE924182526D164004BC744 /* Throwable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throwable.swift; sourceTree = "<group>"; };
 		5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
-		CE806FEE22838249000575EE /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
-		CE806FEF22838249000575EE /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,13 +117,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AB71E991E90707800D8481D /* NVActivityIndicatorView.framework in Frameworks */,
-				5A5764B81E502E99000D4465 /* AlamofireImage.framework in Frameworks */,
-				5A4115AB1E4D0B3D004F6B56 /* ObjectMapper.framework in Frameworks */,
-				5A4115A91E4D0B3D004F6B56 /* Realm.framework in Frameworks */,
-				5A4115A81E4D0B3D004F6B56 /* RealmSwift.framework in Frameworks */,
-				5A4115AD1E4D0B3D004F6B56 /* Alamofire.framework in Frameworks */,
-				5A4115AA1E4D0B3D004F6B56 /* AlamofireObjectMapper.framework in Frameworks */,
+				5AE9240F2526BCEC004BC744 /* RealmSwift in Frameworks */,
+				5AE924092526BC83004BC744 /* NVActivityIndicatorView in Frameworks */,
+				5AE924052526BC4D004BC744 /* ObjectMapper in Frameworks */,
+				5AE923FD2526BBE6004BC744 /* Alamofire in Frameworks */,
+				5AE924012526BC25004BC744 /* AlamofireImage in Frameworks */,
+				5AE9240D2526BCEC004BC744 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,15 +174,6 @@
 		5A41159B1E4D0B3A004F6B56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CE806FEF22838249000575EE /* Cartfile */,
-				CE806FEE22838249000575EE /* Cartfile.resolved */,
-				5AB71E981E90707800D8481D /* NVActivityIndicatorView.framework */,
-				5A5764B71E502E98000D4465 /* AlamofireImage.framework */,
-				5A41159F1E4D0B3D004F6B56 /* RealmSwift.framework */,
-				5A4115A01E4D0B3D004F6B56 /* Realm.framework */,
-				5A4115A11E4D0B3D004F6B56 /* AlamofireObjectMapper.framework */,
-				5A4115A21E4D0B3D004F6B56 /* ObjectMapper.framework */,
-				5A4115A41E4D0B3D004F6B56 /* Alamofire.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,8 +241,9 @@
 			children = (
 				CE8C036D1E679E8B00C68E86 /* _OLD_Reference */,
 				5A29692D1E514C3E00E7409F /* Realm */,
-				5A47BE541E4DABC300FB0A7A /* IASearchDocMappable.swift */,
-				5A5764B91E50461C000D4465 /* IAArchiveDocMappable.swift */,
+				5A47BE541E4DABC300FB0A7A /* IASearchDocDecodable.swift */,
+				5A5764B91E50461C000D4465 /* IAArchiveDocDecodable.swift */,
+				5AE924182526D164004BC744 /* Throwable.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -364,13 +345,20 @@
 				5A4115821E4D046F004F6B56 /* Sources */,
 				5A4115831E4D046F004F6B56 /* Frameworks */,
 				5A4115841E4D046F004F6B56 /* Resources */,
-				5A4115AE1E4D10F2004F6B56 /* Carthage */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = IAAudio;
+			packageProductDependencies = (
+				5AE923FC2526BBE6004BC744 /* Alamofire */,
+				5AE924002526BC25004BC744 /* AlamofireImage */,
+				5AE924042526BC4D004BC744 /* ObjectMapper */,
+				5AE924082526BC83004BC744 /* NVActivityIndicatorView */,
+				5AE9240C2526BCEC004BC744 /* Realm */,
+				5AE9240E2526BCEC004BC744 /* RealmSwift */,
+			);
 			productName = "IA-Music";
 			productReference = 5A4115861E4D046F004F6B56 /* IAAudio.app */;
 			productType = "com.apple.product-type.application";
@@ -388,6 +376,7 @@
 					5A4115851E4D046F004F6B56 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = YB9HQM8F84;
+						LastSwiftMigration = 1200;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -402,6 +391,13 @@
 				Base,
 			);
 			mainGroup = 5A41157D1E4D046F004F6B56;
+			packageReferences = (
+				5AE923FB2526BBE6004BC744 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				5AE924032526BC4D004BC744 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
+				5AE924072526BC83004BC744 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				5AE9240B2526BCEC004BC744 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 5A4115871E4D046F004F6B56 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -420,9 +416,7 @@
 				5AB89AEE1E53F9B300A9836A /* IAMyMusicStash.storyboard in Resources */,
 				5A4115941E4D046F004F6B56 /* LaunchScreen.storyboard in Resources */,
 				5A4115911E4D046F004F6B56 /* Assets.xcassets in Resources */,
-				CE806FF022838249000575EE /* Cartfile.resolved in Resources */,
 				5A6DFBB81E5932D0002C0977 /* Search.storyboard in Resources */,
-				CE806FF122838249000575EE /* Cartfile in Resources */,
 				5A4115B51E4D1803004F6B56 /* ionicons.ttf in Resources */,
 				5A4115BF1E4D1DF8004F6B56 /* IAPlayer.storyboard in Resources */,
 				5A41158F1E4D046F004F6B56 /* Main.storyboard in Resources */,
@@ -433,30 +427,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		5A4115AE1E4D10F2004F6B56 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/ObjectMapper.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AlamofireObjectMapper.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/NVActivityIndicatorView.framework",
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		5A4115821E4D046F004F6B56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -466,12 +436,13 @@
 				5A4116181E4D280E004F6B56 /* IASearchDoc.swift in Sources */,
 				5A92D8A51E871BA000E0EB61 /* UISearchBar+Fairy.swift in Sources */,
 				5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */,
-				5A5764BA1E50461C000D4465 /* IAArchiveDocMappable.swift in Sources */,
+				5A5764BA1E50461C000D4465 /* IAArchiveDocDecodable.swift in Sources */,
 				5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */,
 				5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */,
 				5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */,
 				5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */,
 				5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */,
+				5AE924192526D164004BC744 /* Throwable.swift in Sources */,
 				5A92D8A71E87245E00E0EB61 /* PlaylistFindTableViewController.swift in Sources */,
 				5A92D8A11E86F6DE00E0EB61 /* PlaylistViewController.swift in Sources */,
 				5A4115BC1E4D19DE004F6B56 /* IAHomeTabBarController.swift in Sources */,
@@ -486,7 +457,7 @@
 				5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */,
 				5A525C011E5A9FE400B641C2 /* IAMyChoicesFindTableViewCell.swift in Sources */,
 				5A4115B41E4D1803004F6B56 /* IAIconType.swift in Sources */,
-				5A47BE551E4DABC300FB0A7A /* IASearchDocMappable.swift in Sources */,
+				5A47BE551E4DABC300FB0A7A /* IASearchDocDecodable.swift in Sources */,
 				5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */,
 				5A92D8AB1E879BCF00E0EB61 /* NowPlayingTableViewCell.swift in Sources */,
 				5A6DFBBC1E5943C8002C0977 /* IATopNavView.swift in Sources */,
@@ -562,12 +533,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -606,10 +578,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -626,10 +600,13 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = IAAudio/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hunterleebrown.IAAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -644,10 +621,13 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = IAAudio/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hunterleebrown.IAAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -673,6 +653,82 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5AE923FB2526BBE6004BC744 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.2;
+			};
+		};
+		5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
+		5AE924032526BC4D004BC744 /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+		5AE924072526BC83004BC744 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		5AE9240B2526BCEC004BC744 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5AE923FC2526BBE6004BC744 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AE923FB2526BBE6004BC744 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		5AE924002526BC25004BC744 /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		5AE924042526BC4D004BC744 /* ObjectMapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AE924032526BC4D004BC744 /* XCRemoteSwiftPackageReference "ObjectMapper" */;
+			productName = ObjectMapper;
+		};
+		5AE924082526BC83004BC744 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AE924072526BC83004BC744 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+		5AE9240C2526BCEC004BC744 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AE9240B2526BCEC004BC744 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		5AE9240E2526BCEC004BC744 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AE9240B2526BCEC004BC744 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5A41157E1E4D046F004F6B56 /* Project object */;
 }

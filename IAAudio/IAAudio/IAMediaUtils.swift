@@ -118,8 +118,8 @@ struct IAMediaUtils
 
     static func removeSpecialCharsFromString(_ text: String) -> String {
         let okayChars : Set<Character> =
-        Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890.-_".characters)
-        return String(text.characters.filter {
+        Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890.-_")
+        return String(text.filter {
             okayChars.contains($0)
             })
     }

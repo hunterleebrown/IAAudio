@@ -11,7 +11,7 @@ import RealmSwift
 import Alamofire
 
 
-typealias ArchiveDocAndFile = (doc:IAArchiveDocMappable, file:IAFileMappable)
+typealias ArchiveDocAndFile = (doc:IAArchiveDocDecodable, file:IAFileMappable)
 
 let RealmManager = IARealmManger.sharedInstance
 
@@ -62,7 +62,7 @@ class IARealmManger {
     }
     
     
-    func addArchive(doc:IAArchiveDocMappable)->IAArchive? {
+    func addArchive(doc:IAArchiveDocDecodable)->IAArchive? {
     
         //Check for Archive first
         let archivePredicate = NSPredicate(format: "identifier = %@", doc.identifier!)
@@ -431,7 +431,7 @@ class IARealmManger {
         
         let identifier = playerFile.archiveIdentifier
         
-            let destination: DownloadRequest.DownloadFileDestination = { _, response in
+            let destination: DownloadRequest.Destination = { _, response in
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
                 let trackPath = documentsURL.appendingPathComponent("tracks/\(identifier)/\(IARealmManger.downloadFilePath(response))")
                 return (trackPath, [.removePreviousFile, .createIntermediateDirectories])
@@ -442,12 +442,12 @@ class IARealmManger {
             if let escapedUrl = playerFile.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
                 
                 // TODO: add pregress download and prehaps queue the downloads up somehow
-                Alamofire.download(escapedUrl, to: destination).response { response in
+                AF.download(escapedUrl, to: destination).response { response in
                     print(response)
-                    if response.error == nil, let downloadPath = response.destinationURL?.path {
+                    if response.error == nil, let downloadPath = response.fileURL?.path {
                         print("------> downloaded file to here: \(downloadPath)")
                         
-                        if let lastPath = response.destinationURL?.lastPathComponent {
+                        if let lastPath = response.fileURL?.lastPathComponent {
                             let savedPath = "tracks/\(identifier)/\(lastPath)"
                             self.updateFileWithLocalPath(playerFile: playerFile, localPath: savedPath)
                         }
