@@ -13,7 +13,7 @@ class DocMetadata: Decodable {
     var identifier: String?
     var description: String?
     var subject: [String] = [String]()
-    var creator: String?
+    var creator: [String] = [String]()
     var uploader: String?
     var title: String?
     var artist: String?
@@ -32,14 +32,19 @@ class DocMetadata: Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.identifier = try values.decodeIfPresent(String.self, forKey: .identifier)
         self.description = try values.decodeIfPresent(String.self, forKey: .description)
+
         if let singleSubject = try? values.decodeIfPresent(String.self, forKey: .subject) {
-             //if a single venue decoded append it to array
             self.subject.append(singleSubject)
         } else if let multiSubject = try? values.decode([String].self, forKey: .subject) {
-             //if a multi venue decoded, set it as venue
             self.subject = multiSubject
          }
-        self.creator = try values.decodeIfPresent(String.self, forKey: .creator)
+
+        if let singleCreator = try? values.decodeIfPresent(String.self, forKey: .creator) {
+            self.creator.append(singleCreator)
+        } else if let multiCreator = try? values.decode([String].self, forKey: .creator) {
+            self.creator = multiCreator
+        }
+
         self.title = try values.decodeIfPresent(String.self, forKey: .title)
         self.artist = try values.decodeIfPresent(String.self, forKey: .artist)
     }
@@ -85,7 +90,7 @@ class IAArchiveDocDecodable: Decodable {
     
     var creator: String? {
         get {
-            return metadata.creator
+            return metadata.creator.joined(separator: ", ")
         }
     }
     

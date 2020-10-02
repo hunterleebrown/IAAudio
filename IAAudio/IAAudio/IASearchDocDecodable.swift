@@ -44,8 +44,8 @@ class IASearchDocDecodable: Decodable {
     var title: String?
     var desc: String?
     var collection: [String]?
-    var subject: Any?
-    var creator: Any?
+    var subject: [String] = [String]()
+    var creator: [String] = [String]()
     var contentDate: String?
     var archiveDate: String?
 
@@ -61,28 +61,24 @@ class IASearchDocDecodable: Decodable {
         case archiveDate
     }
 
-//    func mapping(map: Map) {
-//        identifier <- map["identifier"]
-//        title <- map["title"]
-//        desc <- map["description"]
-//        collection <- map["collection"]
-//        subject <- map["subject"]
-//        creator <- map["creator"]
-//        contentDate <- map["date"]
-//        archiveDate <- map["publicdate"]
-//    }
-
     public required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.identifier = try values.decodeIfPresent(String.self, forKey: .identifier)
         self.title = try values.decodeIfPresent(String.self, forKey: .title)
         self.desc = try values.decodeIfPresent(String.self, forKey: .desc)
+        self.collection = try values.decodeIfPresent([String].self, forKey: .collection)
 
-        let throwables = try values.decode([Throwable<String>].self, forKey: .collection)
-        self.collection = throwables.compactMap { try? $0.result.get() }
+        if let singleSubject = try? values.decodeIfPresent(String.self, forKey: .subject) {
+            self.subject.append(singleSubject)
+        } else if let multiSubject = try? values.decode([String].self, forKey: .subject) {
+            self.subject = multiSubject
+         }
 
-//        self.subject = try values.decodeIfPresent(Any.self, forKey: .subject)
-//        self.creator = try values.decodeIfPresent(Any.self, forKey: .creator)
+        if let singleCreator = try? values.decodeIfPresent(String.self, forKey: .creator) {
+            self.creator.append(singleCreator)
+        } else if let multiCreator = try? values.decode([String].self, forKey: .creator) {
+            self.creator = multiCreator
+        }
 
         self.contentDate = try values.decodeIfPresent(String.self, forKey: .contentDate)
         self.archiveDate = try values.decodeIfPresent(String.self, forKey: .archiveDate)
@@ -90,22 +86,19 @@ class IASearchDocDecodable: Decodable {
 
     
     var displaySubject: String? {
-        if let sub = subject as? Array<String> {
-            return sub.joined(separator: ", ")
-        } else if let sub = subject as? String {
-            return sub
+
+        if self.subject.count > 0 {
+            return self.subject.joined(separator: ", ")
         }
-        
+
         return nil
     }
     
     var displayCreator: String? {
-        if let sub = creator as? Array<String> {
-            return sub.joined(separator: ", ")
-        } else if let sub = creator as? String {
-            return sub
+        if self.creator.count > 0 {
+            return self.creator.joined(separator: ", ")
         }
-        
+
         return nil
     }
     
