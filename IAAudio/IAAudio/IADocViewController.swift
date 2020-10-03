@@ -224,7 +224,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
      Initial tableview.reloadData() happens here after the main image is fetched
      */
     func setImage(url:URL) {
-        self.albumImage.af_setImage(withURL: url,
+        self.albumImage.af.setImage(withURL: url,
                                placeholderImage: nil,
                                filter: nil,
                                progress: nil,

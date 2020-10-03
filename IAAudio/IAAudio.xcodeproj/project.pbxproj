@@ -21,8 +21,6 @@
 		5A4115BF1E4D1DF8004F6B56 /* IAPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A4115BE1E4D1DF8004F6B56 /* IAPlayer.storyboard */; };
 		5A4115C11E4D1E12004F6B56 /* IAPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4115C01E4D1E12004F6B56 /* IAPlayerViewController.swift */; };
 		5A4116141E4D2794004F6B56 /* IAMediaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */; };
-		5A4116181E4D280E004F6B56 /* IASearchDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116161E4D280E004F6B56 /* IASearchDoc.swift */; };
-		5A4116191E4D280E004F6B56 /* IAFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116171E4D280E004F6B56 /* IAFile.swift */; };
 		5A4116241E4D57EE004F6B56 /* IASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */; };
 		5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */; };
 		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
@@ -53,7 +51,6 @@
 		5AE64B721E54438900A49821 /* IAMyStashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyStashTableViewCell.swift */; };
 		5AE923FD2526BBE6004BC744 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE923FC2526BBE6004BC744 /* Alamofire */; };
 		5AE924012526BC25004BC744 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924002526BC25004BC744 /* AlamofireImage */; };
-		5AE924052526BC4D004BC744 /* ObjectMapper in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924042526BC4D004BC744 /* ObjectMapper */; };
 		5AE924092526BC83004BC744 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924082526BC83004BC744 /* NVActivityIndicatorView */; };
 		5AE9240D2526BCEC004BC744 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE9240C2526BCEC004BC744 /* Realm */; };
 		5AE9240F2526BCEC004BC744 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE9240E2526BCEC004BC744 /* RealmSwift */; };
@@ -78,8 +75,6 @@
 		5A4115BE1E4D1DF8004F6B56 /* IAPlayer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAPlayer.storyboard; sourceTree = "<group>"; };
 		5A4115C01E4D1E12004F6B56 /* IAPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAPlayerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMediaUtils.swift; sourceTree = "<group>"; };
-		5A4116161E4D280E004F6B56 /* IASearchDoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDoc.swift; sourceTree = "<group>"; };
-		5A4116171E4D280E004F6B56 /* IAFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAFile.swift; sourceTree = "<group>"; };
 		5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchViewController.swift; sourceTree = "<group>"; };
 		5A4116251E4D695A004F6B56 /* IAMyMusicStashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyMusicStashViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
@@ -119,7 +114,6 @@
 			files = (
 				5AE9240F2526BCEC004BC744 /* RealmSwift in Frameworks */,
 				5AE924092526BC83004BC744 /* NVActivityIndicatorView in Frameworks */,
-				5AE924052526BC4D004BC744 /* ObjectMapper in Frameworks */,
 				5AE923FD2526BBE6004BC744 /* Alamofire in Frameworks */,
 				5AE924012526BC25004BC744 /* AlamofireImage in Frameworks */,
 				5AE9240D2526BCEC004BC744 /* Realm in Frameworks */,
@@ -239,7 +233,6 @@
 		5A4116151E4D27F2004F6B56 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CE8C036D1E679E8B00C68E86 /* _OLD_Reference */,
 				5A29692D1E514C3E00E7409F /* Realm */,
 				5A47BE541E4DABC300FB0A7A /* IASearchDocDecodable.swift */,
 				5A5764B91E50461C000D4465 /* IAArchiveDocDecodable.swift */,
@@ -326,15 +319,6 @@
 			name = Choices;
 			sourceTree = "<group>";
 		};
-		CE8C036D1E679E8B00C68E86 /* _OLD_Reference */ = {
-			isa = PBXGroup;
-			children = (
-				5A4116161E4D280E004F6B56 /* IASearchDoc.swift */,
-				5A4116171E4D280E004F6B56 /* IAFile.swift */,
-			);
-			name = _OLD_Reference;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -354,7 +338,6 @@
 			packageProductDependencies = (
 				5AE923FC2526BBE6004BC744 /* Alamofire */,
 				5AE924002526BC25004BC744 /* AlamofireImage */,
-				5AE924042526BC4D004BC744 /* ObjectMapper */,
 				5AE924082526BC83004BC744 /* NVActivityIndicatorView */,
 				5AE9240C2526BCEC004BC744 /* Realm */,
 				5AE9240E2526BCEC004BC744 /* RealmSwift */,
@@ -370,7 +353,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Hunter Lee Brown";
 				TargetAttributes = {
 					5A4115851E4D046F004F6B56 = {
@@ -383,10 +366,9 @@
 			};
 			buildConfigurationList = 5A4115811E4D046F004F6B56 /* Build configuration list for PBXProject "IAAudio" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -394,7 +376,6 @@
 			packageReferences = (
 				5AE923FB2526BBE6004BC744 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
-				5AE924032526BC4D004BC744 /* XCRemoteSwiftPackageReference "ObjectMapper" */,
 				5AE924072526BC83004BC744 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				5AE9240B2526BCEC004BC744 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
@@ -433,7 +414,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A525BFF1E5A9B3F00B641C2 /* IAMyChoicesSectionHeaderView.swift in Sources */,
-				5A4116181E4D280E004F6B56 /* IASearchDoc.swift in Sources */,
 				5A92D8A51E871BA000E0EB61 /* UISearchBar+Fairy.swift in Sources */,
 				5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */,
 				5A5764BA1E50461C000D4465 /* IAArchiveDocDecodable.swift in Sources */,
@@ -451,7 +431,6 @@
 				5A4115C11E4D1E12004F6B56 /* IAPlayerViewController.swift in Sources */,
 				5A41158A1E4D046F004F6B56 /* AppDelegate.swift in Sources */,
 				5A525BFB1E5A798E00B641C2 /* IAMyStashChoicesViewController.swift in Sources */,
-				5A4116191E4D280E004F6B56 /* IAFile.swift in Sources */,
 				5A6DFBBA1E594209002C0977 /* IAViewController.swift in Sources */,
 				5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */,
 				5A4116261E4D695A004F6B56 /* IAMyMusicStashViewController.swift in Sources */,
@@ -497,20 +476,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -548,20 +537,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -595,10 +594,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YB9HQM8F84;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = IAAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -616,10 +612,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = YB9HQM8F84;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = IAAudio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -671,14 +664,6 @@
 				minimumVersion = 4.1.0;
 			};
 		};
-		5AE924032526BC4D004BC744 /* XCRemoteSwiftPackageReference "ObjectMapper" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/tristanhimmelman/ObjectMapper.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
-			};
-		};
 		5AE924072526BC83004BC744 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
@@ -707,11 +692,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
 			productName = AlamofireImage;
-		};
-		5AE924042526BC4D004BC744 /* ObjectMapper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5AE924032526BC4D004BC744 /* XCRemoteSwiftPackageReference "ObjectMapper" */;
-			productName = ObjectMapper;
 		};
 		5AE924082526BC83004BC744 /* NVActivityIndicatorView */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -35,7 +35,7 @@ class IARealmManger {
     }
     
     func createNowPlayingList() {
-        var nowPlayingList = realm.objects(IAList.self).filter("title = '\(NOWPLAYING)'").first
+        let nowPlayingList = realm.objects(IAList.self).filter("title = '\(NOWPLAYING)'").first
         if nowPlayingList == nil {
             self.syncPlaylist(files: [], title: "_NOWPLAYING", list: nil)
         }
@@ -437,7 +437,7 @@ class IARealmManger {
                 return (trackPath, [.removePreviousFile, .createIntermediateDirectories])
             }
             
-            print("----------->: \(destination)")
+        print("----------->: \(String(describing: destination))")
             
             if let escapedUrl = playerFile.urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) {
                 

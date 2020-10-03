@@ -105,7 +105,7 @@ public extension UIButton {
             assert(textFont != nil, IAIconStruct.ErrorAnnounce)
             titleLabel.font = textFont!
             
-            let textAttribute = [NSAttributedString.Key.font : titleLabel.font]
+            let textAttribute: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : titleLabel.font as Any]
             let myString = NSMutableAttributedString(string: prefixText, attributes: textAttribute )
             
             if let iconText = icon?.text {
@@ -181,7 +181,7 @@ public extension UILabel {
         assert(textFont != nil, IAIconStruct.ErrorAnnounce)
         font = textFont!
         
-        let textAttribute = [NSAttributedString.Key.font : font]
+        let textAttribute = [NSAttributedString.Key.font : font as Any]
         let myString = NSMutableAttributedString(string: prefixText, attributes: textAttribute )
         
         
@@ -210,7 +210,7 @@ public extension UIImageView {
     /**
      Create UIImage from IAIconType
      */
-    public func setIAIconWithName(_ icon: IAIconType, textColor: UIColor, backgroundColor: UIColor = UIColor.clear) {
+    func setIAIconWithName(_ icon: IAIconType, textColor: UIColor, backgroundColor: UIColor = UIColor.clear) {
         
         self.image = UIImage(icon: icon, size: frame.size, textColor: textColor, backgroundColor: backgroundColor)
     }
@@ -219,7 +219,7 @@ public extension UIImageView {
 
 public extension UITabBarItem {
     
-    public func setIAIcon(_ icon: IAIconType) {
+    func setIAIcon(_ icon: IAIconType) {
         
         image = UIImage(icon: icon, size: CGSize(width: 30, height: 30))
     }
@@ -228,7 +228,7 @@ public extension UITabBarItem {
 
 public extension UISegmentedControl {
     
-    public func setIAIcon(_ icon: IAIconType, forSegmentAtIndex segment: Int) {
+    func setIAIcon(_ icon: IAIconType, forSegmentAtIndex segment: Int) {
         
         FontLoader.loadFontIfNeeded()
         let font = UIFont(name: IAIconStruct.FontName, size: 23)
@@ -241,7 +241,7 @@ public extension UISegmentedControl {
 
 public extension UIImage {
     
-    public convenience init(icon: IAIconType, size: CGSize, textColor: UIColor = UIColor.black, backgroundColor: UIColor = UIColor.clear) {
+    convenience init(icon: IAIconType, size: CGSize, textColor: UIColor = UIColor.black, backgroundColor: UIColor = UIColor.clear) {
         
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = NSTextAlignment.center

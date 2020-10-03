@@ -35,7 +35,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
         
         self.initSearchController(searchResultsController:searchResultsController)
         self.searchController.searchBar.placeholder = "Find Tracks To Add"
-        self.searchController.dimsBackgroundDuringPresentation = true
+        self.searchController.obscuresBackgroundDuringPresentation = true
         definesPresentationContext = true
         self.searchController.searchBar.frame = self.searchBarHolder.bounds
         self.searchController.searchResultsUpdater = searchResultsController

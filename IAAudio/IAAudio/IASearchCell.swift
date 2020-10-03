@@ -22,7 +22,7 @@ class IASearchCell: UITableViewCell {
         didSet {
             
             if let imageUrl = searchDoc?.iconUrl {
-                itemImage?.af_setImage(withURL:imageUrl)
+                itemImage?.af.setImage(withURL:imageUrl)
                 itemImage?.layer.cornerRadius = 10.0
                 itemImage?.clipsToBounds = true
             }

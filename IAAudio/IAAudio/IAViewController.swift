@@ -51,7 +51,7 @@ class IAViewController: UIViewController {
     func initSearchController(searchResultsController:UIViewController? = nil) {
         searchController = UISearchController(searchResultsController: searchResultsController)
         definesPresentationContext = true
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         
         searchController.searchBar.tintColor = UIColor.fairyCream
         searchController.searchBar.backgroundColor = UIColor.clear

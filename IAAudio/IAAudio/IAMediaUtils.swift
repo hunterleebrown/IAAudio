@@ -105,7 +105,49 @@ extension UIColor {
     }
 }
 
+enum IAFileFormat {
+    case other
+    case jpeg
+    case gif
+    case h264
+    case mpeg4
+    case mpeg4512kb
+    case h264HD
+    case djVuTXT
+    case txt
+    case processedJP2ZIP
+    case vbrmp3
+    case mp364Kbps
+    case mp3128Kbps
+    case mp3
+    case mp396Kbps
+    case png15
+    case epub
+    case image
+    case png
 
+//    var description : String {
+//        return IAMediaUtils.stringFrom(IAMediaUtils.mediaTypeFrom(self))
+//    }
+
+}
+
+enum IAMediaType {
+    case none
+    case audio
+    case video
+    case text
+    case image
+    case collection
+    case any
+    case software
+    case etree
+
+    var description : String {
+        return IAMediaUtils.stringFrom(self)
+    }
+
+}
 
 struct IAMediaUtils
 {

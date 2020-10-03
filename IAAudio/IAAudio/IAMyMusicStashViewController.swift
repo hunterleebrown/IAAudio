@@ -148,7 +148,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 switch changes {
                 case .initial:
                     self?.tableView.reloadData()
-                case .update(let results, let deletions, let insertions, let modifications):
+                case .update(_, let deletions, let insertions, let modifications):
                     
                     if (self?.isSearching())!{
                         
@@ -178,7 +178,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                 switch changes {
                 case .initial:
                     self?.tableView.reloadData()
-                case .update(let results, let deletions, let insertions, let modifications):
+                case .update(_, let deletions, let insertions, let modifications):
                     
                     if (self?.isSearching())! {
                         
@@ -495,7 +495,6 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
                     file = archiveFiles[indexPath.row]
                     RealmManager.deleteFile(file: file)
                 }
-                print(file)
                 
             case .AllFiles:
                 let file: IAPlayerFile!

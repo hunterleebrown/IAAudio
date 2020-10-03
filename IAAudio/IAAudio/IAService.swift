@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 import Alamofire
-import ObjectMapper
 
 enum SearchFields : Int {
     case all = 0
@@ -117,7 +116,7 @@ class IAService {
 
             }
 
-        print("request: \(request)")
+        print("request: \(String(describing: request))")
     }
     
 
