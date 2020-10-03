@@ -152,15 +152,15 @@
 		5A4115881E4D046F004F6B56 /* IAAudio */ = {
 			isa = PBXGroup;
 			children = (
+				5A4115891E4D046F004F6B56 /* AppDelegate.swift */,
+				5A4115901E4D046F004F6B56 /* Assets.xcassets */,
+				5A4115921E4D046F004F6B56 /* LaunchScreen.storyboard */,
+				5A4115951E4D046F004F6B56 /* Info.plist */,
 				5A4115B61E4D18F0004F6B56 /* View Controllers */,
 				5A4115AF1E4D1785004F6B56 /* Fonts and Icons */,
 				5A47BE511E4DA03300FB0A7A /* Service */,
 				5A4116151E4D27F2004F6B56 /* Model */,
 				5A4116121E4D277A004F6B56 /* Utils */,
-				5A4115891E4D046F004F6B56 /* AppDelegate.swift */,
-				5A4115901E4D046F004F6B56 /* Assets.xcassets */,
-				5A4115921E4D046F004F6B56 /* LaunchScreen.storyboard */,
-				5A4115951E4D046F004F6B56 /* Info.plist */,
 			);
 			path = IAAudio;
 			sourceTree = "<group>";
