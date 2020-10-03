@@ -31,7 +31,7 @@ class IAMyStashTableViewCell: UITableViewCell {
                 title.highlightedTextColor = UIColor.white
             }
             if let img = trackImage, let url = IAMediaUtils.imageUrlFrom((archive?.identifier)!) {
-                img.af_setImage(withURL: url)
+                img.af.setImage(withURL: url)
                 img.layer.cornerRadius = 10.0
                 img.clipsToBounds = true
             }
@@ -118,7 +118,7 @@ class IAMyStashTableViewCell: UITableViewCell {
             if let archive = RealmManager.archives(identifier: (file?.archiveIdentifier)!).first {
                 
                 if let img = trackImage, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
-                    img.af_setImage(withURL: url)
+                    img.af.setImage(withURL: url)
                     img.layer.cornerRadius = 3.0
                     img.clipsToBounds = true
                 }
@@ -179,7 +179,7 @@ class IAMyStashTableViewCell: UITableViewCell {
             if let archive = RealmManager.archives(identifier: (playlistFile?.archiveIdentifier)!).first {
                 
                 if let img = trackImage, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {
-                    img.af_setImage(withURL: url)
+                    img.af.setImage(withURL: url)
                     img.layer.cornerRadius = 3.0
                     img.clipsToBounds = true
                 }
@@ -233,8 +233,8 @@ class IAMyStashTableViewCell: UITableViewCell {
         self.itemTitle?.textColor = UIColor.white
         
         if let more = moreButton {
-            more.setIAIcon(.iosMoreOutline, forState: UIControlState())
-            more.setTitleColor(UIColor.white, for: UIControlState())
+            more.setIAIcon(.iosMoreOutline, forState: UIControl.State())
+            more.setTitleColor(UIColor.white, for: UIControl.State())
             
         }
         
@@ -244,7 +244,7 @@ class IAMyStashTableViewCell: UITableViewCell {
         }
         
         if let download = downloadButton {
-            download.setTitleColor(UIColor.fairyCream, for: UIControlState())
+            download.setTitleColor(UIColor.fairyCream, for: UIControl.State())
         }
         
 

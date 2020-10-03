@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MediaPlayer
 import AVFoundation
+import AVKit
 import RealmSwift
 import NVActivityIndicatorView
 
@@ -39,7 +40,9 @@ class IAPlayerViewController: UIViewController {
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     @IBOutlet weak var helpIconButton: UIButton!
     
-    @IBOutlet weak var airPlayPicker: MPVolumeView!
+    var airPlayPicker: AVRoutePickerView?
+
+    @IBOutlet weak var airPlayButton: UIButton!
 
     @IBOutlet weak var playerIcon: UIImageView!
     
@@ -67,9 +70,14 @@ class IAPlayerViewController: UIViewController {
         
         self.randomButton.setTitle(IAFontMapping.RANDOM, for: .normal)
         self.randomButton.tintColor = UIColor.white
-     
-        self.airPlayPicker.showsRouteButton = true
-        self.airPlayPicker.showsVolumeSlider = false
+
+        let routePicker = AVRoutePickerView()
+        routePicker.tintColor = .fairyCreamAlpha
+        routePicker.activeTintColor = .black
+        self.airPlayButton.addSubview(routePicker)
+
+//        self.airPlayPicker.showsRouteButton = true
+//        self.airPlayPicker.showsVolumeSlider = false
         
         IAPlayer.sharedInstance.controlsController = self
         
@@ -77,7 +85,7 @@ class IAPlayerViewController: UIViewController {
         
 
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             
@@ -100,9 +108,9 @@ class IAPlayerViewController: UIViewController {
             
             notificationToken = playerTableFiles.observe{ change in
                 switch change {
-                case .initial(let nowPlayingList):
+                case .initial( _):
                     self.nowPlayingTable.reloadData()
-                case .update(let nowPlayingList, let deletions, let insertions, let modifications):
+                case .update( _, let deletions, let insertions, let modifications):
                     
                     self.nowPlayingTable.beginUpdates()
                     self.nowPlayingTable.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) }, with: .automatic)
@@ -111,7 +119,7 @@ class IAPlayerViewController: UIViewController {
                     self.nowPlayingTable.endUpdates()
                     
                     break
-                case .error(let error):
+                case .error( _):
                     break;
                 }
             }
@@ -141,13 +149,12 @@ class IAPlayerViewController: UIViewController {
         
         nowPlayingItemButton.setTitleColor(IAColors.fairyCream, for: .normal)
         
-        airPlayPicker.tintColor = UIColor.fairyCream
-        
-        if let routeButton = airPlayPicker.subviews.last as? UIButton,
-            let routeButtonTemplateImage  = routeButton.currentImage?.withRenderingMode(.alwaysTemplate)
-        {
-            airPlayPicker.setRouteButtonImage(routeButtonTemplateImage, for: .normal)
-        }
+
+//        if let routeButton = airPlayPicker.subviews.last as? UIButton,
+//            let routeButtonTemplateImage  = routeButton.currentImage?.withRenderingMode(.alwaysTemplate)
+//        {
+////            airPlayPicker.setRouteButtonImage(routeButtonTemplateImage, for: .normal)
+//        }
 
     }
 
@@ -210,7 +217,7 @@ class IAPlayerViewController: UIViewController {
         if let player = IAPlayer.sharedInstance.avPlayer {
             let duration = CMTimeGetSeconds((player.currentItem?.duration)!)
             let sec = duration * Float64(self.playingProgress.value)
-            let seakTime:CMTime = CMTimeMakeWithSeconds(sec, 600)
+            let seakTime:CMTime = CMTimeMakeWithSeconds(sec, preferredTimescale: 600)
             player.seek(to: seakTime)
             IAPlayer.sharedInstance.updatePlayerTimes()
         }
@@ -221,15 +228,23 @@ class IAPlayerViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pushDoc"), object: nil)
     }
 
+    @IBAction func didPressAirPlayButton(_ sender: Any) {
+        if let picker = self.airPlayPicker {
+            if let routePickerButton = picker.subviews.first(where: { $0 is UIButton }) as? UIButton {
+                routePickerButton.sendActions(for: .touchUpInside)
+            }
+        }
+    }
+
     
     
     //MARK: Remote
     override func remoteControlReceived(with event: UIEvent?) {
-    print("----------->: revceived remote control event: \(event)")
+        print("----------->: revceived remote control event: \(String(describing: event))")
     
         if IAPlayer.sharedInstance.avPlayer != nil {
             
-            if (event!.type == UIEventType.remoteControl) {
+            if (event!.type == UIEvent.EventType.remoteControl) {
                 switch (event!.subtype) {
                 case .remoteControlPause:
                     IAPlayer.sharedInstance.didTapPlayButton()
@@ -336,7 +351,7 @@ class IAPlayer: NSObject {
     typealias PlaylistWithIndex = (list:IAList, index:Int)
     var playingPlaylistWithIndex: PlaylistWithIndex?
     
-    func playFile(file:IAFileMappable, doc:IAArchiveDocMappable){
+    func playFile(file:IAFileMappable, doc:IAArchiveDocDecodable){
         
         self.fileTitle = file.title ?? file.name
         self.fileIdentifierTitle = doc.title
@@ -485,9 +500,9 @@ class IAPlayer: NSObject {
                 print("rate changed: \(player.rate)")
                 
                 if player.rate == 0 {
-                    controller.playButton.setIAIcon(.iosPlayOutline, forState: UIControlState())
+                    controller.playButton.setIAIcon(.iosPlayOutline, forState: UIControl.State())
                 } else {
-                    controller.playButton.setIAIcon(.iosPauseOutline, forState: UIControlState())
+                    controller.playButton.setIAIcon(.iosPauseOutline, forState: UIControl.State())
                 }
                 
                 self.playing  = player.rate > 0.0
@@ -514,7 +529,7 @@ class IAPlayer: NSObject {
                 controlsController?.becomeFirstResponder()
             }
             
-            imageView.af_setImage(
+            imageView.af.setImage(
                 withURL: url!,
                 placeholderImage: nil,
                 filter: nil,
@@ -623,19 +638,14 @@ class IAPlayer: NSObject {
     
     func setActiveAudioSession(){
         let audioSession = AVAudioSession.sharedInstance()
-        if(audioSession.category != AVAudioSessionCategoryPlayback)
-        {
-            do {
-                try audioSession.setCategory(AVAudioSessionCategoryPlayback)
-                try audioSession.setActive(true)
-            }
-            catch {
-                fatalError("Failure to session: \(error)")
-                
-            }
+
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.playback, mode: .default, options: [])
+            try audioSession.setActive(true)
+        }
+        catch {
+            fatalError("Failure to session: \(error)")
         }
     }
     
 }
-
-

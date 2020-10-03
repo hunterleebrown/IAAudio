@@ -11,11 +11,11 @@ import UIKit
 
 extension UIFont {
     
-    func withTraits(traits:UIFontDescriptorSymbolicTraits...) -> UIFont? {
+    func withTraits(traits:UIFontDescriptor.SymbolicTraits...) -> UIFont? {
         let attributes: [UIFontDescriptor.AttributeName : Any] = [
             UIFontDescriptor.AttributeName.family : familyName,
             UIFontDescriptor.AttributeName.size : pointSize,
-            UIFontDescriptor.AttributeName.traits : [UIFontDescriptor.AttributeName.symbolic : UIFontDescriptorSymbolicTraits(traits).rawValue,
+            UIFontDescriptor.AttributeName.traits : [UIFontDescriptor.TraitKey.symbolic : UIFontDescriptor.SymbolicTraits(traits).rawValue,
                                                               UIFontDescriptor.TraitKey.weight : self.weight]
         ]
         

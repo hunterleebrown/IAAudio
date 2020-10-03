@@ -13,7 +13,7 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var searchResults = [IASearchDocMappable]()
+    var searchResults = [IASearchDocDecodable]()
     
     let service = IAService()
     
@@ -53,7 +53,7 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! IASearchCell
         
-        let result: IASearchDocMappable
+        let result: IASearchDocDecodable
         result = searchResults[indexPath.row]
         
         cell.searchDoc = result

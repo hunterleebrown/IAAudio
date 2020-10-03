@@ -29,7 +29,7 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         }
     }
 
-    weak var archiveDoc: IAArchiveDocMappable?
+    weak var archiveDoc: IAArchiveDocDecodable?
     
     override func awakeFromNib() {
         super.awakeFromNib()

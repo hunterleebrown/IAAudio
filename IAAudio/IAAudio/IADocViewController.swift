@@ -39,8 +39,8 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     let service = IAService()
     
     var identifier: String?
-    var doc: IAArchiveDocMappable?
-    var searchDoc: IASearchDocMappable?
+    var doc: IAArchiveDocDecodable?
+    var searchDoc: IASearchDocDecodable?
     
     var notificationToken: NotificationToken? = nil
     var archive: IAArchive?
@@ -53,7 +53,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 44
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         self.tableView?.tableFooterView = UIView(frame: CGRect.zero)
         self.activityIndicatorView.color = IAColors.fairyRed
         self.activityIndicatorView.startAnimating()
@@ -105,24 +105,28 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                         }
                     }
                 }
-                
-                if let jpg = self.doc?.jpg {
-                    self.setImage(url: jpg)
-                    self.albumImage.backgroundColor = UIColor.black
 
-                } else {
-                    self.setImage(url: (self.doc!.iconUrl()))
-                    self.albumImage.backgroundColor = UIColor.white
+
+                if let doc = self.doc {
+
+                    if let jpg = doc.jpg {
+                        self.setImage(url: jpg)
+                        self.albumImage.backgroundColor = UIColor.black
+
+                    } else {
+                        self.setImage(url: (doc.iconUrl()))
+                        self.albumImage.backgroundColor = UIColor.white
+                    }
+
+                    if let files = doc.sortedFiles {
+                        self.audioFiles = files
+                        let count = files.count
+                        let formatter = StringUtils.numberFormatter
+                        let number = NSNumber(value:count)
+                        self.numberOfFilesLabel.text = "\(formatter.string(from: number)!) files"
+                    }
                 }
-                
-                if let files = self.doc?.sortedFiles {
-                    self.audioFiles = files
-                    let count = files.count
-                    let formatter = StringUtils.numberFormatter
-                    let number = NSNumber(value:count)
-                    self.numberOfFilesLabel.text = "\(formatter.string(from: number)!) files"
-                }
-                
+
                 self.addAllButton.setTitleColor(UIColor.darkGray, for: .disabled)
                 
             })
@@ -220,7 +224,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
      Initial tableview.reloadData() happens here after the main image is fetched
      */
     func setImage(url:URL) {
-        self.albumImage.af_setImage(withURL: url,
+        self.albumImage.af.setImage(withURL: url,
                                placeholderImage: nil,
                                filter: nil,
                                progress: nil,
@@ -268,7 +272,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     func layoutTableViewOffset() {
         
         var fr = self.topView.frame
-        fr.size.height = self.topViewHolder.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        fr.size.height = self.topViewHolder.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
         self.topView.frame = fr
         self.tableView.tableHeaderView = self.topView
         

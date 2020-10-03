@@ -68,12 +68,12 @@ class IAHomeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "playerEmbedSegue" {
-            self.playerViewController = segue.destination as! IAPlayerViewController
+            self.playerViewController = segue.destination as? IAPlayerViewController
             self.playerViewController.baseViewController = self
         }
         if segue.identifier == "tabEmbedSegue" {
             let navController = segue.destination as! UINavigationController
-            self.iaTabBarController = navController.viewControllers.first as! IAHomeTabBarController
+            self.iaTabBarController = navController.viewControllers.first as? IAHomeTabBarController
         }
 
     }
