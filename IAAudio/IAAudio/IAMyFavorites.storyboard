@@ -351,7 +351,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gkt-Ja-w6w">
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
-                                        <state key="normal" title="Full Archive"/>
+                                        <state key="normal" title="See Full Archive"/>
                                         <connections>
                                             <action selector="fullArchiveDetails:" destination="6zi-bb-Jhv" eventType="touchUpInside" id="UV3-YR-5vv"/>
                                         </connections>
