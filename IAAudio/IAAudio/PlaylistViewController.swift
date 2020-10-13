@@ -119,7 +119,7 @@ class PlaylistViewController: IAViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyFavoritesTableViewCell
         
         cell.playlistFile = playlistFiles[indexPath.row]
         return cell

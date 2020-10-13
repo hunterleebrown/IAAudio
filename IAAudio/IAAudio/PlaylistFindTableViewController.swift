@@ -50,7 +50,7 @@ class PlaylistFindTableViewController: UITableViewController  {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyFavoritesTableViewCell
         cell.file = filteredFiles[indexPath.row]
         return cell
     }

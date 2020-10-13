@@ -1,5 +1,5 @@
 //
-//  IAMyMusicStashViewController.swift
+//  IAMyFavoritesViewController.swift
 //  IA-Music
 //
 //  Created by Hunter Lee Brown on 2/9/17.
@@ -16,7 +16,7 @@ enum StashMode {
     case AllPlaylists
 }
 
-class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
+class IAMyFavoritesViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
 
     @IBOutlet weak var tableView: UITableView!
@@ -75,7 +75,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             rightButton.title = IAFontMapping.ARCHIVE
             rightButton.target = self
             rightButton.tag = 0;
-            rightButton.action = #selector(IAMyMusicStashViewController.pushDoc(sender:))
+            rightButton.action = #selector(IAMyFavoritesViewController.pushDoc(sender:))
             self.navigationItem.rightBarButtonItem = rightButton
             rightButton.tintColor = UIColor.fairyCream
             
@@ -94,7 +94,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             notificationToken = self.setUpNotification(mode: .AllPlaylists)
             self.topTitle(text:"All Playlists")
                         
-            let rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(IAMyMusicStashViewController.pushNewPlaylist(sender:)))
+            let rightButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(IAMyFavoritesViewController.pushNewPlaylist(sender:)))
             self.navigationItem.rightBarButtonItem = rightButton
             rightButton.tintColor = UIColor.fairyCream
             
@@ -269,7 +269,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
     
     func popIfCorrectController(){
         
-        if (self.navigationController?.visibleViewController as? IAMyMusicStashViewController) != nil {
+        if (self.navigationController?.visibleViewController as? IAMyFavoritesViewController) != nil {
             _ = self.navigationController?.popViewController(animated: true)
         }
     }
@@ -280,7 +280,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         super.viewWillAppear(animated)
         
         if let indexPathForSelectedRow = self.tableView.indexPathForSelectedRow {
-            if let cell = self.tableView.cellForRow(at: indexPathForSelectedRow) as? IAMyStashTableViewCell {
+            if let cell = self.tableView.cellForRow(at: indexPathForSelectedRow) as? IAMyFavoritesTableViewCell {
                 if let file = cell.file {
                     self.selectFileRowIfPlaying(indexPath: indexPathForSelectedRow, file: file)
                 }
@@ -364,9 +364,9 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 
         switch mode {
         case .AllArchives:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "archiveCell", for: indexPath) as! IAMyStashTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "archiveCell", for: indexPath) as! IAMyFavoritesTableViewCell
             if let downloadButton = cell.downloadButton {
-                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+                downloadButton.removeTarget(self, action: #selector(IAMyFavoritesViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
             
             let archive = isSearching() ? filteredArchives[indexPath.row] : archives[indexPath.row]
@@ -375,35 +375,35 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
             return cell
             
         case .SingleArchive:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyFavoritesTableViewCell
             if let downloadButton = cell.downloadButton {
-                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+                downloadButton.removeTarget(self, action: #selector(IAMyFavoritesViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
             let file = isSearching() ? filteredFiles[indexPath.row] : archiveFiles[indexPath.row]
             cell.file = file
             cell.downloadButton?.tag = indexPath.row
-            cell.downloadButton?.addTarget(self, action:#selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+            cell.downloadButton?.addTarget(self, action:#selector(IAMyFavoritesViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
             
             return cell
 
         case .AllFiles:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyStashTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "stashCell", for: indexPath) as! IAMyFavoritesTableViewCell
             if let downloadButton = cell.downloadButton {
-                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+                downloadButton.removeTarget(self, action: #selector(IAMyFavoritesViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
             let file = isSearching() ? filteredFiles[indexPath.row] : files[indexPath.row]
             cell.file = file
             cell.downloadButton?.tag = indexPath.row
-            cell.downloadButton?.addTarget(self, action:#selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+            cell.downloadButton?.addTarget(self, action:#selector(IAMyFavoritesViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             self.selectFileRowIfPlaying(indexPath: indexPath, file: file)
             
             return cell
             
         case .AllPlaylists:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! IAMyStashTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "playlistCell", for: indexPath) as! IAMyFavoritesTableViewCell
             if let downloadButton = cell.downloadButton {
-                downloadButton.removeTarget(self, action: #selector(IAMyMusicStashViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
+                downloadButton.removeTarget(self, action: #selector(IAMyFavoritesViewController.didPressDownloadButton(sender:)), for: .touchUpInside)
             }
             
             let playlist = isSearching() ? filteredPlaylists[indexPath.row] : playLists[indexPath.row]
@@ -580,7 +580,7 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
         
         if segue.identifier == "archivePush" {
             if let archive = chosenArchive {
-                let controller = segue.destination as! IAMyMusicStashViewController
+                let controller = segue.destination as! IAMyFavoritesViewController
                 controller.identifier = archive.identifier
                 controller.mode = .SingleArchive
             }
@@ -669,14 +669,14 @@ class IAMyMusicStashViewController: IAViewController, UITableViewDelegate, UITab
 }
 
 
-extension IAMyMusicStashViewController: UISearchResultsUpdating {
+extension IAMyFavoritesViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
 }
 
-extension IAMyMusicStashViewController: UISearchBarDelegate {
+extension IAMyFavoritesViewController: UISearchBarDelegate {
 
 
 }

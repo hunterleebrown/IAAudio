@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -91,7 +89,7 @@
             <objects>
                 <navigationController id="GPP-bt-vgS" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hyh-sA-yhe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -102,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="1013" y="706"/>
         </scene>
-        <!--My Stash Choices View Controller-->
+        <!--My Favorites Choices View Controller-->
         <scene sceneID="zMP-sN-7um">
             <objects>
-                <viewController id="SGz-8g-usB" customClass="IAMyStashChoicesViewController" customModule="IAAudio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SGz-8g-usB" customClass="IAMyFavoritesChoicesViewController" customModule="IAAudio" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="duG-nt-9rz"/>
                         <viewControllerLayoutGuide type="bottom" id="hQ6-T6-h3e"/>
@@ -123,10 +121,10 @@
                                 <blurEffect style="dark"/>
                             </visualEffectView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a7M-rr-IR3">
-                                <rect key="frame" x="0.0" y="64" width="320" height="389"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="409"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="choicesHeader" selectionStyle="default" indentationWidth="10" reuseIdentifier="choicesHeader" id="ISi-dJ-xpU" customClass="IAMyChoicesSectionHeaderTableViewCell" customModule="IAAudio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="choicesHeader" selectionStyle="default" indentationWidth="10" reuseIdentifier="choicesHeader" id="ISi-dJ-xpU" customClass="IAMyFavoritesSectionHeaderTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ISi-dJ-xpU" id="Mr0-Gr-AFq">
@@ -153,11 +151,11 @@
                                             <outlet property="title" destination="31I-Ab-USh" id="DZq-GS-hyJ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="choiceCell" rowHeight="56" id="c6y-zm-i67" customClass="IAMyStashChoicesTableViewCell" customModule="IAAudio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="choiceCell" rowHeight="56" id="c6y-zm-i67" customClass="IAMyFavoritesChoicesTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c6y-zm-i67" id="Yjr-kb-v5b">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="293" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKh-j3-N2Y">
@@ -171,16 +169,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="305-4D-wTg">
-                                                    <rect key="frame" x="64" y="9.5" width="213" height="38.5"/>
+                                                    <rect key="frame" x="64" y="9" width="219" height="38.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwB-wJ-SCe">
-                                                            <rect key="frame" x="0.0" y="0.0" width="213" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="219" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pp7-Xp-MCt">
-                                                            <rect key="frame" x="0.0" y="20.5" width="213" height="18"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="219" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -204,7 +202,7 @@
                                             <outlet property="title" destination="PwB-wJ-SCe" id="J0d-hy-kbS"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dataCell" rowHeight="118" id="qRf-VR-bUY" customClass="IAMyChoicesDataTableViewCell" customModule="IAAudio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dataCell" rowHeight="118" id="qRf-VR-bUY" customClass="IAMyFavoritesDataTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="320" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qRf-VR-bUY" id="xlU-zX-7aG">
@@ -271,7 +269,7 @@
                                             <outlet property="numberOfDownloadedFiles" destination="7yw-IO-Ltd" id="K0L-xQ-KEV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="findCell" id="wwg-Pk-iyX" customClass="IAMyChoicesFindTableViewCell" customModule="IAAudio" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="findCell" id="wwg-Pk-iyX" customClass="IAMyFavoritesFindTableViewCell" customModule="IAAudio" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="246" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wwg-Pk-iyX" id="piq-90-anA">
@@ -281,13 +279,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9ly-4L-1vr">
                                                     <rect key="frame" x="20" y="10" width="280" height="24"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apS-Yb-EMc">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apS-Yb-EMc">
                                                             <rect key="frame" x="0.0" y="0.0" width="140" height="24"/>
                                                             <state key="normal" title="Browse Audio">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgY-dd-z46">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hgY-dd-z46">
                                                             <rect key="frame" x="140" y="0.0" width="140" height="24"/>
                                                             <state key="normal" title="Search Audio">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -341,14 +339,14 @@
                             <rect key="frame" x="0.0" y="42" width="240" height="44"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nv1-dG-L3p">
-                                    <rect key="frame" x="0.0" y="0.0" width="240" height="22"/>
+                                    <rect key="frame" x="120" y="0.0" width="0.0" height="0.0"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0hc-qL-XYF">
-                                    <rect key="frame" x="0.0" y="22" width="240" height="22"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -375,27 +373,26 @@
             </objects>
             <point key="canvasLocation" x="2709.375" y="151.05633802816902"/>
         </scene>
-        <!--IAMyMusicStash-->
+        <!--IAMyFavorites-->
         <scene sceneID="ko1-Ko-Izq">
             <objects>
-                <viewControllerPlaceholder storyboardName="IAMyMusicStash" id="W51-Qk-xvG" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="IAMyFavorites" id="W51-Qk-xvG" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="jIm-gE-j8y"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sTc-yO-NMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3531" y="152"/>
         </scene>
-        <!--My Audio Stash-->
+        <!--My Favorites-->
         <scene sceneID="8Rz-ST-zL0">
             <objects>
                 <navigationController id="naD-Sd-CMm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Audio Stash" id="BH4-nT-Uos"/>
+                    <tabBarItem key="tabBarItem" title="My Favorites" id="BH4-nT-Uos"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pao-aL-8bY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7aj-zN-1K3">
-                        <rect key="frame" x="0.0" y="438" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -428,9 +425,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tabBar>
                     <connections>
-                        <segue destination="naD-Sd-CMm" kind="relationship" relationship="viewControllers" id="73B-2f-lbi"/>
-                        <segue destination="KRi-lm-irR" kind="relationship" relationship="viewControllers" id="CJy-Jt-zSL"/>
                         <segue destination="GPP-bt-vgS" kind="presentation" identifier="docPush" modalPresentationStyle="currentContext" id="U0t-U7-tBE"/>
+                        <segue destination="KRi-lm-irR" kind="relationship" relationship="viewControllers" id="CJy-Jt-zSL"/>
+                        <segue destination="naD-Sd-CMm" kind="relationship" relationship="viewControllers" id="73B-2f-lbi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uk6-60-U1X" userLabel="First Responder" sceneMemberID="firstResponder"/>

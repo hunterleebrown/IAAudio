@@ -380,10 +380,10 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
         
         // There has to be a better way to express this logic
         if filesNameInRealm[file.name!] != nil  {
-            cell.addButton.setIAIcon(.checkmark, forState: .normal)
+            cell.addButton.setIAIcon(.iosHeart, forState: .normal)
             cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressCheckmark(_:)), for:.touchUpInside)
         } else {
-            cell.addButton.setIAIcon(.plus, forState: .normal)
+            cell.addButton.setIAIcon(.iosHeartOutline, forState: .normal)
             cell.addButton.addTarget(self, action: #selector(IADocViewController.didPressPlusButton(_:)), for:.touchUpInside)
         }
         

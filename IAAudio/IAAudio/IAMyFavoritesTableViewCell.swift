@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IAMyStashTableViewCell: UITableViewCell {
+class IAMyFavoritesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var trackTitle: UILabel?
     @IBOutlet weak var itemTitle: UILabel?

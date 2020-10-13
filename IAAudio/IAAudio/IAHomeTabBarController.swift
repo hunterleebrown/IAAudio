@@ -18,13 +18,14 @@ class IAHomeTabBarController: UITabBarController {
         self.tabBar.tintColor = IAColors.fairyCream
         self.tabBar.unselectedItemTintColor = UIColor.black
         
-        
-        let libraryTab = self.tabBar.items![0] as UITabBarItem
-        libraryTab.setIAIcon(.iosMusicalNotes)
-        
-        let searchTab = self.tabBar.items![1] as UITabBarItem
+
+        let searchTab = self.tabBar.items![0] as UITabBarItem
         searchTab.setIAIcon(.iosSearch)
+
+        let libraryTab = self.tabBar.items![1] as UITabBarItem
+        libraryTab.setIAIcon(.iosHeart)
         
+
 
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "pushDoc"), object: nil, queue: nil) { notification in

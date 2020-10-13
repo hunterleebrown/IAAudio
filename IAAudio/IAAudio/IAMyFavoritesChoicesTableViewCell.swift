@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IAMyStashChoicesTableViewCell: UITableViewCell {
+class IAMyFavoritesChoicesTableViewCell: UITableViewCell {
 
     @IBOutlet weak var choiceTypeIconLabel: UILabel!
     @IBOutlet weak var title: UILabel!

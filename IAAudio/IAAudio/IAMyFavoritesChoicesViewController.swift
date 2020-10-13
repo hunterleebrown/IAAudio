@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
+class IAMyFavoritesChoicesViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
     var realm: Realm?
 
@@ -23,7 +23,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.topTitle(text: "My Audio Stash")
+        self.topTitle(text: "My Favorites")
         self.clearNavigation()
         
         self.tableView.sectionHeaderHeight = 44
@@ -70,7 +70,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == ChoiceSelctions.Content.rawValue {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "choiceCell") as! IAMyStashChoicesTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "choiceCell") as! IAMyFavoritesChoicesTableViewCell
             switch indexPath.row {
             case 0:
                 let choice = StashChoice.Archives
@@ -91,12 +91,12 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
         }
 
         if indexPath.section == ChoiceSelctions.Find.rawValue {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "findCell") as! IAMyChoicesFindTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "findCell") as! IAMyFavoritesFindTableViewCell
             return cell
         }
 
         if indexPath.section == ChoiceSelctions.Data.rawValue {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "dataCell") as! IAMyChoicesDataTableViewCell
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "dataCell") as! IAMyFavoritesDataTableViewCell
             let counts = RealmManager.totalDeviceStorage()
             cell.numberOfDownloadedFiles.text = "\(counts.numberOfFiles)"
             cell.diskSpaceUsage.text = counts.size
@@ -117,7 +117,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = self.tableView.dequeueReusableCell(withIdentifier: "choicesHeader") as! IAMyChoicesSectionHeaderTableViewCell
+        let headerView = self.tableView.dequeueReusableCell(withIdentifier: "choicesHeader") as! IAMyFavoritesSectionHeaderTableViewCell
         headerView.title.text = self.tableView(tableView, titleForHeaderInSection: section)
         return headerView.contentView
     }
@@ -141,7 +141,7 @@ class IAMyStashChoicesViewController: IAViewController, UITableViewDelegate, UIT
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "stashPush" {
-            if let controller = segue.destination as? IAMyMusicStashViewController, let choice = selectedChoice {
+            if let controller = segue.destination as? IAMyFavoritesViewController, let choice = selectedChoice {
                 if choice == StashChoice.Files {
                     controller.mode = .AllFiles
                 }

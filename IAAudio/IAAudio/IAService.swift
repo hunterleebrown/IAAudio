@@ -72,6 +72,11 @@ class IAService {
     func searchFetch(_ completion:@escaping SearchResponse) {
         self.request?.cancel()
 
+        guard let qs = self._queryString, qs.count > 0 else {
+            completion([IASearchDocDecodable](), nil)
+            return
+        }
+
         request = AF.request(urlStr!, method:.post, parameters: parameters)
             .validate(statusCode: 200..<201)
             .validate(contentType: ["application/json"])

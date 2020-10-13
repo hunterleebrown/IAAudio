@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IAMyChoicesSectionHeaderTableViewCell: UITableViewCell {
+class IAMyFavoritesSectionHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
     /*
