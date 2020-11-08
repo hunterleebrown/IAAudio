@@ -12,6 +12,7 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activitiyIndicator: UIActivityIndicatorView!
     
     var searchResults = [IASearchDocDecodable]()
     
@@ -22,7 +23,9 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
         
         tableView.rowHeight = 90
         tableView.cellLayoutMarginsFollowReadableWidth = false
-        
+
+        activitiyIndicator.fairy()
+
         searchBar.fairy()
 
         if let topNav = topNavView {
@@ -84,20 +87,23 @@ extension IASearchViewController: UISearchBarDelegate {
     // MARK: - UISearchBar Delegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+
+        self.activitiyIndicator.startAnimating()
+
         service.queryString = searchBar.text
         service.searchFetch { (contents, error) in
             
             if let contentItems = contents {
                 self.searchResults = contentItems
                 self.tableView.reloadData()
+                self.activitiyIndicator.stopAnimating()
             }
    
         }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
+
         guard IAReachability.isConnectedToNetwork() else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "networkAlert"), object: nil)
             return

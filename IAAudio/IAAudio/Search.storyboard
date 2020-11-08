@@ -3,7 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -165,11 +165,15 @@
                                     <outlet property="delegate" destination="af5-WW-a7H" id="dx2-J4-5E8"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-aI-Hf2">
+                                <rect key="frame" x="16" y="11" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Wx5-AE-8C1" firstAttribute="top" secondItem="Pf2-KL-dE8" secondAttribute="top" id="2ia-XA-vmo"/>
                             <constraint firstItem="ABp-Gf-gBZ" firstAttribute="top" secondItem="17c-oM-1Ck" secondAttribute="bottom" id="CXj-0t-hPs"/>
                             <constraint firstItem="ZBr-c9-pfQ" firstAttribute="top" secondItem="Wx5-AE-8C1" secondAttribute="bottom" id="G0h-vf-5hk"/>
+                            <constraint firstItem="uUe-aI-Hf2" firstAttribute="top" secondItem="17c-oM-1Ck" secondAttribute="bottom" constant="-33" id="KE3-0T-Faq"/>
                             <constraint firstAttribute="trailing" secondItem="Wx5-AE-8C1" secondAttribute="trailing" id="NcJ-u5-ZFz"/>
                             <constraint firstItem="DOk-Ts-AzW" firstAttribute="leading" secondItem="Pf2-KL-dE8" secondAttribute="leading" id="Vii-TU-tIC"/>
                             <constraint firstAttribute="bottom" secondItem="hXy-Hf-qHJ" secondAttribute="bottom" id="WMI-Gt-VsB"/>
@@ -179,6 +183,7 @@
                             <constraint firstAttribute="trailing" secondItem="DOk-Ts-AzW" secondAttribute="trailing" id="hhb-To-XwF"/>
                             <constraint firstAttribute="trailing" secondItem="hXy-Hf-qHJ" secondAttribute="trailing" id="jWr-LB-d2B"/>
                             <constraint firstItem="hXy-Hf-qHJ" firstAttribute="top" secondItem="Pf2-KL-dE8" secondAttribute="top" id="nud-6u-0di"/>
+                            <constraint firstItem="uUe-aI-Hf2" firstAttribute="leading" secondItem="Pf2-KL-dE8" secondAttribute="leadingMargin" id="qDP-dt-Fe1"/>
                             <constraint firstAttribute="trailing" secondItem="ABp-Gf-gBZ" secondAttribute="trailing" id="r60-Qo-d4r"/>
                             <constraint firstItem="ZBr-c9-pfQ" firstAttribute="top" secondItem="DOk-Ts-AzW" secondAttribute="bottom" id="tCj-4z-i9n"/>
                             <constraint firstItem="ABp-Gf-gBZ" firstAttribute="leading" secondItem="Pf2-KL-dE8" secondAttribute="leading" id="z7C-zA-5Yd"/>
@@ -187,6 +192,7 @@
                     <tabBarItem key="tabBarItem" title="" id="QW4-4E-j9N"/>
                     <navigationItem key="navigationItem" id="hrg-JM-pJl"/>
                     <connections>
+                        <outlet property="activitiyIndicator" destination="uUe-aI-Hf2" id="81j-nF-BqH"/>
                         <outlet property="searchBar" destination="ABp-Gf-gBZ" id="2QW-xh-vvs"/>
                         <outlet property="tableView" destination="DOk-Ts-AzW" id="Eab-OW-HrB"/>
                         <outlet property="topNavView" destination="UX8-7L-jUp" id="7fd-IQ-7Ly"/>
