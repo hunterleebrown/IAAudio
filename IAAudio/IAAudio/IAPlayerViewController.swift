@@ -40,9 +40,7 @@ class IAPlayerViewController: UIViewController {
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     @IBOutlet weak var helpIconButton: UIButton!
     
-    var airPlayPicker: AVRoutePickerView?
-
-    @IBOutlet weak var airPlayButton: UIButton!
+    @IBOutlet weak var airPlayButton: UIView!
 
     @IBOutlet weak var playerIcon: UIImageView!
     
@@ -71,14 +69,15 @@ class IAPlayerViewController: UIViewController {
         self.randomButton.setTitle(IAFontMapping.RANDOM, for: .normal)
         self.randomButton.tintColor = UIColor.white
 
-        let routePicker = AVRoutePickerView()
+        let routePicker = AVRoutePickerView(frame: self.airPlayButton.frame)
+        self.view.addSubview(routePicker)
         routePicker.tintColor = .fairyCreamAlpha
         routePicker.activeTintColor = .black
-        self.airPlayButton.addSubview(routePicker)
 
-//        self.airPlayPicker.showsRouteButton = true
-//        self.airPlayPicker.showsVolumeSlider = false
-        
+        routePicker.translatesAutoresizingMaskIntoConstraints = false
+        routePicker.centerYAnchor.constraint(equalTo: self.airPlayButton.centerYAnchor).isActive = true
+        routePicker.centerXAnchor.constraint(equalTo: self.airPlayButton.centerXAnchor).isActive = true
+
         IAPlayer.sharedInstance.controlsController = self
         
         self.playerIcon.layer.cornerRadius = 3.0
@@ -227,15 +226,6 @@ class IAPlayerViewController: UIViewController {
     @IBAction func pushDoc(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pushDoc"), object: nil)
     }
-
-    @IBAction func didPressAirPlayButton(_ sender: Any) {
-        if let picker = self.airPlayPicker {
-            if let routePickerButton = picker.subviews.first(where: { $0 is UIButton }) as? UIButton {
-                routePickerButton.sendActions(for: .touchUpInside)
-            }
-        }
-    }
-
     
     
     //MARK: Remote
