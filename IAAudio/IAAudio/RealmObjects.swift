@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import iaAPI
 
 enum FileSizeType {
     case appropriate, large, unknown
@@ -50,14 +51,14 @@ class IAPlayerFile: Object {
     
     var displaySize: String? {
         if let rawSize = Int(size) {
-            return StringUtils.sizeString(size: rawSize)
+            return IAStringUtils.sizeString(size: rawSize)
         }
         return nil
     }
     
     var displayLength: String? {
         if !length.isEmpty {
-            return StringUtils.timeFormatter(timeString: length)
+            return IAStringUtils.timeFormatter(timeString: length)
         }
         return nil
     }

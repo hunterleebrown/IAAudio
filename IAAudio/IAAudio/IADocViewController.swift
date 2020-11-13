@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import NVActivityIndicatorView
+import iaAPI
 
 class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -32,15 +33,15 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var addAllButton: UIButton!
     @IBOutlet weak var numberOfFilesLabel: UILabel!
     
-    var filteredAudioFiles = [IAFileMappable]()
+    var filteredAudioFiles = [IAFile]()
     @IBOutlet weak var searchBarHolder: UIView!
     
-    var audioFiles = [IAFileMappable]()
+    var audioFiles = [IAFile]()
     let service = IAService()
     
     var identifier: String?
-    var doc: IAArchiveDocDecodable?
-    var searchDoc: IASearchDocDecodable?
+    var doc: IAArchiveDoc?
+    var searchDoc: IASearchDoc?
     
     var notificationToken: NotificationToken? = nil
     var archive: IAArchive?
@@ -100,7 +101,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                         
                         let htmlWrapper = "<html><pre style='font-family:Sans-Serif'>\(rawHtml)</pre></html>"
 
-                        if let aText = NSMutableAttributedString.bodyMutableAttributedString(htmlWrapper, font:deets.font ) {
+                        if let aText = NSMutableAttributedString.IABodyMutableAttributedString(htmlWrapper, font:deets.font ) {
                             deets.attributedText =  aText
                         }
                     }
@@ -121,7 +122,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
                     if let files = doc.sortedFiles {
                         self.audioFiles = files
                         let count = files.count
-                        let formatter = StringUtils.numberFormatter
+                        let formatter = IAStringUtils.numberFormatter
                         let number = NSNumber(value:count)
                         self.numberOfFilesLabel.text = "\(formatter.string(from: number)!) files"
                     }
@@ -401,7 +402,7 @@ class IADocViewController: IAViewController, UITableViewDelegate, UITableViewDat
     
     func filterContentForSearchText(searchText: String) {
         
-        filteredAudioFiles = audioFiles.filter({( file : IAFileMappable) -> Bool in
+        filteredAudioFiles = audioFiles.filter({( file : IAFile) -> Bool in
             return file.displayName.lowercased().contains(searchText.lowercased())
         })
         

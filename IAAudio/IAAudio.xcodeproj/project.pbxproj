@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A1096101E5185DC008DB3B7 /* IADoc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A10960F1E5185DC008DB3B7 /* IADoc.storyboard */; };
+		5A282F7D255CE26300146A1C /* iaAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A282F7C255CE26300146A1C /* iaAPI */; };
 		5A29692F1E514C5E00E7409F /* RealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A29692E1E514C5E00E7409F /* RealmObjects.swift */; };
 		5A41158A1E4D046F004F6B56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4115891E4D046F004F6B56 /* AppDelegate.swift */; };
 		5A41158F1E4D046F004F6B56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A41158D1E4D046F004F6B56 /* Main.storyboard */; };
@@ -24,16 +25,12 @@
 		5A4116241E4D57EE004F6B56 /* IASearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */; };
 		5A4116261E4D695A004F6B56 /* IAMyFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A4116251E4D695A004F6B56 /* IAMyFavoritesViewController.swift */; };
 		5A47BE501E4D948C00FB0A7A /* Iconochive-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */; };
-		5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE521E4DA04700FB0A7A /* IAService.swift */; };
-		5A47BE551E4DABC300FB0A7A /* IASearchDocDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A47BE541E4DABC300FB0A7A /* IASearchDocDecodable.swift */; };
 		5A525BFB1E5A798E00B641C2 /* IAMyFavoritesChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFA1E5A798E00B641C2 /* IAMyFavoritesChoicesViewController.swift */; };
 		5A525BFD1E5A7CAE00B641C2 /* IAMyFavoritesChoicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFC1E5A7CAE00B641C2 /* IAMyFavoritesChoicesTableViewCell.swift */; };
 		5A525BFF1E5A9B3F00B641C2 /* IAMyFavoritesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525BFE1E5A9B3F00B641C2 /* IAMyFavoritesSectionHeaderView.swift */; };
 		5A525C011E5A9FE400B641C2 /* IAMyFavoritesFindTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525C001E5A9FE400B641C2 /* IAMyFavoritesFindTableViewCell.swift */; };
 		5A525C031E5AA0A300B641C2 /* IAMyFavoritesDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A525C021E5AA0A300B641C2 /* IAMyFavoritesDataTableViewCell.swift */; };
 		5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B31E502872000D4465 /* IASearchCell.swift */; };
-		5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B51E502C53000D4465 /* StringUtils.swift */; };
-		5A5764BA1E50461C000D4465 /* IAArchiveDocDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764B91E50461C000D4465 /* IAArchiveDocDecodable.swift */; };
 		5A5764BC1E5056B6000D4465 /* IADocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BB1E5056B6000D4465 /* IADocViewController.swift */; };
 		5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */; };
 		5A615A141E515BC700B18161 /* IARealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A615A131E515BC700B18161 /* IARealmManager.swift */; };
@@ -49,12 +46,10 @@
 		5AB89AEE1E53F9B300A9836A /* IAMyFavorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AB89AED1E53F9B300A9836A /* IAMyFavorites.storyboard */; };
 		5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */; };
 		5AE64B721E54438900A49821 /* IAMyFavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE64B711E54438900A49821 /* IAMyFavoritesTableViewCell.swift */; };
-		5AE923FD2526BBE6004BC744 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE923FC2526BBE6004BC744 /* Alamofire */; };
 		5AE924012526BC25004BC744 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924002526BC25004BC744 /* AlamofireImage */; };
 		5AE924092526BC83004BC744 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE924082526BC83004BC744 /* NVActivityIndicatorView */; };
 		5AE9240D2526BCEC004BC744 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE9240C2526BCEC004BC744 /* Realm */; };
 		5AE9240F2526BCEC004BC744 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5AE9240E2526BCEC004BC744 /* RealmSwift */; };
-		5AE924192526D164004BC744 /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE924182526D164004BC744 /* Throwable.swift */; };
 		5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,16 +73,12 @@
 		5A4116231E4D57EE004F6B56 /* IASearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchViewController.swift; sourceTree = "<group>"; };
 		5A4116251E4D695A004F6B56 /* IAMyFavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyFavoritesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A47BE4F1E4D940300FB0A7A /* Iconochive-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Iconochive-Regular.ttf"; sourceTree = "<group>"; };
-		5A47BE521E4DA04700FB0A7A /* IAService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAService.swift; sourceTree = "<group>"; };
-		5A47BE541E4DABC300FB0A7A /* IASearchDocDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchDocDecodable.swift; sourceTree = "<group>"; };
 		5A525BFA1E5A798E00B641C2 /* IAMyFavoritesChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyFavoritesChoicesViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A525BFC1E5A7CAE00B641C2 /* IAMyFavoritesChoicesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyFavoritesChoicesTableViewCell.swift; sourceTree = "<group>"; };
 		5A525BFE1E5A9B3F00B641C2 /* IAMyFavoritesSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyFavoritesSectionHeaderView.swift; sourceTree = "<group>"; };
 		5A525C001E5A9FE400B641C2 /* IAMyFavoritesFindTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyFavoritesFindTableViewCell.swift; sourceTree = "<group>"; };
 		5A525C021E5AA0A300B641C2 /* IAMyFavoritesDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAMyFavoritesDataTableViewCell.swift; sourceTree = "<group>"; };
 		5A5764B31E502872000D4465 /* IASearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IASearchCell.swift; sourceTree = "<group>"; };
-		5A5764B51E502C53000D4465 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
-		5A5764B91E50461C000D4465 /* IAArchiveDocDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAArchiveDocDecodable.swift; sourceTree = "<group>"; };
 		5A5764BB1E5056B6000D4465 /* IADocViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IADocViewController.swift; sourceTree = "<group>"; usesTabs = 0; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5A5764BE1E50669C000D4465 /* IAAuidoFileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAAuidoFileTableViewCell.swift; sourceTree = "<group>"; };
 		5A615A131E515BC700B18161 /* IARealmManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IARealmManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -103,7 +94,6 @@
 		5AB89AED1E53F9B300A9836A /* IAMyFavorites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IAMyFavorites.storyboard; sourceTree = "<group>"; };
 		5AD7D8891E6CD0CD00BB8AAF /* IAReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAReachability.swift; sourceTree = "<group>"; };
 		5AE64B711E54438900A49821 /* IAMyFavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = IAMyFavoritesTableViewCell.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		5AE924182526D164004BC744 /* Throwable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throwable.swift; sourceTree = "<group>"; };
 		5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +104,7 @@
 			files = (
 				5AE9240F2526BCEC004BC744 /* RealmSwift in Frameworks */,
 				5AE924092526BC83004BC744 /* NVActivityIndicatorView in Frameworks */,
-				5AE923FD2526BBE6004BC744 /* Alamofire in Frameworks */,
+				5A282F7D255CE26300146A1C /* iaAPI in Frameworks */,
 				5AE924012526BC25004BC744 /* AlamofireImage in Frameworks */,
 				5AE9240D2526BCEC004BC744 /* Realm in Frameworks */,
 			);
@@ -158,7 +148,6 @@
 				5A4115951E4D046F004F6B56 /* Info.plist */,
 				5A4115B61E4D18F0004F6B56 /* View Controllers */,
 				5A4115AF1E4D1785004F6B56 /* Fonts and Icons */,
-				5A47BE511E4DA03300FB0A7A /* Service */,
 				5A4116151E4D27F2004F6B56 /* Model */,
 				5A4116121E4D277A004F6B56 /* Utils */,
 			);
@@ -224,7 +213,6 @@
 				5AFA0F1C1E56BE7C00052E99 /* UIImageColors.swift */,
 				5A7967F21E584592001F44B0 /* UIFont+Common.swift */,
 				5A92D8A41E871BA000E0EB61 /* UIView+Fairy.swift */,
-				5A5764B51E502C53000D4465 /* StringUtils.swift */,
 				5A4116131E4D2794004F6B56 /* IAMediaUtils.swift */,
 			);
 			name = Utils;
@@ -234,9 +222,6 @@
 			isa = PBXGroup;
 			children = (
 				5A29692D1E514C3E00E7409F /* Realm */,
-				5A47BE541E4DABC300FB0A7A /* IASearchDocDecodable.swift */,
-				5A5764B91E50461C000D4465 /* IAArchiveDocDecodable.swift */,
-				5AE924182526D164004BC744 /* Throwable.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -268,14 +253,6 @@
 				5A92D8A61E87245E00E0EB61 /* PlaylistFindTableViewController.swift */,
 			);
 			name = Lists;
-			sourceTree = "<group>";
-		};
-		5A47BE511E4DA03300FB0A7A /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				5A47BE521E4DA04700FB0A7A /* IAService.swift */,
-			);
-			name = Service;
 			sourceTree = "<group>";
 		};
 		5A525BF91E5A794600B641C2 /* Stash */ = {
@@ -336,11 +313,11 @@
 			);
 			name = IAAudio;
 			packageProductDependencies = (
-				5AE923FC2526BBE6004BC744 /* Alamofire */,
 				5AE924002526BC25004BC744 /* AlamofireImage */,
 				5AE924082526BC83004BC744 /* NVActivityIndicatorView */,
 				5AE9240C2526BCEC004BC744 /* Realm */,
 				5AE9240E2526BCEC004BC744 /* RealmSwift */,
+				5A282F7C255CE26300146A1C /* iaAPI */,
 			);
 			productName = "IA-Music";
 			productReference = 5A4115861E4D046F004F6B56 /* IAAudio.app */;
@@ -374,10 +351,10 @@
 			);
 			mainGroup = 5A41157D1E4D046F004F6B56;
 			packageReferences = (
-				5AE923FB2526BBE6004BC744 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				5AE924072526BC83004BC744 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				5AE9240B2526BCEC004BC744 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				5A282F7B255CE26300146A1C /* XCRemoteSwiftPackageReference "iaAPI" */,
 			);
 			productRefGroup = 5A4115871E4D046F004F6B56 /* Products */;
 			projectDirPath = "";
@@ -416,13 +393,9 @@
 				5A525BFF1E5A9B3F00B641C2 /* IAMyFavoritesSectionHeaderView.swift in Sources */,
 				5A92D8A51E871BA000E0EB61 /* UIView+Fairy.swift in Sources */,
 				5AFA0F1D1E56BE7C00052E99 /* UIImageColors.swift in Sources */,
-				5A5764BA1E50461C000D4465 /* IAArchiveDocDecodable.swift in Sources */,
 				5A5764BF1E50669C000D4465 /* IAAuidoFileTableViewCell.swift in Sources */,
 				5AD7D88A1E6CD0CD00BB8AAF /* IAReachability.swift in Sources */,
-				5A5764B61E502C53000D4465 /* StringUtils.swift in Sources */,
-				5A47BE531E4DA04700FB0A7A /* IAService.swift in Sources */,
 				5A5764B41E502872000D4465 /* IASearchCell.swift in Sources */,
-				5AE924192526D164004BC744 /* Throwable.swift in Sources */,
 				5A92D8A71E87245E00E0EB61 /* PlaylistFindTableViewController.swift in Sources */,
 				5A92D8A11E86F6DE00E0EB61 /* PlaylistViewController.swift in Sources */,
 				5A4115BC1E4D19DE004F6B56 /* IAHomeTabBarController.swift in Sources */,
@@ -436,7 +409,6 @@
 				5A4116261E4D695A004F6B56 /* IAMyFavoritesViewController.swift in Sources */,
 				5A525C011E5A9FE400B641C2 /* IAMyFavoritesFindTableViewCell.swift in Sources */,
 				5A4115B41E4D1803004F6B56 /* IAIconType.swift in Sources */,
-				5A47BE551E4DABC300FB0A7A /* IASearchDocDecodable.swift in Sources */,
 				5AE64B721E54438900A49821 /* IAMyFavoritesTableViewCell.swift in Sources */,
 				5A92D8AB1E879BCF00E0EB61 /* NowPlayingTableViewCell.swift in Sources */,
 				5A6DFBBC1E5943C8002C0977 /* IATopNavView.swift in Sources */,
@@ -596,6 +568,7 @@
 				DEVELOPMENT_TEAM = YB9HQM8F84;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = IAAudio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,6 +587,7 @@
 				DEVELOPMENT_TEAM = YB9HQM8F84;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = IAAudio/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -648,12 +622,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5AE923FB2526BBE6004BC744 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		5A282F7B255CE26300146A1C /* XCRemoteSwiftPackageReference "iaAPI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			repositoryURL = "git@github.com:hunterleebrown/iaAPI.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.2.2;
+				minimumVersion = 1.1.1;
 			};
 		};
 		5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
@@ -683,10 +657,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5AE923FC2526BBE6004BC744 /* Alamofire */ = {
+		5A282F7C255CE26300146A1C /* iaAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5AE923FB2526BBE6004BC744 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = 5A282F7B255CE26300146A1C /* XCRemoteSwiftPackageReference "iaAPI" */;
+			productName = iaAPI;
 		};
 		5AE924002526BC25004BC744 /* AlamofireImage */ = {
 			isa = XCSwiftPackageProductDependency;

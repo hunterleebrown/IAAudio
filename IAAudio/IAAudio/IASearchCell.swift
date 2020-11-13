@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AlamofireImage
+import iaAPI
 
 
 class IASearchCell: UITableViewCell {
@@ -18,7 +19,7 @@ class IASearchCell: UITableViewCell {
     @IBOutlet weak var creator : UILabel?
     @IBOutlet weak var dateLabel : UILabel?
 
-    var searchDoc: IASearchDocDecodable? {
+    var searchDoc: IASearchDoc? {
         didSet {
             
             if let imageUrl = searchDoc?.iconUrl {

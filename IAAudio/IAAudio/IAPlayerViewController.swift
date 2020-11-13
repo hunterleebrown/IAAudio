@@ -13,6 +13,7 @@ import AVFoundation
 import AVKit
 import RealmSwift
 import NVActivityIndicatorView
+import iaAPI
 
 class IAPlayerViewController: UIViewController {
 
@@ -341,7 +342,7 @@ class IAPlayer: NSObject {
     typealias PlaylistWithIndex = (list:IAList, index:Int)
     var playingPlaylistWithIndex: PlaylistWithIndex?
     
-    func playFile(file:IAFileMappable, doc:IAArchiveDocDecodable){
+    func playFile(file:IAFile, doc:IAArchiveDoc){
         
         self.fileTitle = file.title ?? file.name
         self.fileIdentifierTitle = doc.title
@@ -617,10 +618,10 @@ class IAPlayer: NSObject {
             
             if(!calcTime.isNaN) {
                 if controller.minTime != nil {
-                    controller.minTime.text = StringUtils.timeFormatted(self.elapsedSeconds())
+                    controller.minTime.text = IAStringUtils.timeFormatted(self.elapsedSeconds())
                 }
                 if controller.maxTime != nil {
-                    controller.maxTime.text = StringUtils.timeFormatted(Int(calcTime))
+                    controller.maxTime.text = IAStringUtils.timeFormatted(Int(calcTime))
                 }
             }
         }

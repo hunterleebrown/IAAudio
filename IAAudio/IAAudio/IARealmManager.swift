@@ -9,9 +9,9 @@
 import Foundation
 import RealmSwift
 import Alamofire
+import iaAPI
 
-
-typealias ArchiveDocAndFile = (doc:IAArchiveDocDecodable, file:IAFileMappable)
+typealias ArchiveDocAndFile = (doc:IAArchiveDoc, file:IAFile)
 
 let RealmManager = IARealmManger.sharedInstance
 
@@ -62,7 +62,7 @@ class IARealmManger {
     }
     
     
-    func addArchive(doc:IAArchiveDocDecodable)->IAArchive? {
+    func addArchive(doc:IAArchiveDoc)->IAArchive? {
     
         //Check for Archive first
         let archivePredicate = NSPredicate(format: "identifier = %@", doc.identifier!)
@@ -87,7 +87,7 @@ class IARealmManger {
         return archive
     }
     
-    func addAll(archive:IAArchive, files:[IAFileMappable]) {
+    func addAll(archive:IAArchive, files:[IAFile]) {
         try! realm.write {
             for file in files {
                 self.addRealmFile(archive: archive, file: file)
@@ -95,13 +95,13 @@ class IARealmManger {
         }
     }
     
-    func addFile(archive:IAArchive, file:IAFileMappable) {
+    func addFile(archive:IAArchive, file:IAFile) {
         try! realm.write {
             self.addRealmFile(archive: archive, file: file)
         }
     }
     
-    func addRealmFile(archive:IAArchive, file: IAFileMappable) {
+    func addRealmFile(archive:IAArchive, file: IAFile) {
     
         let predicate = NSPredicate(format: "name = %@ AND archiveIdentifier = %@", file.name!, archive.identifier)
         let fileResults = realm.objects(IAPlayerFile.self).filter(predicate)
@@ -158,7 +158,7 @@ class IARealmManger {
         
     }
     
-    private func createPlayerFile(identifier:String, file:IAFileMappable)->IAPlayerFile {
+    private func createPlayerFile(identifier:String, file:IAFile)->IAPlayerFile {
         let newFile = IAPlayerFile()
         
         newFile.setCompoundName(name: file.name!)
@@ -337,7 +337,7 @@ class IARealmManger {
         } catch {
             print("ERROR IN FILE FETCH -- or no contentsOfDirectoryAtPath  \(error)")
         }
-        return ("\(StringUtils.sizeString(size:totalDownloadSize)) MB", totalFiles)
+        return ("\(IAStringUtils.sizeString(size:totalDownloadSize)) MB", totalFiles)
     }
     
     
@@ -351,7 +351,7 @@ class IARealmManger {
                 return nil
         }
         
-        return StringUtils.sizeString(size: freeSize.intValue)
+        return IAStringUtils.sizeString(size: freeSize.intValue)
     }
     
     

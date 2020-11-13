@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iaAPI
 
 class IAAuidoFileTableViewCell: UITableViewCell {
 
@@ -15,7 +16,7 @@ class IAAuidoFileTableViewCell: UITableViewCell {
     @IBOutlet weak var length: UILabel!
     @IBOutlet weak var colorBackground: UIView!
     
-    weak var audioFile: IAFileMappable? {
+    weak var audioFile: IAFile? {
         didSet {
             titleLabel.text = audioFile?.displayName
             addButton.setIAIcon(.plusRound, forState: .normal)
@@ -29,7 +30,7 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         }
     }
 
-    weak var archiveDoc: IAArchiveDocDecodable?
+    weak var archiveDoc: IAArchiveDoc?
     
     override func awakeFromNib() {
         super.awakeFromNib()

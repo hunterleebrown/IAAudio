@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import iaAPI
 
 class IASearchViewController: IAViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,7 +15,7 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activitiyIndicator: UIActivityIndicatorView!
     
-    var searchResults = [IASearchDocDecodable]()
+    var searchResults = [IASearchDoc]()
     
     let service = IAService()
     
@@ -56,7 +57,7 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! IASearchCell
         
-        let result: IASearchDocDecodable
+        let result: IASearchDoc
         result = searchResults[indexPath.row]
         
         cell.searchDoc = result
@@ -87,18 +88,13 @@ extension IASearchViewController: UISearchBarDelegate {
     // MARK: - UISearchBar Delegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
         self.activitiyIndicator.startAnimating()
-
-        service.queryString = searchBar.text
-        service.searchFetch { (contents, error) in
-            
+        service.searchFetch(queryString: searchText) { (contents, error) in
             if let contentItems = contents {
                 self.searchResults = contentItems
                 self.tableView.reloadData()
                 self.activitiyIndicator.stopAnimating()
             }
-   
         }
     }
     
