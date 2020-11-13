@@ -89,7 +89,7 @@ extension IASearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.activitiyIndicator.startAnimating()
-        service.searchFetch(queryString: searchText) { (contents, error) in
+        service.searchMp3(queryString: searchText) { (contents, error) in
             if let contentItems = contents {
                 self.searchResults = contentItems
                 self.tableView.reloadData()

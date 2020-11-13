@@ -627,7 +627,7 @@
 			repositoryURL = "git@github.com:hunterleebrown/iaAPI.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
+				minimumVersion = 1.1.2;
 			};
 		};
 		5AE923FF2526BC25004BC744 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
