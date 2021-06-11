@@ -14,6 +14,7 @@ class IAHomeTabBarController: UITabBarController {
         super.viewDidLoad()
         
         self.tabBar.barTintColor = UIColor.fairyRed
+        self.view.backgroundColor = UIColor.fairyRed
         
         self.tabBar.tintColor = IAColors.fairyCream
         self.tabBar.unselectedItemTintColor = UIColor.black
