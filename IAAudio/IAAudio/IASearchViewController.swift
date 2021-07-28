@@ -89,13 +89,24 @@ extension IASearchViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.activitiyIndicator.startAnimating()
-        service.searchMp3(queryString: searchText) { (contents, error) in
+        
+//        service.searchMp3(queryString: searchText) { (contents, error) in
+//            if let contentItems = contents {
+//                self.searchResults = contentItems
+//                self.tableView.reloadData()
+//                self.activitiyIndicator.stopAnimating()
+//            }
+//        }
+
+        service.search(queryString: searchText, mediaTypes: [.audio, .etree, .texts], format: .mp3) { (contents, error) in
             if let contentItems = contents {
                 self.searchResults = contentItems
                 self.tableView.reloadData()
                 self.activitiyIndicator.stopAnimating()
             }
         }
+
+
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
