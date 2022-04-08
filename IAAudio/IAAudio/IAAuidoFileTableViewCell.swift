@@ -46,7 +46,6 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         self.length.textColor = selected ? UIColor.fairyRed : UIColor.white
     }
 
-
     override func layoutSubviews() {
         super.layoutSubviews()
         self.colorBackground.backgroundColor = isSelected ? UIColor.fairyCreamAlpha : UIColor.darkGray
@@ -54,5 +53,12 @@ class IAAuidoFileTableViewCell: UITableViewCell {
         self.length.textColor = isSelected ? UIColor.fairyRed : UIColor.white
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        length.text = nil
+        colorBackground.backgroundColor = UIColor.darkGray
     }
 }
