@@ -24,4 +24,10 @@ class IAMyFavoritesDataTableViewCell: IAMyFavoritesSectionHeaderTableViewCell {
         // Configure the view for the selected state
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        numberOfDownloadedFiles.text = nil
+        diskSpaceUsage.text = nil
+    }
+
 }

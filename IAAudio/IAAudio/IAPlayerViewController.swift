@@ -56,7 +56,7 @@ class IAPlayerViewController: UIViewController {
     
     var notificationToken: NotificationToken? = nil
     
-    var playList: IAList? 
+    var playList: IAList?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,7 +132,7 @@ class IAPlayerViewController: UIViewController {
     }
 
     func buttonColors() {
-    
+
         for button in [self.playButton, self.forwardButton, self.backwardButton, self.randomButton] {
             button?.setTitleColor(IAColors.fairyCream, for: .normal)
         }
@@ -150,11 +150,11 @@ class IAPlayerViewController: UIViewController {
         nowPlayingItemButton.setTitleColor(IAColors.fairyCream, for: .normal)
         
 
-//        if let routeButton = airPlayPicker.subviews.last as? UIButton,
-//            let routeButtonTemplateImage  = routeButton.currentImage?.withRenderingMode(.alwaysTemplate)
-//        {
-////            airPlayPicker.setRouteButtonImage(routeButtonTemplateImage, for: .normal)
-//        }
+        //        if let routeButton = airPlayPicker.subviews.last as? UIButton,
+        //            let routeButtonTemplateImage  = routeButton.currentImage?.withRenderingMode(.alwaysTemplate)
+        //        {
+        ////            airPlayPicker.setRouteButtonImage(routeButtonTemplateImage, for: .normal)
+        //        }
 
     }
 
@@ -232,7 +232,7 @@ class IAPlayerViewController: UIViewController {
     //MARK: Remote
     override func remoteControlReceived(with event: UIEvent?) {
         print("----------->: revceived remote control event: \(String(describing: event))")
-    
+
         if IAPlayer.sharedInstance.avPlayer != nil {
             
             if (event!.type == UIEvent.EventType.remoteControl) {
@@ -286,21 +286,21 @@ extension IAPlayerViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Table view data source
     
-     func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return playerTableFiles.count
     }
     
-     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "nowPlayingCell", for: indexPath) as! NowPlayingTableViewCell
         
         let file = playerTableFiles[indexPath.row]
@@ -422,7 +422,7 @@ class IAPlayer: NSObject {
             controller.nowPlayingItemButton.setTitle(self.fileIdentifierTitle, for: .normal)
             controller.displayNowPlayingTitle(message: self.fileTitle!)
         }
-                
+
         avPlayer = AVPlayer(url: self.playUrl as URL)
         
         avPlayer?.addObserver(self, forKeyPath: "rate", options:.new, context: &observerContext)
@@ -438,7 +438,7 @@ class IAPlayer: NSObject {
             self.playingPlaylistWithIndex = pI
             
             NotificationCenter.default.addObserver(self, selector: #selector(IAPlayer.continuePlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
-        
+
         } else {
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
         }
@@ -551,7 +551,7 @@ class IAPlayer: NSObject {
                             songInfo[MPMediaItemPropertyArtwork] = artwork
                         }
                         
-                            songInfo[MPMediaItemPropertyTitle] = self.fileTitle as AnyObject?
+                        songInfo[MPMediaItemPropertyTitle] = self.fileTitle as AnyObject?
                         
                         MPNowPlayingInfoCenter.default().nowPlayingInfo = songInfo
                         
@@ -560,7 +560,7 @@ class IAPlayer: NSObject {
                         print("-----------> player couldn't get image: \(error)")
                         break
                     }
-            }
+                }
         }
     }
     

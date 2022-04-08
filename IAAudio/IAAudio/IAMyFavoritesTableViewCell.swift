@@ -18,7 +18,7 @@ class IAMyFavoritesTableViewCell: UITableViewCell {
     @IBOutlet weak var pushButton: UIButton?
     @IBOutlet weak var size: UILabel?
     @IBOutlet weak var length: UILabel?
-    @IBOutlet weak var trackIconLabel: UILabel!
+    @IBOutlet weak var trackIconLabel: UILabel?
     
     @IBOutlet weak var playlistPlayButton: UIButton!
     
@@ -53,38 +53,40 @@ class IAMyFavoritesTableViewCell: UITableViewCell {
 
         }
     }
-    
+
+    override func prepareForReuse() {
+        trackTitle?.text = nil
+        itemTitle?.text = nil
+        trackImage.image = nil
+        size?.text = nil
+        length?.text = nil
+        trackIconLabel?.text = nil
+    }
+
     
     var playlist: IAList? {
         
         didSet {
             
-            if let title = trackTitle {
-                title.text = playlist?.title
-                title.highlightedTextColor = UIColor.white
-                
-                if let list = playlist, let subTitle = itemTitle {
-                    subTitle.text = "\(list.files.count) track\(list.files.count == 1 ? "" : "s")"
+            trackTitle?.text = playlist?.title
+            trackTitle?.highlightedTextColor = UIColor.white
+
+            if let list = playlist {
+                itemTitle?.text = "\(list.files.count) track\(list.files.count == 1 ? "" : "s")"
+            }
+
+            trackIconLabel?.font = UIFont(name: IAFontMapping.IAFontFamily, size:33.0)
+            trackIconLabel?.text = IAFontMapping.COLLECTION
+
+            playlistPlayButton.setIAIcon(.play, forState: .normal)
+            if let list = playlist {
+                if list.files.count < 1 {
+                    playlistPlayButton.isEnabled = false
+                } else {
+                    playlistPlayButton.isEnabled = true
                 }
             }
 
-            
-            if let icon = trackIconLabel {
-                icon.font = UIFont(name: IAFontMapping.IAFontFamily, size:33.0)
-                icon.text = IAFontMapping.COLLECTION
-            }
-            
-            if let playButton = playlistPlayButton {
-                playButton.setIAIcon(.play, forState: .normal)
-                if let list = playlist {
-                    if list.files.count < 1 {
-                        playButton.isEnabled = false
-                    } else {
-                        playButton.isEnabled = true
-                    }
-                }
-            }
-            
             isSelected ? showSelected() : showUnselected()
             
         }
@@ -110,11 +112,9 @@ class IAMyFavoritesTableViewCell: UITableViewCell {
             }
 
             
-            if let title = trackTitle {
-                title.text = (file?.title.isEmpty)! ? file?.name : file?.title
-                title.highlightedTextColor = IAColors.fairyRed
-            }
-            
+            trackTitle?.text = (file?.title.isEmpty)! ? file?.name : file?.title
+            trackTitle?.highlightedTextColor = IAColors.fairyRed
+
             if let archive = RealmManager.archives(identifier: (file?.archiveIdentifier)!).first {
                 
                 if let img = trackImage, let url = IAMediaUtils.imageUrlFrom(archive.identifier) {

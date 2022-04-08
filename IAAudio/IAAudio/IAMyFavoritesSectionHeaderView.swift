@@ -27,4 +27,9 @@ class IAMyFavoritesSectionHeaderTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = UIColor.clear
         self.backgroundColor = UIColor.clear
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        title.text = nil
+    }
 }

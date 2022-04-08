@@ -56,11 +56,8 @@ class IASearchViewController: IAViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! IASearchCell
-        
-        let result: IASearchDoc
-        result = searchResults[indexPath.row]
-        
-        cell.searchDoc = result
+
+        cell.searchDoc = searchResults[indexPath.row]
         return cell
     }
     

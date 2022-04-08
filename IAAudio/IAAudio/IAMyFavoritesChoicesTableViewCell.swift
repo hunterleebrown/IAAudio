@@ -16,24 +16,22 @@ class IAMyFavoritesChoicesTableViewCell: UITableViewCell {
     
     var stashChoice: StashChoice! {
         didSet {
-            if let tit = title {
-                tit.text = stashChoice?.title
-            }
-            if let icon = choiceTypeIconLabel {
-                if let choice = stashChoice {
-                    switch  choice {
-                    case .Archives:
-                        fallthrough
-                    case .Lists:
-                        icon.font = UIFont(name: icon.font.familyName, size: 40)
-                        icon.text =  stashChoice.iconLabelText
-                    case .Files:
-                        icon.setIAIcon(.document, iconSize: 44)
-                        
-                    }
+
+            title.text = stashChoice.title
+
+            if let choice = stashChoice {
+                switch  choice {
+                case .Archives:
+                    fallthrough
+                case .Lists:
+                    choiceTypeIconLabel.font = UIFont(name: choiceTypeIconLabel.font.familyName, size: 40)
+                    choiceTypeIconLabel.text =  stashChoice.iconLabelText
+                case .Files:
+                    choiceTypeIconLabel.setIAIcon(.document, iconSize: 44)
+
                 }
             }
-            
+
             self.isSelected ? showSelected() : showUnselected()
         }
     }
@@ -43,7 +41,12 @@ class IAMyFavoritesChoicesTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        choiceTypeIconLabel.text = nil
+        title.text = nil
+        subTitle.text = nil
+    }
 
     
     func showSelected() {

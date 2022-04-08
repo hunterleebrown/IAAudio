@@ -51,7 +51,15 @@ class IASearchCell: UITableViewCell {
         }
     
     }
-    
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        searchDoc = nil
+        itemImage?.image = nil
+        itemTitle?.text = nil
+        creator?.text = nil
+        dateLabel?.text = nil
+    }
 
     override func layoutSubviews() {
         self.backgroundColor = UIColor.clear

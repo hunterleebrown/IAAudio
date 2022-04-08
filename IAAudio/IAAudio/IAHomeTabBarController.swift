@@ -14,10 +14,10 @@ class IAHomeTabBarController: UITabBarController {
         super.viewDidLoad()
         
         self.tabBar.barTintColor = UIColor.fairyRed
-        
+        self.tabBar.backgroundColor = IAColors.fairyRed
+
         self.tabBar.tintColor = IAColors.fairyCream
-        self.tabBar.unselectedItemTintColor = UIColor.black
-        
+        self.tabBar.unselectedItemTintColor = UIColor.darkGray
 
         let searchTab = self.tabBar.items![0] as UITabBarItem
         searchTab.setIAIcon(.iosSearch)
